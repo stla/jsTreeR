@@ -3,6 +3,7 @@ library(jsTreeR)
 dat <- list(
   list(
     text = "RootA",
+    data = list(value = 999),
     children = list(
       list(text = "ChildA1"),
       list(text = "ChildA2")
