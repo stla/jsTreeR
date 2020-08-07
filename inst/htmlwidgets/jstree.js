@@ -47,6 +47,19 @@ HTMLWidgets.widget({
 
         $el.jstree(options);
 
+        $el.on("ready.jstree", function(e, data) {
+          console.log("ready", data.instance.get_json());
+        });
+
+        $el.on("move_node.jstree", function(e, data) {
+          console.log("move", data.instance.get_json());
+        });
+
+        $el.on("changed.jstree", function(e, data) {
+          console.log("changed", data.instance.get_json());
+          console.log("selected:", data.instance.get_selected(true));
+        });
+
       },
 
       resize: function(width, height) {
