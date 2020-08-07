@@ -45,7 +45,14 @@ jstree <- function(
     width = width,
     height = height,
     package = 'jsTreeR',
-    elementId = elementId
+    elementId = elementId,
+    dependencies = htmltools::htmlDependency(
+      name = "bootstrap",
+      version = "3.4.1",
+      src = "www/shared/bootstrap",
+      stylesheet = "css/bootstrap.min.css",
+      package = "shiny"
+    )
   )
 }
 
