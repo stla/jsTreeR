@@ -1,0 +1,7 @@
+/*
+!.gitignore
+!dist/
+dist/*.*
+!dist/jstree.min.js
+dist/themes/default/style.css
+dist/themes/default-dark/style.css
