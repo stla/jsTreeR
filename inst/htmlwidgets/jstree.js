@@ -71,7 +71,16 @@ HTMLWidgets.widget({
         $el.jstree(options);
 
 
+
         $el.on("ready.jstree", function(e, data) {
+          if(x.search) {
+            var $input =
+              $("<input type='search' id='" + el.id + "-search' placeholder = 'Search' />");
+            $el.prepend($input);
+            $input.on("keyup", function() {
+              $el.jstree(true).search($(this).val());
+            });
+          }
           if(inShiny) {
             Shiny.setInputValue(
               id, getNodes(data.instance.get_json())

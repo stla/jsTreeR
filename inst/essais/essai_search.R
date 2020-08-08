@@ -1,6 +1,4 @@
 library(jsTreeR)
-library(shiny)
-library(jsonlite)
 
 dat <- list(
   list(
@@ -39,38 +37,4 @@ dat <- list(
   )
 )
 
-
-ui <- fluidPage(
-  br(),
-  fluidRow(
-    column(
-      width = 6,
-      jstreeOutput("jstree")
-    ),
-    column(
-      width = 6,
-      verbatimTextOutput("treeState"),
-      br(),
-      verbatimTextOutput("treeSelected")
-    )
-  )
-)
-
-server <- function(input, output){
-
-  output[["jstree"]] <-
-    renderJstree(jstree(dat, dragAndDrop = TRUE, search = TRUE))
-
-  output[["treeState"]] <- renderPrint({
-    toJSON(input[["jstree"]], pretty = TRUE, auto_unbox = TRUE)
-  })
-
-  output[["treeSelected"]] <- renderPrint({
-    toJSON(input[["jstree_selected"]], pretty = TRUE, auto_unbox = TRUE)
-  })
-
-}
-
-shinyApp(ui, server)
-
-
+jstree(dat, dragAndDrop = TRUE, search = TRUE)
