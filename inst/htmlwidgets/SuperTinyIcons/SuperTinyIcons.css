@@ -1,0 +1,693 @@
+.supertinyicon-acast::before {
+  content: url(/SuperTinyIcons/acast.svg);
+}
+.supertinyicon-access::before {
+  content: url(/SuperTinyIcons/access.svg);
+}
+.supertinyicon-airbnb::before {
+  content: url(/SuperTinyIcons/airbnb.svg);
+}
+.supertinyicon-amazon_alexa::before {
+  content: url(/SuperTinyIcons/amazon_alexa.svg);
+}
+.supertinyicon-amazon_s3::before {
+  content: url(/SuperTinyIcons/amazon_s3.svg);
+}
+.supertinyicon-amazon::before {
+  content: url(/SuperTinyIcons/amazon.svg);
+}
+.supertinyicon-amberframework::before {
+  content: url(/SuperTinyIcons/amberframework.svg);
+}
+.supertinyicon-andotp::before {
+  content: url(/SuperTinyIcons/andotp.svg);
+}
+.supertinyicon-android::before {
+  content: url(/SuperTinyIcons/android.svg);
+}
+.supertinyicon-angular::before {
+  content: url(/SuperTinyIcons/angular.svg);
+}
+.supertinyicon-ansible::before {
+  content: url(/SuperTinyIcons/ansible.svg);
+}
+.supertinyicon-apereo::before {
+  content: url(/SuperTinyIcons/apereo.svg);
+}
+.supertinyicon-apple_music::before {
+  content: url(/SuperTinyIcons/apple_music.svg);
+}
+.supertinyicon-apple::before {
+  content: url(/SuperTinyIcons/apple.svg);
+}
+.supertinyicon-archlinux::before {
+  content: url(/SuperTinyIcons/archlinux.svg);
+}
+.supertinyicon-auth0::before {
+  content: url(/SuperTinyIcons/auth0.svg);
+}
+.supertinyicon-authy::before {
+  content: url(/SuperTinyIcons/authy.svg);
+}
+.supertinyicon-backbone::before {
+  content: url(/SuperTinyIcons/backbone.svg);
+}
+.supertinyicon-badoo::before {
+  content: url(/SuperTinyIcons/badoo.svg);
+}
+.supertinyicon-baidu::before {
+  content: url(/SuperTinyIcons/baidu.svg);
+}
+.supertinyicon-bandcamp::before {
+  content: url(/SuperTinyIcons/bandcamp.svg);
+}
+.supertinyicon-behance::before {
+  content: url(/SuperTinyIcons/behance.svg);
+}
+.supertinyicon-bing::before {
+  content: url(/SuperTinyIcons/bing.svg);
+}
+.supertinyicon-bitbucket::before {
+  content: url(/SuperTinyIcons/bitbucket.svg);
+}
+.supertinyicon-bitcoin::before {
+  content: url(/SuperTinyIcons/bitcoin.svg);
+}
+.supertinyicon-bitwarden::before {
+  content: url(/SuperTinyIcons/bitwarden.svg);
+}
+.supertinyicon-blogger::before {
+  content: url(/SuperTinyIcons/blogger.svg);
+}
+.supertinyicon-bluetooth::before {
+  content: url(/SuperTinyIcons/bluetooth.svg);
+}
+.supertinyicon-buffer::before {
+  content: url(/SuperTinyIcons/buffer.svg);
+}
+.supertinyicon-calendar::before {
+  content: url(/SuperTinyIcons/calendar.svg);
+}
+.supertinyicon-centos::before {
+  content: url(/SuperTinyIcons/centos.svg);
+}
+.supertinyicon-chrome::before {
+  content: url(/SuperTinyIcons/chrome.svg);
+}
+.supertinyicon-clojure::before {
+  content: url(/SuperTinyIcons/clojure.svg);
+}
+.supertinyicon-cloudflare::before {
+  content: url(/SuperTinyIcons/cloudflare.svg);
+}
+.supertinyicon-codepen::before {
+  content: url(/SuperTinyIcons/codepen.svg);
+}
+.supertinyicon-coffeescript::before {
+  content: url(/SuperTinyIcons/coffeescript.svg);
+}
+.supertinyicon-coil::before {
+  content: url(/SuperTinyIcons/coil.svg);
+}
+.supertinyicon-crystal::before {
+  content: url(/SuperTinyIcons/crystal.svg);
+}
+.supertinyicon-debian::before {
+  content: url(/SuperTinyIcons/debian.svg);
+}
+.supertinyicon-deezer::before {
+  content: url(/SuperTinyIcons/deezer.svg);
+}
+.supertinyicon-delicious::before {
+  content: url(/SuperTinyIcons/delicious.svg);
+}
+.supertinyicon-dev_to::before {
+  content: url(/SuperTinyIcons/dev_to.svg);
+}
+.supertinyicon-digidentity::before {
+  content: url(/SuperTinyIcons/digidentity.svg);
+}
+.supertinyicon-digitalocean::before {
+  content: url(/SuperTinyIcons/digitalocean.svg);
+}
+.supertinyicon-discord::before {
+  content: url(/SuperTinyIcons/discord.svg);
+}
+.supertinyicon-disqus::before {
+  content: url(/SuperTinyIcons/disqus.svg);
+}
+.supertinyicon-djangoproject::before {
+  content: url(/SuperTinyIcons/djangoproject.svg);
+}
+.supertinyicon-docker::before {
+  content: url(/SuperTinyIcons/docker.svg);
+}
+.supertinyicon-dribbble::before {
+  content: url(/SuperTinyIcons/dribbble.svg);
+}
+.supertinyicon-drone::before {
+  content: url(/SuperTinyIcons/drone.svg);
+}
+.supertinyicon-dropbox::before {
+  content: url(/SuperTinyIcons/dropbox.svg);
+}
+.supertinyicon-drupal::before {
+  content: url(/SuperTinyIcons/drupal.svg);
+}
+.supertinyicon-duckduckgo::before {
+  content: url(/SuperTinyIcons/duckduckgo.svg);
+}
+.supertinyicon-ea::before {
+  content: url(/SuperTinyIcons/ea.svg);
+}
+.supertinyicon-ebay::before {
+  content: url(/SuperTinyIcons/ebay.svg);
+}
+.supertinyicon-edge::before {
+  content: url(/SuperTinyIcons/edge.svg);
+}
+.supertinyicon-elementaryos::before {
+  content: url(/SuperTinyIcons/elementaryos.svg);
+}
+.supertinyicon-email::before {
+  content: url(/SuperTinyIcons/email.svg);
+}
+.supertinyicon-epub::before {
+  content: url(/SuperTinyIcons/epub.svg);
+}
+.supertinyicon-espressif::before {
+  content: url(/SuperTinyIcons/espressif.svg);
+}
+.supertinyicon-ethereum::before {
+  content: url(/SuperTinyIcons/ethereum.svg);
+}
+.supertinyicon-evernote::before {
+  content: url(/SuperTinyIcons/evernote.svg);
+}
+.supertinyicon-facebook::before {
+  content: url(/SuperTinyIcons/facebook.svg);
+}
+.supertinyicon-firefox::before {
+  content: url(/SuperTinyIcons/firefox.svg);
+}
+.supertinyicon-flattr::before {
+  content: url(/SuperTinyIcons/flattr.svg);
+}
+.supertinyicon-flickr::before {
+  content: url(/SuperTinyIcons/flickr.svg);
+}
+.supertinyicon-flutter::before {
+  content: url(/SuperTinyIcons/flutter.svg);
+}
+.supertinyicon-gatehub::before {
+  content: url(/SuperTinyIcons/gatehub.svg);
+}
+.supertinyicon-ghost::before {
+  content: url(/SuperTinyIcons/ghost.svg);
+}
+.supertinyicon-git::before {
+  content: url(/SuperTinyIcons/git.svg);
+}
+.supertinyicon-gitea::before {
+  content: url(/SuperTinyIcons/gitea.svg);
+}
+.supertinyicon-github::before {
+  content: url(/SuperTinyIcons/github.svg);
+}
+.supertinyicon-gitlab::before {
+  content: url(/SuperTinyIcons/gitlab.svg);
+}
+.supertinyicon-gmail::before {
+  content: url(/SuperTinyIcons/gmail.svg);
+}
+.supertinyicon-go::before {
+  content: url(/SuperTinyIcons/go.svg);
+}
+.supertinyicon-gogcom::before {
+  content: url(/SuperTinyIcons/gogcom.svg);
+}
+.supertinyicon-gojek::before {
+  content: url(/SuperTinyIcons/gojek.svg);
+}
+.supertinyicon-goodreads::before {
+  content: url(/SuperTinyIcons/goodreads.svg);
+}
+.supertinyicon-google_drive::before {
+  content: url(/SuperTinyIcons/google_drive.svg);
+}
+.supertinyicon-google_maps::before {
+  content: url(/SuperTinyIcons/google_maps.svg);
+}
+.supertinyicon-google_play::before {
+  content: url(/SuperTinyIcons/google_play.svg);
+}
+.supertinyicon-google_plus::before {
+  content: url(/SuperTinyIcons/google_plus.svg);
+}
+.supertinyicon-google_podcasts::before {
+  content: url(/SuperTinyIcons/google_podcasts.svg);
+}
+.supertinyicon-google_scholar::before {
+  content: url(/SuperTinyIcons/google_scholar.svg);
+}
+.supertinyicon-google::before {
+  content: url(/SuperTinyIcons/google.svg);
+}
+.supertinyicon-gradle::before {
+  content: url(/SuperTinyIcons/gradle.svg);
+}
+.supertinyicon-grafana::before {
+  content: url(/SuperTinyIcons/grafana.svg);
+}
+.supertinyicon-hackernews::before {
+  content: url(/SuperTinyIcons/hackernews.svg);
+}
+.supertinyicon-hackerone::before {
+  content: url(/SuperTinyIcons/hackerone.svg);
+}
+.supertinyicon-haml::before {
+  content: url(/SuperTinyIcons/haml.svg);
+}
+.supertinyicon-heroku::before {
+  content: url(/SuperTinyIcons/heroku.svg);
+}
+.supertinyicon-hp::before {
+  content: url(/SuperTinyIcons/hp.svg);
+}
+.supertinyicon-html5::before {
+  content: url(/SuperTinyIcons/html5.svg);
+}
+.supertinyicon-ibm::before {
+  content: url(/SuperTinyIcons/ibm.svg);
+}
+.supertinyicon-iheartradio::before {
+  content: url(/SuperTinyIcons/iheartradio.svg);
+}
+.supertinyicon-imdb::before {
+  content: url(/SuperTinyIcons/imdb.svg);
+}
+.supertinyicon-imgur::before {
+  content: url(/SuperTinyIcons/imgur.svg);
+}
+.supertinyicon-instagram::before {
+  content: url(/SuperTinyIcons/instagram.svg);
+}
+.supertinyicon-intel::before {
+  content: url(/SuperTinyIcons/intel.svg);
+}
+.supertinyicon-internet_archive::before {
+  content: url(/SuperTinyIcons/internet_archive.svg);
+}
+.supertinyicon-itunes_podcasts::before {
+  content: url(/SuperTinyIcons/itunes_podcasts.svg);
+}
+.supertinyicon-java::before {
+  content: url(/SuperTinyIcons/java.svg);
+}
+.supertinyicon-javascript::before {
+  content: url(/SuperTinyIcons/javascript.svg);
+}
+.supertinyicon-json::before {
+  content: url(/SuperTinyIcons/json.svg);
+}
+.supertinyicon-julia::before {
+  content: url(/SuperTinyIcons/julia.svg);
+}
+.supertinyicon-kemal::before {
+  content: url(/SuperTinyIcons/kemal.svg);
+}
+.supertinyicon-keybase::before {
+  content: url(/SuperTinyIcons/keybase.svg);
+}
+.supertinyicon-kickstarter::before {
+  content: url(/SuperTinyIcons/kickstarter.svg);
+}
+.supertinyicon-ko-fi::before {
+  content: url(/SuperTinyIcons/ko-fi.svg);
+}
+.supertinyicon-kotlin::before {
+  content: url(/SuperTinyIcons/kotlin.svg);
+}
+.supertinyicon-laravel::before {
+  content: url(/SuperTinyIcons/laravel.svg);
+}
+.supertinyicon-lastpass::before {
+  content: url(/SuperTinyIcons/lastpass.svg);
+}
+.supertinyicon-liberapay::before {
+  content: url(/SuperTinyIcons/liberapay.svg);
+}
+.supertinyicon-line::before {
+  content: url(/SuperTinyIcons/line.svg);
+}
+.supertinyicon-linkedin::before {
+  content: url(/SuperTinyIcons/linkedin.svg);
+}
+.supertinyicon-linux_mint::before {
+  content: url(/SuperTinyIcons/linux_mint.svg);
+}
+.supertinyicon-linux::before {
+  content: url(/SuperTinyIcons/linux.svg);
+}
+.supertinyicon-lock::before {
+  content: url(/SuperTinyIcons/lock.svg);
+}
+.supertinyicon-luckyframework::before {
+  content: url(/SuperTinyIcons/luckyframework.svg);
+}
+.supertinyicon-mail::before {
+  content: url(/SuperTinyIcons/mail.svg);
+}
+.supertinyicon-mailchimp::before {
+  content: url(/SuperTinyIcons/mailchimp.svg);
+}
+.supertinyicon-markdown::before {
+  content: url(/SuperTinyIcons/markdown.svg);
+}
+.supertinyicon-mastodon::before {
+  content: url(/SuperTinyIcons/mastodon.svg);
+}
+.supertinyicon-mattermost::before {
+  content: url(/SuperTinyIcons/mattermost.svg);
+}
+.supertinyicon-medium::before {
+  content: url(/SuperTinyIcons/medium.svg);
+}
+.supertinyicon-meetup::before {
+  content: url(/SuperTinyIcons/meetup.svg);
+}
+.supertinyicon-messenger::before {
+  content: url(/SuperTinyIcons/messenger.svg);
+}
+.supertinyicon-microsoft::before {
+  content: url(/SuperTinyIcons/microsoft.svg);
+}
+.supertinyicon-nextcloud::before {
+  content: url(/SuperTinyIcons/nextcloud.svg);
+}
+.supertinyicon-nhs::before {
+  content: url(/SuperTinyIcons/nhs.svg);
+}
+.supertinyicon-npm::before {
+  content: url(/SuperTinyIcons/npm.svg);
+}
+.supertinyicon-ok::before {
+  content: url(/SuperTinyIcons/ok.svg);
+}
+.supertinyicon-openbenches::before {
+  content: url(/SuperTinyIcons/openbenches.svg);
+}
+.supertinyicon-openbugbounty::before {
+  content: url(/SuperTinyIcons/openbugbounty.svg);
+}
+.supertinyicon-opencast::before {
+  content: url(/SuperTinyIcons/opencast.svg);
+}
+.supertinyicon-opencollective::before {
+  content: url(/SuperTinyIcons/opencollective.svg);
+}
+.supertinyicon-opencores::before {
+  content: url(/SuperTinyIcons/opencores.svg);
+}
+.supertinyicon-opensource::before {
+  content: url(/SuperTinyIcons/opensource.svg);
+}
+.supertinyicon-opera::before {
+  content: url(/SuperTinyIcons/opera.svg);
+}
+.supertinyicon-orcid::before {
+  content: url(/SuperTinyIcons/orcid.svg);
+}
+.supertinyicon-overcast::before {
+  content: url(/SuperTinyIcons/overcast.svg);
+}
+.supertinyicon-patreon::before {
+  content: url(/SuperTinyIcons/patreon.svg);
+}
+.supertinyicon-paypal::before {
+  content: url(/SuperTinyIcons/paypal.svg);
+}
+.supertinyicon-pdf::before {
+  content: url(/SuperTinyIcons/pdf.svg);
+}
+.supertinyicon-phone::before {
+  content: url(/SuperTinyIcons/phone.svg);
+}
+.supertinyicon-php::before {
+  content: url(/SuperTinyIcons/php.svg);
+}
+.supertinyicon-pinboard::before {
+  content: url(/SuperTinyIcons/pinboard.svg);
+}
+.supertinyicon-pinterest::before {
+  content: url(/SuperTinyIcons/pinterest.svg);
+}
+.supertinyicon-plex::before {
+  content: url(/SuperTinyIcons/plex.svg);
+}
+.supertinyicon-pocket::before {
+  content: url(/SuperTinyIcons/pocket.svg);
+}
+.supertinyicon-pocketcasts::before {
+  content: url(/SuperTinyIcons/pocketcasts.svg);
+}
+.supertinyicon-print::before {
+  content: url(/SuperTinyIcons/print.svg);
+}
+.supertinyicon-protonmail::before {
+  content: url(/SuperTinyIcons/protonmail.svg);
+}
+.supertinyicon-python::before {
+  content: url(/SuperTinyIcons/python.svg);
+}
+.supertinyicon-qq::before {
+  content: url(/SuperTinyIcons/qq.svg);
+}
+.supertinyicon-raspberry_pi::before {
+  content: url(/SuperTinyIcons/raspberry_pi.svg);
+}
+.supertinyicon-react::before {
+  content: url(/SuperTinyIcons/react.svg);
+}
+.supertinyicon-reddit::before {
+  content: url(/SuperTinyIcons/reddit.svg);
+}
+.supertinyicon-redhat::before {
+  content: url(/SuperTinyIcons/redhat.svg);
+}
+.supertinyicon-researchgate::before {
+  content: url(/SuperTinyIcons/researchgate.svg);
+}
+.supertinyicon-rss::before {
+  content: url(/SuperTinyIcons/rss.svg);
+}
+.supertinyicon-ruby::before {
+  content: url(/SuperTinyIcons/ruby.svg);
+}
+.supertinyicon-rubygems::before {
+  content: url(/SuperTinyIcons/rubygems.svg);
+}
+.supertinyicon-rubyonrails::before {
+  content: url(/SuperTinyIcons/rubyonrails.svg);
+}
+.supertinyicon-rust::before {
+  content: url(/SuperTinyIcons/rust.svg);
+}
+.supertinyicon-safari::before {
+  content: url(/SuperTinyIcons/safari.svg);
+}
+.supertinyicon-samsunginternet::before {
+  content: url(/SuperTinyIcons/samsunginternet.svg);
+}
+.supertinyicon-sass::before {
+  content: url(/SuperTinyIcons/sass.svg);
+}
+.supertinyicon-semaphoreci::before {
+  content: url(/SuperTinyIcons/semaphoreci.svg);
+}
+.supertinyicon-sentry::before {
+  content: url(/SuperTinyIcons/sentry.svg);
+}
+.supertinyicon-sketch::before {
+  content: url(/SuperTinyIcons/sketch.svg);
+}
+.supertinyicon-skype::before {
+  content: url(/SuperTinyIcons/skype.svg);
+}
+.supertinyicon-slack::before {
+  content: url(/SuperTinyIcons/slack.svg);
+}
+.supertinyicon-slideshare::before {
+  content: url(/SuperTinyIcons/slideshare.svg);
+}
+.supertinyicon-snapchat::before {
+  content: url(/SuperTinyIcons/snapchat.svg);
+}
+.supertinyicon-soundcloud::before {
+  content: url(/SuperTinyIcons/soundcloud.svg);
+}
+.supertinyicon-spotify::before {
+  content: url(/SuperTinyIcons/spotify.svg);
+}
+.supertinyicon-square_cash::before {
+  content: url(/SuperTinyIcons/square_cash.svg);
+}
+.supertinyicon-stackexchange::before {
+  content: url(/SuperTinyIcons/stackexchange.svg);
+}
+.supertinyicon-stackoverflow::before {
+  content: url(/SuperTinyIcons/stackoverflow.svg);
+}
+.supertinyicon-steam::before {
+  content: url(/SuperTinyIcons/steam.svg);
+}
+.supertinyicon-stitcher::before {
+  content: url(/SuperTinyIcons/stitcher.svg);
+}
+.supertinyicon-strava::before {
+  content: url(/SuperTinyIcons/strava.svg);
+}
+.supertinyicon-stumbleupon::before {
+  content: url(/SuperTinyIcons/stumbleupon.svg);
+}
+.supertinyicon-symantec::before {
+  content: url(/SuperTinyIcons/symantec.svg);
+}
+.supertinyicon-taiga::before {
+  content: url(/SuperTinyIcons/taiga.svg);
+}
+.supertinyicon-telegram::before {
+  content: url(/SuperTinyIcons/telegram.svg);
+}
+.supertinyicon-threema::before {
+  content: url(/SuperTinyIcons/threema.svg);
+}
+.supertinyicon-tiktok::before {
+  content: url(/SuperTinyIcons/tiktok.svg);
+}
+.supertinyicon-tox::before {
+  content: url(/SuperTinyIcons/tox.svg);
+}
+.supertinyicon-trello::before {
+  content: url(/SuperTinyIcons/trello.svg);
+}
+.supertinyicon-tripadvisor::before {
+  content: url(/SuperTinyIcons/tripadvisor.svg);
+}
+.supertinyicon-tumblr::before {
+  content: url(/SuperTinyIcons/tumblr.svg);
+}
+.supertinyicon-tunein::before {
+  content: url(/SuperTinyIcons/tunein.svg);
+}
+.supertinyicon-tutanota::before {
+  content: url(/SuperTinyIcons/tutanota.svg);
+}
+.supertinyicon-twilio::before {
+  content: url(/SuperTinyIcons/twilio.svg);
+}
+.supertinyicon-twitch::before {
+  content: url(/SuperTinyIcons/twitch.svg);
+}
+.supertinyicon-twitter::before {
+  content: url(/SuperTinyIcons/twitter.svg);
+}
+.supertinyicon-uber::before {
+  content: url(/SuperTinyIcons/uber.svg);
+}
+.supertinyicon-ubiquiti::before {
+  content: url(/SuperTinyIcons/ubiquiti.svg);
+}
+.supertinyicon-ubisoft::before {
+  content: url(/SuperTinyIcons/ubisoft.svg);
+}
+.supertinyicon-ubuntu::before {
+  content: url(/SuperTinyIcons/ubuntu.svg);
+}
+.supertinyicon-unicode::before {
+  content: url(/SuperTinyIcons/unicode.svg);
+}
+.supertinyicon-untappd::before {
+  content: url(/SuperTinyIcons/untappd.svg);
+}
+.supertinyicon-upwork::before {
+  content: url(/SuperTinyIcons/upwork.svg);
+}
+.supertinyicon-vegetarian::before {
+  content: url(/SuperTinyIcons/vegetarian.svg);
+}
+.supertinyicon-venmo::before {
+  content: url(/SuperTinyIcons/venmo.svg);
+}
+.supertinyicon-viber::before {
+  content: url(/SuperTinyIcons/viber.svg);
+}
+.supertinyicon-vimeo::before {
+  content: url(/SuperTinyIcons/vimeo.svg);
+}
+.supertinyicon-vivino::before {
+  content: url(/SuperTinyIcons/vivino.svg);
+}
+.supertinyicon-vk::before {
+  content: url(/SuperTinyIcons/vk.svg);
+}
+.supertinyicon-vlc::before {
+  content: url(/SuperTinyIcons/vlc.svg);
+}
+.supertinyicon-vue::before {
+  content: url(/SuperTinyIcons/vue.svg);
+}
+.supertinyicon-w3c::before {
+  content: url(/SuperTinyIcons/w3c.svg);
+}
+.supertinyicon-wechat::before {
+  content: url(/SuperTinyIcons/wechat.svg);
+}
+.supertinyicon-wekan::before {
+  content: url(/SuperTinyIcons/wekan.svg);
+}
+.supertinyicon-whatsapp::before {
+  content: url(/SuperTinyIcons/whatsapp.svg);
+}
+.supertinyicon-wifi::before {
+  content: url(/SuperTinyIcons/wifi.svg);
+}
+.supertinyicon-wikipedia::before {
+  content: url(/SuperTinyIcons/wikipedia.svg);
+}
+.supertinyicon-windows::before {
+  content: url(/SuperTinyIcons/windows.svg);
+}
+.supertinyicon-wire::before {
+  content: url(/SuperTinyIcons/wire.svg);
+}
+.supertinyicon-wordpress::before {
+  content: url(/SuperTinyIcons/wordpress.svg);
+}
+.supertinyicon-workato::before {
+  content: url(/SuperTinyIcons/workato.svg);
+}
+.supertinyicon-xing::before {
+  content: url(/SuperTinyIcons/xing.svg);
+}
+.supertinyicon-xmpp::before {
+  content: url(/SuperTinyIcons/xmpp.svg);
+}
+.supertinyicon-yahoo::before {
+  content: url(/SuperTinyIcons/yahoo.svg);
+}
+.supertinyicon-yammer::before {
+  content: url(/SuperTinyIcons/yammer.svg);
+}
+.supertinyicon-yarn::before {
+  content: url(/SuperTinyIcons/yarn.svg);
+}
+.supertinyicon-yelp::before {
+  content: url(/SuperTinyIcons/yelp.svg);
+}
+.supertinyicon-youtube::before {
+  content: url(/SuperTinyIcons/youtube.svg);
+}
+.supertinyicon-yubico::before {
+  content: url(/SuperTinyIcons/yubico.svg);
+}

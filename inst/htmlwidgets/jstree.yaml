@@ -8,3 +8,7 @@ dependencies:
   src: htmlwidgets/lib/jstree
   script: ./dist/jstree.min.js
   style: ./dist/themes/default/style.min.css
+- name: SuperTinyIcons
+  version: 0.3.2
+  src: htmlwidgets/SuperTinyIcons
+  style: SuperTinyIcons.css

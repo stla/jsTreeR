@@ -33,19 +33,21 @@ dat <- list(
       ),
       list(
         text = "ChildB2",
-        icon = "glyphicon glyphicon-file"
+        icon = "supertinyicon-julia"
       )
     )
   )
 )
-
 
 ui <- fluidPage(
   br(),
   fluidRow(
     column(
       width = 6,
-      jstreeOutput("jstree")
+      jstreeOutput("jstree"),
+      tags$div(class = "supertinyicon-apple_music"),
+      tags$div(class = "supertinyicon-julia"),
+      tags$img(src = "/SuperTinyIcons/acast.svg")
     ),
     column(
       width = 6,
@@ -59,7 +61,9 @@ ui <- fluidPage(
 server <- function(input, output){
 
   output[["jstree"]] <-
-    renderJstree(jstree(dat, dragAndDrop = TRUE, search = TRUE))
+    renderJstree(
+      jstree(dat, dragAndDrop = TRUE, search = TRUE, checkbox = TRUE)
+    )
 
   output[["treeState"]] <- renderPrint({
     toJSON(input[["jstree"]], pretty = TRUE, auto_unbox = TRUE)
