@@ -41,7 +41,7 @@ types <- list(
   )
 )
 
-checkCallback <- htmlwidgets::JS(
+checkCallback <- JS(
   "function(operation, node, parent, position, more) {",
   "  if(operation === 'move_node') {",
   "    if(parent.id === '#' || parent.type === 'child') {",
@@ -53,7 +53,7 @@ checkCallback <- htmlwidgets::JS(
 )
 
 dnd <- list(
-  is_draggable = htmlwidgets::JS(
+  is_draggable = JS(
     "function(node) {",
     "  if(node[0].type !== 'child') {",
     "    return false;",

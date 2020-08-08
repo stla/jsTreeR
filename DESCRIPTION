@@ -11,3 +11,4 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   htmlwidgets
+RoxygenNote: 7.1.1
