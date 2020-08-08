@@ -1,4 +1,4 @@
-function extractKeys(list) {
+function extractKeysWithChildren(list) {
   return {
     text: list.text,
     data: list.data,
@@ -6,9 +6,21 @@ function extractKeys(list) {
   };
 }
 
+function getNodesWithChildren(json) {
+  return json.map(extractKeysWithChildren);
+}
+
+function extractKeys(list) {
+  return {
+    text: list.text,
+    data: list.data
+  };
+}
+
 function getNodes(json) {
   return json.map(extractKeys);
 }
+
 
 var inShiny = HTMLWidgets.shinyMode;
 
@@ -83,7 +95,7 @@ HTMLWidgets.widget({
           }
           if(inShiny) {
             Shiny.setInputValue(
-              id, getNodes(data.instance.get_json())
+              id, getNodesWithChildren(data.instance.get_json())
             );
             Shiny.setInputValue(
               id_selected, getNodes(data.instance.get_selected(true))
@@ -94,14 +106,14 @@ HTMLWidgets.widget({
         $el.on("move_node.jstree", function(e, data) {
           if(inShiny)
             Shiny.setInputValue(
-              id, getNodes(data.instance.get_json())
+              id, getNodesWithChildren(data.instance.get_json())
             );
         });
 
         $el.on("changed.jstree", function(e, data) {
           if(inShiny) {
             Shiny.setInputValue(
-              id, getNodes(data.instance.get_json())
+              id, getNodesWithChildren(data.instance.get_json())
             );
             Shiny.setInputValue(
               id_selected, getNodes(data.instance.get_selected(true))
