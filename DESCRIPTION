@@ -10,5 +10,7 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Imports:
-  htmlwidgets
+  htmlwidgets,
+  jsonlite,
+  shiny
 RoxygenNote: 7.1.1

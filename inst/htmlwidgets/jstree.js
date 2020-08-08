@@ -10,6 +10,8 @@ function getNodes(json) {
   return json.map(extractKeys);
 }
 
+var inShiny = HTMLWidgets.shinyMode;
+
 
 HTMLWidgets.widget({
 
@@ -21,6 +23,8 @@ HTMLWidgets.widget({
 
     var $el = $(el);
     var options = {};
+    var id = el.id + ":jsTreeR.list",
+      id_selected = el.id + "_selected:jsTreeR.list";
 
     return {
 
@@ -68,17 +72,32 @@ HTMLWidgets.widget({
 
 
         $el.on("ready.jstree", function(e, data) {
-          console.log("ready",
-            getNodes(data.instance.get_json()));
+          if(inShiny) {
+            Shiny.setInputValue(
+              id, getNodes(data.instance.get_json())
+            );
+            Shiny.setInputValue(
+              id_selected, getNodes(data.instance.get_selected(true))
+            );
+          }
         });
 
         $el.on("move_node.jstree", function(e, data) {
-          console.log("move", data.instance.get_json());
+          if(inShiny)
+            Shiny.setInputValue(
+              id, getNodes(data.instance.get_json())
+            );
         });
 
         $el.on("changed.jstree", function(e, data) {
-          console.log("changed", data.instance.get_json());
-          console.log("selected:", data.instance.get_selected(true));
+          if(inShiny) {
+            Shiny.setInputValue(
+              id, getNodes(data.instance.get_json())
+            );
+            Shiny.setInputValue(
+              id_selected, getNodes(data.instance.get_selected(true))
+            );
+          }
         });
 
       },
