@@ -8,13 +8,7 @@ dat <- list(
     children = list(
       list(
         text = "ChildA1",
-        type = "child",
-        children = list(
-          list(
-            text = "XXX",
-            type = "child"
-          )
-        )
+        type = "child"
       ),
       list(
         text = "ChildA2",
@@ -50,9 +44,9 @@ types <- list(
 checkCallback <- htmlwidgets::JS(
   "function(operation, node, parent, position, more) {",
   "  if(operation === 'move_node') {",
-  "    if(parent.id === '#') {",
+  "    if(parent.id === '#' || parent.type === 'child') {",
   "      return false;", # prevent moving a child above or below the root
-  "    }",
+  "    }",               # and moving inside a child
   "  }",
   "  return true;", # allow everything else
   "}"
@@ -61,7 +55,6 @@ checkCallback <- htmlwidgets::JS(
 dnd <- list(
   is_draggable = htmlwidgets::JS(
     "function(node) {",
-    "console.log('node', node);",
     "  if(node[0].type !== 'child') {",
     "    return false;",
     "  }",
