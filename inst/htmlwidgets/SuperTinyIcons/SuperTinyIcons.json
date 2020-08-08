@@ -1,0 +1,1057 @@
+[
+  {
+    "text": "Social Media",
+    "children": [
+      {
+        "text": "Flickr",
+        "icon": "supertinyicon-flickr"
+      },
+      {
+        "text": "Facebook",
+        "icon": "supertinyicon-facebook"
+      },
+      {
+        "text": "Tumblr",
+        "icon": "supertinyicon-tumblr"
+      },
+      {
+        "text": "Twitter",
+        "icon": "supertinyicon-twitter"
+      },
+      {
+        "text": "LinkedIn",
+        "icon": "supertinyicon-linkedin"
+      },
+      {
+        "text": "Instagram",
+        "icon": "supertinyicon-instagram"
+      },
+      {
+        "text": "Reddit",
+        "icon": "supertinyicon-reddit"
+      },
+      {
+        "text": "Pinterest",
+        "icon": "supertinyicon-pinterest"
+      },
+      {
+        "text": "VK",
+        "icon": "supertinyicon-vk"
+      },
+      {
+        "text": "Mastodon",
+        "icon": "supertinyicon-mastodon"
+      },
+      {
+        "text": "imgur",
+        "icon": "supertinyicon-imgur"
+      },
+      {
+        "text": "Slack",
+        "icon": "supertinyicon-slack"
+      },
+      {
+        "text": "dev.to",
+        "icon": "supertinyicon-dev_to"
+      },
+      {
+        "text": "Goodreads",
+        "icon": "supertinyicon-goodreads"
+      },
+      {
+        "text": "TikTok",
+        "icon": "supertinyicon-tiktok"
+      }
+    ]
+  },
+  {
+    "text": "Media",
+    "children": [
+      {
+        "text": "SoundCloud",
+        "icon": "supertinyicon-soundcloud"
+      },
+      {
+        "text": "Vimeo",
+        "icon": "supertinyicon-vimeo"
+      },
+      {
+        "text": "Spotify",
+        "icon": "supertinyicon-spotify"
+      },
+      {
+        "text": "YouTube",
+        "icon": "supertinyicon-youtube"
+      },
+      {
+        "text": "Apple Music",
+        "icon": "supertinyicon-apple_music"
+      },
+      {
+        "text": "Bandcamp",
+        "icon": "supertinyicon-bandcamp"
+      },
+      {
+        "text": "Deezer",
+        "icon": "supertinyicon-deezer"
+      },
+      {
+        "text": "iHeartRadio",
+        "icon": "supertinyicon-iheartradio"
+      },
+      {
+        "text": "Kodi",
+        "icon": "supertinyicon-kodi"
+      }
+    ]
+  },
+  {
+    "text": "Google",
+    "children": [
+      {
+        "text": "Google",
+        "icon": "supertinyicon-google"
+      },
+      {
+        "text": "Google+",
+        "icon": "supertinyicon-google_plus"
+      },
+      {
+        "text": "Google Play",
+        "icon": "supertinyicon-google_play"
+      },
+      {
+        "text": "Gmail",
+        "icon": "supertinyicon-gmail"
+      },
+      {
+        "text": "Google Maps",
+        "icon": "supertinyicon-google_maps"
+      },
+      {
+        "text": "Google Scholar",
+        "icon": "supertinyicon-google_scholar"
+      },
+      {
+        "text": "Google Drive",
+        "icon": "supertinyicon-google_drive"
+      },
+      {
+        "text": "Google Maps (old)",
+        "icon": "supertinyicon-google_maps_old"
+      }
+    ]
+  },
+  {
+    "text": "Communications",
+    "children": [
+      {
+        "text": "WhatsApp",
+        "icon": "supertinyicon-whatsapp"
+      },
+      {
+        "text": "Telegram",
+        "icon": "supertinyicon-telegram"
+      },
+      {
+        "text": "Skype",
+        "icon": "supertinyicon-skype"
+      },
+      {
+        "text": "Snapchat",
+        "icon": "supertinyicon-snapchat"
+      },
+      {
+        "text": "WeChat",
+        "icon": "supertinyicon-wechat"
+      },
+      {
+        "text": "Signal",
+        "icon": "supertinyicon-signal"
+      },
+      {
+        "text": "Phone",
+        "icon": "supertinyicon-phone"
+      },
+      {
+        "text": "LINE",
+        "icon": "supertinyicon-line"
+      },
+      {
+        "text": "Viber",
+        "icon": "supertinyicon-viber"
+      },
+      {
+        "text": "Mailchimp",
+        "icon": "supertinyicon-mailchimp"
+      },
+      {
+        "text": "Threema",
+        "icon": "supertinyicon-threema"
+      },
+      {
+        "text": "Mattermost",
+        "icon": "supertinyicon-mattermost"
+      },
+      {
+        "text": "Protonmail",
+        "icon": "supertinyicon-protonmail"
+      },
+      {
+        "text": "XMPP",
+        "icon": "supertinyicon-xmpp"
+      },
+      {
+        "text": "Tutanota",
+        "icon": "supertinyicon-tutanota"
+      },
+      {
+        "text": "Messenger",
+        "icon": "supertinyicon-messenger"
+      },
+      {
+        "text": "Discord",
+        "icon": "supertinyicon-discord"
+      },
+      {
+        "text": "Zoom",
+        "icon": "supertinyicon-zoom"
+      },
+      {
+        "text": "Wire",
+        "icon": "supertinyicon-wire"
+      }
+    ]
+  },
+  {
+    "text": "Websites",
+    "children": [
+      {
+        "text": "Hacker News",
+        "icon": "supertinyicon-hackernews"
+      },
+      {
+        "text": "StackOverflow",
+        "icon": "supertinyicon-stackoverflow"
+      },
+      {
+        "text": "Stack Exchange",
+        "icon": "supertinyicon-stackexchange"
+      },
+      {
+        "text": "WordPress",
+        "icon": "supertinyicon-wordpress"
+      },
+      {
+        "text": "GitHub",
+        "icon": "supertinyicon-github"
+      },
+      {
+        "text": "Wikipedia",
+        "icon": "supertinyicon-wikipedia"
+      },
+      {
+        "text": "GitLab",
+        "icon": "supertinyicon-gitlab"
+      },
+      {
+        "text": "Meetup",
+        "icon": "supertinyicon-meetup"
+      },
+      {
+        "text": "eBay",
+        "icon": "supertinyicon-ebay"
+      },
+      {
+        "text": "Kickstarter",
+        "icon": "supertinyicon-kickstarter"
+      },
+      {
+        "text": "Yahoo!",
+        "icon": "supertinyicon-yahoo"
+      },
+      {
+        "text": "Evernote",
+        "icon": "supertinyicon-evernote"
+      },
+      {
+        "text": "Yammer",
+        "icon": "supertinyicon-yammer"
+      },
+      {
+        "text": "Blogger",
+        "icon": "supertinyicon-blogger"
+      },
+      {
+        "text": "Cloudflare",
+        "icon": "supertinyicon-cloudflare"
+      },
+      {
+        "text": "Amazon",
+        "icon": "supertinyicon-amazon"
+      },
+      {
+        "text": "Strava",
+        "icon": "supertinyicon-strava"
+      },
+      {
+        "text": "Dribbble",
+        "icon": "supertinyicon-dribbble"
+      },
+      {
+        "text": "CodePen",
+        "icon": "supertinyicon-codepen"
+      },
+      {
+        "text": "DigitalOcean",
+        "icon": "supertinyicon-digitalocean"
+      },
+      {
+        "text": "Medium",
+        "icon": "supertinyicon-medium"
+      },
+      {
+        "text": "Airbnb",
+        "icon": "supertinyicon-airbnb"
+      },
+      {
+        "text": "Delicious",
+        "icon": "supertinyicon-delicious"
+      },
+      {
+        "text": "Disqus",
+        "icon": "supertinyicon-disqus"
+      },
+      {
+        "text": "Ghost",
+        "icon": "supertinyicon-ghost"
+      },
+      {
+        "text": "Sketch",
+        "icon": "supertinyicon-sketch"
+      },
+      {
+        "text": "Trello",
+        "icon": "supertinyicon-trello"
+      },
+      {
+        "text": "QQ",
+        "icon": "supertinyicon-qq"
+      },
+      {
+        "text": "Badoo",
+        "icon": "supertinyicon-badoo"
+      },
+      {
+        "text": "Yelp",
+        "icon": "supertinyicon-yelp"
+      },
+      {
+        "text": "Workato",
+        "icon": "supertinyicon-workato"
+      },
+      {
+        "text": "Untappd",
+        "icon": "supertinyicon-untappd"
+      },
+      {
+        "text": "Vivino",
+        "icon": "supertinyicon-vivino"
+      },
+      {
+        "text": "Apereo",
+        "icon": "supertinyicon-apereo"
+      },
+      {
+        "text": "Twilio",
+        "icon": "supertinyicon-twilio"
+      },
+      {
+        "text": "Plex",
+        "icon": "supertinyicon-plex"
+      },
+      {
+        "text": "XING",
+        "icon": "supertinyicon-xing"
+      },
+      {
+        "text": "Pinboard",
+        "icon": "supertinyicon-pinboard"
+      },
+      {
+        "text": "Internet Archive",
+        "icon": "supertinyicon-internet_archive"
+      },
+      {
+        "text": "Access",
+        "icon": "supertinyicon-access"
+      },
+      {
+        "text": "baidu",
+        "icon": "supertinyicon-baidu"
+      },
+      {
+        "text": "Twitch",
+        "icon": "supertinyicon-twitch"
+      },
+      {
+        "text": "OK.ru",
+        "icon": "supertinyicon-ok"
+      },
+      {
+        "text": "Pocket",
+        "icon": "supertinyicon-pocket"
+      },
+      {
+        "text": "StumbleUpon",
+        "icon": "supertinyicon-stumbleupon"
+      },
+      {
+        "text": "Opencast",
+        "icon": "supertinyicon-opencast"
+      },
+      {
+        "text": "buffer",
+        "icon": "supertinyicon-buffer"
+      },
+      {
+        "text": "Upwork",
+        "icon": "supertinyicon-upwork"
+      },
+      {
+        "text": "Duck Duck Go",
+        "icon": "supertinyicon-duckduckgo"
+      },
+      {
+        "text": "Bing",
+        "icon": "supertinyicon-bing"
+      },
+      {
+        "text": "IMDb",
+        "icon": "supertinyicon-imdb"
+      },
+      {
+        "text": "Heroku",
+        "icon": "supertinyicon-heroku"
+      },
+      {
+        "text": "Research Gate",
+        "icon": "supertinyicon-researchgate"
+      },
+      {
+        "text": "OpenCores",
+        "icon": "supertinyicon-opencores"
+      },
+      {
+        "text": "OpenBenches",
+        "icon": "supertinyicon-openbenches"
+      },
+      {
+        "text": "TripAdvisor",
+        "icon": "supertinyicon-tripadvisor"
+      },
+      {
+        "text": "Sentry",
+        "icon": "supertinyicon-sentry"
+      },
+      {
+        "text": "Behance",
+        "icon": "supertinyicon-behance"
+      },
+      {
+        "text": "Taiga.io",
+        "icon": "supertinyicon-taiga"
+      },
+      {
+        "text": "Coil.com",
+        "icon": "supertinyicon-coil"
+      },
+      {
+        "text": "Glitch",
+        "icon": "supertinyicon-glitch"
+      }
+    ]
+  },
+  {
+    "text": "Internet",
+    "children": [
+      {
+        "text": "RSS",
+        "icon": "supertinyicon-rss"
+      },
+      {
+        "text": "Mail",
+        "icon": "supertinyicon-mail"
+      },
+      {
+        "text": "E-mail",
+        "icon": "supertinyicon-email"
+      },
+      {
+        "text": "HTML5",
+        "icon": "supertinyicon-html5"
+      },
+      {
+        "text": "Wi-Fi",
+        "icon": "supertinyicon-wifi"
+      },
+      {
+        "text": "World Wide Web Consortium (W3C)",
+        "icon": "supertinyicon-w3c"
+      },
+      {
+        "text": "The Unicode Consortium",
+        "icon": "supertinyicon-unicode"
+      },
+      {
+        "text": "markdown",
+        "icon": "supertinyicon-markdown"
+      },
+      {
+        "text": "HAML",
+        "icon": "supertinyicon-haml"
+      }
+    ]
+  },
+  {
+    "text": "Browsers",
+    "children": [
+      {
+        "text": "Chrome",
+        "icon": "supertinyicon-chrome"
+      },
+      {
+        "text": "Firefox",
+        "icon": "supertinyicon-firefox"
+      },
+      {
+        "text": "Samsung Internet",
+        "icon": "supertinyicon-samsunginternet"
+      },
+      {
+        "text": "Edge",
+        "icon": "supertinyicon-edge"
+      },
+      {
+        "text": "Opera",
+        "icon": "supertinyicon-opera"
+      },
+      {
+        "text": "Safari",
+        "icon": "supertinyicon-safari"
+      },
+      {
+        "text": "Chromium",
+        "icon": "supertinyicon-chromium"
+      }
+    ]
+  },
+  {
+    "text": "Podcasts",
+    "children": [
+      {
+        "text": "iTunes",
+        "icon": "supertinyicon-itunes_podcasts"
+      },
+      {
+        "text": "Google",
+        "icon": "supertinyicon-google_podcasts"
+      },
+      {
+        "text": "Pocket Casts",
+        "icon": "supertinyicon-pocketcasts"
+      },
+      {
+        "text": "Stitcher",
+        "icon": "supertinyicon-stitcher"
+      },
+      {
+        "text": "TuneIn",
+        "icon": "supertinyicon-tunein"
+      },
+      {
+        "text": "Acast",
+        "icon": "supertinyicon-acast"
+      },
+      {
+        "text": "Overcast",
+        "icon": "supertinyicon-overcast"
+      }
+    ]
+  },
+  {
+    "text": "Logos",
+    "children": [
+      {
+        "text": "Apple",
+        "icon": "supertinyicon-apple"
+      },
+      {
+        "text": "npm",
+        "icon": "supertinyicon-npm"
+      },
+      {
+        "text": "Docker",
+        "icon": "supertinyicon-docker"
+      },
+      {
+        "text": "IBM",
+        "icon": "supertinyicon-ibm"
+      },
+      {
+        "text": "Open Source",
+        "icon": "supertinyicon-opensource"
+      },
+      {
+        "text": "Intel",
+        "icon": "supertinyicon-intel"
+      },
+      {
+        "text": "VLC",
+        "icon": "supertinyicon-vlc"
+      },
+      {
+        "text": "Vegetarian",
+        "icon": "supertinyicon-vegetarian"
+      },
+      {
+        "text": "Espressif",
+        "icon": "supertinyicon-espressif"
+      },
+      {
+        "text": "NHS",
+        "icon": "supertinyicon-nhs"
+      },
+      {
+        "text": "Orcid",
+        "icon": "supertinyicon-orcid"
+      },
+      {
+        "text": "HP",
+        "icon": "supertinyicon-hp"
+      },
+      {
+        "text": "RedHat",
+        "icon": "supertinyicon-redhat"
+      },
+      {
+        "text": "CentOS",
+        "icon": "supertinyicon-centos"
+      },
+      {
+        "text": "git",
+        "icon": "supertinyicon-git"
+      },
+      {
+        "text": "Microsoft",
+        "icon": "supertinyicon-microsoft"
+      },
+      {
+        "text": "Grafana",
+        "icon": "supertinyicon-grafana"
+      },
+      {
+        "text": "Ubiquiti",
+        "icon": "supertinyicon-ubiquiti"
+      },
+      {
+        "text": "Adobe",
+        "icon": "supertinyicon-adobe"
+      },
+      {
+        "text": "Homekit",
+        "icon": "supertinyicon-homekit"
+      },
+      {
+        "text": "Pixelfed",
+        "icon": "supertinyicon-pixelfed"
+      }
+    ]
+  },
+  {
+    "text": "Security",
+    "children": [
+      {
+        "text": "Tox",
+        "icon": "supertinyicon-tox"
+      },
+      {
+        "text": "Lock",
+        "icon": "supertinyicon-lock"
+      },
+      {
+        "text": "LastPass",
+        "icon": "supertinyicon-lastpass"
+      },
+      {
+        "text": "Symantec",
+        "icon": "supertinyicon-symantec"
+      },
+      {
+        "text": "Yubico",
+        "icon": "supertinyicon-yubico"
+      },
+      {
+        "text": "Keybase",
+        "icon": "supertinyicon-keybase"
+      },
+      {
+        "text": "Authy",
+        "icon": "supertinyicon-authy"
+      },
+      {
+        "text": "HackerOne",
+        "icon": "supertinyicon-hackerone"
+      },
+      {
+        "text": "Bitwarden",
+        "icon": "supertinyicon-bitwarden"
+      },
+      {
+        "text": "Auth0",
+        "icon": "supertinyicon-auth0"
+      },
+      {
+        "text": "andOTP",
+        "icon": "supertinyicon-andotp"
+      },
+      {
+        "text": "OpenBugBounty",
+        "icon": "supertinyicon-openbugbounty"
+      },
+      {
+        "text": "OpenVPN",
+        "icon": "supertinyicon-openvpn"
+      }
+    ]
+  },
+  {
+    "text": "Payments",
+    "children": [
+      {
+        "text": "PayPal",
+        "icon": "supertinyicon-paypal"
+      },
+      {
+        "text": "Bitcoin",
+        "icon": "supertinyicon-bitcoin"
+      },
+      {
+        "text": "Ethereum",
+        "icon": "supertinyicon-ethereum"
+      },
+      {
+        "text": "Liberapay",
+        "icon": "supertinyicon-liberapay"
+      },
+      {
+        "text": "Ko-Fi",
+        "icon": "supertinyicon-ko-fi"
+      },
+      {
+        "text": "Flattr",
+        "icon": "supertinyicon-flattr"
+      },
+      {
+        "text": "Patreon",
+        "icon": "supertinyicon-patreon"
+      },
+      {
+        "text": "Venmo",
+        "icon": "supertinyicon-venmo"
+      },
+      {
+        "text": "Square Cash App",
+        "icon": "supertinyicon-square_cash"
+      },
+      {
+        "text": "OpenCollective",
+        "icon": "supertinyicon-opencollective"
+      },
+      {
+        "text": "GateHub",
+        "icon": "supertinyicon-gatehub"
+      }
+    ]
+  },
+  {
+    "text": "Programming",
+    "children": [
+      {
+        "text": "Python",
+        "icon": "supertinyicon-python"
+      },
+      {
+        "text": "Julia",
+        "icon": "supertinyicon-julia"
+      },
+      {
+        "text": "PHP",
+        "icon": "supertinyicon-php"
+      },
+      {
+        "text": "Laravel",
+        "icon": "supertinyicon-laravel"
+      },
+      {
+        "text": "Drupal",
+        "icon": "supertinyicon-drupal"
+      },
+      {
+        "text": "React",
+        "icon": "supertinyicon-react"
+      },
+      {
+        "text": "Angular",
+        "icon": "supertinyicon-angular"
+      },
+      {
+        "text": "Sass",
+        "icon": "supertinyicon-sass"
+      },
+      {
+        "text": "JSON",
+        "icon": "supertinyicon-json"
+      },
+      {
+        "text": "Yarn",
+        "icon": "supertinyicon-yarn"
+      },
+      {
+        "text": "Go",
+        "icon": "supertinyicon-go"
+      },
+      {
+        "text": "Java",
+        "icon": "supertinyicon-java"
+      },
+      {
+        "text": "Rust",
+        "icon": "supertinyicon-rust"
+      },
+      {
+        "text": "Clojure",
+        "icon": "supertinyicon-clojure"
+      },
+      {
+        "text": "CoffeeScript",
+        "icon": "supertinyicon-coffeescript"
+      },
+      {
+        "text": "JavaScript",
+        "icon": "supertinyicon-javascript"
+      },
+      {
+        "text": "Flutter",
+        "icon": "supertinyicon-flutter"
+      },
+      {
+        "text": "Backbone",
+        "icon": "supertinyicon-backbone"
+      },
+      {
+        "text": "Vue",
+        "icon": "supertinyicon-vue"
+      },
+      {
+        "text": "Gradle",
+        "icon": "supertinyicon-gradle"
+      },
+      {
+        "text": "Amber Framework",
+        "icon": "supertinyicon-amberframework"
+      },
+      {
+        "text": "Gitea",
+        "icon": "supertinyicon-gitea"
+      },
+      {
+        "text": "Drone.io",
+        "icon": "supertinyicon-drone"
+      },
+      {
+        "text": "Ruby Gems",
+        "icon": "supertinyicon-rubygems"
+      },
+      {
+        "text": "Lucky Framework",
+        "icon": "supertinyicon-luckyframework"
+      },
+      {
+        "text": "Wekan",
+        "icon": "supertinyicon-wekan"
+      },
+      {
+        "text": "Kemal Framework",
+        "icon": "supertinyicon-kemal"
+      },
+      {
+        "text": "Ruby On Rails",
+        "icon": "supertinyicon-rubyonrails"
+      },
+      {
+        "text": "Kotlin",
+        "icon": "supertinyicon-kotlin"
+      },
+      {
+        "text": "Crystal",
+        "icon": "supertinyicon-crystal"
+      },
+      {
+        "text": "Semaphore CI",
+        "icon": "supertinyicon-semaphoreci"
+      },
+      {
+        "text": "Django Project",
+        "icon": "supertinyicon-djangoproject"
+      },
+      {
+        "text": "Ruby",
+        "icon": "supertinyicon-ruby"
+      },
+      {
+        "text": "SVG",
+        "icon": "supertinyicon-svg"
+      }
+    ]
+  },
+  {
+    "text": "Operating Systems / Kernel",
+    "children": [
+      {
+        "text": "Android",
+        "icon": "supertinyicon-android"
+      },
+      {
+        "text": "Arch Linux",
+        "icon": "supertinyicon-archlinux"
+      },
+      {
+        "text": "Linux",
+        "icon": "supertinyicon-linux"
+      },
+      {
+        "text": "Ubuntu",
+        "icon": "supertinyicon-ubuntu"
+      },
+      {
+        "text": "Microsoft Windows",
+        "icon": "supertinyicon-windows"
+      },
+      {
+        "text": "Elementary OS",
+        "icon": "supertinyicon-elementaryos"
+      },
+      {
+        "text": "Debian",
+        "icon": "supertinyicon-debian"
+      },
+      {
+        "text": "Linux Mint",
+        "icon": "supertinyicon-linux_mint"
+      },
+      {
+        "text": "macOS",
+        "icon": "supertinyicon-macos"
+      }
+    ]
+  },
+  {
+    "text": "Gaming",
+    "children": [
+      {
+        "text": "Steam",
+        "icon": "supertinyicon-steam"
+      },
+      {
+        "text": "GOG.com",
+        "icon": "supertinyicon-gogcom"
+      },
+      {
+        "text": "Ubisoft",
+        "icon": "supertinyicon-ubisoft"
+      },
+      {
+        "text": "Uplay",
+        "icon": "supertinyicon-uplay"
+      },
+      {
+        "text": "Electronic Arts",
+        "icon": "supertinyicon-ea"
+      },
+      {
+        "text": "Minecraft",
+        "icon": "supertinyicon-minecraft"
+      }
+    ]
+  },
+  {
+    "text": "Misc",
+    "children": [
+      {
+        "text": "Calendar",
+        "icon": "supertinyicon-calendar"
+      },
+      {
+        "text": "SlideShare",
+        "icon": "supertinyicon-slideshare"
+      },
+      {
+        "text": "Dropbox",
+        "icon": "supertinyicon-dropbox"
+      },
+      {
+        "text": "PDF",
+        "icon": "supertinyicon-pdf"
+      },
+      {
+        "text": "Digidentity",
+        "icon": "supertinyicon-digidentity"
+      },
+      {
+        "text": "Bluetooth",
+        "icon": "supertinyicon-bluetooth"
+      },
+      {
+        "text": "ePub",
+        "icon": "supertinyicon-epub"
+      },
+      {
+        "text": "NextCloud",
+        "icon": "supertinyicon-nextcloud"
+      },
+      {
+        "text": "Raspberry Pi",
+        "icon": "supertinyicon-raspberry_pi"
+      },
+      {
+        "text": "Printer",
+        "icon": "supertinyicon-print"
+      },
+      {
+        "text": "Uber",
+        "icon": "supertinyicon-uber"
+      },
+      {
+        "text": "Amazon S3",
+        "icon": "supertinyicon-amazon_s3"
+      },
+      {
+        "text": "Ansible",
+        "icon": "supertinyicon-ansible"
+      },
+      {
+        "text": "Gojek",
+        "icon": "supertinyicon-gojek"
+      },
+      {
+        "text": "Amazon Alexa",
+        "icon": "supertinyicon-amazon_alexa"
+      },
+      {
+        "text": "Finder",
+        "icon": "supertinyicon-finder"
+      }
+    ]
+  }
+]

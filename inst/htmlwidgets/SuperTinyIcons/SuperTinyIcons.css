@@ -4,6 +4,9 @@
 .supertinyicon-access::before {
   content: url(/SuperTinyIcons/access.svg);
 }
+.supertinyicon-adobe::before {
+  content: url(/SuperTinyIcons/adobe.svg);
+}
 .supertinyicon-airbnb::before {
   content: url(/SuperTinyIcons/airbnb.svg);
 }
@@ -93,6 +96,9 @@
 }
 .supertinyicon-chrome::before {
   content: url(/SuperTinyIcons/chrome.svg);
+}
+.supertinyicon-chromium::before {
+  content: url(/SuperTinyIcons/chromium.svg);
 }
 .supertinyicon-clojure::before {
   content: url(/SuperTinyIcons/clojure.svg);
@@ -187,6 +193,9 @@
 .supertinyicon-facebook::before {
   content: url(/SuperTinyIcons/facebook.svg);
 }
+.supertinyicon-finder::before {
+  content: url(/SuperTinyIcons/finder.svg);
+}
 .supertinyicon-firefox::before {
   content: url(/SuperTinyIcons/firefox.svg);
 }
@@ -217,6 +226,9 @@
 .supertinyicon-gitlab::before {
   content: url(/SuperTinyIcons/gitlab.svg);
 }
+.supertinyicon-glitch::before {
+  content: url(/SuperTinyIcons/glitch.svg);
+}
 .supertinyicon-gmail::before {
   content: url(/SuperTinyIcons/gmail.svg);
 }
@@ -234,6 +246,9 @@
 }
 .supertinyicon-google_drive::before {
   content: url(/SuperTinyIcons/google_drive.svg);
+}
+.supertinyicon-google_maps_old::before {
+  content: url(/SuperTinyIcons/google_maps_old.svg);
 }
 .supertinyicon-google_maps::before {
   content: url(/SuperTinyIcons/google_maps.svg);
@@ -270,6 +285,9 @@
 }
 .supertinyicon-heroku::before {
   content: url(/SuperTinyIcons/heroku.svg);
+}
+.supertinyicon-homekit::before {
+  content: url(/SuperTinyIcons/homekit.svg);
 }
 .supertinyicon-hp::before {
   content: url(/SuperTinyIcons/hp.svg);
@@ -325,6 +343,9 @@
 .supertinyicon-ko-fi::before {
   content: url(/SuperTinyIcons/ko-fi.svg);
 }
+.supertinyicon-kodi::before {
+  content: url(/SuperTinyIcons/kodi.svg);
+}
 .supertinyicon-kotlin::before {
   content: url(/SuperTinyIcons/kotlin.svg);
 }
@@ -355,6 +376,9 @@
 .supertinyicon-luckyframework::before {
   content: url(/SuperTinyIcons/luckyframework.svg);
 }
+.supertinyicon-macos::before {
+  content: url(/SuperTinyIcons/macos.svg);
+}
 .supertinyicon-mail::before {
   content: url(/SuperTinyIcons/mail.svg);
 }
@@ -381,6 +405,9 @@
 }
 .supertinyicon-microsoft::before {
   content: url(/SuperTinyIcons/microsoft.svg);
+}
+.supertinyicon-minecraft::before {
+  content: url(/SuperTinyIcons/minecraft.svg);
 }
 .supertinyicon-nextcloud::before {
   content: url(/SuperTinyIcons/nextcloud.svg);
@@ -412,6 +439,9 @@
 .supertinyicon-opensource::before {
   content: url(/SuperTinyIcons/opensource.svg);
 }
+.supertinyicon-openvpn::before {
+  content: url(/SuperTinyIcons/openvpn.svg);
+}
 .supertinyicon-opera::before {
   content: url(/SuperTinyIcons/opera.svg);
 }
@@ -441,6 +471,9 @@
 }
 .supertinyicon-pinterest::before {
   content: url(/SuperTinyIcons/pinterest.svg);
+}
+.supertinyicon-pixelfed::before {
+  content: url(/SuperTinyIcons/pixelfed.svg);
 }
 .supertinyicon-plex::before {
   content: url(/SuperTinyIcons/plex.svg);
@@ -508,6 +541,9 @@
 .supertinyicon-sentry::before {
   content: url(/SuperTinyIcons/sentry.svg);
 }
+.supertinyicon-signal::before {
+  content: url(/SuperTinyIcons/signal.svg);
+}
 .supertinyicon-sketch::before {
   content: url(/SuperTinyIcons/sketch.svg);
 }
@@ -549,6 +585,9 @@
 }
 .supertinyicon-stumbleupon::before {
   content: url(/SuperTinyIcons/stumbleupon.svg);
+}
+.supertinyicon-svg::before {
+  content: url(/SuperTinyIcons/svg.svg);
 }
 .supertinyicon-symantec::before {
   content: url(/SuperTinyIcons/symantec.svg);
@@ -609,6 +648,9 @@
 }
 .supertinyicon-untappd::before {
   content: url(/SuperTinyIcons/untappd.svg);
+}
+.supertinyicon-uplay::before {
+  content: url(/SuperTinyIcons/uplay.svg);
 }
 .supertinyicon-upwork::before {
   content: url(/SuperTinyIcons/upwork.svg);
@@ -690,4 +732,7 @@
 }
 .supertinyicon-yubico::before {
   content: url(/SuperTinyIcons/yubico.svg);
+}
+.supertinyicon-zoom::before {
+  content: url(/SuperTinyIcons/zoom.svg);
 }

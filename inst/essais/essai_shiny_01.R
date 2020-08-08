@@ -44,10 +44,10 @@ ui <- fluidPage(
   fluidRow(
     column(
       width = 6,
-      jstreeOutput("jstree"),
-      tags$div(class = "supertinyicon-apple_music"),
-      tags$div(class = "supertinyicon-julia"),
-      tags$img(src = "/SuperTinyIcons/acast.svg")
+      jstreeOutput("jstree")
+      # tags$div(class = "supertinyicon-apple_music"),
+      # tags$div(class = "supertinyicon-julia"),
+      # tags$img(src = "/SuperTinyIcons/acast.svg")
     ),
     column(
       width = 6,
