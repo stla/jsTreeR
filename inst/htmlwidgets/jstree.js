@@ -1,3 +1,16 @@
+function extractKeys(list) {
+  return {
+    text: list.text,
+    data: list.data,
+    children: list.children.map(extractKeys)
+  };
+}
+
+function getNodes(json) {
+  return json.map(extractKeys);
+}
+
+
 HTMLWidgets.widget({
 
   name: 'jstree',
@@ -45,10 +58,18 @@ HTMLWidgets.widget({
           'check_callback': x.checkCallback
         };
 
+        if(x.types)
+          options.types = x.types;
+
+        if(x.dnd)
+          options.dnd = x.dnd;
+
         $el.jstree(options);
 
+
         $el.on("ready.jstree", function(e, data) {
-          console.log("ready", data.instance.get_json());
+          console.log("ready",
+            getNodes(data.instance.get_json()));
         });
 
         $el.on("move_node.jstree", function(e, data) {
