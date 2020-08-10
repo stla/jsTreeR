@@ -11,10 +11,11 @@ nodes <- fromJSON(
   ),
   simplifyDataFrame = FALSE
 )
+nodes <- Filter(function(node) node$text %in% c("Browsers", "Google"), nodes)
 
 ui <- fluidPage(
   tags$head(tags$style(HTML("#jstree {background-color: #fff5ee;"))),
-  titlePanel("Super tiny icons"),
+  titlePanel("Super tiny icons (subset)"),
   fluidRow(
     column(
       width = 12,
@@ -24,7 +25,7 @@ ui <- fluidPage(
 )
 
 server <- function(input, output){
-  output[["jstree"]] <- renderJstree(jstree(nodes))
+  output[["jstree"]] <- renderJstree(jstree(nodes, search = TRUE))
 }
 
 shinyApp(ui, server)
