@@ -92,6 +92,11 @@ HTMLWidgets.widget({
         if(x.grid)
           options.grid = x.grid;
 
+        if(x.checkbox)
+          options.checkbox = {
+            'keep_selected_style': false
+          };
+
         $el.jstree(options);
 
 

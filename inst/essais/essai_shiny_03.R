@@ -13,19 +13,18 @@ nodes <- fromJSON(
 )
 
 ui <- fluidPage(
-  titlePanel("SuperTinyIcons"),
+  tags$head(tags$style(HTML("#jstree {background-color: #fff5ee;"))),
+  titlePanel("Super tiny icons"),
   fluidRow(
     column(
       width = 12,
-      jstreeOutput("jstree")
+      jstreeOutput("jstree", height = "auto")
     )
   )
 )
 
 server <- function(input, output){
-
   output[["jstree"]] <- renderJstree(jstree(nodes))
-
 }
 
 shinyApp(ui, server)

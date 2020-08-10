@@ -1,80 +1,93 @@
-library(jsTreeR)
-library(shiny)
-library(jsonlite)
-
-dat <- list(
-  list(
-    text = "RootA",
-    data = list(value = 999),
-    icon = "glyphicon glyphicon-folder-open",
-    children = list(
-      list(
-        text = "ChildA1",
-        icon = "glyphicon glyphicon-file",
-        children = list(
-          list(
-            text = "XXX"
-          )
-        )
-      ),
-      list(
-        text = "ChildA2",
-        icon = "glyphicon glyphicon-file"
-      )
-    )
-  ),
-  list(
-    text = "RootB",
-    icon = "glyphicon glyphicon-folder-open",
-    children = list(
-      list(
-        text = "ChildB1",
-        icon = "glyphicon glyphicon-file"
-      ),
-      list(
-        text = "ChildB2",
-        icon = "supertinyicon-julia"
-      )
-    )
-  )
-)
-
-ui <- fluidPage(
-  br(),
-  fluidRow(
-    column(
-      width = 6,
-      jstreeOutput("jstree")
-      # tags$div(class = "supertinyicon-apple_music"),
-      # tags$div(class = "supertinyicon-julia"),
-      # tags$img(src = "/SuperTinyIcons/acast.svg")
-    ),
-    column(
-      width = 6,
-      verbatimTextOutput("treeState"),
-      br(),
-      verbatimTextOutput("treeSelected")
-    )
-  )
-)
-
-server <- function(input, output){
-
-  output[["jstree"]] <-
-    renderJstree(
-      jstree(dat, dragAndDrop = TRUE, search = TRUE, checkbox = TRUE)
-    )
-
-  output[["treeState"]] <- renderPrint({
-    toJSON(input[["jstree"]], pretty = TRUE, auto_unbox = TRUE)
-  })
-
-  output[["treeSelected"]] <- renderPrint({
-    toJSON(input[["jstree_selected"]], pretty = TRUE, auto_unbox = TRUE)
-  })
-
-}
-
-shinyApp(ui, server)
-
-
+#' library(jsTreeR)
+#' library(shiny)
+#' library(jsonlite)
+#'
+#' nodes <- list(
+#'   list(
+#'     text = "RootA",
+#'     data = list(value = 999),
+#'     icon = "far fa-moon red",
+#'     children = list(
+#'       list(
+#'         text = "ChildA1",
+#'         icon = "fa fa-leaf green"
+#'       ),
+#'       list(
+#'         text = "ChildA2",
+#'         icon = "fa fa-leaf green"
+#'       )
+#'     )
+#'   ),
+#'   list(
+#'     text = "RootB",
+#'     icon = "far fa-moon red",
+#'     children = list(
+#'       list(
+#'         text = "ChildB1",
+#'         icon = "fa fa-leaf green"
+#'       ),
+#'       list(
+#'         text = "ChildB2",
+#'         icon = "fa fa-leaf green"
+#'       )
+#'     )
+#'   )
+#' )
+#'
+#' ui <- fluidPage(
+#'
+#'   tags$head(
+#'     tags$style(
+#'       HTML(c(
+#'         ".red {color: red;}",
+#'         ".green {color: green;}",
+#'         ".jstree-proton {font-weight: bold;}",
+#'         ".jstree-anchor {font-size: medium;}"
+#'       ))
+#'     )
+#'   ),
+#'
+#'   titlePanel("Drag and drop the nodes"),
+#'
+#'   fluidRow(
+#'     column(
+#'       width = 4,
+#'       jstreeOutput("jstree")
+#'     ),
+#'     column(
+#'       width = 4,
+#'       tags$fieldset(
+#'         tags$legend("All nodes"),
+#'         verbatimTextOutput("treeState")
+#'       )
+#'     ),
+#'     column(
+#'       width = 4,
+#'       tags$fieldset(
+#'         tags$legend("Selected nodes"),
+#'         verbatimTextOutput("treeSelected")
+#'       )
+#'     )
+#'   )
+#'
+#' )
+#'
+#' server <- function(input, output){
+#'
+#'   output[["jstree"]] <- renderJstree({
+#'     jstree(nodes, dragAndDrop = TRUE, checkboxes = TRUE, theme = "proton")
+#'   })
+#'
+#'   output[["treeState"]] <- renderPrint({
+#'     toJSON(input[["jstree"]], pretty = TRUE, auto_unbox = TRUE)
+#'   })
+#'
+#'   output[["treeSelected"]] <- renderPrint({
+#'     toJSON(input[["jstree_selected"]], pretty = TRUE, auto_unbox = TRUE)
+#'   })
+#'
+#' }
+#'
+#' shinyApp(ui, server)
+#'
+#'

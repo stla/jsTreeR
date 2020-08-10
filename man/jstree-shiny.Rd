@@ -28,3 +28,225 @@ is useful if you want to save an expression in a variable.}
 Output and render functions for using jstree within Shiny
 applications and interactive Rmd documents.
 }
+\examples{
+# displaying a folder ####
+
+library(jsTreeR)
+library(shiny)
+library(jsonlite)
+
+# make the nodes list from a vector of file paths
+makeNodes <- function(leaves){
+  dfs <- lapply(strsplit(leaves, "/"), function(s){
+    item <-
+      Reduce(function(a,b) paste0(a,"/",b), s[-1], s[1], accumulate = TRUE)
+    data.frame(
+      item = item,
+      parent = c("root", item[-length(item)]),
+      stringsAsFactors = FALSE
+    )
+  })
+  dat <- dfs[[1]]
+  for(i in 2:length(dfs)){
+    dat <- merge(dat, dfs[[i]], all = TRUE)
+  }
+  f <- function(parent){
+    i <- match(parent, dat$item)
+    item <- dat$item[i]
+    children <- dat$item[dat$parent==item]
+    label <- tail(strsplit(item, "/")[[1]], 1)
+    if(length(children)){
+      list(
+        text = label,
+        data = list(value = item),
+        children = lapply(children, f)
+      )
+    }else{
+      list(text = label, data = list(value = item))
+    }
+  }
+  lapply(dat$item[dat$parent == "root"], f)
+}
+
+folder <-
+  list.files(system.file("www", "shared", package = "shiny"), recursive = TRUE)
+nodes <- makeNodes(folder)
+
+ui <- fluidPage(
+  br(),
+  fluidRow(
+    column(
+      width = 4,
+      jstreeOutput("jstree")
+    ),
+    column(
+      width = 4,
+      tags$fieldset(
+        tags$legend("Selections - JSON format"),
+        verbatimTextOutput("treeSelected_json")
+      )
+    ),
+    column(
+      width = 4,
+      tags$fieldset(
+        tags$legend("Selections - R list"),
+        verbatimTextOutput("treeSelected_R")
+      )
+    )
+  )
+)
+
+server <- function(input, output){
+
+  output[["jstree"]] <-
+    renderJstree(
+      jstree(nodes, search = TRUE, checkboxes = TRUE)
+    )
+
+  output[["treeSelected_json"]] <- renderPrint({
+    toJSON(input[["jstree_selected"]], pretty = TRUE, auto_unbox = TRUE)
+  })
+
+  output[["treeSelected_R"]] <- renderPrint({
+    input[["jstree_selected"]]
+  })
+
+}
+
+if(interactive()){
+  shinyApp(ui, server)
+}
+
+
+# drag-and-drop, checkboxes, proton theme, fontawesome icons ####
+
+library(jsTreeR)
+library(shiny)
+library(jsonlite)
+
+nodes <- list(
+  list(
+    text = "RootA",
+    data = list(value = 999),
+    icon = "far fa-moon red",
+    children = list(
+      list(
+        text = "ChildA1",
+        icon = "fa fa-leaf green"
+      ),
+      list(
+        text = "ChildA2",
+        icon = "fa fa-leaf green"
+      )
+    )
+  ),
+  list(
+    text = "RootB",
+    icon = "far fa-moon red",
+    children = list(
+      list(
+        text = "ChildB1",
+        icon = "fa fa-leaf green"
+      ),
+      list(
+        text = "ChildB2",
+        icon = "fa fa-leaf green"
+      )
+    )
+  )
+)
+
+ui <- fluidPage(
+
+  tags$head(
+    tags$style(
+      HTML(c(
+        ".red {color: red;}",
+        ".green {color: green;}",
+        ".jstree-proton {font-weight: bold;}",
+        ".jstree-anchor {font-size: medium;}"
+      ))
+    )
+  ),
+
+  titlePanel("Drag and drop the nodes"),
+
+  fluidRow(
+    column(
+      width = 4,
+      jstreeOutput("jstree")
+    ),
+    column(
+      width = 4,
+      tags$fieldset(
+        tags$legend("All nodes"),
+        verbatimTextOutput("treeState")
+      )
+    ),
+    column(
+      width = 4,
+      tags$fieldset(
+        tags$legend("Selected nodes"),
+        verbatimTextOutput("treeSelected")
+      )
+    )
+  )
+
+)
+
+server <- function(input, output){
+
+  output[["jstree"]] <- renderJstree({
+    jstree(nodes, dragAndDrop = TRUE, checkboxes = TRUE, theme = "proton")
+  })
+
+  output[["treeState"]] <- renderPrint({
+    toJSON(input[["jstree"]], pretty = TRUE, auto_unbox = TRUE)
+  })
+
+  output[["treeSelected"]] <- renderPrint({
+    toJSON(input[["jstree_selected"]], pretty = TRUE, auto_unbox = TRUE)
+  })
+
+}
+
+if(interactive()){
+  shinyApp(ui, server)
+}
+
+
+# Super tiny icons ####
+
+library(jsTreeR)
+library(shiny)
+library(jsonlite)
+
+nodes <- fromJSON(
+  system.file(
+    "htmlwidgets",
+    "SuperTinyIcons",
+    "SuperTinyIcons.json",
+    package = "jsTreeR"
+  ),
+  simplifyDataFrame = FALSE
+)
+
+ui <- fluidPage(
+  tags$head(tags$style(HTML("#jstree {background-color: #fff5ee;"))),
+  titlePanel("Super tiny icons"),
+  fluidRow(
+    column(
+      width = 12,
+      jstreeOutput("jstree", height = "auto")
+    )
+  )
+)
+
+server <- function(input, output){
+  output[["jstree"]] <- renderJstree(jstree(nodes))
+}
+
+if(interactive()){
+  shinyApp(ui, server)
+}
+}

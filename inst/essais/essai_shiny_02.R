@@ -44,12 +44,22 @@ ui <- fluidPage(
   br(),
   fluidRow(
     column(
-      width = 6,
+      width = 4,
       jstreeOutput("jstree")
     ),
     column(
-      width = 6,
-      verbatimTextOutput("treeSelected")
+      width = 4,
+      tags$fieldset(
+        tags$legend("Selections - JSON format"),
+        verbatimTextOutput("treeSelected_json")
+      )
+    ),
+    column(
+      width = 4,
+      tags$fieldset(
+        tags$legend("Selections - R list"),
+        verbatimTextOutput("treeSelected_R")
+      )
     )
   )
 )
@@ -61,8 +71,12 @@ server <- function(input, output){
       jstree(nodes, search = TRUE, checkboxes = TRUE)
     )
 
-  output[["treeSelected"]] <- renderPrint({
+  output[["treeSelected_json"]] <- renderPrint({
     toJSON(input[["jstree_selected"]], pretty = TRUE, auto_unbox = TRUE)
+  })
+
+  output[["treeSelected_R"]] <- renderPrint({
+    input[["jstree_selected"]]
   })
 
 }
