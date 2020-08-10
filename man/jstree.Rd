@@ -2,14 +2,12 @@
 % Please edit documentation in R/jstree.R
 \name{jstree}
 \alias{jstree}
-\title{<Add Title>}
+\title{HTML widget displaying an interactive tree}
 \usage{
 jstree(
-  data,
-  width = NULL,
-  height = NULL,
+  nodes,
   elementId = NULL,
-  checkbox = FALSE,
+  checkboxes = FALSE,
   search = FALSE,
   searchtime = 250,
   dragAndDrop = FALSE,
@@ -22,6 +20,62 @@ jstree(
   checkCallback = NULL
 )
 }
+\arguments{
+\item{nodes}{data, a list of nodes; each node is a list with a required
+field \code{text}, a character string labeling the node, and optional
+fields
+\describe{
+  \item{\code{children}}{
+    a list of nodes
+  }
+  \item{\code{data}}{
+    a named list of data to attach to the node; see the
+    \link[jsTreeR:jstreeOutput]{Shiny examples}
+  }
+  \item{\code{icon}}{
+    space-separated HTML class names defining an icon, e.g.
+    \code{"glyphicon glyphicon-flash"}; in a Shiny app you can also use
+    a SuperTinyIcon, e.g. \code{"supertinyicon-julia"}; see the
+    \link[jsTreeR:jstreeOutput]{Shiny example} showing all available such
+    icons
+  }
+  \item{\code{type}}{
+    a character string for usage with the \code{types} option; see example
+  }
+}}
+
+\item{elementId}{a HTML id for the widget (useless for common usage)}
+
+\item{checkboxes}{logical, whether to enable checkboxes next to each node;
+this makes easier the selection of multiple nodes}
+
+\item{search}{logical, whether to enable the search functionality}
+
+\item{searchtime}{currently ignored}
+
+\item{dragAndDrop}{logical, whether to allow the rearrangement of the nodes
+by dragging and dropping}
+
+\item{dnd}{a named list of JavaScript functions related to the drag-and-drop
+functionality, e.g. the \code{is_draggable} function to define which nodes
+are draggable; see the example and the
+\href{https://www.jstree.com/api/}{jsTree API documentation} for the list
+of possible functions}
+
+\item{types}{a named list of node properties; see example}
+
+\item{sort}{logical, whether to sort the nodes}
+
+\item{unique}{logical, whether to ensure that no node label is duplicated}
+
+\item{wholerow}{logical, whether to highlight whole selected rows}
+
+\item{contextMenu}{logical, whether to enable a context menu to create,
+rename, delete, cut, copy and paste nodes}
+
+\item{checkCallback}{a JavaScript function; see the example where it is used
+to define restrictions on the drag-and-drop behavior}
+}
 \description{
-<Add Description>
+Create a HTML widget displaying an interactive tree.
 }
