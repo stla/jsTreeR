@@ -64,6 +64,15 @@ fields
       }
     }
   }
+  \item{\code{a_attr}}{
+    a named list of attributes for the node label, such as
+    \code{list(title = "I'm a tooltip", style = "color: red;")}
+  }
+  \item{\code{li_attr}}{
+    a named list of attributes for the whole node, including its children,
+    such as
+    \code{list(title = "I'm a tooltip", style = "background-color: pink;")}
+  }
 }}
 
 \item{elementId}{a HTML id for the widget (useless for common usage)}
