@@ -46,7 +46,23 @@ fields
     example
   }
   \item{\code{state}}{
-    a named list defining the state of the node XXXXXXXXXXXXXXXXXXXXX
+    a named list defining the state of the node, with four possible fields,
+    each being \code{TRUE} or \code{FALSE}:
+    \describe{
+      \item{\code{opened}}{
+        whether the node should be initially opened
+      }
+      \item{\code{selected}}{
+        whether the node should be initially selected
+      }
+      \item{\code{disabled}}{
+        whether the node should be disabled
+      }
+      \item{\code{checked}}{
+        whether the node should be initially checked, effective
+        only when the \code{checkboxes} option is \code{TRUE}
+      }
+    }
   }
 }}
 
