@@ -1,9 +1,8 @@
 library(jsTreeR)
 
-dat <- list(
+nodes <- list(
   list(
     text = "RootA",
-    data = list(value = 999),
     type = "root",
     children = list(
       list(
@@ -55,16 +54,13 @@ checkCallback <- JS(
 dnd <- list(
   is_draggable = JS(
     "function(node) {",
-    "  if(node[0].type !== 'child') {",
-    "    return false;",
-    "  }",
-    "  return true;",
+    "  return node[0].type === 'child';",
     "}"
   )
 )
 
 jstree(
-  dat,
+  nodes,
   dragAndDrop = TRUE, dnd = dnd,
   types = types,
   checkCallback = checkCallback
