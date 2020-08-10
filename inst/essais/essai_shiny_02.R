@@ -58,7 +58,7 @@ server <- function(input, output){
 
   output[["jstree"]] <-
     renderJstree(
-      jstree(nodes, search = TRUE, checkbox = TRUE)
+      jstree(nodes, search = TRUE, checkboxes = TRUE)
     )
 
   output[["treeSelected"]] <- renderPrint({

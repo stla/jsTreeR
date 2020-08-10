@@ -67,6 +67,9 @@ HTMLWidgets.widget({
         if(x.contextMenu) {
           plugins.push('contextmenu');
         }
+        if(x.grid) {
+          plugins.push('grid');
+        }
         options.plugins = plugins;
 
         options.core = {
@@ -79,6 +82,9 @@ HTMLWidgets.widget({
 
         if(x.dnd)
           options.dnd = x.dnd;
+
+        if(x.grid)
+          options.grid = x.grid;
 
         $el.jstree(options);
 

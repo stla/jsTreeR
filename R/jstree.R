@@ -33,12 +33,16 @@ NULL
 #'     \item{\code{icon}}{
 #'       space-separated HTML class names defining an icon, e.g.
 #'       \code{"glyphicon glyphicon-flash"}; in a Shiny app you can also use
-#'       a SuperTinyIcon, e.g. \code{"supertinyicon-julia"}; see the
+#'       a super tiny icon, e.g. \code{"supertinyicon-julia"}; see the
 #'       \link[jsTreeR:jstreeOutput]{Shiny example} showing all available such
 #'       icons
 #'     }
 #'     \item{\code{type}}{
-#'       a character string for usage with the \code{types} option; see example
+#'       a character string for usage with the \code{types} option; see first
+#'       example
+#'     }
+#'     \item{\code{state}}{
+#'       a named list defining the state of the node XXXXXXXXXXXXXXXXXXXXX
 #'     }
 #'   }
 #' @param elementId a HTML id for the widget (useless for common usage)
@@ -50,10 +54,10 @@ NULL
 #'   by dragging and dropping
 #' @param dnd a named list of options related to the drag-and-drop
 #'   functionality, e.g. the \code{is_draggable} function to define which nodes
-#'   are draggable; see the example and the
+#'   are draggable; see the first example and the
 #'   \href{https://www.jstree.com/api/}{jsTree API documentation} for the list
 #'   of possible options
-#' @param types a named list of node properties; see example
+#' @param types a named list of node properties; see first example
 #' @param sort logical, whether to sort the nodes
 #' @param unique logical, whether to ensure that no node label is duplicated
 #' @param wholerow logical, whether to highlight whole selected rows
@@ -61,11 +65,16 @@ NULL
 #'   rename, delete, cut, copy and paste nodes
 #' @param checkCallback a JavaScript function; see the example where it is used
 #'   to define restrictions on the drag-and-drop behavior
+#' @param grid list of settings for the grid; see the second example and
+#'   \href{https://github.com/deitch/jstree-grid/#options}{github.com/deitch/jstree-grid}
+#'   for the list of all available options
 #'
 #' @import htmlwidgets
 #' @export
 #'
-#' @examples library(jsTreeR)
+#' @examples # example illustrating the 'dnd' and 'checkCallback' options ####
+#'
+#' library(jsTreeR)
 #'
 #' nodes <- list(
 #'   list(
@@ -132,6 +141,141 @@ NULL
 #'   types = types,
 #'   checkCallback = checkCallback
 #' )
+#'
+#'
+#' # example illustrating the 'grid' option ####
+#'
+#' library(jsTreeR)
+#'
+#' nodes <- list(
+#'   list(
+#'     text = "Products",
+#'     children = list(
+#'       list(
+#'         text = "Fruit",
+#'         children = list(
+#'           list(
+#'             text = "Apple",
+#'             data = list(
+#'               price = 0.1,
+#'               quantity = 20
+#'             )
+#'           ),
+#'           list(
+#'             text = "Banana",
+#'             data = list(
+#'               price = 0.2,
+#'               quantity = 31
+#'             )
+#'           ),
+#'           list(
+#'             text = "Grapes",
+#'             data = list(
+#'               price = 1.99,
+#'               quantity = 34
+#'             )
+#'           ),
+#'           list(
+#'             text = "Mango",
+#'             data = list(
+#'               price = 0.5,
+#'               quantity = 8
+#'             )
+#'           ),
+#'           list(
+#'             text = "Melon",
+#'             data = list(
+#'               price = 0.8,
+#'               quantity = 4
+#'             )
+#'           ),
+#'           list(
+#'             text = "Pear",
+#'             data = list(
+#'               price = 0.1,
+#'               quantity = 30
+#'             )
+#'           ),
+#'           list(
+#'             text = "Strawberry",
+#'             data = list(
+#'               price = 0.15,
+#'               quantity = 32
+#'             )
+#'           )
+#'         ),
+#'         state = list(
+#'           opened = TRUE
+#'         )
+#'       ),
+#'       list(
+#'         text = "Vegetables",
+#'         children = list(
+#'           list(
+#'             text = "Aubergine",
+#'             data = list(
+#'               price = 0.5,
+#'               quantity = 8
+#'             )
+#'           ),
+#'           list(
+#'             text = "Broccoli",
+#'             data = list(
+#'               price = 0.4,
+#'               quantity = 22
+#'             )
+#'           ),
+#'           list(
+#'             text = "Carrot",
+#'             data = list(
+#'               price = 0.1,
+#'               quantity = 32
+#'             )
+#'           ),
+#'           list(
+#'             text = "Cauliflower",
+#'             data = list(
+#'               price = 0.45,
+#'               quantity = 18
+#'             )
+#'           ),
+#'           list(
+#'             text = "Potato",
+#'             data = list(
+#'               price = 0.2,
+#'               quantity = 38
+#'             )
+#'           )
+#'         )
+#'       )
+#'     ),
+#'     state = list(
+#'       opened = TRUE
+#'     )
+#'   )
+#' )
+#'
+#' grid <- list(
+#'   columns = list(
+#'     list(
+#'       width = 200,
+#'       header = "Name"
+#'     ),
+#'     list(
+#'       width = 150,
+#'       value = "price",
+#'       header = "Price"
+#'     ),
+#'     list(
+#'       width = 150,
+#'       value = "quantity",
+#'       header = "Qty"
+#'     )
+#'   ),
+#'   width = 600
+#' )
+#'
+#' jstree(nodes, grid = grid)
 jstree <- function(
   nodes, elementId = NULL,
   checkboxes = FALSE,
@@ -142,7 +286,8 @@ jstree <- function(
   unique = FALSE,
   wholerow = FALSE,
   contextMenu = FALSE,
-  checkCallback = NULL
+  checkCallback = NULL,
+  grid = NULL
 ){
   # forward options using x
   x = list(
@@ -157,7 +302,8 @@ jstree <- function(
     unique = unique,
     wholerow = wholerow,
     contextMenu = contextMenu,
-    checkCallback = checkCallback %||% (dragAndDrop || contextMenu)
+    checkCallback = checkCallback %||% (dragAndDrop || contextMenu),
+    grid = grid
   )
 
   # create widget
