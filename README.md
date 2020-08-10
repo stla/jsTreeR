@@ -5,4 +5,4 @@ This package is similar to [shinyTree](https://github.com/shinyTree/shinyTree)
 but it allows more options.
 
 
-![](https://github.com/stla/jsTreeR/tree/master/inst/screenshots/jsTreeR_grid.gif)
+![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_grid.gif)
