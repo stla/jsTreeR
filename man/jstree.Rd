@@ -18,7 +18,8 @@ jstree(
   wholerow = FALSE,
   contextMenu = FALSE,
   checkCallback = NULL,
-  grid = NULL
+  grid = NULL,
+  theme = "default"
 )
 }
 \arguments{
@@ -84,6 +85,8 @@ to define restrictions on the drag-and-drop behavior}
 \item{grid}{list of settings for the grid; see the second example and
 \href{https://github.com/deitch/jstree-grid/#options}{github.com/deitch/jstree-grid}
 for the list of all available options}
+
+\item{theme}{jsTree theme, one of default, default-dark, or proton.}
 }
 \description{
 Create a HTML widget displaying an interactive tree.

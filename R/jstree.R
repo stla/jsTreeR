@@ -68,6 +68,7 @@ NULL
 #' @param grid list of settings for the grid; see the second example and
 #'   \href{https://github.com/deitch/jstree-grid/#options}{github.com/deitch/jstree-grid}
 #'   for the list of all available options
+#' @param theme jsTree theme, one of default, default-dark, or proton.
 #'
 #' @import htmlwidgets
 #' @export
@@ -287,7 +288,8 @@ jstree <- function(
   wholerow = FALSE,
   contextMenu = FALSE,
   checkCallback = NULL,
-  grid = NULL
+  grid = NULL,
+  theme = "default"
 ){
   # forward options using x
   x = list(
@@ -303,7 +305,8 @@ jstree <- function(
     wholerow = wholerow,
     contextMenu = contextMenu,
     checkCallback = checkCallback %||% (dragAndDrop || contextMenu),
-    grid = grid
+    grid = grid,
+    theme = match.arg(theme, c("default", "default-dark", "proton"))
   )
 
   # create widget

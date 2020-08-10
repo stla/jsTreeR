@@ -42,7 +42,7 @@ HTMLWidgets.widget({
 
       renderValue: function(x) {
 
-        var plugins = [];
+        var plugins = ['themes'];
         if(x.checkbox) {
           plugins.push('checkbox');
         }
@@ -74,7 +74,13 @@ HTMLWidgets.widget({
 
         options.core = {
           'data': x.data,
-          'check_callback': x.checkCallback
+          'check_callback': x.checkCallback,
+          'themes': {
+            'name': x.theme,
+            'icons': true,
+            'dots': true,
+            'responsive': true
+          }
         };
 
         if(x.types)
