@@ -98,6 +98,9 @@ HTMLWidgets.widget({
             'keep_selected_style': false
           };
 
+        if(typeof x.search !== "boolean")
+          options.search = x.search;
+
         $el.jstree(options);
 
 
@@ -105,8 +108,9 @@ HTMLWidgets.widget({
         $el.on("ready.jstree", function(e, data) {
           if(x.search) {
             var $input =
-              $("<input type='search' id='" + el.id + "-search' placeholder = 'Search' />");
-            $el.prepend($input);
+              $("<input type='search' id='" + el.id + "-search' placeholder='Search' />");
+            //$el.prepend($input);
+            $input.insertBefore($el);
             $input.on("keyup", function() {
               $el.jstree(true).search($(this).val());
             });

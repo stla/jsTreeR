@@ -81,7 +81,11 @@ fields
 \item{checkboxes}{logical, whether to enable checkboxes next to each node;
 this makes easier the selection of multiple nodes}
 
-\item{search}{logical, whether to enable the search functionality}
+\item{search}{either a logical value, whether to enable the search
+functionality with default options, or a named list of options for the
+search functionality; see the \link[jsTreeR:jstreeOutput]{Shiny example}
+and the \href{https://www.jstree.com/api/}{jsTree API documentation} for
+the list of possible options}
 
 \item{searchtime}{currently ignored}
 

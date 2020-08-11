@@ -62,6 +62,7 @@ dnd <- list(
 jstree(
   nodes,
   dragAndDrop = TRUE, dnd = dnd,
+  wholerow = TRUE,
   types = types,
   checkCallback = checkCallback
 )

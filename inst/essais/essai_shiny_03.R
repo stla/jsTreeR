@@ -25,7 +25,16 @@ ui <- fluidPage(
 )
 
 server <- function(input, output){
-  output[["jstree"]] <- renderJstree(jstree(nodes, search = TRUE))
+  output[["jstree"]] <- renderJstree({
+    jstree(
+      nodes,
+      search = list(
+        show_only_matches = TRUE,
+        case_sensitive = TRUE,
+        search_leaves_only = TRUE
+      )
+    )
+  })
 }
 
 shinyApp(ui, server)

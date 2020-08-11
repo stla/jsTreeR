@@ -215,7 +215,7 @@ if(interactive()){
 }
 
 
-# Super tiny icons ####
+# Super tiny icons, with 'search' options ####
 
 library(jsTreeR)
 library(shiny)
@@ -243,7 +243,13 @@ ui <- fluidPage(
 )
 
 server <- function(input, output){
-  output[["jstree"]] <- renderJstree(jstree(nodes))
+  output[["jstree"]] <- renderJstree({
+    jstree(nodes, search = list(
+             show_only_matches = TRUE,
+             case_sensitive = TRUE,
+             search_leaves_only = TRUE
+           ))
+  })
 }
 
 if(interactive()){

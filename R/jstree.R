@@ -73,7 +73,11 @@ NULL
 #' @param elementId a HTML id for the widget (useless for common usage)
 #' @param checkboxes logical, whether to enable checkboxes next to each node;
 #'   this makes easier the selection of multiple nodes
-#' @param search logical, whether to enable the search functionality
+#' @param search either a logical value, whether to enable the search
+#'   functionality with default options, or a named list of options for the
+#'   search functionality; see the \link[jsTreeR:jstreeOutput]{Shiny example}
+#'   and the \href{https://www.jstree.com/api/}{jsTree API documentation} for
+#'   the list of possible options
 #' @param searchtime currently ignored
 #' @param dragAndDrop logical, whether to allow the rearrangement of the nodes
 #'   by dragging and dropping
@@ -571,7 +575,7 @@ jstree <- function(
 #' }
 #'
 #'
-#' # Super tiny icons ####
+#' # Super tiny icons, with 'search' options ####
 #'
 #' library(jsTreeR)
 #' library(shiny)
@@ -599,7 +603,13 @@ jstree <- function(
 #' )
 #'
 #' server <- function(input, output){
-#'   output[["jstree"]] <- renderJstree(jstree(nodes))
+#'   output[["jstree"]] <- renderJstree({
+#'     jstree(nodes, search = list(
+#'              show_only_matches = TRUE,
+#'              case_sensitive = TRUE,
+#'              search_leaves_only = TRUE
+#'            ))
+#'   })
 #' }
 #'
 #' if(interactive()){
