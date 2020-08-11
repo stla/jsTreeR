@@ -1,13 +1,12 @@
 library(jsTreeR)
-library(jsonlite)
 library(shiny)
-
 
 nodes <- list(
   list(
-    text = "Fruit",
+    text = "Fruits",
     type = "fruit",
-    icon = "supertinyicon-raspberry_pi",
+    icon = "supertinyicon-transparent-raspberry_pi",
+    a_attr = list(class = "helvetica"),
     children = list(
       list(
         text = "Apple",
@@ -80,7 +79,8 @@ nodes <- list(
   list(
     text = "Vegetables",
     type = "vegetable",
-    icon = "supertinyicon-vegetarian",
+    icon = "supertinyicon-transparent-vegetarian",
+    a_attr = list(class = "helvetica"),
     children = list(
       list(
         text = "Aubergine",
@@ -131,13 +131,12 @@ nodes <- list(
   )
 )
 
-
 grid <- list(
   columns = list(
     list(
       width = 200,
       header = "Product",
-      headerClass = "bolditalic yellow",
+      headerClass = "bolditalic yellow centered",
       wideValueClass = "cssclass"
     ),
     list(
@@ -145,14 +144,16 @@ grid <- list(
       value = "price",
       header = "Price",
       wideValueClass = "cssclass",
-      headerClass = "bolditalic yellow"
+      headerClass = "bolditalic yellow centered",
+      wideCellClass = "centered"
     ),
     list(
       width = 150,
       value = "quantity",
       header = "Quantity",
       wideValueClass = "cssclass",
-      headerClass = "bolditalic yellow"
+      headerClass = "bolditalic yellow centered",
+      wideCellClass = "centered"
     )
   ),
   width = 600
@@ -179,8 +180,10 @@ ui <- fluidPage(
       HTML(c(
         ".lightorange {background-color: #fed8b1;}",
         ".lightgreen {background-color: #98ff98;}",
-        ".bolditalic {font-weight: bold; font-style: italic;}",
-        ".yellow {background-color: yellow !important;}"
+        ".bolditalic {font-weight: bold; font-style: italic; font-size: large;}",
+        ".yellow {background-color: yellow !important;}",
+        ".centered {text-align: center; font-family: cursive;}",
+        ".helvetica {font-weight: 700; font-family: Helvetica; font-size: larger;}"
       ))
     )
   ),
@@ -189,7 +192,8 @@ ui <- fluidPage(
 )
 
 server <- function(input, output){
-  output[["jstree"]] <- renderJstree(jstree(nodes, grid = grid, types = types))
+  output[["jstree"]] <-
+    renderJstree(jstree(nodes, grid = grid, types = types))
 }
 
 shinyApp(ui, server)

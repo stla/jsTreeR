@@ -107,11 +107,13 @@ rename, delete, cut, copy and paste nodes}
 \item{checkCallback}{a JavaScript function; see the example where it is used
 to define restrictions on the drag-and-drop behavior}
 
-\item{grid}{list of settings for the grid; see the second example and
+\item{grid}{list of settings for the grid; see the second example, the
+\link[jsTreeR:jstreeOutput]{Shiny example}, and
 \href{https://github.com/deitch/jstree-grid/#options}{github.com/deitch/jstree-grid}
 for the list of all available options}
 
-\item{theme}{jsTree theme, one of default, default-dark, or proton.}
+\item{theme}{jsTree theme, one of \code{"default"},
+\code{"default-dark"}, or \code{"proton"}}
 }
 \description{
 Create a HTML widget displaying an interactive tree.

@@ -8,4 +8,4 @@ but it allows more options.
 
 ![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_search.gif)
 
-![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_grid.gif)
+![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_grid.png)
