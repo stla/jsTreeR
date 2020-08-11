@@ -74,6 +74,7 @@ HTMLWidgets.widget({
 
         options.core = {
           'data': x.data,
+          'multiple': x.multiple,
           'check_callback': x.checkCallback,
           'themes': {
             'name': x.theme,

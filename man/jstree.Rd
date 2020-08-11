@@ -12,6 +12,7 @@ jstree(
   searchtime = 250,
   dragAndDrop = FALSE,
   dnd = NULL,
+  multiple = TRUE,
   types = NULL,
   sort = FALSE,
   unique = FALSE,
@@ -92,6 +93,8 @@ functionality, e.g. the \code{is_draggable} function to define which nodes
 are draggable; see the first example and the
 \href{https://www.jstree.com/api/}{jsTree API documentation} for the list
 of possible options}
+
+\item{multiple}{logical, whether to allow multiselection}
 
 \item{types}{a named list of node properties; see first example}
 

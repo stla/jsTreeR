@@ -82,6 +82,7 @@ NULL
 #'   are draggable; see the first example and the
 #'   \href{https://www.jstree.com/api/}{jsTree API documentation} for the list
 #'   of possible options
+#' @param multiple logical, whether to allow multiselection
 #' @param types a named list of node properties; see first example
 #' @param sort logical, whether to sort the nodes
 #' @param unique logical, whether to ensure that no node label is duplicated
@@ -309,6 +310,7 @@ jstree <- function(
   checkboxes = FALSE,
   search = FALSE, searchtime = 250,
   dragAndDrop = FALSE, dnd = NULL,
+  multiple = TRUE,
   types = NULL,
   sort = FALSE,
   unique = FALSE,
@@ -326,6 +328,7 @@ jstree <- function(
     searchtime = searchtime,
     dragAndDrop = dragAndDrop,
     dnd = dnd,
+    multiple = multiple,
     types = types,
     sort = sort,
     unique = unique,
