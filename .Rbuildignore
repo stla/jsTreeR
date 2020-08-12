@@ -1,2 +1,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^inst/essais$
+^inst/screenshots$
+^inst/ztemp$

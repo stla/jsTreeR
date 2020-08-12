@@ -103,6 +103,7 @@ NULL
 #'   \code{"default-dark"}, or \code{"proton"}
 #'
 #' @import htmlwidgets
+#' @importFrom htmltools htmlDependency
 #' @export
 #'
 #' @examples # example illustrating the 'dnd' and 'checkCallback' options ####
