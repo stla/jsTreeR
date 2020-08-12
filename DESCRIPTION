@@ -1,12 +1,19 @@
 Package: jsTreeR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: A Wrapper of the JavaScript Library 'jsTree'
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(
+    person("Stéphane", "Laurent", email = "laurent_step@outlook.fr", role = c("aut", "cre")),
+    person("jQuery contributors", role = c("ctb", "cph"), comment = "jQuery"),
+    person("Ivan", "Bozhanov", role = c("ctb", "cph"), comment = "jsTree"),
+    person("Vedran", "Opacic", role = c("ctb", "cph"), comment = "jsTree bootstrap theme"),
+    person("Avi", "Deitcher", role = c("ctb", "cph"), comment = "jsTreeGrid"),
+    person("Terence", "Eden", role = c("ctb", "cph"), comment = "SuperTinyIcons")
+  )
+Description: Creates interactive trees that can be included in Shiny apps and R markdown documents. Similar to the 'shinyTree' package but offers more features and options.
+License: GPL-3 | file LICENSE
+URL: https://github.com/stla/jsTreeR
+BugReports: https://github.com/stla/jsTreeR/issues
 Encoding: UTF-8
 LazyData: true
 Imports:
