@@ -109,7 +109,6 @@ HTMLWidgets.widget({
           if(x.search) {
             var $input =
               $("<input type='search' id='" + el.id + "-search' placeholder='Search' />");
-            //$el.prepend($input);
             $input.insertBefore($el);
             $input.on("keyup", function() {
               $el.jstree(true).search($(this).val());
@@ -134,9 +133,9 @@ HTMLWidgets.widget({
 
         $el.on("changed.jstree", function(e, data) {
           if(inShiny) {
-            Shiny.setInputValue(
-              id, getNodesWithChildren(data.instance.get_json())
-            );
+//            Shiny.setInputValue(
+//              id, getNodesWithChildren(data.instance.get_json())
+//            );
             Shiny.setInputValue(
               id_selected, getNodes(data.instance.get_selected(true))
             );

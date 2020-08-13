@@ -3,3 +3,4 @@
 ^inst/essais$
 ^inst/screenshots$
 ^inst/ztemp$
+^cran-comments\.md$
