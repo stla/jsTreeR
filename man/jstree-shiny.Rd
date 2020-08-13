@@ -6,23 +6,24 @@
 \alias{renderJstree}
 \title{Shiny bindings for jstree}
 \usage{
-jstreeOutput(outputId, width = "100\%", height = "400px")
+jstreeOutput(outputId, width = "100\%", height = "auto")
 
 renderJstree(expr, env = parent.frame(), quoted = FALSE)
 }
 \arguments{
 \item{outputId}{output variable to read from}
 
-\item{width, height}{Must be a valid CSS unit (like \code{'100\%'},
+\item{width, height}{must be a valid CSS unit (like \code{'100\%'},
 \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
-string and have \code{'px'} appended.}
+string and have \code{'px'} appended}
 
-\item{expr}{An expression that generates a jstree}
+\item{expr}{an expression that generates a \code{\link{jstree}}}
 
-\item{env}{The environment in which to evaluate \code{expr}.}
+\item{env}{the environment in which to evaluate \code{expr}}
 
-\item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
-is useful if you want to save an expression in a variable.}
+\item{quoted}{logical, whether \code{expr} is a quoted expression
+(with \code{quote()}); this is useful if you want to save an expression
+in a variable}
 }
 \description{
 Output and render functions for using jstree within Shiny

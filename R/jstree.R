@@ -377,13 +377,14 @@ jstree <- function(
 #' applications and interactive Rmd documents.
 #'
 #' @param outputId output variable to read from
-#' @param width,height Must be a valid CSS unit (like \code{'100\%'},
+#' @param width,height must be a valid CSS unit (like \code{'100\%'},
 #'   \code{'400px'}, \code{'auto'}) or a number, which will be coerced to a
-#'   string and have \code{'px'} appended.
-#' @param expr An expression that generates a jstree
-#' @param env The environment in which to evaluate \code{expr}.
-#' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
-#'   is useful if you want to save an expression in a variable.
+#'   string and have \code{'px'} appended
+#' @param expr an expression that generates a \code{\link{jstree}}
+#' @param env the environment in which to evaluate \code{expr}
+#' @param quoted logical, whether \code{expr} is a quoted expression
+#'   (with \code{quote()}); this is useful if you want to save an expression
+#'   in a variable
 #'
 #' @name jstree-shiny
 #'
@@ -821,7 +822,7 @@ jstree <- function(
 #' if(interactive()){
 #'   shinyApp(ui, server)
 #' }
-jstreeOutput <- function(outputId, width = "100%", height = "400px"){
+jstreeOutput <- function(outputId, width = "100%", height = "auto"){
   htmlwidgets::shinyWidgetOutput(
     outputId, 'jstree', width, height, package = 'jsTreeR'
   )
