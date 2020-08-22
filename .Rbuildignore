@@ -4,3 +4,4 @@
 ^inst/screenshots$
 ^inst/ztemp$
 ^cran-comments\.md$
+^CRAN-RELEASE$
