@@ -2,7 +2,7 @@
 
 This is a resubmission. I removed the LICENSE file, as requested by the CRAN 
 team. I added copies of the license agreements of the components used by the 
-package in README file. I did not change anything else.
+package in the README file. I did not change anything else.
 
 ## Test environments
 
