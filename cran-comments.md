@@ -1,8 +1,8 @@
 ## Release summary
 
-This is a resubmission. I removed the LICENSE file, as requested by the CRAN 
-team. I added copies of the license agreements of the components used by the 
-package in the README file. I did not change anything else.
+This is a resubmission. I moved the copies of the license agreements of the 
+components used by the package from the 'README.md' file to the 'LICENSE.note'
+file. I did not change anything else.
 
 ## Test environments
 
