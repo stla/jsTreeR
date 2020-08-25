@@ -25,7 +25,14 @@ nnodes <- lapply(nodes, function(node){
 })
 
 ui <- fluidPage(
-  tags$head(tags$style(HTML("#jstree {background-color: #fff5ee;"))),
+  tags$head(
+    tags$style(
+      HTML(
+        "#jstree {background-color: #fff5ee;}",
+        "img {background-color: #333; padding: 50px;}"
+      )
+    )
+  ),
   titlePanel("Super tiny icons"),
   fluidRow(
     column(
@@ -34,6 +41,7 @@ ui <- fluidPage(
     ),
     column(
       width = 6,
+      checkboxInput("transparent", "Transparent background"),
       uiOutput("icon")
     )
   )
@@ -49,8 +57,10 @@ server <- function(input, output){
   })
   output[["icon"]] <- renderUI({
     req(length(input[["jstree_selected"]]) > 0)
-    svg <- input[["jstree_selected"]][[1]][["data"]][["svg"]]
-    tags$img(src = paste0("/SuperTinyIcons/", svg))
+    svg <- req(input[["jstree_selected"]][[1]][["data"]][["svg"]])
+    if(input[["transparent"]])
+      svg <- paste0("transparent-", svg)
+    tags$img(src = paste0("/SuperTinyIcons/", svg), width = "75%")
   })
 }
 
