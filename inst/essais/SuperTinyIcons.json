@@ -1,0 +1,1792 @@
+[
+  {
+    "text": "Social Media",
+    "children": [
+      {
+        "text": "Flickr",
+        "icon": "supertinyicon-flickr",
+        "data": {
+          "svg": "flickr.svg"
+        }
+      },
+      {
+        "text": "Facebook",
+        "icon": "supertinyicon-facebook",
+        "data": {
+          "svg": "facebook.svg"
+        }
+      },
+      {
+        "text": "Tumblr",
+        "icon": "supertinyicon-tumblr",
+        "data": {
+          "svg": "tumblr.svg"
+        }
+      },
+      {
+        "text": "Twitter",
+        "icon": "supertinyicon-twitter",
+        "data": {
+          "svg": "twitter.svg"
+        }
+      },
+      {
+        "text": "LinkedIn",
+        "icon": "supertinyicon-linkedin",
+        "data": {
+          "svg": "linkedin.svg"
+        }
+      },
+      {
+        "text": "Instagram",
+        "icon": "supertinyicon-instagram",
+        "data": {
+          "svg": "instagram.svg"
+        }
+      },
+      {
+        "text": "Reddit",
+        "icon": "supertinyicon-reddit",
+        "data": {
+          "svg": "reddit.svg"
+        }
+      },
+      {
+        "text": "Pinterest",
+        "icon": "supertinyicon-pinterest",
+        "data": {
+          "svg": "pinterest.svg"
+        }
+      },
+      {
+        "text": "VK",
+        "icon": "supertinyicon-vk",
+        "data": {
+          "svg": "vk.svg"
+        }
+      },
+      {
+        "text": "Mastodon",
+        "icon": "supertinyicon-mastodon",
+        "data": {
+          "svg": "mastodon.svg"
+        }
+      },
+      {
+        "text": "imgur",
+        "icon": "supertinyicon-imgur",
+        "data": {
+          "svg": "imgur.svg"
+        }
+      },
+      {
+        "text": "Slack",
+        "icon": "supertinyicon-slack",
+        "data": {
+          "svg": "slack.svg"
+        }
+      },
+      {
+        "text": "dev.to",
+        "icon": "supertinyicon-dev_to",
+        "data": {
+          "svg": "dev_to.svg"
+        }
+      },
+      {
+        "text": "Goodreads",
+        "icon": "supertinyicon-goodreads",
+        "data": {
+          "svg": "goodreads.svg"
+        }
+      },
+      {
+        "text": "TikTok",
+        "icon": "supertinyicon-tiktok",
+        "data": {
+          "svg": "tiktok.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Media",
+    "children": [
+      {
+        "text": "SoundCloud",
+        "icon": "supertinyicon-soundcloud",
+        "data": {
+          "svg": "soundcloud.svg"
+        }
+      },
+      {
+        "text": "Vimeo",
+        "icon": "supertinyicon-vimeo",
+        "data": {
+          "svg": "vimeo.svg"
+        }
+      },
+      {
+        "text": "Spotify",
+        "icon": "supertinyicon-spotify",
+        "data": {
+          "svg": "spotify.svg"
+        }
+      },
+      {
+        "text": "YouTube",
+        "icon": "supertinyicon-youtube",
+        "data": {
+          "svg": "youtube.svg"
+        }
+      },
+      {
+        "text": "Apple Music",
+        "icon": "supertinyicon-apple_music",
+        "data": {
+          "svg": "apple_music.svg"
+        }
+      },
+      {
+        "text": "Bandcamp",
+        "icon": "supertinyicon-bandcamp",
+        "data": {
+          "svg": "bandcamp.svg"
+        }
+      },
+      {
+        "text": "Deezer",
+        "icon": "supertinyicon-deezer",
+        "data": {
+          "svg": "deezer.svg"
+        }
+      },
+      {
+        "text": "iHeartRadio",
+        "icon": "supertinyicon-iheartradio",
+        "data": {
+          "svg": "iheartradio.svg"
+        }
+      },
+      {
+        "text": "Kodi",
+        "icon": "supertinyicon-kodi",
+        "data": {
+          "svg": "kodi.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Google",
+    "children": [
+      {
+        "text": "Google",
+        "icon": "supertinyicon-google",
+        "data": {
+          "svg": "google.svg"
+        }
+      },
+      {
+        "text": "Google+",
+        "icon": "supertinyicon-google_plus",
+        "data": {
+          "svg": "google_plus.svg"
+        }
+      },
+      {
+        "text": "Google Play",
+        "icon": "supertinyicon-google_play",
+        "data": {
+          "svg": "google_play.svg"
+        }
+      },
+      {
+        "text": "Gmail",
+        "icon": "supertinyicon-gmail",
+        "data": {
+          "svg": "gmail.svg"
+        }
+      },
+      {
+        "text": "Google Maps",
+        "icon": "supertinyicon-google_maps",
+        "data": {
+          "svg": "google_maps.svg"
+        }
+      },
+      {
+        "text": "Google Scholar",
+        "icon": "supertinyicon-google_scholar",
+        "data": {
+          "svg": "google_scholar.svg"
+        }
+      },
+      {
+        "text": "Google Drive",
+        "icon": "supertinyicon-google_drive",
+        "data": {
+          "svg": "google_drive.svg"
+        }
+      },
+      {
+        "text": "Google Maps (old)",
+        "icon": "supertinyicon-google_maps_old",
+        "data": {
+          "svg": "google_maps_old.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Communications",
+    "children": [
+      {
+        "text": "WhatsApp",
+        "icon": "supertinyicon-whatsapp",
+        "data": {
+          "svg": "whatsapp.svg"
+        }
+      },
+      {
+        "text": "Telegram",
+        "icon": "supertinyicon-telegram",
+        "data": {
+          "svg": "telegram.svg"
+        }
+      },
+      {
+        "text": "Skype",
+        "icon": "supertinyicon-skype",
+        "data": {
+          "svg": "skype.svg"
+        }
+      },
+      {
+        "text": "Snapchat",
+        "icon": "supertinyicon-snapchat",
+        "data": {
+          "svg": "snapchat.svg"
+        }
+      },
+      {
+        "text": "WeChat",
+        "icon": "supertinyicon-wechat",
+        "data": {
+          "svg": "wechat.svg"
+        }
+      },
+      {
+        "text": "Signal",
+        "icon": "supertinyicon-signal",
+        "data": {
+          "svg": "signal.svg"
+        }
+      },
+      {
+        "text": "Phone",
+        "icon": "supertinyicon-phone",
+        "data": {
+          "svg": "phone.svg"
+        }
+      },
+      {
+        "text": "LINE",
+        "icon": "supertinyicon-line",
+        "data": {
+          "svg": "line.svg"
+        }
+      },
+      {
+        "text": "Viber",
+        "icon": "supertinyicon-viber",
+        "data": {
+          "svg": "viber.svg"
+        }
+      },
+      {
+        "text": "Mailchimp",
+        "icon": "supertinyicon-mailchimp",
+        "data": {
+          "svg": "mailchimp.svg"
+        }
+      },
+      {
+        "text": "Threema",
+        "icon": "supertinyicon-threema",
+        "data": {
+          "svg": "threema.svg"
+        }
+      },
+      {
+        "text": "Mattermost",
+        "icon": "supertinyicon-mattermost",
+        "data": {
+          "svg": "mattermost.svg"
+        }
+      },
+      {
+        "text": "Protonmail",
+        "icon": "supertinyicon-protonmail",
+        "data": {
+          "svg": "protonmail.svg"
+        }
+      },
+      {
+        "text": "XMPP",
+        "icon": "supertinyicon-xmpp",
+        "data": {
+          "svg": "xmpp.svg"
+        }
+      },
+      {
+        "text": "Tutanota",
+        "icon": "supertinyicon-tutanota",
+        "data": {
+          "svg": "tutanota.svg"
+        }
+      },
+      {
+        "text": "Messenger",
+        "icon": "supertinyicon-messenger",
+        "data": {
+          "svg": "messenger.svg"
+        }
+      },
+      {
+        "text": "Discord",
+        "icon": "supertinyicon-discord",
+        "data": {
+          "svg": "discord.svg"
+        }
+      },
+      {
+        "text": "Zoom",
+        "icon": "supertinyicon-zoom",
+        "data": {
+          "svg": "zoom.svg"
+        }
+      },
+      {
+        "text": "Wire",
+        "icon": "supertinyicon-wire",
+        "data": {
+          "svg": "wire.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Websites",
+    "children": [
+      {
+        "text": "Hacker News",
+        "icon": "supertinyicon-hackernews",
+        "data": {
+          "svg": "hackernews.svg"
+        }
+      },
+      {
+        "text": "StackOverflow",
+        "icon": "supertinyicon-stackoverflow",
+        "data": {
+          "svg": "stackoverflow.svg"
+        }
+      },
+      {
+        "text": "Stack Exchange",
+        "icon": "supertinyicon-stackexchange",
+        "data": {
+          "svg": "stackexchange.svg"
+        }
+      },
+      {
+        "text": "WordPress",
+        "icon": "supertinyicon-wordpress",
+        "data": {
+          "svg": "wordpress.svg"
+        }
+      },
+      {
+        "text": "GitHub",
+        "icon": "supertinyicon-github",
+        "data": {
+          "svg": "github.svg"
+        }
+      },
+      {
+        "text": "Wikipedia",
+        "icon": "supertinyicon-wikipedia",
+        "data": {
+          "svg": "wikipedia.svg"
+        }
+      },
+      {
+        "text": "GitLab",
+        "icon": "supertinyicon-gitlab",
+        "data": {
+          "svg": "gitlab.svg"
+        }
+      },
+      {
+        "text": "Meetup",
+        "icon": "supertinyicon-meetup",
+        "data": {
+          "svg": "meetup.svg"
+        }
+      },
+      {
+        "text": "eBay",
+        "icon": "supertinyicon-ebay",
+        "data": {
+          "svg": "ebay.svg"
+        }
+      },
+      {
+        "text": "Kickstarter",
+        "icon": "supertinyicon-kickstarter",
+        "data": {
+          "svg": "kickstarter.svg"
+        }
+      },
+      {
+        "text": "Yahoo!",
+        "icon": "supertinyicon-yahoo",
+        "data": {
+          "svg": "yahoo.svg"
+        }
+      },
+      {
+        "text": "Evernote",
+        "icon": "supertinyicon-evernote",
+        "data": {
+          "svg": "evernote.svg"
+        }
+      },
+      {
+        "text": "Yammer",
+        "icon": "supertinyicon-yammer",
+        "data": {
+          "svg": "yammer.svg"
+        }
+      },
+      {
+        "text": "Blogger",
+        "icon": "supertinyicon-blogger",
+        "data": {
+          "svg": "blogger.svg"
+        }
+      },
+      {
+        "text": "Cloudflare",
+        "icon": "supertinyicon-cloudflare",
+        "data": {
+          "svg": "cloudflare.svg"
+        }
+      },
+      {
+        "text": "Amazon",
+        "icon": "supertinyicon-amazon",
+        "data": {
+          "svg": "amazon.svg"
+        }
+      },
+      {
+        "text": "Strava",
+        "icon": "supertinyicon-strava",
+        "data": {
+          "svg": "strava.svg"
+        }
+      },
+      {
+        "text": "Dribbble",
+        "icon": "supertinyicon-dribbble",
+        "data": {
+          "svg": "dribbble.svg"
+        }
+      },
+      {
+        "text": "CodePen",
+        "icon": "supertinyicon-codepen",
+        "data": {
+          "svg": "codepen.svg"
+        }
+      },
+      {
+        "text": "DigitalOcean",
+        "icon": "supertinyicon-digitalocean",
+        "data": {
+          "svg": "digitalocean.svg"
+        }
+      },
+      {
+        "text": "Medium",
+        "icon": "supertinyicon-medium",
+        "data": {
+          "svg": "medium.svg"
+        }
+      },
+      {
+        "text": "Airbnb",
+        "icon": "supertinyicon-airbnb",
+        "data": {
+          "svg": "airbnb.svg"
+        }
+      },
+      {
+        "text": "Delicious",
+        "icon": "supertinyicon-delicious",
+        "data": {
+          "svg": "delicious.svg"
+        }
+      },
+      {
+        "text": "Disqus",
+        "icon": "supertinyicon-disqus",
+        "data": {
+          "svg": "disqus.svg"
+        }
+      },
+      {
+        "text": "Ghost",
+        "icon": "supertinyicon-ghost",
+        "data": {
+          "svg": "ghost.svg"
+        }
+      },
+      {
+        "text": "Sketch",
+        "icon": "supertinyicon-sketch",
+        "data": {
+          "svg": "sketch.svg"
+        }
+      },
+      {
+        "text": "Trello",
+        "icon": "supertinyicon-trello",
+        "data": {
+          "svg": "trello.svg"
+        }
+      },
+      {
+        "text": "QQ",
+        "icon": "supertinyicon-qq",
+        "data": {
+          "svg": "qq.svg"
+        }
+      },
+      {
+        "text": "Badoo",
+        "icon": "supertinyicon-badoo",
+        "data": {
+          "svg": "badoo.svg"
+        }
+      },
+      {
+        "text": "Yelp",
+        "icon": "supertinyicon-yelp",
+        "data": {
+          "svg": "yelp.svg"
+        }
+      },
+      {
+        "text": "Workato",
+        "icon": "supertinyicon-workato",
+        "data": {
+          "svg": "workato.svg"
+        }
+      },
+      {
+        "text": "Untappd",
+        "icon": "supertinyicon-untappd",
+        "data": {
+          "svg": "untappd.svg"
+        }
+      },
+      {
+        "text": "Vivino",
+        "icon": "supertinyicon-vivino",
+        "data": {
+          "svg": "vivino.svg"
+        }
+      },
+      {
+        "text": "Apereo",
+        "icon": "supertinyicon-apereo",
+        "data": {
+          "svg": "apereo.svg"
+        }
+      },
+      {
+        "text": "Twilio",
+        "icon": "supertinyicon-twilio",
+        "data": {
+          "svg": "twilio.svg"
+        }
+      },
+      {
+        "text": "Plex",
+        "icon": "supertinyicon-plex",
+        "data": {
+          "svg": "plex.svg"
+        }
+      },
+      {
+        "text": "XING",
+        "icon": "supertinyicon-xing",
+        "data": {
+          "svg": "xing.svg"
+        }
+      },
+      {
+        "text": "Pinboard",
+        "icon": "supertinyicon-pinboard",
+        "data": {
+          "svg": "pinboard.svg"
+        }
+      },
+      {
+        "text": "Internet Archive",
+        "icon": "supertinyicon-internet_archive",
+        "data": {
+          "svg": "internet_archive.svg"
+        }
+      },
+      {
+        "text": "Access",
+        "icon": "supertinyicon-access",
+        "data": {
+          "svg": "access.svg"
+        }
+      },
+      {
+        "text": "baidu",
+        "icon": "supertinyicon-baidu",
+        "data": {
+          "svg": "baidu.svg"
+        }
+      },
+      {
+        "text": "Twitch",
+        "icon": "supertinyicon-twitch",
+        "data": {
+          "svg": "twitch.svg"
+        }
+      },
+      {
+        "text": "OK.ru",
+        "icon": "supertinyicon-ok",
+        "data": {
+          "svg": "ok.svg"
+        }
+      },
+      {
+        "text": "Pocket",
+        "icon": "supertinyicon-pocket",
+        "data": {
+          "svg": "pocket.svg"
+        }
+      },
+      {
+        "text": "StumbleUpon",
+        "icon": "supertinyicon-stumbleupon",
+        "data": {
+          "svg": "stumbleupon.svg"
+        }
+      },
+      {
+        "text": "Opencast",
+        "icon": "supertinyicon-opencast",
+        "data": {
+          "svg": "opencast.svg"
+        }
+      },
+      {
+        "text": "buffer",
+        "icon": "supertinyicon-buffer",
+        "data": {
+          "svg": "buffer.svg"
+        }
+      },
+      {
+        "text": "Upwork",
+        "icon": "supertinyicon-upwork",
+        "data": {
+          "svg": "upwork.svg"
+        }
+      },
+      {
+        "text": "Duck Duck Go",
+        "icon": "supertinyicon-duckduckgo",
+        "data": {
+          "svg": "duckduckgo.svg"
+        }
+      },
+      {
+        "text": "Bing",
+        "icon": "supertinyicon-bing",
+        "data": {
+          "svg": "bing.svg"
+        }
+      },
+      {
+        "text": "IMDb",
+        "icon": "supertinyicon-imdb",
+        "data": {
+          "svg": "imdb.svg"
+        }
+      },
+      {
+        "text": "Heroku",
+        "icon": "supertinyicon-heroku",
+        "data": {
+          "svg": "heroku.svg"
+        }
+      },
+      {
+        "text": "Research Gate",
+        "icon": "supertinyicon-researchgate",
+        "data": {
+          "svg": "researchgate.svg"
+        }
+      },
+      {
+        "text": "OpenCores",
+        "icon": "supertinyicon-opencores",
+        "data": {
+          "svg": "opencores.svg"
+        }
+      },
+      {
+        "text": "OpenBenches",
+        "icon": "supertinyicon-openbenches",
+        "data": {
+          "svg": "openbenches.svg"
+        }
+      },
+      {
+        "text": "TripAdvisor",
+        "icon": "supertinyicon-tripadvisor",
+        "data": {
+          "svg": "tripadvisor.svg"
+        }
+      },
+      {
+        "text": "Sentry",
+        "icon": "supertinyicon-sentry",
+        "data": {
+          "svg": "sentry.svg"
+        }
+      },
+      {
+        "text": "Behance",
+        "icon": "supertinyicon-behance",
+        "data": {
+          "svg": "behance.svg"
+        }
+      },
+      {
+        "text": "Taiga.io",
+        "icon": "supertinyicon-taiga",
+        "data": {
+          "svg": "taiga.svg"
+        }
+      },
+      {
+        "text": "Coil.com",
+        "icon": "supertinyicon-coil",
+        "data": {
+          "svg": "coil.svg"
+        }
+      },
+      {
+        "text": "Glitch",
+        "icon": "supertinyicon-glitch",
+        "data": {
+          "svg": "glitch.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Internet",
+    "children": [
+      {
+        "text": "RSS",
+        "icon": "supertinyicon-rss",
+        "data": {
+          "svg": "rss.svg"
+        }
+      },
+      {
+        "text": "Mail",
+        "icon": "supertinyicon-mail",
+        "data": {
+          "svg": "mail.svg"
+        }
+      },
+      {
+        "text": "E-mail",
+        "icon": "supertinyicon-email",
+        "data": {
+          "svg": "email.svg"
+        }
+      },
+      {
+        "text": "HTML5",
+        "icon": "supertinyicon-html5",
+        "data": {
+          "svg": "html5.svg"
+        }
+      },
+      {
+        "text": "Wi-Fi",
+        "icon": "supertinyicon-wifi",
+        "data": {
+          "svg": "wifi.svg"
+        }
+      },
+      {
+        "text": "World Wide Web Consortium (W3C)",
+        "icon": "supertinyicon-w3c",
+        "data": {
+          "svg": "w3c.svg"
+        }
+      },
+      {
+        "text": "The Unicode Consortium",
+        "icon": "supertinyicon-unicode",
+        "data": {
+          "svg": "unicode.svg"
+        }
+      },
+      {
+        "text": "markdown",
+        "icon": "supertinyicon-markdown",
+        "data": {
+          "svg": "markdown.svg"
+        }
+      },
+      {
+        "text": "HAML",
+        "icon": "supertinyicon-haml",
+        "data": {
+          "svg": "haml.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Browsers",
+    "children": [
+      {
+        "text": "Chrome",
+        "icon": "supertinyicon-chrome",
+        "data": {
+          "svg": "chrome.svg"
+        }
+      },
+      {
+        "text": "Firefox",
+        "icon": "supertinyicon-firefox",
+        "data": {
+          "svg": "firefox.svg"
+        }
+      },
+      {
+        "text": "Samsung Internet",
+        "icon": "supertinyicon-samsunginternet",
+        "data": {
+          "svg": "samsunginternet.svg"
+        }
+      },
+      {
+        "text": "Edge",
+        "icon": "supertinyicon-edge",
+        "data": {
+          "svg": "edge.svg"
+        }
+      },
+      {
+        "text": "Opera",
+        "icon": "supertinyicon-opera",
+        "data": {
+          "svg": "opera.svg"
+        }
+      },
+      {
+        "text": "Safari",
+        "icon": "supertinyicon-safari",
+        "data": {
+          "svg": "safari.svg"
+        }
+      },
+      {
+        "text": "Chromium",
+        "icon": "supertinyicon-chromium",
+        "data": {
+          "svg": "chromium.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Podcasts",
+    "children": [
+      {
+        "text": "iTunes",
+        "icon": "supertinyicon-itunes_podcasts",
+        "data": {
+          "svg": "itunes_podcasts.svg"
+        }
+      },
+      {
+        "text": "Google",
+        "icon": "supertinyicon-google_podcasts",
+        "data": {
+          "svg": "google_podcasts.svg"
+        }
+      },
+      {
+        "text": "Pocket Casts",
+        "icon": "supertinyicon-pocketcasts",
+        "data": {
+          "svg": "pocketcasts.svg"
+        }
+      },
+      {
+        "text": "Stitcher",
+        "icon": "supertinyicon-stitcher",
+        "data": {
+          "svg": "stitcher.svg"
+        }
+      },
+      {
+        "text": "TuneIn",
+        "icon": "supertinyicon-tunein",
+        "data": {
+          "svg": "tunein.svg"
+        }
+      },
+      {
+        "text": "Acast",
+        "icon": "supertinyicon-acast",
+        "data": {
+          "svg": "acast.svg"
+        }
+      },
+      {
+        "text": "Overcast",
+        "icon": "supertinyicon-overcast",
+        "data": {
+          "svg": "overcast.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Logos",
+    "children": [
+      {
+        "text": "Apple",
+        "icon": "supertinyicon-apple",
+        "data": {
+          "svg": "apple.svg"
+        }
+      },
+      {
+        "text": "npm",
+        "icon": "supertinyicon-npm",
+        "data": {
+          "svg": "npm.svg"
+        }
+      },
+      {
+        "text": "Docker",
+        "icon": "supertinyicon-docker",
+        "data": {
+          "svg": "docker.svg"
+        }
+      },
+      {
+        "text": "IBM",
+        "icon": "supertinyicon-ibm",
+        "data": {
+          "svg": "ibm.svg"
+        }
+      },
+      {
+        "text": "Open Source",
+        "icon": "supertinyicon-opensource",
+        "data": {
+          "svg": "opensource.svg"
+        }
+      },
+      {
+        "text": "Intel",
+        "icon": "supertinyicon-intel",
+        "data": {
+          "svg": "intel.svg"
+        }
+      },
+      {
+        "text": "VLC",
+        "icon": "supertinyicon-vlc",
+        "data": {
+          "svg": "vlc.svg"
+        }
+      },
+      {
+        "text": "Vegetarian",
+        "icon": "supertinyicon-vegetarian",
+        "data": {
+          "svg": "vegetarian.svg"
+        }
+      },
+      {
+        "text": "Espressif",
+        "icon": "supertinyicon-espressif",
+        "data": {
+          "svg": "espressif.svg"
+        }
+      },
+      {
+        "text": "NHS",
+        "icon": "supertinyicon-nhs",
+        "data": {
+          "svg": "nhs.svg"
+        }
+      },
+      {
+        "text": "Orcid",
+        "icon": "supertinyicon-orcid",
+        "data": {
+          "svg": "orcid.svg"
+        }
+      },
+      {
+        "text": "HP",
+        "icon": "supertinyicon-hp",
+        "data": {
+          "svg": "hp.svg"
+        }
+      },
+      {
+        "text": "RedHat",
+        "icon": "supertinyicon-redhat",
+        "data": {
+          "svg": "redhat.svg"
+        }
+      },
+      {
+        "text": "CentOS",
+        "icon": "supertinyicon-centos",
+        "data": {
+          "svg": "centos.svg"
+        }
+      },
+      {
+        "text": "git",
+        "icon": "supertinyicon-git",
+        "data": {
+          "svg": "git.svg"
+        }
+      },
+      {
+        "text": "Microsoft",
+        "icon": "supertinyicon-microsoft",
+        "data": {
+          "svg": "microsoft.svg"
+        }
+      },
+      {
+        "text": "Grafana",
+        "icon": "supertinyicon-grafana",
+        "data": {
+          "svg": "grafana.svg"
+        }
+      },
+      {
+        "text": "Ubiquiti",
+        "icon": "supertinyicon-ubiquiti",
+        "data": {
+          "svg": "ubiquiti.svg"
+        }
+      },
+      {
+        "text": "Adobe",
+        "icon": "supertinyicon-adobe",
+        "data": {
+          "svg": "adobe.svg"
+        }
+      },
+      {
+        "text": "Homekit",
+        "icon": "supertinyicon-homekit",
+        "data": {
+          "svg": "homekit.svg"
+        }
+      },
+      {
+        "text": "Pixelfed",
+        "icon": "supertinyicon-pixelfed",
+        "data": {
+          "svg": "pixelfed.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Security",
+    "children": [
+      {
+        "text": "Tox",
+        "icon": "supertinyicon-tox",
+        "data": {
+          "svg": "tox.svg"
+        }
+      },
+      {
+        "text": "Lock",
+        "icon": "supertinyicon-lock",
+        "data": {
+          "svg": "lock.svg"
+        }
+      },
+      {
+        "text": "LastPass",
+        "icon": "supertinyicon-lastpass",
+        "data": {
+          "svg": "lastpass.svg"
+        }
+      },
+      {
+        "text": "Symantec",
+        "icon": "supertinyicon-symantec",
+        "data": {
+          "svg": "symantec.svg"
+        }
+      },
+      {
+        "text": "Yubico",
+        "icon": "supertinyicon-yubico",
+        "data": {
+          "svg": "yubico.svg"
+        }
+      },
+      {
+        "text": "Keybase",
+        "icon": "supertinyicon-keybase",
+        "data": {
+          "svg": "keybase.svg"
+        }
+      },
+      {
+        "text": "Authy",
+        "icon": "supertinyicon-authy",
+        "data": {
+          "svg": "authy.svg"
+        }
+      },
+      {
+        "text": "HackerOne",
+        "icon": "supertinyicon-hackerone",
+        "data": {
+          "svg": "hackerone.svg"
+        }
+      },
+      {
+        "text": "Bitwarden",
+        "icon": "supertinyicon-bitwarden",
+        "data": {
+          "svg": "bitwarden.svg"
+        }
+      },
+      {
+        "text": "Auth0",
+        "icon": "supertinyicon-auth0",
+        "data": {
+          "svg": "auth0.svg"
+        }
+      },
+      {
+        "text": "andOTP",
+        "icon": "supertinyicon-andotp",
+        "data": {
+          "svg": "andotp.svg"
+        }
+      },
+      {
+        "text": "OpenBugBounty",
+        "icon": "supertinyicon-openbugbounty",
+        "data": {
+          "svg": "openbugbounty.svg"
+        }
+      },
+      {
+        "text": "OpenVPN",
+        "icon": "supertinyicon-openvpn",
+        "data": {
+          "svg": "openvpn.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Payments",
+    "children": [
+      {
+        "text": "PayPal",
+        "icon": "supertinyicon-paypal",
+        "data": {
+          "svg": "paypal.svg"
+        }
+      },
+      {
+        "text": "Bitcoin",
+        "icon": "supertinyicon-bitcoin",
+        "data": {
+          "svg": "bitcoin.svg"
+        }
+      },
+      {
+        "text": "Ethereum",
+        "icon": "supertinyicon-ethereum",
+        "data": {
+          "svg": "ethereum.svg"
+        }
+      },
+      {
+        "text": "Liberapay",
+        "icon": "supertinyicon-liberapay",
+        "data": {
+          "svg": "liberapay.svg"
+        }
+      },
+      {
+        "text": "Ko-Fi",
+        "icon": "supertinyicon-ko-fi",
+        "data": {
+          "svg": "ko-fi.svg"
+        }
+      },
+      {
+        "text": "Flattr",
+        "icon": "supertinyicon-flattr",
+        "data": {
+          "svg": "flattr.svg"
+        }
+      },
+      {
+        "text": "Patreon",
+        "icon": "supertinyicon-patreon",
+        "data": {
+          "svg": "patreon.svg"
+        }
+      },
+      {
+        "text": "Venmo",
+        "icon": "supertinyicon-venmo",
+        "data": {
+          "svg": "venmo.svg"
+        }
+      },
+      {
+        "text": "Square Cash App",
+        "icon": "supertinyicon-square_cash",
+        "data": {
+          "svg": "square_cash.svg"
+        }
+      },
+      {
+        "text": "OpenCollective",
+        "icon": "supertinyicon-opencollective",
+        "data": {
+          "svg": "opencollective.svg"
+        }
+      },
+      {
+        "text": "GateHub",
+        "icon": "supertinyicon-gatehub",
+        "data": {
+          "svg": "gatehub.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Programming",
+    "children": [
+      {
+        "text": "Python",
+        "icon": "supertinyicon-python",
+        "data": {
+          "svg": "python.svg"
+        }
+      },
+      {
+        "text": "Julia",
+        "icon": "supertinyicon-julia",
+        "data": {
+          "svg": "julia.svg"
+        }
+      },
+      {
+        "text": "PHP",
+        "icon": "supertinyicon-php",
+        "data": {
+          "svg": "php.svg"
+        }
+      },
+      {
+        "text": "Laravel",
+        "icon": "supertinyicon-laravel",
+        "data": {
+          "svg": "laravel.svg"
+        }
+      },
+      {
+        "text": "Drupal",
+        "icon": "supertinyicon-drupal",
+        "data": {
+          "svg": "drupal.svg"
+        }
+      },
+      {
+        "text": "React",
+        "icon": "supertinyicon-react",
+        "data": {
+          "svg": "react.svg"
+        }
+      },
+      {
+        "text": "Angular",
+        "icon": "supertinyicon-angular",
+        "data": {
+          "svg": "angular.svg"
+        }
+      },
+      {
+        "text": "Sass",
+        "icon": "supertinyicon-sass",
+        "data": {
+          "svg": "sass.svg"
+        }
+      },
+      {
+        "text": "JSON",
+        "icon": "supertinyicon-json",
+        "data": {
+          "svg": "json.svg"
+        }
+      },
+      {
+        "text": "Yarn",
+        "icon": "supertinyicon-yarn",
+        "data": {
+          "svg": "yarn.svg"
+        }
+      },
+      {
+        "text": "Go",
+        "icon": "supertinyicon-go",
+        "data": {
+          "svg": "go.svg"
+        }
+      },
+      {
+        "text": "Java",
+        "icon": "supertinyicon-java",
+        "data": {
+          "svg": "java.svg"
+        }
+      },
+      {
+        "text": "Rust",
+        "icon": "supertinyicon-rust",
+        "data": {
+          "svg": "rust.svg"
+        }
+      },
+      {
+        "text": "Clojure",
+        "icon": "supertinyicon-clojure",
+        "data": {
+          "svg": "clojure.svg"
+        }
+      },
+      {
+        "text": "CoffeeScript",
+        "icon": "supertinyicon-coffeescript",
+        "data": {
+          "svg": "coffeescript.svg"
+        }
+      },
+      {
+        "text": "JavaScript",
+        "icon": "supertinyicon-javascript",
+        "data": {
+          "svg": "javascript.svg"
+        }
+      },
+      {
+        "text": "Flutter",
+        "icon": "supertinyicon-flutter",
+        "data": {
+          "svg": "flutter.svg"
+        }
+      },
+      {
+        "text": "Backbone",
+        "icon": "supertinyicon-backbone",
+        "data": {
+          "svg": "backbone.svg"
+        }
+      },
+      {
+        "text": "Vue",
+        "icon": "supertinyicon-vue",
+        "data": {
+          "svg": "vue.svg"
+        }
+      },
+      {
+        "text": "Gradle",
+        "icon": "supertinyicon-gradle",
+        "data": {
+          "svg": "gradle.svg"
+        }
+      },
+      {
+        "text": "Amber Framework",
+        "icon": "supertinyicon-amberframework",
+        "data": {
+          "svg": "amberframework.svg"
+        }
+      },
+      {
+        "text": "Gitea",
+        "icon": "supertinyicon-gitea",
+        "data": {
+          "svg": "gitea.svg"
+        }
+      },
+      {
+        "text": "Drone.io",
+        "icon": "supertinyicon-drone",
+        "data": {
+          "svg": "drone.svg"
+        }
+      },
+      {
+        "text": "Ruby Gems",
+        "icon": "supertinyicon-rubygems",
+        "data": {
+          "svg": "rubygems.svg"
+        }
+      },
+      {
+        "text": "Lucky Framework",
+        "icon": "supertinyicon-luckyframework",
+        "data": {
+          "svg": "luckyframework.svg"
+        }
+      },
+      {
+        "text": "Wekan",
+        "icon": "supertinyicon-wekan",
+        "data": {
+          "svg": "wekan.svg"
+        }
+      },
+      {
+        "text": "Kemal Framework",
+        "icon": "supertinyicon-kemal",
+        "data": {
+          "svg": "kemal.svg"
+        }
+      },
+      {
+        "text": "Ruby On Rails",
+        "icon": "supertinyicon-rubyonrails",
+        "data": {
+          "svg": "rubyonrails.svg"
+        }
+      },
+      {
+        "text": "Kotlin",
+        "icon": "supertinyicon-kotlin",
+        "data": {
+          "svg": "kotlin.svg"
+        }
+      },
+      {
+        "text": "Crystal",
+        "icon": "supertinyicon-crystal",
+        "data": {
+          "svg": "crystal.svg"
+        }
+      },
+      {
+        "text": "Semaphore CI",
+        "icon": "supertinyicon-semaphoreci",
+        "data": {
+          "svg": "semaphoreci.svg"
+        }
+      },
+      {
+        "text": "Django Project",
+        "icon": "supertinyicon-djangoproject",
+        "data": {
+          "svg": "djangoproject.svg"
+        }
+      },
+      {
+        "text": "Ruby",
+        "icon": "supertinyicon-ruby",
+        "data": {
+          "svg": "ruby.svg"
+        }
+      },
+      {
+        "text": "SVG",
+        "icon": "supertinyicon-svg",
+        "data": {
+          "svg": "svg.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Operating Systems / Kernel",
+    "children": [
+      {
+        "text": "Android",
+        "icon": "supertinyicon-android",
+        "data": {
+          "svg": "android.svg"
+        }
+      },
+      {
+        "text": "Arch Linux",
+        "icon": "supertinyicon-archlinux",
+        "data": {
+          "svg": "archlinux.svg"
+        }
+      },
+      {
+        "text": "Linux",
+        "icon": "supertinyicon-linux",
+        "data": {
+          "svg": "linux.svg"
+        }
+      },
+      {
+        "text": "Ubuntu",
+        "icon": "supertinyicon-ubuntu",
+        "data": {
+          "svg": "ubuntu.svg"
+        }
+      },
+      {
+        "text": "Microsoft Windows",
+        "icon": "supertinyicon-windows",
+        "data": {
+          "svg": "windows.svg"
+        }
+      },
+      {
+        "text": "Elementary OS",
+        "icon": "supertinyicon-elementaryos",
+        "data": {
+          "svg": "elementaryos.svg"
+        }
+      },
+      {
+        "text": "Debian",
+        "icon": "supertinyicon-debian",
+        "data": {
+          "svg": "debian.svg"
+        }
+      },
+      {
+        "text": "Linux Mint",
+        "icon": "supertinyicon-linux_mint",
+        "data": {
+          "svg": "linux_mint.svg"
+        }
+      },
+      {
+        "text": "macOS",
+        "icon": "supertinyicon-macos",
+        "data": {
+          "svg": "macos.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Gaming",
+    "children": [
+      {
+        "text": "Steam",
+        "icon": "supertinyicon-steam",
+        "data": {
+          "svg": "steam.svg"
+        }
+      },
+      {
+        "text": "GOG.com",
+        "icon": "supertinyicon-gogcom",
+        "data": {
+          "svg": "gogcom.svg"
+        }
+      },
+      {
+        "text": "Ubisoft",
+        "icon": "supertinyicon-ubisoft",
+        "data": {
+          "svg": "ubisoft.svg"
+        }
+      },
+      {
+        "text": "Uplay",
+        "icon": "supertinyicon-uplay",
+        "data": {
+          "svg": "uplay.svg"
+        }
+      },
+      {
+        "text": "Electronic Arts",
+        "icon": "supertinyicon-ea",
+        "data": {
+          "svg": "ea.svg"
+        }
+      },
+      {
+        "text": "Minecraft",
+        "icon": "supertinyicon-minecraft",
+        "data": {
+          "svg": "minecraft.svg"
+        }
+      }
+    ]
+  },
+  {
+    "text": "Misc",
+    "children": [
+      {
+        "text": "Calendar",
+        "icon": "supertinyicon-calendar",
+        "data": {
+          "svg": "calendar.svg"
+        }
+      },
+      {
+        "text": "SlideShare",
+        "icon": "supertinyicon-slideshare",
+        "data": {
+          "svg": "slideshare.svg"
+        }
+      },
+      {
+        "text": "Dropbox",
+        "icon": "supertinyicon-dropbox",
+        "data": {
+          "svg": "dropbox.svg"
+        }
+      },
+      {
+        "text": "PDF",
+        "icon": "supertinyicon-pdf",
+        "data": {
+          "svg": "pdf.svg"
+        }
+      },
+      {
+        "text": "Digidentity",
+        "icon": "supertinyicon-digidentity",
+        "data": {
+          "svg": "digidentity.svg"
+        }
+      },
+      {
+        "text": "Bluetooth",
+        "icon": "supertinyicon-bluetooth",
+        "data": {
+          "svg": "bluetooth.svg"
+        }
+      },
+      {
+        "text": "ePub",
+        "icon": "supertinyicon-epub",
+        "data": {
+          "svg": "epub.svg"
+        }
+      },
+      {
+        "text": "NextCloud",
+        "icon": "supertinyicon-nextcloud",
+        "data": {
+          "svg": "nextcloud.svg"
+        }
+      },
+      {
+        "text": "Raspberry Pi",
+        "icon": "supertinyicon-raspberry_pi",
+        "data": {
+          "svg": "raspberry_pi.svg"
+        }
+      },
+      {
+        "text": "Printer",
+        "icon": "supertinyicon-print",
+        "data": {
+          "svg": "print.svg"
+        }
+      },
+      {
+        "text": "Uber",
+        "icon": "supertinyicon-uber",
+        "data": {
+          "svg": "uber.svg"
+        }
+      },
+      {
+        "text": "Amazon S3",
+        "icon": "supertinyicon-amazon_s3",
+        "data": {
+          "svg": "amazon_s3.svg"
+        }
+      },
+      {
+        "text": "Ansible",
+        "icon": "supertinyicon-ansible",
+        "data": {
+          "svg": "ansible.svg"
+        }
+      },
+      {
+        "text": "Gojek",
+        "icon": "supertinyicon-gojek",
+        "data": {
+          "svg": "gojek.svg"
+        }
+      },
+      {
+        "text": "Amazon Alexa",
+        "icon": "supertinyicon-amazon_alexa",
+        "data": {
+          "svg": "amazon_alexa.svg"
+        }
+      },
+      {
+        "text": "Finder",
+        "icon": "supertinyicon-finder",
+        "data": {
+          "svg": "finder.svg"
+        }
+      }
+    ]
+  }
+]
