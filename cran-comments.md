@@ -1,8 +1,8 @@
 ## Release summary
 
-This is a resubmission. I moved the copies of the license agreements of the 
-components used by the package from the 'README.md' file to the 'LICENSE.note'
-file. I did not change anything else.
+This is a resubmission. As requested by the CRAN team, I surrounded the
+package names with single quotes in the 'Description' field and I added more 
+details in the 'Description' field. I did not change anything else.
 
 ## Test environments
 
