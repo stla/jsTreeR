@@ -27,4 +27,4 @@ these components:
 - **SuperTinyIcons**, https://github.com/edent/SuperTinyIcons
 
 Full copies of the license agreements used by these components are included in
-the file [LICENSE.note](https://github.com/stla/jsTreeR/master/LICENSE.note.md).
+the file [LICENSE.note](https://github.com/stla/jsTreeR/blob/master/LICENSE.note.md).
