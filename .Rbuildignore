@@ -5,3 +5,4 @@
 ^inst/ztemp$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^LICENSE\.note\.md$
