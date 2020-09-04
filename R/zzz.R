@@ -1,12 +1,8 @@
 #' @importFrom shiny registerInputHandler addResourcePath
-#' @importFrom jsonlite fromJSON toJSON
 #' @noRd
 .onAttach <- function(libname, pkgname){
   shiny::registerInputHandler("jsTreeR.list", function(data, ...){
-    jsonlite::fromJSON(
-      jsonlite::toJSON(data, auto_unbox = TRUE),
-      simplifyDataFrame = FALSE
-    )
+    data
   }, force = TRUE)
   shiny::addResourcePath(
     "SuperTinyIcons",

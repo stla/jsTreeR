@@ -18,7 +18,7 @@ Encoding: UTF-8
 LazyData: true
 Imports:
   htmlwidgets,
-  jsonlite,
   shiny,
   htmltools
+Suggests: jsonlite
 RoxygenNote: 7.1.1
