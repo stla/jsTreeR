@@ -155,6 +155,9 @@ HTMLWidgets.widget({
             Shiny.setInputValue(
               id, getNodesWithChildren(data.instance.get_json())
             );
+            Shiny.setInputValue(
+              id_selected, getNodes(data.instance.get_selected(true))
+            );
         });
 
         $el.on("create_node.jstree", function(e, data) {
