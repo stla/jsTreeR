@@ -2,7 +2,7 @@ function extractKeysWithChildren(list) {
   return {
     text: list.text,
     data: list.data,
-    children: list.children.map(extractKeys)
+    children: list.children.map(extractKeysWithChildren)
   };
 }
 
@@ -101,6 +101,14 @@ HTMLWidgets.widget({
         if(typeof x.search !== "boolean")
           options.search = x.search;
 
+        if(typeof x.contextMenu !== "boolean") {
+          options.contextmenu = x.contextMenu;
+        } else {
+          options.contextmenu = {
+            select_node: false
+          };
+        }
+
         $el.jstree(options);
 
 
@@ -140,6 +148,34 @@ HTMLWidgets.widget({
               id_selected, getNodes(data.instance.get_selected(true))
             );
           }
+        });
+
+        $el.on("rename_node.jstree", function(e, data) {
+          if(inShiny)
+            Shiny.setInputValue(
+              id, getNodesWithChildren(data.instance.get_json())
+            );
+        });
+
+        $el.on("create_node.jstree", function(e, data) {
+          if(inShiny)
+            Shiny.setInputValue(
+              id, getNodesWithChildren(data.instance.get_json())
+            );
+        });
+
+        $el.on("paste.jstree", function(e, data) {
+          if(inShiny)
+            Shiny.setInputValue(
+              id, getNodesWithChildren(data.instance.get_json())
+            );
+        });
+
+        $el.on("delete_node.jstree", function(e, data) {
+          if(inShiny)
+            Shiny.setInputValue(
+              id, getNodesWithChildren(data.instance.get_json())
+            );
         });
 
       },

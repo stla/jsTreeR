@@ -91,8 +91,11 @@ NULL
 #' @param sort logical, whether to sort the nodes
 #' @param unique logical, whether to ensure that no node label is duplicated
 #' @param wholerow logical, whether to highlight whole selected rows
-#' @param contextMenu logical, whether to enable a context menu to create,
-#'   rename, delete, cut, copy and paste nodes
+#' @param contextMenu either a logical value, whether to enable a context menu
+#'   to create/rename/delete/cut/copy/paste nodes, or a list of options; see
+#'   the \href{https://www.jstree.com/api/}{jsTree API documentation} for the
+#'   possible options
+#'   see XXXXXXXXXXXXXXXX
 #' @param checkCallback a JavaScript function; see the example where it is used
 #'   to define restrictions on the drag-and-drop behavior
 #' @param grid list of settings for the grid; see the second example, the
