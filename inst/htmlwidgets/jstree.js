@@ -36,7 +36,8 @@ HTMLWidgets.widget({
     var $el = $(el);
     var options = {};
     var id = el.id + ":jsTreeR.list",
-      id_selected = el.id + "_selected:jsTreeR.list";
+      id_selected = el.id + "_selected:jsTreeR.list",
+      id_move = el.id + "_move:jsTreeR.move";
 
     return {
 
@@ -133,10 +134,24 @@ HTMLWidgets.widget({
         });
 
         $el.on("move_node.jstree", function(e, data) {
-          if(inShiny)
+          if(inShiny) {
+            var instance = data.instance;
+            var node = data.node;
+            var nodeText = node.text;
+            var oldPath = instance.get_path(data.old_parent).concat([nodeText]);
+            var newPath = instance.get_path(node);
             Shiny.setInputValue(
-              id, getNodesWithChildren(data.instance.get_json())
+              id_move, {from: oldPath, to: newPath}
             );
+            Shiny.setInputValue(
+              id, getNodesWithChildren(instance.get_json())
+            );
+          }
+        });
+
+        $(document).on("dnd_start.vakata", function(e, data) {
+          console.log("dndstart",data);
+          console.log("tree",$el.jstree(true));
         });
 
         $el.on("changed.jstree", function(e, data) {

@@ -4,6 +4,9 @@
   shiny::registerInputHandler("jsTreeR.list", function(data, ...){
     data
   }, force = TRUE)
+  shiny::registerInputHandler("jsTreeR.move", function(data, ...){
+    lapply(data, unlist)
+  }, force = TRUE)
   shiny::addResourcePath(
     "SuperTinyIcons",
     system.file("htmlwidgets", "SuperTinyIcons", package = "jsTreeR")

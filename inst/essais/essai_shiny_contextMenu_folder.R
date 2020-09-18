@@ -2,6 +2,11 @@ library(jsTreeR)
 library(shiny)
 library(jsonlite)
 
+# TODO: edit file with aceEditor in a modal
+# open file in RStudio
+# search option
+# icons for file language
+
 replaceNodeValue <- HTML(
   "function replaceChildValue(child, regexp, newValue) {",
   "  child.data.value = child.data.value.replace(regexp, newValue);",
@@ -179,9 +184,12 @@ ui <- fluidPage(
 
 )
 
+
 server <- function(input, output){
 
   observe(print(input[["rename"]]))
+
+  observe(print(input[["jstree_move"]]))
 
   output[["jstree"]] <- renderJstree({
     jstree(
