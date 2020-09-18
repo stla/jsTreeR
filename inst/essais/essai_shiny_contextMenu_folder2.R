@@ -305,7 +305,7 @@ server <- function(input, output){
       types = types,
       dragAndDrop = TRUE,
       checkboxes = FALSE,
-      #theme = "proton",
+      theme = "proton",
       contextMenu = list(select_node = FALSE, items = js),
       checkCallback = checkCallback,
       sort = TRUE,
