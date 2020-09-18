@@ -198,7 +198,7 @@ parent <- tail(splittedPath, 1L)
 folders <- list.dirs(folder, full.names = FALSE)
 folders_fullNames <- list.dirs(folder, full.names = TRUE)
 emptyFolders <- folders[vapply(folders_fullNames, function(folder){
-  length(list.files(folder, include.dirs = TRUE, recursive = TRUE)) == 0L
+  length(list.files(folder, include.dirs = TRUE, recursive = FALSE)) == 0L
 }, logical(1L))]
 folderContents <- c(emptyFolders, list.files(folder, recursive = TRUE))
 

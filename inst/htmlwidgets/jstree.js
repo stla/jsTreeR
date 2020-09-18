@@ -83,7 +83,7 @@ HTMLWidgets.widget({
             'name': x.theme,
             'icons': true,
             'dots': true,
-            'responsive': true
+            'responsive': false
           }
         };
 
