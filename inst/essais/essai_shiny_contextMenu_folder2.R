@@ -7,40 +7,18 @@ library(jsonlite)
 # search option
 # icons for file language
 
-replaceNodeValue <- HTML(
-  "function replaceChildValue(child, regexp, newValue) {",
-  "  child.data.value = child.data.value.replace(regexp, newValue);",
-  "  child.children.forEach(function(child){replaceChildValue(child, regexp, newValue);});",
-  "}",
-  "function replaceNodeValue(node) {",
-  sprintf("  var sep = \"%s\";", .Platform$file.sep),
-  "  var value = node.data.value;",
-  "  var splittedValue = value.split(sep);",
-  "  splittedValue[splittedValue.length - 1] = node.text;",
-  "  var newValue = splittedValue.join(sep);",
-  "  node.data.value = newValue;",
-  "  var regexp = new RegExp(\"^\" + value);",
-  "console.log('node',node);",
-  "  node.children.forEach(function(child){replaceChildValue(child, regexp, newValue);});",
-  "}"
-)
 
 js <- JS(
   "function (node) {",
   sprintf("  var sep = \"%s\";", .Platform$file.sep),
   "  var tree = $(\"#jstree\").jstree(true);",
-  "console.log('tree',tree);",
   "  var items = {",
   "    Rename: {",
   "      separator_before: false,",
   "      separator_after: false,",
   "      label: \"Rename\",",
   "      action: function (obj) {",
-  "console.log('obj',obj);console.log('node',node);",
-  "        var from = tree.get_path(node, sep);",
-  "        var to;",
-  "        tree.edit(node, null, function(){to = tree.get_path(node, sep); Shiny.setInputValue('rename', {from: from, to: to});});",
-#  "        tree.edit(node, null, function(){replaceNodeValue(tree.get_json(node));});",
+  "        tree.edit(node);",
   "      }",
   "    },",
   "    Remove: {",
@@ -89,7 +67,7 @@ js <- JS(
 )
 
 # make the nodes list from a vector of file paths
-makeNodes <- function(leaves, path){
+makeNodes <- function(leaves){
   dfs <- lapply(strsplit(leaves, "/"), function(s){
     item <-
       Reduce(function(a,b) paste0(a,"/",b), s[-1], s[1], accumulate = TRUE)
@@ -111,14 +89,12 @@ makeNodes <- function(leaves, path){
     if(length(children)){
       list(
         text = label,
-        data = list(value = paste0(path,item)),
         children = lapply(children, f),
         type = "folder"
       )
     }else{
       list(
         text = label,
-        data = list(value = paste0(path,item)),
         type = "file"
       )
     }
@@ -134,8 +110,7 @@ parent <- tail(splittedPath, 1L)
 folderContents <- list.files(folder, recursive = TRUE)
 
 nodes <- makeNodes(
-  paste0(file.path(parent, folderContents)),
-  paste0(path, .Platform$file.sep)
+  paste0(file.path(parent, folderContents))
 )
 
 types <- list(
@@ -167,8 +142,7 @@ ui <- fluidPage(
         ".jstree-anchor {font-size: medium;}",
         "pre {font-weight: bold; line-height: 1;}"
       ))
-    ),
-    tags$script(replaceNodeValue)
+    )
   ),
 
   titlePanel("Drag and drop the nodes"),
@@ -199,17 +173,18 @@ ui <- fluidPage(
 
 server <- function(input, output){
 
-  observeEvent(input[["rename"]], {
-    from = file.path(path, input[["rename"]][["from"]])
-    to = file.path(path, input[["rename"]][["to"]])
-    print(from)
-  })
-
   observeEvent(input[["jstree_rename"]], {
-    print(input[["jstree_rename"]])
-    # from = file.path(path, input[["rename"]][["from"]])
-    # to = file.path(path, input[["rename"]][["to"]])
-    # print(from)
+    from = file.path(
+      path,
+      paste0(input[["jstree_rename"]][["from"]], collapse = .Platform$file.sep)
+    )
+    to = file.path(
+      path,
+      paste0(input[["jstree_rename"]][["to"]], collapse = .Platform$file.sep)
+    )
+    if(from != to){
+      file.rename(from, to)
+    }
   })
 
   observeEvent(input[["jstree_move"]], {
