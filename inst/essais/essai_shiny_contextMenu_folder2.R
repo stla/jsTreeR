@@ -2,6 +2,7 @@ library(jsTreeR)
 library(shiny)
 library(jsonlite)
 library(rstudioapi)
+library(shinyAce)
 
 # TODO: edit file with aceEditor in a modal
 # open file in RStudio
@@ -16,7 +17,7 @@ icons <- list(
   scss = "supertinyicon-sass",
   json = "supertinyicon-json",
   java = "supertinyicon-java",
-  rust = "supertinyicon-rust",
+  rs = "supertinyicon-rust",
   ru = "supertinyicon-ruby",
   svg = "supertinyicon-svg"
 )
@@ -39,7 +40,7 @@ js <- JS(
   "            var nodeText = tree.get_text(node);",
   "            if(/\\./.test(nodeText)) {",
   "              var splittedText = nodeText.split('.');",
-  "              var ext = splittedText[splittedText.length - 1];",
+  "              var ext = splittedText[splittedText.length - 1].toLowerCase();",
   "              if(exts.indexOf(ext) > -1) {",
   "                tree.set_type(node, ext);",
   "              } else {",
@@ -60,13 +61,21 @@ js <- JS(
   "      }",
   "    }",
   "  };",
-  "  var item_open = {",
+  "  var items_file = {",
   "    Open: {",
   "      separator_before: false,",
   "      separator_after: false,",
   "      label: \"Open\",",
   "      action: function (obj) {",
   "        Shiny.setInputValue('openFile', tree.get_path(node, sep));",
+  "      }",
+  "    },",
+  "    Edit: {",
+  "      separator_before: false,",
+  "      separator_after: false,",
+  "      label: \"Edit\",",
+  "      action: function (obj) {",
+  "        Shiny.setInputValue('editFile', tree.get_path(node, sep));",
   "      }",
   "    }",
   "  };",
@@ -94,7 +103,7 @@ js <- JS(
   "                } else {",
   "                  if(/\\./.test(nodeText)) {",
   "                    var splittedText = nodeText.split('.');",
-  "                    var ext = splittedText[splittedText.length - 1];",
+  "                    var ext = splittedText[splittedText.length - 1].toLowerCase();",
   "                    if(exts.indexOf(ext) > -1) {",
   "                      tree.set_type(node, ext);",
   "                    }",
@@ -135,7 +144,7 @@ js <- JS(
   "    }",
   "  };",
   "  if(node.type === \"file\" || exts.indexOf(node.type) > -1) {",
-  "    return $.extend(items, item_open);",
+  "    return $.extend(items, items_file);",
   "  } else {",
   "    return $.extend(item_create, items);",
   "  }",
@@ -171,7 +180,7 @@ makeNodes <- function(leaves, icons){
         type = "folder"
       )
     }else{
-      ext <- tools::file_ext(label)
+      ext <- tolower(tools::file_ext(label))
       list(
         text = label,
         type = ifelse(ext %in% exts, ext, "file")
@@ -259,6 +268,72 @@ server <- function(input, output){
   # observeEvent(input[["jstree_create"]], {
   #   print(input[["jstree_create"]])
   # })
+
+  observeEvent(input[["editFile"]], {
+    filePath <- file.path(path, input[["editFile"]])
+    ext <- tolower(tools::file_ext(input[["editFile"]]))
+    mode <- switch(ext,
+      js = "javascript",
+      jsx = "jsx",
+      c = "c_cpp",
+      cpp = "c_cpp",
+      "c++" = "c_cpp",
+      h = "c_cpp",
+      hpp = "c_cpp",
+      css = "css",
+      gitignore = "gitignore",
+      hs = "haskell",
+      html = "html",
+      java = "java",
+      json = "json",
+      jl = "julia",
+      tex = "latex",
+      md = "markdown",
+      markdown = "markdown",
+      rmd = "markdown",
+      mysql = "mysql",
+      ml = "ocaml",
+      perl = "perl",
+      pl = "perl",
+      php = "php",
+      py = "python",
+      ru = "ruby",
+      rs = "rust",
+      scala = "scala",
+      scss = "scss",
+      sh = "sh",
+      sql = "sql",
+      svg = "svg",
+      txt = "text",
+      ts = "typescript",
+      vb = "vbscript",
+      xml = "xml",
+      yaml = "yaml",
+      yml = "yaml"
+    )
+    showModal(modalDialog(
+      aceEditor(
+        "aceEditor",
+        value = paste0(suppressWarnings(readLines(filePath)), collapse = "\n"),
+        mode = ifelse(is.null(mode), "plain_text", mode),
+        theme = gsub(" ", "_", tolower(getThemeInfo()[["editor"]])),
+        tabSize = 2,
+        height = "60vh"
+      ),
+      footer = tags$div(
+        actionButton(
+          "editDone", "Done", class = "btn-success",
+          onclick = sprintf("Shiny.setInputValue('filePath', '%s');", filePath)
+        ),
+        modalButton("Cancel")
+      )
+    ))
+  })
+
+  observeEvent(input[["editDone"]], {
+    writeLines(input[["aceEditor"]], input[["filePath"]])
+    removeModal()
+  })
 
   observeEvent(input[["openFile"]], {
     navigateToFile(input[["openFile"]])
