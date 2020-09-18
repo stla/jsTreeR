@@ -75,7 +75,7 @@ js <- JS(
   "      separator_after: false,",
   "      label: \"Edit\",",
   "      action: function (obj) {",
-  "        Shiny.setInputValue('editFile', tree.get_path(node, sep));",
+  "        Shiny.setInputValue('editFile', tree.get_path(node, sep), {priority: 'event'});",
   "      }",
   "    }",
   "  };",
@@ -152,10 +152,10 @@ js <- JS(
 )
 
 # make the nodes list from a vector of file paths
-makeNodes <- function(leaves, icons){
+makeNodes <- function(files, dirs, icons){
   exts <- names(icons)
   sep <- .Platform$file.sep
-  dfs <- lapply(strsplit(leaves, sep), function(s){
+  dfs <- lapply(strsplit(files, sep), function(s){
     item <-
       Reduce(function(a,b) paste0(a,sep,b), s[-1], s[1], accumulate = TRUE)
     data.frame(
@@ -173,7 +173,7 @@ makeNodes <- function(leaves, icons){
     item <- dat$item[i]
     children <- dat$item[dat$parent==item]
     label <- tail(strsplit(item, sep)[[1]], 1)
-    if(length(children)){
+    if(item %in% dirs){
       list(
         text = label,
         children = lapply(children, f),
@@ -195,10 +195,15 @@ folder <- normalizePath("~/Work/R/jsTreeR/inst/essais/shared/")
 splittedPath <- strsplit(folder, .Platform$file.sep)[[1L]]
 path <- paste0(head(splittedPath,-1L), collapse = .Platform$file.sep)
 parent <- tail(splittedPath, 1L)
-folderContents <- list.files(folder, recursive = TRUE)
+folders <- list.dirs(folder, full.names = FALSE)
+folders_fullNames <- list.dirs(folder, full.names = TRUE)
+emptyFolders <- folders[vapply(folders_fullNames, function(folder){
+  length(list.files(folder, include.dirs = TRUE, recursive = TRUE)) == 0L
+}, logical(1L))]
+folderContents <- c(emptyFolders, list.files(folder, recursive = TRUE))
 
 nodes <- makeNodes(
-  paste0(file.path(parent, folderContents)), icons
+  file.path(parent, folderContents), c(parent,file.path(parent, folders[-1L])), icons
 )
 
 
