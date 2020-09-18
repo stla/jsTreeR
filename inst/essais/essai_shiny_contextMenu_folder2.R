@@ -1,15 +1,30 @@
 library(jsTreeR)
 library(shiny)
 library(jsonlite)
+library(rstudioapi)
 
 # TODO: edit file with aceEditor in a modal
 # open file in RStudio
 # search option
 # icons for file language
 
+icons <- list(
+  jl = "supertinyicon-julia",
+  js = "supertinyicon-javascript",
+  jsx = "supertinyicon-react",
+  py = "supertinyicon-python",
+  scss = "supertinyicon-sass",
+  json = "supertinyicon-json",
+  java = "supertinyicon-java",
+  rust = "supertinyicon-rust",
+  ru = "supertinyicon-ruby",
+  svg = "supertinyicon-svg"
+)
 
 js <- JS(
   "function (node) {",
+  sprintf("  var icons = %s;", as.character(toJSON(icons, auto_unbox = TRUE))),
+  "  var exts = Object.keys(icons);",
   sprintf("  var sep = \"%s\";", .Platform$file.sep),
   "  var tree = $(\"#jstree\").jstree(true);",
   "  var items = {",
@@ -18,7 +33,21 @@ js <- JS(
   "      separator_after: false,",
   "      label: \"Rename\",",
   "      action: function (obj) {",
-  "        tree.edit(node);",
+  "        tree.edit(node, null, function() {",
+  "          var nodeType = tree.get_type(node);",
+  "          if(nodeType === 'file' || exts.indexOf(nodeType) > -1) {",
+  "            var nodeText = tree.get_text(node);",
+  "            if(/\\./.test(nodeText)) {",
+  "              var splittedText = nodeText.split('.');",
+  "              var ext = splittedText[splittedText.length - 1];",
+  "              if(exts.indexOf(ext) > -1) {",
+  "                tree.set_type(node, ext);",
+  "              } else {",
+  "                tree.set_type(node, 'file');",
+  "              }",
+  "            }",
+  "          }",
+  "        });",
   "      }",
   "    },",
   "    Remove: {",
@@ -26,7 +55,18 @@ js <- JS(
   "      separator_after: false,",
   "      label: \"Remove\",",
   "      action: function (obj) {",
+  "        Shiny.setInputValue('deleteNode', tree.get_path(node, sep));",
   "        tree.delete_node(node);",
+  "      }",
+  "    }",
+  "  };",
+  "  var item_open = {",
+  "    Open: {",
+  "      separator_before: false,",
+  "      separator_after: false,",
+  "      label: \"Open\",",
+  "      action: function (obj) {",
+  "        Shiny.setInputValue('openFile', tree.get_path(node, sep));",
   "      }",
   "    }",
   "  };",
@@ -48,9 +88,17 @@ js <- JS(
   "            node = tree.create_node(node, {type: \"file\"});",
   "            tree.edit(",
   "              node, null, function() {",
-  "                if(children.indexOf(tree.get_text(node)) > -1) {",
+  "                var nodeText = tree.get_text(node);",
+  "                if(children.indexOf(nodeText) > -1) {",
   "                  tree.delete_node(node);",
   "                } else {",
+  "                  if(/\\./.test(nodeText)) {",
+  "                    var splittedText = nodeText.split('.');",
+  "                    var ext = splittedText[splittedText.length - 1];",
+  "                    if(exts.indexOf(ext) > -1) {",
+  "                      tree.set_type(node, ext);",
+  "                    }",
+  "                  }",
   "                  Shiny.setInputValue(",
   "                    'createNode',",
   "                    {type: 'file', path: tree.get_path(node, sep)}",
@@ -86,8 +134,8 @@ js <- JS(
   "      }",
   "    }",
   "  };",
-  "  if(node.type === \"file\") {",
-  "    return items;",
+  "  if(node.type === \"file\" || exts.indexOf(node.type) > -1) {",
+  "    return $.extend(items, item_open);",
   "  } else {",
   "    return $.extend(item_create, items);",
   "  }",
@@ -95,10 +143,12 @@ js <- JS(
 )
 
 # make the nodes list from a vector of file paths
-makeNodes <- function(leaves){
-  dfs <- lapply(strsplit(leaves, "/"), function(s){
+makeNodes <- function(leaves, icons){
+  exts <- names(icons)
+  sep <- .Platform$file.sep
+  dfs <- lapply(strsplit(leaves, sep), function(s){
     item <-
-      Reduce(function(a,b) paste0(a,"/",b), s[-1], s[1], accumulate = TRUE)
+      Reduce(function(a,b) paste0(a,sep,b), s[-1], s[1], accumulate = TRUE)
     data.frame(
       item = item,
       parent = c("root", item[-length(item)]),
@@ -113,7 +163,7 @@ makeNodes <- function(leaves){
     i <- match(parent, dat$item)
     item <- dat$item[i]
     children <- dat$item[dat$parent==item]
-    label <- tail(strsplit(item, "/")[[1]], 1)
+    label <- tail(strsplit(item, sep)[[1]], 1)
     if(length(children)){
       list(
         text = label,
@@ -121,9 +171,10 @@ makeNodes <- function(leaves){
         type = "folder"
       )
     }else{
+      ext <- tools::file_ext(label)
       list(
         text = label,
-        type = "file"
+        type = ifelse(ext %in% exts, ext, "file")
       )
     }
   }
@@ -138,14 +189,18 @@ parent <- tail(splittedPath, 1L)
 folderContents <- list.files(folder, recursive = TRUE)
 
 nodes <- makeNodes(
-  paste0(file.path(parent, folderContents))
+  paste0(file.path(parent, folderContents)), icons
 )
 
-types <- list(
+
+types <- append(list(
   file = list(
     icon = "glyphicon glyphicon-file"
   )
-)
+), setNames(lapply(names(icons), function(ext){
+  list(icon = icons[[ext]])
+}), names(icons)))
+
 
 checkCallback <- JS(
   "function(operation, node, parent, position, more) {",
@@ -205,6 +260,14 @@ server <- function(input, output){
   #   print(input[["jstree_create"]])
   # })
 
+  observeEvent(input[["openFile"]], {
+    navigateToFile(input[["openFile"]])
+  })
+
+  observeEvent(input[["deleteNode"]], {
+    unlink(input[["deleteNode"]], recursive = TRUE)
+  })
+
   observeEvent(input[["createNode"]], {
     nodePath <- file.path(path, input[["createNode"]][["path"]])
     if(input[["createNode"]][["type"]] == "file"){
@@ -213,7 +276,6 @@ server <- function(input, output){
       dir.create(nodePath)
     }
   })
-
 
   observeEvent(input[["jstree_rename"]], {
     from = file.path(
@@ -243,10 +305,15 @@ server <- function(input, output){
       types = types,
       dragAndDrop = TRUE,
       checkboxes = FALSE,
-      theme = "proton",
+      #theme = "proton",
       contextMenu = list(select_node = FALSE, items = js),
       checkCallback = checkCallback,
-      sort = TRUE
+      sort = TRUE,
+      search = list(
+        show_only_matches = TRUE,
+        case_sensitive = FALSE,
+        search_leaves_only = FALSE
+      )
     )
   })
 
