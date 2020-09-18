@@ -42,8 +42,22 @@ js <- JS(
   "          separator_after: false,",
   "          label: \"File\",",
   "          action: function (obj) {",
+  "            var children = tree.get_node(node).children.map(",
+  "              function(child) {return tree.get_text(child);}",
+  "            );",
   "            node = tree.create_node(node, {type: \"file\"});",
-  "            tree.edit(node);",
+  "            tree.edit(",
+  "              node, null, function() {",
+  "                if(children.indexOf(tree.get_text(node)) > -1) {",
+  "                  tree.delete_node(node);",
+  "                } else {",
+  "                  Shiny.setInputValue(",
+  "                    'createNode',",
+  "                    {type: 'file', path: tree.get_path(node, sep)}",
+  "                  );",
+  "                }",
+  "              }",
+  "            );",
   "          }",
   "        },",
   "        Folder: {",
@@ -51,8 +65,22 @@ js <- JS(
   "          separator_after: false,",
   "          label: \"Folder\",",
   "          action: function (obj) {",
-  "            node = tree.create_node(node, {children: true, type: \"folder\"});",
-  "            tree.edit(node);",
+  "            var children = tree.get_node(node).children.map(",
+  "              function(child) {return tree.get_text(child);}",
+  "            );",
+  "            node = tree.create_node(node, {type: \"folder\"});",
+  "            tree.edit(",
+  "              node, null, function() {",
+  "                if(children.indexOf(tree.get_text(node)) > -1) {",
+  "                  tree.delete_node(node);",
+  "                } else {",
+  "                  Shiny.setInputValue(",
+  "                    'createNode',",
+  "                    {type: 'folder', path: tree.get_path(node, sep)}",
+  "                  );",
+  "                }",
+  "              }",
+  "            );",
   "          }",
   "        }",
   "      }",
@@ -173,6 +201,20 @@ ui <- fluidPage(
 
 server <- function(input, output){
 
+  # observeEvent(input[["jstree_create"]], {
+  #   print(input[["jstree_create"]])
+  # })
+
+  observeEvent(input[["createNode"]], {
+    nodePath <- file.path(path, input[["createNode"]][["path"]])
+    if(input[["createNode"]][["type"]] == "file"){
+      file.create(nodePath)
+    }else{
+      dir.create(nodePath)
+    }
+  })
+
+
   observeEvent(input[["jstree_rename"]], {
     from = file.path(
       path,
@@ -182,7 +224,7 @@ server <- function(input, output){
       path,
       paste0(input[["jstree_rename"]][["to"]], collapse = .Platform$file.sep)
     )
-    if(from != to){
+    if(file.exists(from) && from != to){
       file.rename(from, to)
     }
   })

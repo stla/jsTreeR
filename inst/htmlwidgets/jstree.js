@@ -38,7 +38,8 @@ HTMLWidgets.widget({
     var id = el.id + ":jsTreeR.list",
       id_selected = el.id + "_selected:jsTreeR.list",
       id_move = el.id + "_move:jsTreeR.move",
-      id_rename = el.id + "_rename:jsTreeR.move";
+      id_rename = el.id + "_rename:jsTreeR.move",
+      id_create = el.id + "_create";
 
     return {
 
@@ -179,10 +180,15 @@ HTMLWidgets.widget({
         });
 
         $el.on("create_node.jstree", function(e, data) {
-          if(inShiny)
+          if(inShiny) {
+            var instance = data.instance;
+/*            Shiny.setInputValue(
+              id_create, instance.get_path(data.node)
+            );*/
             Shiny.setInputValue(
-              id, getNodesWithChildren(data.instance.get_json())
+              id, getNodesWithChildren(instance.get_json())
             );
+          }
         });
 
         $el.on("paste.jstree", function(e, data) {
