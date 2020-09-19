@@ -212,7 +212,9 @@ folderGadget2 <- function(dirs) {
           "        );",
           "        if(children.indexOf(copiedNode.text) === -1) {",
           #"          tree.paste(node);",
-          "          tree.copy_node(copiedNode, node);",
+          "          tree.copy_node(copiedNode, node, 0, function() {",
+          "            Shiny.setInputValue('operation','copy');",
+          "          });",
           "          copiedNode = null;",
           "        }",
           "      }",
@@ -353,11 +355,6 @@ folderGadget2 <- function(dirs) {
 
   server <- function(input, output){
 
-    observe({
-      print(input[["jstree_copied"]])
-      print(input[["jstree2_copied"]])
-    })
-
     observeEvent(input[["done"]], {
       stopApp()
     })
@@ -468,6 +465,10 @@ folderGadget2 <- function(dirs) {
 
     observeEvent(input[["jsTreeCopied"]], {
       copied <- input[["jsTreeCopied"]]
+      print("copied:")
+      print(copied)
+      print("operation:")
+      print(input[["operation"]])
       from = file.path(
         paths[copied[["from"]][["instance"]]],
         paste0(copied[["from"]][["path"]], collapse = .Platform$file.sep)
@@ -477,13 +478,26 @@ folderGadget2 <- function(dirs) {
         paste0(copied[["to"]][["path"]], collapse = .Platform$file.sep)
       )
       if(from != to){
-        file.copy(from, to)
+        if(input[["operation"]] == "copy"){
+          file.copy(from, to)
+        }else{
+          file.rename(from, to)
+        }
       }
     })
 
-    observeEvent(input[["jstree_move"]], {
-      from = file.path(paths[input[["jsTreeInstance"]]], paste0(input[["jstree_move"]][["from"]], collapse = .Platform$file.sep))
-      to = file.path(paths[input[["jsTreeInstance"]]], paste0(input[["jstree_move"]][["to"]], collapse = .Platform$file.sep))
+    observeEvent(input[["jsTreeMoved"]], { # never triggered!
+      moved <- input[["jsTreeMoved"]]
+      print("moved:")
+      print(moved)
+      from = file.path(
+        paths[moved[["from"]][["instance"]]],
+        paste0(moved[["from"]][["path"]], collapse = .Platform$file.sep)
+      )
+      to = file.path(
+        paths[moved[["to"]][["instance"]]],
+        paste0(moved[["to"]][["path"]], collapse = .Platform$file.sep)
+      )
       if(from != to){
         file.rename(from, to)
       }

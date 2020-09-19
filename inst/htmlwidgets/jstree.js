@@ -21,6 +21,12 @@ function getNodes(json) {
   return json.map(extractKeys);
 }
 
+function setShinyValue(instance) {
+  Shiny.setInputValue(
+    instance.element.attr("id") + ":jsTreeR.list",
+    getNodesWithChildren(instance.get_json())
+  );
+}
 
 var inShiny = HTMLWidgets.shinyMode;
 
@@ -127,9 +133,7 @@ HTMLWidgets.widget({
             });
           }
           if(inShiny) {
-            Shiny.setInputValue(
-              id, getNodesWithChildren(data.instance.get_json())
-            );
+            setShinyValue(data.instance);
             Shiny.setInputValue(
               id_selected, getNodes(data.instance.get_selected(true))
             );
@@ -137,17 +141,38 @@ HTMLWidgets.widget({
         });
 
         $el.on("move_node.jstree", function(e, data) {
+          console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
           if(inShiny) {
+            var newInstance = data.new_instance;
+            var oldInstance = data.old_instance;
+            var newInstanceId = newInstance.element.attr("id");
+            var oldInstanceId = oldInstance.element.attr("id");
+            var node = data.node;
+            var nodeText = node.text;
+            var newPath = newInstance.get_path(node);
+            console.log("data.old_parent", data.old_parent);
+            console.log(oldInstance.get_path(data.old_parent));
+            var oldPath = oldInstance.get_path(data.old_parent).concat(nodeText);
+            Shiny.setInputValue(
+              "jsTreeMoved:jsTreeR.copied", {
+                from: {instance: oldInstanceId, path: oldPath},
+                to: {instance: newInstanceId, path: newPath}
+              }
+            );
+            if(data.is_multi) {
+              setShinyValue(oldInstance);
+              setShinyValue(newInstance);
+            } else {
+              setShinyValue(data.instance);
+            }
+            /*
             var instance = data.instance;
             var node = data.node;
             var nodeText = node.text;
             var oldPath = instance.get_path(data.old_parent).concat([nodeText]);
-            var newPath = instance.get_path(node);
-            Shiny.setInputValue(
+            var newPath = instance.get_path(node); */
+            Shiny.setInputValue( // for folderGadget; maybe temporary
               id_move, {from: oldPath, to: newPath}
-            );
-            Shiny.setInputValue(
-              id, getNodesWithChildren(instance.get_json())
             );
           }
         });
@@ -223,6 +248,10 @@ HTMLWidgets.widget({
                 to: {instance: newInstance, path: newPath}
               }
             );
+            setShinyValue(data.new_instance);
+            setTimeout(function() {
+              Shiny.setInputValue("operation", "rename");
+            }, 0);
           }
         });
 
