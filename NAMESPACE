@@ -2,6 +2,7 @@
 
 export(JS)
 export(folderGadget)
+export(folderGadget2)
 export(jstree)
 export(jstreeOutput)
 export(renderJstree)
