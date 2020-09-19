@@ -16,6 +16,10 @@ folderGadget <- function(dir = ".") {
     stop(sprintf('"%s" is not a directory.', dir))
   }
 
+  if(!is.element("jsTreeR", .packages())){
+    attachNamespace("jsTreeR")
+  }
+
   icons <- list(
     jl = "supertinyicon-julia",
     js = "supertinyicon-javascript",
