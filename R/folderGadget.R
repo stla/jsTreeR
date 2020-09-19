@@ -16,15 +16,6 @@ folderGadget <- function(dir = ".") {
     stop(sprintf('"%s" is not a directory.', dir))
   }
 
-  # packages <- c("shiny", "rstudioapi", "shinyAce", "miniUI")
-  # for(package in packages){
-  #   if(!require(package, character.only = TRUE)){
-  #     stop(sprintf("The `%s` package is required", package))
-  #   }
-  # }
-  # library(jsTreeR)
-  # library(jsonlite)
-
   icons <- list(
     jl = "supertinyicon-julia",
     js = "supertinyicon-javascript",
@@ -122,14 +113,34 @@ folderGadget <- function(dir = ".") {
     "}"
   )
 
+  themeInfo <- getThemeInfo()
+
   ui <- miniPage(
 
     tags$head(
       tags$style(
-        HTML(c(
-          ".jstree-proton {font-weight: bold;}",
-          ".jstree-anchor {font-size: medium;}"
-        ))
+        HTML(
+          c(
+            ".jstree-proton {font-weight: bold;}",
+            ".jstree-anchor {font-size: medium;}",
+            "#jstree-search {background-color: seashell;}",
+            "#shiny-modal .modal-dialog div[class^='modal-'] {",
+            "  background-color: maroon;",
+            "}",
+            ".gadget-block-button {background-color: transparent;}",
+            ".ace_scrollbar::-webkit-scrollbar-track {",
+            "  border-radius: 10px;",
+            "  background-color: crimson;",
+            "}",
+            ".ace_scrollbar::-webkit-scrollbar {",
+            "  background-color: transparent;",
+            "}",
+            ".ace_scrollbar::-webkit-scrollbar-thumb {",
+            "  border-radius: 10px;",
+            "  background-color: tomato;",
+            "}"
+          )
+        )
       ),
       tags$script(
         HTML(
@@ -296,7 +307,10 @@ folderGadget <- function(dir = ".") {
     ),
 
     miniContentPanel(
-      miniButtonBlock(actionButton("done", "Done")),
+      miniButtonBlock(
+        actionButton("done", "Done", class = "btn-primary"),
+        border = NULL
+      ),
       jstreeOutput("jstree")
     )
 
@@ -358,7 +372,7 @@ folderGadget <- function(dir = ".") {
           "aceEditor",
           value = paste0(suppressWarnings(readLines(filePath)), collapse = "\n"),
           mode = ifelse(is.null(mode), "plain_text", mode),
-          theme = gsub(" ", "_", tolower(getThemeInfo()[["editor"]])),
+          theme = gsub(" ", "_", tolower(themeInfo[["editor"]])),
           tabSize = 2,
           height = "60vh"
         ),
@@ -368,7 +382,8 @@ folderGadget <- function(dir = ".") {
             onclick = sprintf("Shiny.setInputValue('filePath', '%s');", filePath)
           ),
           modalButton("Cancel")
-        )
+        ),
+        size = "l"
       ))
     })
 
@@ -378,7 +393,9 @@ folderGadget <- function(dir = ".") {
     })
 
     observeEvent(input[["openFile"]], {
-      navigateToFile(input[["openFile"]])
+      if(file.exists(input[["openFile"]])){
+        navigateToFile(input[["openFile"]])
+      }
     })
 
     observeEvent(input[["deleteNode"]], {
