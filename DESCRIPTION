@@ -23,6 +23,7 @@ Imports:
   rstudioapi, 
   shinyAce, 
   miniUI,
-  tools
+  tools,
+  stats
 Suggests: jsonlite
 RoxygenNote: 7.1.1

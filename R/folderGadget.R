@@ -7,6 +7,7 @@
 #' @importFrom rstudioapi getThemeInfo navigateToFile
 #' @importFrom tools file_ext
 #' @importFrom shinyAce aceEditor
+#' @importFrom stats setNames
 #' @export
 folderGadget <- function(dir = ".") {
 
