@@ -6,6 +6,7 @@ library(shinyAce)
 library(miniUI)
 
 # TODO: more icons for file language
+# copy/paste/cut
 
 folderGadget <- function(dir = ".") {
 
@@ -34,6 +35,39 @@ folderGadget <- function(dir = ".") {
     sprintf("  var sep = \"%s\";", .Platform$file.sep),
     "  var tree = $(\"#jstree\").jstree(true);",
     "  var items = {",
+    "    Copy: {",
+    "      separator_before: false,",
+    "      separator_after: false,",
+    "      label: \"Copy\",",
+    "      action: function (obj) {",
+    "        tree.copy(node);",
+    "        copiedNode = tree.get_text(node);",
+    "      }",
+    "    },",
+    "    Cut: {",
+    "      separator_before: false,",
+    "      separator_after: false,",
+    "      label: \"Cut\",",
+    "      action: function (obj) {",
+    "        tree.cut(node);",
+    "        copiedNode = tree.get_text(node);",
+    "      }",
+    "    },",
+    "    Paste: {",
+    "      separator_before: false,",
+    "      separator_after: false,",
+    "      label: \"Paste\",",
+    "      _disabled: copiedNode === null || tree.get_type(node) !== 'folder',",
+    "      action: function (obj) {",
+    "        var children = tree.get_node(node).children.map(",
+    "          function(child) {return tree.get_text(child);}",
+    "        );",
+    "        if(children.indexOf(copiedNode) === -1) {",
+    "          tree.paste(node);",
+    "          copiedNode = null;",
+    "        }",
+    "      }",
+    "    },",
     "    Rename: {",
     "      separator_before: false,",
     "      separator_after: false,",
@@ -212,7 +246,8 @@ folderGadget <- function(dir = ".") {
   types <- append(list(
     file = list(
       icon = "glyphicon glyphicon-file"
-    )
+    ),
+    folder = list()
   ), setNames(lapply(names(icons), function(ext){
     list(icon = icons[[ext]])
   }), names(icons)))
@@ -236,7 +271,8 @@ folderGadget <- function(dir = ".") {
           ".jstree-proton {font-weight: bold;}",
           ".jstree-anchor {font-size: medium;}"
         ))
-      )
+      ),
+      tags$script(HTML("var copiedNode = null;"))
     ),
 
     miniContentPanel(
@@ -350,6 +386,20 @@ folderGadget <- function(dir = ".") {
       )
       if(file.exists(from) && from != to){
         file.rename(from, to)
+      }
+    })
+
+    observeEvent(input[["jstree_paste"]], {
+      from = file.path(
+        path,
+        paste0(input[["jstree_paste"]][["from"]], collapse = .Platform$file.sep)
+      )
+      to = file.path(
+        path,
+        paste0(input[["jstree_paste"]][["to"]], collapse = .Platform$file.sep)
+      )
+      if(from != to){
+        file.copy(from, to)
       }
     })
 
