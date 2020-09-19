@@ -9,7 +9,12 @@
 #' @importFrom shinyAce aceEditor
 #' @importFrom stats setNames
 #' @export
-folderGadget2 <- function(dirs) {
+folderGadget2 <- function(dirs, tabs = FALSE) {
+
+  #TODO: handle 'Cut' DONE
+  # options for tabs DONE
+  # aceEditor for jstree2:
+  # prevent moving at root
 
   # if(!dir.exists(dir)){
   #   stop(sprintf('"%s" is not a directory.', dir))
@@ -98,11 +103,12 @@ folderGadget2 <- function(dirs) {
   }
 
   paths <- setNames(character(2L), c("jstree", "jstree2"))
+  parents <- character(2L)
 
   folder <- normalizePath(dirs[1], winslash = "/")
   splittedPath <- strsplit(folder, .Platform$file.sep)[[1L]]
   path <- paths[1L] <- paste0(head(splittedPath,-1L), collapse = .Platform$file.sep)
-  parent <- tail(splittedPath, 1L)
+  parent <- parents[1L] <- tail(splittedPath, 1L)
   folders <- list.dirs(folder, full.names = FALSE)
   folders_fullNames <- list.dirs(folder, full.names = TRUE)
   emptyFolders <- folders[vapply(folders_fullNames, function(folder){
@@ -116,7 +122,7 @@ folderGadget2 <- function(dirs) {
   folder <- normalizePath(dirs[2], winslash = "/")
   splittedPath <- strsplit(folder, .Platform$file.sep)[[1L]]
   path <- paths[2L] <- paste0(head(splittedPath,-1L), collapse = .Platform$file.sep)
-  parent <- tail(splittedPath, 1L)
+  parent <- parents[2L] <- tail(splittedPath, 1L)
   folders <- list.dirs(folder, full.names = FALSE)
   folders_fullNames <- list.dirs(folder, full.names = TRUE)
   emptyFolders <- folders[vapply(folders_fullNames, function(folder){
@@ -126,6 +132,11 @@ folderGadget2 <- function(dirs) {
   nodes2 <- makeNodes(
     file.path(parent, folderContents), c(parent,file.path(parent, folders[-1L])), icons
   )
+
+  if(parents[1L] == parents[2L]){
+    parents[1L] <- paste0(parents[1L], " (1)")
+    parents[2L] <- paste0(parents[2L], " (2)")
+  }
 
   types <- append(list(
     file = list(
@@ -189,7 +200,7 @@ folderGadget2 <- function(dirs) {
           "      label: \"Copy\",",
           "      action: function (obj) {",
           "        tree.copy(node);",
-          "        copiedNode = node;", # use get_buffer and clear_buffer instead ?
+          "        copiedNode = {node: node, operation: 'copy'};", # use get_buffer and clear_buffer instead ?
           "      }",
           "    },",
           "    Cut: {",
@@ -198,7 +209,7 @@ folderGadget2 <- function(dirs) {
           "      label: \"Cut\",",
           "      action: function (obj) {",
           "        tree.cut(node);",
-          "        copiedNode = node;",
+          "        copiedNode = {instance: tree, node: node, operation: 'cut'};",
           "      }",
           "    },",
           "    Paste: paste ? {",
@@ -210,11 +221,15 @@ folderGadget2 <- function(dirs) {
           "        var children = tree.get_node(node).children.map(",
           "          function(child) {return tree.get_text(child);}",
           "        );",
-          "        if(children.indexOf(copiedNode.text) === -1) {",
+          "        if(children.indexOf(copiedNode.node.text) === -1) {",
           #"          tree.paste(node);",
-          "          tree.copy_node(copiedNode, node, 0, function() {",
-          "            Shiny.setInputValue('operation','copy');",
+          "          var operation = copiedNode.operation;",
+          "          tree.copy_node(copiedNode.node, node, 0, function() {",
+          "            Shiny.setInputValue('operation', operation);",
           "          });",
+          "          if(operation === 'cut') {",
+          "            copiedNode.instance.delete_node(copiedNode.node);",
+          "          }",
           "          copiedNode = null;",
           "        }",
           "      }",
@@ -343,13 +358,33 @@ folderGadget2 <- function(dirs) {
       )
     ),
 
-    miniContentPanel(
-      miniButtonBlock(
-        actionButton("done", "Done", class = "btn-primary"),
-        border = NULL
-      ),
-      fillRow(jstreeOutput("jstree", width = "50%"), jstreeOutput("jstree2", width = "50%"))
-    )
+    if(tabs){
+      miniTabstripPanel(
+        miniTabPanel(
+          parents[1L],
+          miniContentPanel(
+            jstreeOutput("jstree")
+          )
+        ),
+        miniTabPanel(
+          parents[2L],
+          miniContentPanel(
+            jstreeOutput("jstree2")
+          )
+        )
+      )
+    }else{
+      miniContentPanel(
+        miniButtonBlock(
+          actionButton("done", "Done", class = "btn-primary"),
+          border = NULL
+        ),
+        fillRow(
+          jstreeOutput("jstree", width = "50%"),
+          jstreeOutput("jstree2", width = "50%")
+        )
+      )
+    }
 
   )
 
