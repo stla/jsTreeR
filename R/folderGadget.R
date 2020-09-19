@@ -87,7 +87,7 @@ folderGadget <- function(dir = ".") {
     lapply(dat$item[dat$parent == "root"], f)
   }
 
-  folder <- normalizePath(dir)
+  folder <- normalizePath(dir, winslash = "/")
   splittedPath <- strsplit(folder, .Platform$file.sep)[[1L]]
   path <- paste0(head(splittedPath,-1L), collapse = .Platform$file.sep)
   parent <- tail(splittedPath, 1L)
