@@ -95,7 +95,6 @@ NULL
 #'   to create/rename/delete/cut/copy/paste nodes, or a list of options; see
 #'   the \href{https://www.jstree.com/api/}{jsTree API documentation} for the
 #'   possible options
-#'   see XXXXXXXXXXXXXXXX
 #' @param checkCallback a JavaScript function; see the example where it is used
 #'   to define restrictions on the drag-and-drop behavior
 #' @param grid list of settings for the grid; see the second example, the

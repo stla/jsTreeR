@@ -1,19 +1,19 @@
-library(jsTreeR)
-library(shiny)
-library(jsonlite)
-library(rstudioapi)
-library(shinyAce)
-library(miniUI)
-
-# TODO: more icons for file language
-# copy/paste/cut
-
 folderGadget <- function(dir = ".") {
 
+  # TODO: more icons for file language
+
   if(!dir.exists(dir)){
-    message(sprintf('"%s" is not a directory.', dir))
-    return(invisible())
+    stop(sprintf('"%s" is not a directory.', dir))
   }
+
+  packages <- c("shiny", "rstudioapi", "shinyAce", "miniUI")
+  for(package in packages){
+    if(!require(package, character.only = TRUE)){
+      stop(sprintf("The `%s` package is required", package))
+    }
+  }
+  library(jsTreeR)
+  library(jsonlite)
 
   icons <- list(
     jl = "supertinyicon-julia",
@@ -29,14 +29,14 @@ folderGadget <- function(dir = ".") {
   )
 
   js <- JS(
-    "function (node) {",
+    "function(node) {",
     sprintf("  var icons = %s;", as.character(toJSON(icons, auto_unbox = TRUE))),
     "  var exts = Object.keys(icons);",
     sprintf("  var sep = \"%s\";", .Platform$file.sep),
     "  var tree = $(\"#jstree\").jstree(true);",
     "  var items = {",
     "    Copy: {",
-    "      separator_before: false,",
+    "      separator_before: true,",
     "      separator_after: false,",
     "      label: \"Copy\",",
     "      action: function (obj) {",
@@ -55,7 +55,7 @@ folderGadget <- function(dir = ".") {
     "    },",
     "    Paste: {",
     "      separator_before: false,",
-    "      separator_after: false,",
+    "      separator_after: true,",
     "      label: \"Paste\",",
     "      _disabled: copiedNode === null || tree.get_type(node) !== 'folder',",
     "      action: function (obj) {",
@@ -69,7 +69,7 @@ folderGadget <- function(dir = ".") {
     "      }",
     "    },",
     "    Rename: {",
-    "      separator_before: false,",
+    "      separator_before: true,",
     "      separator_after: false,",
     "      label: \"Rename\",",
     "      action: function (obj) {",
@@ -92,7 +92,7 @@ folderGadget <- function(dir = ".") {
     "    },",
     "    Remove: {",
     "      separator_before: false,",
-    "      separator_after: false,",
+    "      separator_after: true,",
     "      label: \"Remove\",",
     "      action: function (obj) {",
     "        Shiny.setInputValue('deleteNode', tree.get_path(node, sep));",
@@ -102,16 +102,17 @@ folderGadget <- function(dir = ".") {
     "  };",
     "  var items_file = {",
     "    Open: {",
-    "      separator_before: false,",
+    "      separator_before: true,",
     "      separator_after: false,",
     "      label: \"Open\",",
+    "      title: 'Open in RStudio',",
     "      action: function (obj) {",
     "        Shiny.setInputValue('openFile', tree.get_path(node, sep));",
     "      }",
     "    },",
     "    Edit: {",
     "      separator_before: false,",
-    "      separator_after: false,",
+    "      separator_after: true,",
     "      label: \"Edit\",",
     "      action: function (obj) {",
     "        Shiny.setInputValue('editFile', tree.get_path(node, sep), {priority: 'event'});",
@@ -120,13 +121,13 @@ folderGadget <- function(dir = ".") {
     "  };",
     "  var item_create = {",
     "    Create: {",
-    "      separator_before: false,",
-    "      separator_after: false,",
+    "      separator_before: true,",
+    "      separator_after: true,",
     "      label: \"Create\",",
     "      action: false,",
     "      submenu: {",
     "        File: {",
-    "          separator_before: false,",
+    "          separator_before: true,",
     "          separator_after: false,",
     "          label: \"File\",",
     "          action: function (obj) {",
@@ -158,7 +159,7 @@ folderGadget <- function(dir = ".") {
     "        },",
     "        Folder: {",
     "          separator_before: false,",
-    "          separator_after: false,",
+    "          separator_after: true,",
     "          label: \"Folder\",",
     "          action: function (obj) {",
     "            var children = tree.get_node(node).children.map(",
@@ -320,6 +321,9 @@ folderGadget <- function(dir = ".") {
                      pl = "perl",
                      php = "php",
                      py = "python",
+                     r = "r",
+                     rhtml = "rhtml",
+                     rnw = "latex",
                      ru = "ruby",
                      rs = "rust",
                      scala = "scala",

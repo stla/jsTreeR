@@ -19,6 +19,10 @@ LazyData: true
 Imports:
   htmlwidgets,
   shiny,
-  htmltools
+  htmltools,
+  rstudioapi, 
+  shinyAce, 
+  miniUI,
+  tools
 Suggests: jsonlite
 RoxygenNote: 7.1.1

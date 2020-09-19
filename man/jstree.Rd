@@ -108,8 +108,10 @@ of possible options}
 
 \item{wholerow}{logical, whether to highlight whole selected rows}
 
-\item{contextMenu}{logical, whether to enable a context menu to create,
-rename, delete, cut, copy and paste nodes}
+\item{contextMenu}{either a logical value, whether to enable a context menu
+to create/rename/delete/cut/copy/paste nodes, or a list of options; see
+the \href{https://www.jstree.com/api/}{jsTree API documentation} for the
+possible options}
 
 \item{checkCallback}{a JavaScript function; see the example where it is used
 to define restrictions on the drag-and-drop behavior}
