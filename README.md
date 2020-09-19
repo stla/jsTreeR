@@ -2,7 +2,8 @@
 
 A wrapper of the JavaScript library [jsTree](https://www.jstree.com/). 
 This package is similar to [shinyTree](https://github.com/shinyTree/shinyTree) 
-but it allows more options.
+but it allows more options. It also provides a Shiny gadget allowing to 
+manipulate a folder.
 
 ![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_dragAndDrop.gif)
 
