@@ -371,6 +371,10 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
           miniContentPanel(
             jstreeOutput("jstree2")
           )
+        ),
+        between = miniButtonBlock(
+          actionButton("done", "Done", class = "btn-primary"),
+          border = NULL
         )
       )
     }else{
