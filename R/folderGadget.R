@@ -11,8 +11,6 @@
 #' @export
 folderGadget <- function(dir = ".") {
 
-  # TODO: more icons for file language
-
   if(!dir.exists(dir)){
     stop(sprintf('"%s" is not a directory.', dir))
   }
@@ -29,9 +27,23 @@ folderGadget <- function(dir = ".") {
     scss = "supertinyicon-sass",
     json = "supertinyicon-json",
     java = "supertinyicon-java",
+    md = "supertinyicon-markdown",
+    markdown = "supertinyicon-markdown",
+    rmd = "supertinyicon-markdown",
     rs = "supertinyicon-rust",
     ru = "supertinyicon-ruby",
-    svg = "supertinyicon-svg"
+    svg = "supertinyicon-svg",
+    c = "othericon-c",
+    cpp = "othericon-cpp",
+    "c++" = "othericon-cpp",
+    h = "othericon-c",
+    hpp = "othericon-cpp",
+    css = "othericon-css",
+    hs = "othericon-haskell",
+    html = "othericon-html",
+    rhtml = "othericon-html",
+    r = "othericon-r",
+    yaml = "othericon-yaml"
   )
 
   js <- JS(

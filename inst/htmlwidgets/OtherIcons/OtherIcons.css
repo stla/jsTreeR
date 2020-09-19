@@ -1,0 +1,21 @@
+.othericon-c::before {
+  content: url(/OtherIcons/c.svg);
+}
+.othericon-cpp::before {
+  content: url(/OtherIcons/cpp.svg);
+}
+.othericon-css::before {
+  content: url(/OtherIcons/css.svg);
+}
+.othericon-haskell::before {
+  content: url(/OtherIcons/haskell.svg);
+}
+.othericon-html::before {
+  content: url(/OtherIcons/html.svg);
+}
+.othericon-r::before {
+  content: url(/OtherIcons/r.svg);
+}
+.othericon-yaml::before {
+  content: url(/OtherIcons/yaml.svg);
+}
