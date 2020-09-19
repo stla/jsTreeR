@@ -9,6 +9,8 @@ creates/deletes/renames/pastes a node.
 * Added new Shiny value `outputId_rename` triggered when a node is renamed.
 * Added new Shiny value `outputId_paste` triggered when a node is copied and 
 pasted.
+* New function `folderGadget`, which launches a Shiny gadget allowing to 
+manipulate a folder.
 
 
 
