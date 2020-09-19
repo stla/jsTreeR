@@ -343,8 +343,6 @@ folderGadget <- function(dir = ".") {
       filePath <- file.path(path, input[["editFile"]])
       ext <- tolower(file_ext(input[["editFile"]]))
       mode <- switch(ext,
-                     js = "javascript",
-                     jsx = "jsx",
                      c = "c_cpp",
                      cpp = "c_cpp",
                      "c++" = "c_cpp",
@@ -355,10 +353,13 @@ folderGadget <- function(dir = ".") {
                      hs = "haskell",
                      html = "html",
                      java = "java",
+                     js = "javascript",
+                     jsx = "jsx",
                      json = "json",
                      jl = "julia",
                      tex = "latex",
                      md = "markdown",
+                     map = "json",
                      markdown = "markdown",
                      rmd = "markdown",
                      mysql = "mysql",
