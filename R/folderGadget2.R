@@ -103,36 +103,45 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
     lapply(dat$item[dat$parent == "root"], f)
   }
 
+  readFolder <- function(dir){
+    folder <- normalizePath(dir, winslash = "/")
+    splittedPath <- strsplit(folder, .Platform$file.sep)[[1L]]
+    path <- paste0(head(splittedPath,-1L), collapse = .Platform$file.sep)
+    parent <- tail(splittedPath, 1L)
+    folders <- list.dirs(folder, full.names = FALSE)
+    folders_fullNames <- list.dirs(folder, full.names = TRUE)
+    emptyFolders <- folders[vapply(folders_fullNames, function(folder){
+      length(list.files(folder, include.dirs = TRUE, recursive = FALSE)) == 0L
+    }, logical(1L))]
+    folderContents <- c(emptyFolders, list.files(folder, recursive = TRUE))
+    list(
+      parent = parent,
+      folderContents = folderContents,
+      folders = folders,
+      path = path
+    )
+  }
+
   paths <- setNames(character(2L), c("jstree", "jstree2"))
   parents <- character(2L)
 
-  folder <- normalizePath(dirs[1], winslash = "/")
-  splittedPath <- strsplit(folder, .Platform$file.sep)[[1L]]
-  path <- paths[1L] <- paste0(head(splittedPath,-1L), collapse = .Platform$file.sep)
-  parent <- parents[1L] <- tail(splittedPath, 1L)
-  folders <- list.dirs(folder, full.names = FALSE)
-  folders_fullNames <- list.dirs(folder, full.names = TRUE)
-  emptyFolders <- folders[vapply(folders_fullNames, function(folder){
-    length(list.files(folder, include.dirs = TRUE, recursive = FALSE)) == 0L
-  }, logical(1L))]
-  folderContents <- c(emptyFolders, list.files(folder, recursive = TRUE))
-  nodes <- makeNodes(
-    file.path(parent, folderContents), c(parent,file.path(parent, folders[-1L])), icons
-  )
+  Folder <- readFolder(dirs[1L])
+  paths[1L] <- Folder[["path"]]
+  parents[1L] <- Folder[["parent"]]
+  nodes <- with(Folder, makeNodes(
+    file.path(parent, folderContents),
+    c(parent, file.path(parent, folders[-1L])),
+    icons
+  ))
 
-  folder <- normalizePath(dirs[2], winslash = "/")
-  splittedPath <- strsplit(folder, .Platform$file.sep)[[1L]]
-  path <- paths[2L] <- paste0(head(splittedPath,-1L), collapse = .Platform$file.sep)
-  parent <- parents[2L] <- tail(splittedPath, 1L)
-  folders <- list.dirs(folder, full.names = FALSE)
-  folders_fullNames <- list.dirs(folder, full.names = TRUE)
-  emptyFolders <- folders[vapply(folders_fullNames, function(folder){
-    length(list.files(folder, include.dirs = TRUE, recursive = FALSE)) == 0L
-  }, logical(1L))]
-  folderContents <- c(emptyFolders, list.files(folder, recursive = TRUE))
-  nodes2 <- makeNodes(
-    file.path(parent, folderContents), c(parent,file.path(parent, folders[-1L])), icons
-  )
+  Folder <- readFolder(dirs[2L])
+  paths[2L] <- Folder[["path"]]
+  parents[2L] <- Folder[["parent"]]
+  nodes2 <- with(Folder, makeNodes(
+    file.path(parent, folderContents),
+    c(parent, file.path(parent, folders[-1L])),
+    icons
+  ))
 
   if(parents[1L] == parents[2L]){
     parents[1L] <- paste0(parents[1L], " (1)")
@@ -575,7 +584,7 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
       }
     })
 
-    observeEvent(input[["jsTreeMoved"]], { # never triggered!
+    observeEvent(input[["jsTreeMoved"]], { # triggered when moving inside same tree
       moved <- input[["jsTreeMoved"]]
       print("moved:")
       print(moved)
@@ -598,6 +607,7 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
         types = types,
         dragAndDrop = TRUE,
         checkboxes = FALSE,
+        multiple = FALSE,
         theme = "proton",
         contextMenu = list(select_node = FALSE, items = js("jstree")),
         checkCallback = checkCallback,
@@ -616,6 +626,7 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
         types = types,
         dragAndDrop = TRUE,
         checkboxes = FALSE,
+        multiple = FALSE,
         theme = "proton",
         contextMenu = list(select_node = FALSE, items = js("jstree2")),
         checkCallback = checkCallback,
