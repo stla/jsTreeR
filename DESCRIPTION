@@ -25,6 +25,7 @@ Imports:
   miniUI,
   tools,
   stats,
-  base64enc
+  base64enc,
+  utils
 Suggests: jsonlite
 RoxygenNote: 7.1.1

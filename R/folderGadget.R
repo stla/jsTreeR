@@ -12,6 +12,7 @@
 #' @importFrom shinyAce aceEditor
 #' @importFrom stats setNames
 #' @importFrom base64enc dataURI
+#' @importFrom utils combn
 #' @export
 folderGadget <- function(
   dirs = ".", tabs = FALSE, recursive = TRUE, all.files = FALSE
@@ -141,20 +142,22 @@ folderGadget <- function(
       parent = parent,
       folderContents = folderContents,
       folders = folders,
-      path = path
+      path = path,
+      folder = folder
     )
   }
 
   jstrees <- paste0("jstree", seq_along(dirs))
   ndirs <- length(dirs)
   paths <- setNames(character(ndirs), jstrees)
-  parents <- character(ndirs)
+  parents <- folders <- character(ndirs)
   nodes <- setNames(vector(mode = "list", length = ndirs), jstrees)
 
   for(i in seq_along(dirs)){
     Folder <- readFolder(dirs[i], recursive, all.files)
     paths[i] <- Folder[["path"]]
     parents[i] <- Folder[["parent"]]
+    folders[i] <- Folder[["folder"]]
     nodes[[i]] <- with(Folder, makeNodes(
       file.path(parent, folderContents),
       c(parent, file.path(parent, folders[-1L])),
@@ -175,6 +178,31 @@ folderGadget <- function(
   }
 
   parents <- renameDuplicates(parents)
+
+  if(ndirs > 1L){
+    if(anyDuplicated(folders)){
+      warning(
+        "There are identical folders. ",
+        "The gadget may have a strange behavior.",
+        immediate. = TRUE
+      )
+    }else{
+      combs <- combn(folders, m = 2L)
+      inclusion <- any(
+        apply(combs, 2L, function(pair){
+          grepl(paste0("^", pair[1L]), pair[2L]) ||
+            grepl(paste0("^", pair[2L]), pair[1L])
+        })
+      )
+      if(inclusion){
+        warning(
+          "One folder is a subfolder of another one. ",
+          "The gadget may have a strange behavior.",
+          immediate. = TRUE
+        )
+      }
+    }
+  }
 
   types <- append(list(
     file = list(
