@@ -783,3 +783,9 @@ folderGadget <- function(
   runGadget(shinyApp(ui, server), stopOnCancel = FALSE)
 
 }
+
+
+exploreCurrentDirectory <- function(){
+  message("Use 'jsTreeR::folderGadget' for more options.")
+  folderGadget(".", recursive = TRUE, all.files = TRUE)
+}

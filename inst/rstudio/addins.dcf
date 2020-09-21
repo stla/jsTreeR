@@ -1,0 +1,4 @@
+Name: Explore current folder
+Description: Explore the current folder.
+Binding: exploreCurrentDirectory
+Interactive: true
