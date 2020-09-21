@@ -12,7 +12,9 @@ folderGadget(dirs = ".", tabs = FALSE, recursive = TRUE, all.files = FALSE)
 \item{tabs}{logical, whether to display the trees in tabs; this option is
 effective only when there are two folders in the \code{dirs} argument}
 
-\item{recursive, all.files}{options passed to \code{\link{list.files}}}
+\item{recursive, all.files}{options passed to \code{\link{list.files}};
+even if \code{all.files = TRUE}, \code{'.git'} and \code{'.Rproj.user'}
+folders are always discarded}
 }
 \description{
 Shiny gadget allowing to manipulate one or more folders.

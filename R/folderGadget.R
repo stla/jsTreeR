@@ -4,7 +4,9 @@
 #' @param dirs character vector of paths to some folders
 #' @param tabs logical, whether to display the trees in tabs; this option is
 #'   effective only when there are two folders in the \code{dirs} argument
-#' @param recursive,all.files options passed to \code{\link{list.files}}
+#' @param recursive,all.files options passed to \code{\link{list.files}};
+#'   even if \code{all.files = TRUE}, \code{'.git'} and \code{'.Rproj.user'}
+#'   folders are always discarded
 #'
 #' @import shiny miniUI
 #' @importFrom rstudioapi getThemeInfo navigateToFile
@@ -54,6 +56,9 @@ folderGadget <- function(
     html = "othericon-html",
     rhtml = "othericon-html",
     r = "othericon-r",
+    xls = "othericon-excel",
+    xlsm = "othericon-excel",
+    xlsx = "othericon-excel",
     yaml = "othericon-yaml"
   )
 
@@ -311,7 +316,7 @@ folderGadget <- function(
           "      separator_before: true,",
           "      separator_after: true,",
           "      label: \"View image\",",
-          "      action: function (obj) {",
+          "      action: function(obj) {",
           "        Shiny.setInputValue(",
           "          'viewImage',",
           "          {",
@@ -330,7 +335,7 @@ folderGadget <- function(
           "      separator_before: true,",
           "      separator_after: false,",
           "      label: \"Copy\",",
-          "      action: function (obj) {",
+          "      action: function(obj) {",
           "        tree.copy(node);",
           "        copiedNode = {node: node, operation: 'copy'};", # use get_buffer and clear_buffer instead ?
           "      }",
@@ -339,7 +344,7 @@ folderGadget <- function(
           "      separator_before: false,",
           "      separator_after: !paste,",
           "      label: \"Cut\",",
-          "      action: function (obj) {",
+          "      action: function(obj) {",
           "        tree.cut(node);",
           "        copiedNode = {instance: tree, node: node, operation: 'cut'};",
           "      }",
@@ -349,7 +354,7 @@ folderGadget <- function(
           "      separator_after: true,",
           "      label: \"Paste\",",
           "      _disabled: copiedNode === null,",
-          "      action: function (obj) {",
+          "      action: function(obj) {",
           "        var children = tree.get_node(node).children.map(",
           "          function(child) {return tree.get_text(child);}",
           "        );",
@@ -373,7 +378,7 @@ folderGadget <- function(
           "      separator_before: true,",
           "      separator_after: false,",
           "      label: \"Rename\",",
-          "      action: function (obj) {",
+          "      action: function(obj) {",
           "        tree.edit(node, null, function() {",
           "          var nodeType = tree.get_type(node);",
           "          if(nodeType === 'file' || exts.indexOf(nodeType) > -1) {",
@@ -394,7 +399,7 @@ folderGadget <- function(
           "      separator_before: false,",
           "      separator_after: true,",
           "      label: \"Remove\",",
-          "      action: function (obj) {",
+          "      action: function(obj) {",
           "        tree.delete_node(node);",
           "      }",
           "    }",
@@ -405,9 +410,8 @@ folderGadget <- function(
           "    Open: {",
           "      separator_before: true,",
           "      separator_after: false,",
-          "      label: \"Open\",",
-          "      title: 'Open in RStudio',",
-          "      action: function (obj) {",
+          "      label: \"Open in RStudio\",",
+          "      action: function(obj) {",
           "        Shiny.setInputValue(",
           "          'openFile',",
           "          {",
@@ -421,7 +425,7 @@ folderGadget <- function(
           "      separator_before: false,",
           "      separator_after: true,",
           "      label: \"Edit\",",
-          "      action: function (obj) {",
+          "      action: function(obj) {",
           "        Shiny.setInputValue(",
           "          'editFile',",
           "          {",
@@ -446,7 +450,7 @@ folderGadget <- function(
           "          separator_before: true,",
           "          separator_after: false,",
           "          label: \"File\",",
-          "          action: function (obj) {",
+          "          action: function(obj) {",
           "            var children = tree.get_node(node).children.map(",
           "              function(child) {return tree.get_text(child);}",
           "            );",
@@ -481,7 +485,7 @@ folderGadget <- function(
           "          separator_before: false,",
           "          separator_after: true,",
           "          label: \"Folder\",",
-          "          action: function (obj) {",
+          "          action: function(obj) {",
           "            var children = tree.get_node(node).children.map(",
           "              function(child) {return tree.get_text(child);}",
           "            );",

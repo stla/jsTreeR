@@ -7,6 +7,9 @@
 .othericon-css::before {
   content: url(/OtherIcons/css.svg);
 }
+.othericon-excel::before {
+  content: url(/OtherIcons/excel.svg);
+}
 .othericon-haskell::before {
   content: url(/OtherIcons/haskell.svg);
 }
