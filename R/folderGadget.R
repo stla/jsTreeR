@@ -124,9 +124,18 @@ folderGadget <- function(
     emptyFolders <- folders[vapply(folders_fullNames, function(folder){
       length(list.files(folder, include.dirs = TRUE, recursive = FALSE)) == 0L
     }, logical(1L))]
+    lf <-
+      list.files(folder, recursive = recursive, all.files = all.files, no.. = TRUE)
+    if(all.files){
+      re <- sprintf(
+        "(^\\.git$|%s+\\.git$|%s?\\.git%s+|^\\.Rproj\\.user$|%s+\\.Rproj\\.user$|%s?\\.Rproj\\.user%s+)",
+        .Platform$file.sep, .Platform$file.sep, .Platform$file.sep,
+        .Platform$file.sep, .Platform$file.sep, .Platform$file.sep
+      )
+      lf <- lf[!grepl(re, lf)]
+    }
     folderContents <- c(
-      emptyFolders,
-      list.files(folder, recursive = recursive, all.files = all.files)
+      emptyFolders, lf
     )
     list(
       parent = parent,
