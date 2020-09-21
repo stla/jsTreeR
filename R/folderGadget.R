@@ -32,6 +32,7 @@ folderGadget <- function(
   }
 
   icons <- list(
+    dockerfile = "supertinyicon-docker",
     gitignore = "supertinyicon-git",
     jl = "supertinyicon-julia",
     js = "supertinyicon-javascript",
@@ -598,9 +599,12 @@ folderGadget <- function(
                      c = "c_cpp",
                      cpp = "c_cpp",
                      "c++" = "c_cpp",
+                     dockerfile = "dockerfile",
                      h = "c_cpp",
                      hpp = "c_cpp",
                      css = "css",
+                     f = "fortran",
+                     f90 = "fortran",
                      gitignore = "gitignore",
                      hs = "haskell",
                      html = "html",
@@ -621,6 +625,7 @@ folderGadget <- function(
                      php = "php",
                      py = "python",
                      r = "r",
+                     rd = "rdoc",
                      rhtml = "rhtml",
                      rnw = "latex",
                      ru = "ruby",
