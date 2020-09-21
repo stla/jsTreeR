@@ -3,14 +3,15 @@
 * Better Shiny example SuperTinyIcons.
 * Removed `jsonlite` dependency.
 * Allow to pass a list of options to the `contextMenu` argument.
-* The value of `jstreeOutput` is now updated when the user 
+* The Shiny value of the tree is now updated when the user 
 creates/deletes/renames/pastes a node.
-* Added new Shiny value `outputId_move` triggered when a node is moved.
-* Added new Shiny value `outputId_rename` triggered when a node is renamed.
-* Added new Shiny value `outputId_paste` triggered when a node is copied and 
-pasted.
+* New Shiny value `jsTreeMoved` triggered when a node is moved.
+* New Shiny value `jsTreeRenamed` triggered when a node is renamed.
+* New Shiny value `jsTreeCopied` triggered when a node is copied.
+* New Shiny value `jsTreeDeleted` triggered when a node is deleted.
+* New Shiny value `jsTreeCreated` triggered when a node is created.
 * New function `folderGadget`, which launches a Shiny gadget allowing to 
-manipulate a folder.
+manipulate one or more folders.
 
 
 

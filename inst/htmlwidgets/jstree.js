@@ -43,9 +43,9 @@ HTMLWidgets.widget({
     var $el = $(el);
     var options = {};
     var id = el.id + ":jsTreeR.list",
-      id_selected = el.id + "_selected:jsTreeR.list",
-      id_move = el.id + "_move:jsTreeR.move",
-      id_rename = el.id + "_rename:jsTreeR.move";
+      id_selected = el.id + "_selected:jsTreeR.list";
+//      id_move = el.id + "_move:jsTreeR.move",
+//      id_rename = el.id + "_rename:jsTreeR.move";
 //      id_paste = el.id + "_paste:jsTreeR.move";
 //      id_copied = el.id + "_copied:jsTreeR.copied";
 
@@ -142,7 +142,6 @@ HTMLWidgets.widget({
         });
 
         $el.on("move_node.jstree", function(e, data) {
-          console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
           if(inShiny) {
             var newInstance = data.new_instance;
             var oldInstance = data.old_instance;
@@ -151,8 +150,6 @@ HTMLWidgets.widget({
             var node = data.node;
             var nodeText = node.text;
             var newPath = newInstance.get_path(node);
-            console.log("data.old_parent", data.old_parent);
-            console.log(oldInstance.get_path(data.old_parent));
             var oldPath = oldInstance.get_path(data.old_parent).concat(nodeText);
             Shiny.setInputValue(
               "jsTreeMoved:jsTreeR.copied", {
@@ -171,10 +168,10 @@ HTMLWidgets.widget({
             var node = data.node;
             var nodeText = node.text;
             var oldPath = instance.get_path(data.old_parent).concat([nodeText]);
-            var newPath = instance.get_path(node); */
+            var newPath = instance.get_path(node);
             Shiny.setInputValue( // for folderGadget; maybe temporary
               id_move, {from: oldPath, to: newPath}
-            );
+            ); */
           }
         });
 
@@ -202,9 +199,9 @@ HTMLWidgets.widget({
                 to: newPath
               }
             );
-            Shiny.setInputValue(
+/*            Shiny.setInputValue(
               id_rename, {from: oldPath, to: newPath}
-            );
+            );*/
             setShinyValue(instance);
             Shiny.setInputValue(
               id_selected, getNodes(instance.get_selected(true))
@@ -249,17 +246,19 @@ HTMLWidgets.widget({
 
         $el.on("copy_node.jstree", function(e, data) {
           if(inShiny) {
-            var newInstance = data.new_instance.element.attr("id");
-            var oldInstance = data.old_instance.element.attr("id");
-            var newPath = data.new_instance.get_path(data.node);
-            var oldPath = data.old_instance.get_path(data.original);
+            var newInstance = data.new_instance;
+            var oldInstance = data.old_instance;
+            var newInstanceId = newInstance.element.attr("id");
+            var oldInstanceId = oldInstance.element.attr("id");
+            var newPath = newInstance.get_path(data.node);
+            var oldPath = oldInstance.get_path(data.original);
             Shiny.setInputValue(
               "jsTreeCopied:jsTreeR.copied", {
-                from: {instance: oldInstance, path: oldPath},
-                to: {instance: newInstance, path: newPath}
+                from: {instance: oldInstanceId, path: oldPath},
+                to: {instance: newInstanceId, path: newPath}
               }
             );
-            setShinyValue(data.new_instance);
+            setShinyValue(newInstance);
           }
         });
 
@@ -276,12 +275,12 @@ HTMLWidgets.widget({
           }
         });
 
-        $el.on("show_contextmenu.jstree", function(e, data) {
+/*        $el.on("show_contextmenu.jstree", function(e, data) {
           if(inShiny)
             Shiny.setInputValue(
               "jsTreeInstance", el.id
             );
-        });
+        });*/
 
       },
 

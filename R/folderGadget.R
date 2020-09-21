@@ -1,7 +1,9 @@
 #' Folder gadget
-#' @description Shiny gadget allowing to manipulate a folder.
+#' @description Shiny gadget allowing to manipulate one or more folders.
 #'
-#' @param dir path to a folder
+#' @param dirs character vector of paths to some folders
+#' @param tabs logical, whether to display the trees in tabs; this option is
+#'   effective only when there are two folders in the \code{dirs} argument
 #'
 #' @import shiny miniUI
 #' @importFrom rstudioapi getThemeInfo navigateToFile
@@ -9,17 +11,26 @@
 #' @importFrom shinyAce aceEditor
 #' @importFrom stats setNames
 #' @export
-folderGadget <- function(dir = ".") {
+folderGadget <- function(dirs, tabs = FALSE) {
 
-  if(!dir.exists(dir)){
-    stop(sprintf('"%s" is not a directory.', dir))
-  }
+  #TODO: handle 'Cut' DONE
+  # options for tabs DONE
+  # aceEditor for jstree2:
+  # prevent moving at root DONE
+
+  stopifnot(is.character(dirs))
+  lapply(dirs, function(dir){
+    if(!dir.exists(dir)){
+      stop(sprintf('"%s" is not a directory.', dir))
+    }
+  })
 
   if(!is.element("jsTreeR", .packages())){
     attachNamespace("jsTreeR")
   }
 
   icons <- list(
+    gitignore = "supertinyicon-git",
     jl = "supertinyicon-julia",
     js = "supertinyicon-javascript",
     jsx = "supertinyicon-react",
@@ -46,16 +57,18 @@ folderGadget <- function(dir = ".") {
     yaml = "othericon-yaml"
   )
 
-  js <- JS(
-    "function(node) {",
-    "  var tree = $(\"#jstree\").jstree(true);",
-    "  if(node.type === \"file\" || exts.indexOf(node.type) > -1) {",
-    "    return $.extend(Items(tree, node, false), items_file(tree, node));",
-    "  } else {",
-    "    return $.extend(item_create(tree, node), Items(tree, node, true));",
-    "  }",
-    "}"
-  )
+  js <- function(treeId){
+    JS(
+      "function(node) {",
+      sprintf("  var tree = $(\"#%s\").jstree(true);", treeId),
+      "  if(node.type === \"file\" || exts.indexOf(node.type) > -1) {",
+      "    return $.extend(Items(tree, node, false), items_file(tree, node));",
+      "  } else {",
+      "    return $.extend(item_create(tree, node), Items(tree, node, true));",
+      "  }",
+      "}"
+    )
+  }
 
   makeNodes <- function(files, dirs, icons){
     exts <- names(icons)
@@ -95,20 +108,55 @@ folderGadget <- function(dir = ".") {
     lapply(dat$item[dat$parent == "root"], f)
   }
 
-  folder <- normalizePath(dir, winslash = "/")
-  splittedPath <- strsplit(folder, .Platform$file.sep)[[1L]]
-  path <- paste0(head(splittedPath,-1L), collapse = .Platform$file.sep)
-  parent <- tail(splittedPath, 1L)
-  folders <- list.dirs(folder, full.names = FALSE)
-  folders_fullNames <- list.dirs(folder, full.names = TRUE)
-  emptyFolders <- folders[vapply(folders_fullNames, function(folder){
-    length(list.files(folder, include.dirs = TRUE, recursive = FALSE)) == 0L
-  }, logical(1L))]
-  folderContents <- c(emptyFolders, list.files(folder, recursive = TRUE))
+  readFolder <- function(dir){
+    folder <- normalizePath(dir, winslash = "/")
+    splittedPath <- strsplit(folder, .Platform$file.sep)[[1L]]
+    path <- paste0(head(splittedPath,-1L), collapse = .Platform$file.sep)
+    parent <- tail(splittedPath, 1L)
+    folders <- list.dirs(folder, full.names = FALSE)
+    folders_fullNames <- list.dirs(folder, full.names = TRUE)
+    emptyFolders <- folders[vapply(folders_fullNames, function(folder){
+      length(list.files(folder, include.dirs = TRUE, recursive = FALSE)) == 0L
+    }, logical(1L))]
+    folderContents <- c(emptyFolders, list.files(folder, recursive = TRUE))
+    list(
+      parent = parent,
+      folderContents = folderContents,
+      folders = folders,
+      path = path
+    )
+  }
 
-  nodes <- makeNodes(
-    file.path(parent, folderContents), c(parent,file.path(parent, folders[-1L])), icons
-  )
+  jstrees <- paste0("jstree", seq_along(dirs))
+  ndirs <- length(dirs)
+  paths <- setNames(character(ndirs), jstrees)
+  parents <- character(ndirs)
+  nodes <- setNames(vector(mode = "list", length = ndirs), jstrees)
+
+  for(i in seq_along(dirs)){
+    Folder <- readFolder(dirs[i])
+    paths[i] <- Folder[["path"]]
+    parents[i] <- Folder[["parent"]]
+    nodes[[i]] <- with(Folder, makeNodes(
+      file.path(parent, folderContents),
+      c(parent, file.path(parent, folders[-1L])),
+      icons
+    ))
+  }
+
+  renameDuplicates <- function(x){
+    if(any(dups <- duplicated(x))){
+      while(any(dups)){
+        val <- x[match(TRUE, dups)]
+        indices <- which(x == val)
+        x[indices] <- paste0(val, " (", seq_along(indices), ")")
+        dups <- duplicated(x)
+      }
+    }
+    x
+  }
+
+  parents <- renameDuplicates(parents)
 
   types <- append(list(
     file = list(
@@ -122,7 +170,7 @@ folderGadget <- function(dir = ".") {
   checkCallback <- JS(
     "function(operation, node, parent, position, more) {",
     "  if(operation === 'move_node') {",
-    "    if(parent.type === 'file') {",
+    "    if(parent.id === '#' || parent.type === 'file') {",
     "      return false;",
     "    }",
     "  }",
@@ -132,6 +180,11 @@ folderGadget <- function(dir = ".") {
 
   themeInfo <- getThemeInfo()
 
+  if(ndirs != 2L){
+    tabs <- ndirs >= 3L
+  }
+
+
   ui <- miniPage(
 
     tags$head(
@@ -140,11 +193,18 @@ folderGadget <- function(dir = ".") {
           c(
             ".jstree-proton {font-weight: bold;}",
             ".jstree-anchor {font-size: medium;}",
-            "#jstree-search {background-color: seashell;}",
+            "input[id$='-search'] {background-color: seashell;}",
             "#shiny-modal .modal-dialog div[class^='modal-'] {",
             "  background-color: maroon;",
             "}",
             ".gadget-block-button {background-color: transparent;}",
+            ".gadget-tabs-container ul.gadget-tabs>li.active>a {",
+            "  font-weight: bold;",
+            "  background-color: paleturquoise;",
+            "}",
+            ".gadget-tabs-container ul.gadget-tabs>li:not(.active)>a {",
+            "  background-color: rgba(175,238,238,0.5);",
+            "}",
             ".ace_scrollbar::-webkit-scrollbar-track {",
             "  border-radius: 10px;",
             "  background-color: crimson;",
@@ -172,7 +232,7 @@ folderGadget <- function(dir = ".") {
           "      label: \"Copy\",",
           "      action: function (obj) {",
           "        tree.copy(node);",
-          "        copiedNode = tree.get_text(node);",
+          "        copiedNode = {node: node, operation: 'copy'};", # use get_buffer and clear_buffer instead ?
           "      }",
           "    },",
           "    Cut: {",
@@ -181,7 +241,7 @@ folderGadget <- function(dir = ".") {
           "      label: \"Cut\",",
           "      action: function (obj) {",
           "        tree.cut(node);",
-          "        copiedNode = tree.get_text(node);",
+          "        copiedNode = {instance: tree, node: node, operation: 'cut'};",
           "      }",
           "    },",
           "    Paste: paste ? {",
@@ -193,8 +253,18 @@ folderGadget <- function(dir = ".") {
           "        var children = tree.get_node(node).children.map(",
           "          function(child) {return tree.get_text(child);}",
           "        );",
-          "        if(children.indexOf(copiedNode) === -1) {",
-          "          tree.paste(node);",
+          "        if(children.indexOf(copiedNode.node.text) === -1) {",
+          #"          tree.paste(node);",
+          "          var operation = copiedNode.operation;",
+          "          tree.copy_node(copiedNode.node, node, 0, function() {",
+          "            Shiny.setInputValue('operation', operation);",
+          "            setTimeout(function() {",
+          "              Shiny.setInputValue('operation', 'rename');",
+          "            }, 0);",
+          "          });",
+          "          if(operation === 'cut') {",
+          "            copiedNode.instance.delete_node(copiedNode.node);",
+          "          }",
           "          copiedNode = null;",
           "        }",
           "      }",
@@ -226,13 +296,12 @@ folderGadget <- function(dir = ".") {
           "      separator_after: true,",
           "      label: \"Remove\",",
           "      action: function (obj) {",
-          "        Shiny.setInputValue('deleteNode', tree.get_path(node, sep));",
           "        tree.delete_node(node);",
           "      }",
           "    }",
           "  };",
           "}",
-          "function items_file(tree,node) {",
+          "function items_file(tree, node) {",
           "  return {",
           "    Open: {",
           "      separator_before: true,",
@@ -240,7 +309,13 @@ folderGadget <- function(dir = ".") {
           "      label: \"Open\",",
           "      title: 'Open in RStudio',",
           "      action: function (obj) {",
-          "        Shiny.setInputValue('openFile', tree.get_path(node, sep));",
+          "        Shiny.setInputValue(",
+          "          'openFile',",
+          "          {",
+          "            instance: tree.element.attr('id'),",
+          "            path: tree.get_path(node, sep)",
+          "          }",
+          "        );",
           "      }",
           "    },",
           "    Edit: {",
@@ -248,12 +323,19 @@ folderGadget <- function(dir = ".") {
           "      separator_after: true,",
           "      label: \"Edit\",",
           "      action: function (obj) {",
-          "        Shiny.setInputValue('editFile', tree.get_path(node, sep), {priority: 'event'});",
+          "        Shiny.setInputValue(",
+          "          'editFile',",
+          "          {",
+          "            instance: tree.element.attr('id'),",
+          "            path: tree.get_path(node, sep)",
+          "          },",
+          "          {priority: 'event'}",
+          "        );",
           "      }",
           "    }",
           "  };",
           "}",
-          "function item_create(tree,node) {",
+          "function item_create(tree, node) {",
           "  return {",
           "    Create: {",
           "      separator_before: true,",
@@ -284,8 +366,12 @@ folderGadget <- function(dir = ".") {
           "                    }",
           "                  }",
           "                  Shiny.setInputValue(",
-          "                    'createNode',",
-          "                    {type: 'file', path: tree.get_path(node, sep)}",
+          "                    'createdNode',",
+          "                    {",
+          "                      instance: tree.element.attr('id'),",
+          "                      type: 'file',",
+          "                      path: tree.get_path(node, sep)",
+          "                    }",
           "                  );",
           "                }",
           "              }",
@@ -307,8 +393,12 @@ folderGadget <- function(dir = ".") {
           "                  tree.delete_node(node);",
           "                } else {",
           "                  Shiny.setInputValue(",
-          "                    'createNode',",
-          "                    {type: 'folder', path: tree.get_path(node, sep)}",
+          "                    'createdNode',",
+          "                    {",
+          "                      instance: tree.element.attr('id'),",
+          "                      type: 'folder',",
+          "                      path: tree.get_path(node, sep)",
+          "                    }",
           "                  );",
           "                }",
           "              }",
@@ -323,15 +413,44 @@ folderGadget <- function(dir = ".") {
       )
     ),
 
-    miniContentPanel(
-      miniButtonBlock(
-        actionButton("done", "Done", class = "btn-primary"),
-        border = NULL
-      ),
-      jstreeOutput("jstree")
-    )
+    if(tabs){
+      do.call(function(...){
+        miniTabstripPanel(
+          ...,
+          between = miniButtonBlock(
+            actionButton("done", "Done", class = "btn-primary"),
+            border = NULL
+          )
+        )
+      }, lapply(seq_len(ndirs), function(i){
+        miniTabPanel(
+          parents[i],
+          miniContentPanel(
+            jstreeOutput(jstrees[i])
+          )
+        )
+      }))
+    }else{
+      miniContentPanel(
+        miniButtonBlock(
+          actionButton("done", "Done", class = "btn-primary"),
+          border = NULL
+        ),
+        if(ndirs == 1L){
+          jstreeOutput("jstree1", width = "100%")
+        }else{
+          do.call(
+            fillRow,
+            lapply(jstrees, function(id){
+              jstreeOutput(id)
+            })
+          )
+        }
+      )
+    }
 
   )
+
 
   server <- function(input, output){
 
@@ -340,8 +459,11 @@ folderGadget <- function(dir = ".") {
     })
 
     observeEvent(input[["editFile"]], {
-      filePath <- file.path(path, input[["editFile"]])
-      ext <- tolower(file_ext(input[["editFile"]]))
+      filePath <- file.path(
+        paths[input[["editFile"]][["instance"]]],
+        input[["editFile"]][["path"]]
+      )
+      ext <- tolower(file_ext(input[["editFile"]][["path"]]))
       mode <- switch(ext,
                      c = "c_cpp",
                      cpp = "c_cpp",
@@ -411,80 +533,118 @@ folderGadget <- function(dir = ".") {
     })
 
     observeEvent(input[["openFile"]], {
-      if(file.exists(input[["openFile"]])){
-        navigateToFile(input[["openFile"]])
+      filePath <- file.path(
+        paths[input[["openFile"]][["instance"]]],
+        input[["openFile"]][["path"]]
+      )
+      if(file.exists(filePath)){
+        navigateToFile(filePath)
       }
     })
 
-    observeEvent(input[["deleteNode"]], {
-      unlink(input[["deleteNode"]], recursive = TRUE)
+    observeEvent(input[["jsTreeDeleted"]], {
+      path <- file.path(
+        paths[input[["jsTreeDeleted"]][["instance"]]],
+        paste0(input[["jsTreeDeleted"]][["path"]], collapse = .Platform$file.sep)
+      )
+      if(file.exists(path)){
+        unlink(path, recursive = TRUE)
+      }
     })
 
-    observeEvent(input[["createNode"]], {
-      nodePath <- file.path(path, input[["createNode"]][["path"]])
-      if(input[["createNode"]][["type"]] == "file"){
+    observeEvent(input[["createdNode"]], {
+      print(input[["createdNode"]])
+      nodePath <- file.path(
+        paths[input[["createdNode"]][["instance"]]],
+        input[["createdNode"]][["path"]]
+      )
+      if(input[["createdNode"]][["type"]] == "file"){
         file.create(nodePath)
       }else{
         dir.create(nodePath)
       }
     })
 
-    observeEvent(input[["jstree_rename"]], {
+    observeEvent(input[["jsTreeRenamed"]], {
       from = file.path(
-        path,
-        paste0(input[["jstree_rename"]][["from"]], collapse = .Platform$file.sep)
+        paths[input[["jsTreeRenamed"]][["instance"]]],
+        paste0(input[["jsTreeRenamed"]][["from"]], collapse = .Platform$file.sep)
       )
       to = file.path(
-        path,
-        paste0(input[["jstree_rename"]][["to"]], collapse = .Platform$file.sep)
+        paths[input[["jsTreeRenamed"]][["instance"]]],
+        paste0(input[["jsTreeRenamed"]][["to"]], collapse = .Platform$file.sep)
       )
       if(file.exists(from) && from != to){
         file.rename(from, to)
       }
     })
 
-    observeEvent(input[["jstree_paste"]], {
+    observeEvent(input[["jsTreeCopied"]], {
+      copied <- input[["jsTreeCopied"]]
+      print("copied:")
+      print(copied)
+      print("operation:")
+      print(input[["operation"]])
       from = file.path(
-        path,
-        paste0(input[["jstree_paste"]][["from"]], collapse = .Platform$file.sep)
+        paths[copied[["from"]][["instance"]]],
+        paste0(copied[["from"]][["path"]], collapse = .Platform$file.sep)
       )
       to = file.path(
-        path,
-        paste0(input[["jstree_paste"]][["to"]], collapse = .Platform$file.sep)
+        paths[copied[["to"]][["instance"]]],
+        paste0(copied[["to"]][["path"]], collapse = .Platform$file.sep)
       )
       if(from != to){
-        file.copy(from, to)
+        if(input[["operation"]] == "copy"){
+          file.copy(from, to)
+        }else{
+          file.rename(from, to)
+        }
       }
     })
 
-    observeEvent(input[["jstree_move"]], {
-      from = file.path(path, paste0(input[["jstree_move"]][["from"]], collapse = .Platform$file.sep))
-      to = file.path(path, paste0(input[["jstree_move"]][["to"]], collapse = .Platform$file.sep))
+    observeEvent(input[["jsTreeMoved"]], { # triggered when moving inside same tree
+      moved <- input[["jsTreeMoved"]]
+      print("moved:")
+      print(moved)
+      from = file.path(
+        paths[moved[["from"]][["instance"]]],
+        paste0(moved[["from"]][["path"]], collapse = .Platform$file.sep)
+      )
+      to = file.path(
+        paths[moved[["to"]][["instance"]]],
+        paste0(moved[["to"]][["path"]], collapse = .Platform$file.sep)
+      )
       if(from != to){
         file.rename(from, to)
       }
     })
 
-    output[["jstree"]] <- renderJstree({
-      jstree(
-        nodes,
-        types = types,
-        dragAndDrop = TRUE,
-        checkboxes = FALSE,
-        theme = "proton",
-        contextMenu = list(select_node = FALSE, items = js),
-        checkCallback = checkCallback,
-        sort = TRUE,
-        search = list(
-          show_only_matches = TRUE,
-          case_sensitive = FALSE,
-          search_leaves_only = FALSE
-        )
-      )
-    })
+    for(treeId in jstrees){
+      local({
+        id <- treeId
+        output[[id]] <- renderJstree({
+          jstree(
+            nodes[[id]],
+            types = types,
+            dragAndDrop = TRUE,
+            checkboxes = FALSE,
+            multiple = FALSE,
+            theme = "proton",
+            contextMenu = list(select_node = FALSE, items = js(id)),
+            checkCallback = checkCallback,
+            sort = TRUE,
+            search = list(
+              show_only_matches = TRUE,
+              case_sensitive = FALSE,
+              search_leaves_only = FALSE
+            )
+          )
+        })
+      })
+    }
 
   }
 
-  runGadget(shinyApp(ui, server))
+  runGadget(shinyApp(ui, server), stopOnCancel = FALSE)
 
 }

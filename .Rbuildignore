@@ -3,6 +3,7 @@
 ^inst/essais$
 ^inst/screenshots$
 ^inst/ztemp$
+^inst/trash$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
 ^LICENSE\.note\.md$
