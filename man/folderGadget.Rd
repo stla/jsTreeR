@@ -4,7 +4,7 @@
 \alias{folderGadget}
 \title{Folder gadget}
 \usage{
-folderGadget(dirs, tabs = FALSE)
+folderGadget(dirs = ".", tabs = FALSE)
 }
 \arguments{
 \item{dirs}{character vector of paths to some folders}

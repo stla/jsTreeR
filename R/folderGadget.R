@@ -10,13 +10,9 @@
 #' @importFrom tools file_ext
 #' @importFrom shinyAce aceEditor
 #' @importFrom stats setNames
+#' @importFrom base64enc dataURI
 #' @export
-folderGadget <- function(dirs, tabs = FALSE) {
-
-  #TODO: handle 'Cut' DONE
-  # options for tabs DONE
-  # aceEditor for jstree2:
-  # prevent moving at root DONE
+folderGadget <- function(dirs = ".", tabs = FALSE) {
 
   stopifnot(is.character(dirs))
   lapply(dirs, function(dir){
@@ -61,11 +57,18 @@ folderGadget <- function(dirs, tabs = FALSE) {
     JS(
       "function(node) {",
       sprintf("  var tree = $(\"#%s\").jstree(true);", treeId),
+      "  var items;",
       "  if(node.type === \"file\" || exts.indexOf(node.type) > -1) {",
-      "    return $.extend(Items(tree, node, false), items_file(tree, node));",
+      "    items = $.extend(Items(tree, node, false), items_file(tree, node));",
+      "    var ext = fileExtension(node.text);",
+      "console.log(node.text); console.log(ext);",
+      "    if(isImage(ext)) {",
+      "      items = $.extend(items, item_image(tree, node, ext));",
+      "    }",
       "  } else {",
-      "    return $.extend(item_create(tree, node), Items(tree, node, true));",
+      "    items = $.extend(item_create(tree, node), Items(tree, node, true));",
       "  }",
+      "  return items;",
       "}"
     )
   }
@@ -75,7 +78,7 @@ folderGadget <- function(dirs, tabs = FALSE) {
     sep <- .Platform$file.sep
     dfs <- lapply(strsplit(files, sep), function(s){
       item <-
-        Reduce(function(a,b) paste0(a,sep,b), s[-1], s[1], accumulate = TRUE)
+        Reduce(function(a,b) paste0(a,sep,b), s[-1L], s[1L], accumulate = TRUE)
       data.frame(
         item = item,
         parent = c("root", item[-length(item)]),
@@ -90,7 +93,7 @@ folderGadget <- function(dirs, tabs = FALSE) {
       i <- match(parent, dat$item)
       item <- dat$item[i]
       children <- dat$item[dat$parent==item]
-      label <- tail(strsplit(item, sep)[[1]], 1)
+      label <- tail(strsplit(item, sep)[[1L]], 1L)
       if(item %in% dirs){
         list(
           text = label,
@@ -184,6 +187,19 @@ folderGadget <- function(dirs, tabs = FALSE) {
     tabs <- ndirs >= 3L
   }
 
+  imageMIME <-
+    c(
+      gif = "image/gif",
+      png = "image/png",
+      jpg = "image/jpeg",
+      jpeg = "image/jpeg",
+      tif = "image/tiff",
+      tiff = "image/tiff",
+      bmp = "image/bmp",
+      ico = "image/vnd.microsoft.icon",
+      svg = "image/svg+xml",
+      webp = "image/webp"
+    )
 
   ui <- miniPage(
 
@@ -224,6 +240,40 @@ folderGadget <- function(dirs, tabs = FALSE) {
           "var copiedNode = null;",
           sprintf("var exts = [%s];", toString(paste0("'", names(icons), "'"))),
           sprintf("var sep = \"%s\";", .Platform$file.sep),
+          sprintf(
+            "var imageExts = [%s];",
+            toString(paste0("'", names(imageMIME), "'"))
+          ),
+          "function fileExtension(fileName) {",
+          "  if(/\\./.test(fileName)) {",
+          "    var splitted = fileName.split('.');",
+          "    return splitted[splitted.length - 1].toLowerCase();",
+          "  } else {",
+          "    return null;",
+          "  }",
+          "}",
+          "function isImage(ext) {",
+          "  return imageExts.indexOf(ext) > -1;",
+          "}",
+          "function item_image(tree, node, ext) {",
+          "  return {",
+          "    Image: {",
+          "      separator_before: true,",
+          "      separator_after: true,",
+          "      label: \"View image\",",
+          "      action: function (obj) {",
+          "        Shiny.setInputValue(",
+          "          'viewImage',",
+          "          {",
+          "            instance: tree.element.attr('id'),",
+          "            path: tree.get_path(node, sep),",
+          "            ext: ext",
+          "          }",
+          "        );",
+          "      }",
+          "    }",
+          "  };",
+          "}",
           "function Items(tree, node, paste) {",
           "  return {",
           "    Copy: {",
@@ -278,9 +328,8 @@ folderGadget <- function(dirs, tabs = FALSE) {
           "          var nodeType = tree.get_type(node);",
           "          if(nodeType === 'file' || exts.indexOf(nodeType) > -1) {",
           "            var nodeText = tree.get_text(node);",
-          "            if(/\\./.test(nodeText)) {",
-          "              var splittedText = nodeText.split('.');",
-          "              var ext = splittedText[splittedText.length - 1].toLowerCase();",
+          "            var ext = fileExtension(nodeText);",
+          "            if(ext !== null) {",
           "              if(exts.indexOf(ext) > -1) {",
           "                tree.set_type(node, ext);",
           "              } else {",
@@ -456,6 +505,33 @@ folderGadget <- function(dirs, tabs = FALSE) {
 
     observeEvent(input[["done"]], {
       stopApp()
+    })
+
+    observeEvent(input[["viewImage"]], {
+      filePath <- file.path(
+        paths[input[["viewImage"]][["instance"]]],
+        input[["viewImage"]][["path"]]
+      )
+      ext <- input[["viewImage"]][["ext"]]
+      if(ext == "svg"){
+        tag <- tags$div(
+          style =
+            "width: 50%; margin-left: auto; margin-right: auto; margin-top: 2%;",
+          HTML(suppressWarnings(readLines(filePath)))
+        )
+      }else{
+        tag <- tags$div(
+          style = "margin-left: auto; margin-right: auto; margin-top: 2%;",
+          tags$img(
+            src = dataURI(file = filePath, mime = imageMIME[[ext]]),
+            width = "250"
+          )
+        )
+      }
+      showModal(modalDialog(
+        tag,
+        easyClose = TRUE
+      ))
     })
 
     observeEvent(input[["editFile"]], {
