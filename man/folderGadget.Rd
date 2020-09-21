@@ -4,13 +4,15 @@
 \alias{folderGadget}
 \title{Folder gadget}
 \usage{
-folderGadget(dirs = ".", tabs = FALSE)
+folderGadget(dirs = ".", tabs = FALSE, recursive = TRUE, all.files = FALSE)
 }
 \arguments{
 \item{dirs}{character vector of paths to some folders}
 
 \item{tabs}{logical, whether to display the trees in tabs; this option is
 effective only when there are two folders in the \code{dirs} argument}
+
+\item{recursive, all.files}{options passed to \code{\link{list.files}}}
 }
 \description{
 Shiny gadget allowing to manipulate one or more folders.

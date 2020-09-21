@@ -4,6 +4,7 @@
 #' @param dirs character vector of paths to some folders
 #' @param tabs logical, whether to display the trees in tabs; this option is
 #'   effective only when there are two folders in the \code{dirs} argument
+#' @param recursive,all.files options passed to \code{\link{list.files}}
 #'
 #' @import shiny miniUI
 #' @importFrom rstudioapi getThemeInfo navigateToFile
@@ -12,7 +13,9 @@
 #' @importFrom stats setNames
 #' @importFrom base64enc dataURI
 #' @export
-folderGadget <- function(dirs = ".", tabs = FALSE) {
+folderGadget <- function(
+  dirs = ".", tabs = FALSE, recursive = TRUE, all.files = FALSE
+) {
 
   stopifnot(is.character(dirs))
   lapply(dirs, function(dir){
@@ -61,7 +64,6 @@ folderGadget <- function(dirs = ".", tabs = FALSE) {
       "  if(node.type === \"file\" || exts.indexOf(node.type) > -1) {",
       "    items = $.extend(Items(tree, node, false), items_file(tree, node));",
       "    var ext = fileExtension(node.text);",
-      "console.log(node.text); console.log(ext);",
       "    if(isImage(ext)) {",
       "      items = $.extend(items, item_image(tree, node, ext));",
       "    }",
@@ -111,17 +113,21 @@ folderGadget <- function(dirs = ".", tabs = FALSE) {
     lapply(dat$item[dat$parent == "root"], f)
   }
 
-  readFolder <- function(dir){
+  readFolder <- function(dir, recursive, all.files){
     folder <- normalizePath(dir, winslash = "/")
     splittedPath <- strsplit(folder, .Platform$file.sep)[[1L]]
     path <- paste0(head(splittedPath,-1L), collapse = .Platform$file.sep)
     parent <- tail(splittedPath, 1L)
-    folders <- list.dirs(folder, full.names = FALSE)
-    folders_fullNames <- list.dirs(folder, full.names = TRUE)
+    folders <- list.dirs(folder, full.names = FALSE, recursive = recursive)
+    folders_fullNames <-
+      list.dirs(folder, full.names = TRUE, recursive = recursive)
     emptyFolders <- folders[vapply(folders_fullNames, function(folder){
       length(list.files(folder, include.dirs = TRUE, recursive = FALSE)) == 0L
     }, logical(1L))]
-    folderContents <- c(emptyFolders, list.files(folder, recursive = TRUE))
+    folderContents <- c(
+      emptyFolders,
+      list.files(folder, recursive = recursive, all.files = all.files)
+    )
     list(
       parent = parent,
       folderContents = folderContents,
@@ -137,7 +143,7 @@ folderGadget <- function(dirs = ".", tabs = FALSE) {
   nodes <- setNames(vector(mode = "list", length = ndirs), jstrees)
 
   for(i in seq_along(dirs)){
-    Folder <- readFolder(dirs[i])
+    Folder <- readFolder(dirs[i], recursive, all.files)
     paths[i] <- Folder[["path"]]
     parents[i] <- Folder[["parent"]]
     nodes[[i]] <- with(Folder, makeNodes(
