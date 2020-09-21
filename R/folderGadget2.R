@@ -283,7 +283,13 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
           "      label: \"Open\",",
           "      title: 'Open in RStudio',",
           "      action: function (obj) {",
-          "        Shiny.setInputValue('openFile', tree.get_path(node, sep));",
+          "        Shiny.setInputValue(",
+          "          'openFile',",
+          "          {",
+          "            instance: tree.element.attr('id'),",
+          "            path: tree.get_path(node, sep)",
+          "          }",
+          "        );",
           "      }",
           "    },",
           "    Edit: {",
@@ -291,12 +297,19 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
           "      separator_after: true,",
           "      label: \"Edit\",",
           "      action: function (obj) {",
-          "        Shiny.setInputValue('editFile', tree.get_path(node, sep), {priority: 'event'});",
+          "        Shiny.setInputValue(",
+          "          'editFile',",
+          "          {",
+          "            instance: tree.element.attr('id'),",
+          "            path: tree.get_path(node, sep)",
+          "          },",
+          "          {priority: 'event'}",
+          "        );",
           "      }",
           "    }",
           "  };",
           "}",
-          "function item_create(tree,node) {",
+          "function item_create(tree, node) {",
           "  return {",
           "    Create: {",
           "      separator_before: true,",
@@ -416,8 +429,11 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
     })
 
     observeEvent(input[["editFile"]], {
-      filePath <- file.path(paths[input[["jsTreeInstance"]]], input[["editFile"]])
-      ext <- tolower(file_ext(input[["editFile"]]))
+      filePath <- file.path(
+        paths[input[["editFile"]][["instance"]]],
+        input[["editFile"]][["path"]]
+      )
+      ext <- tolower(file_ext(input[["editFile"]][["path"]]))
       mode <- switch(ext,
                      c = "c_cpp",
                      cpp = "c_cpp",
@@ -487,8 +503,12 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
     })
 
     observeEvent(input[["openFile"]], {
-      if(file.exists(input[["openFile"]])){
-        navigateToFile(input[["openFile"]])
+      filePath <- file.path(
+        paths[input[["openFile"]][["instance"]]],
+        input[["openFile"]][["path"]]
+      )
+      if(file.exists(filePath)){
+        navigateToFile(filePath)
       }
     })
 
