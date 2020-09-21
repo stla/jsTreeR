@@ -45,8 +45,8 @@ HTMLWidgets.widget({
     var id = el.id + ":jsTreeR.list",
       id_selected = el.id + "_selected:jsTreeR.list",
       id_move = el.id + "_move:jsTreeR.move",
-      id_rename = el.id + "_rename:jsTreeR.move",
-      id_paste = el.id + "_paste:jsTreeR.move";
+      id_rename = el.id + "_rename:jsTreeR.move";
+//      id_paste = el.id + "_paste:jsTreeR.move";
 //      id_copied = el.id + "_copied:jsTreeR.copied";
 
     return {
@@ -228,7 +228,7 @@ HTMLWidgets.widget({
           }
         });
 
-        $el.on("paste.jstree", function(e, data) {
+/*        $el.on("paste.jstree", function(e, data) {
           if(inShiny) {
             var instance = data.instance;
             Shiny.setInputValue(
@@ -245,7 +245,7 @@ HTMLWidgets.widget({
               );
             }
           }
-        });
+        });*/
 
         $el.on("copy_node.jstree", function(e, data) {
           if(inShiny) {
@@ -260,9 +260,6 @@ HTMLWidgets.widget({
               }
             );
             setShinyValue(data.new_instance);
-            setTimeout(function() {
-              Shiny.setInputValue("operation", "rename");
-            }, 0);
           }
         });
 

@@ -85,7 +85,7 @@ server <- function(input, output){
     )
   })
 
-  #observe(print(input[["jstree"]]))
+  observe(print(names(input)))
 
   output[["treeState"]] <- renderPrint({
     toJSON(input[["jstree"]], pretty = TRUE, auto_unbox = TRUE)
