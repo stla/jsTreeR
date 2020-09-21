@@ -13,7 +13,8 @@ function getNodesWithChildren(json) {
 function extractKeys(list) {
   return {
     text: list.text,
-    data: list.data
+    data: list.data,
+    type: list.type
   };
 }
 
@@ -195,11 +196,16 @@ HTMLWidgets.widget({
             var oldPath = parentPath.concat(data.old);
             var newPath = parentPath.concat(data.text);
             Shiny.setInputValue(
-              id_rename, {from: oldPath, to: newPath}
+              "jsTreeRenamed:jsTreeR.move", {
+                instance: instance.element.attr("id"),
+                from: oldPath,
+                to: newPath
+              }
             );
             Shiny.setInputValue(
-              id, getNodesWithChildren(instance.get_json())
+              id_rename, {from: oldPath, to: newPath}
             );
+            setShinyValue(instance);
             Shiny.setInputValue(
               id_selected, getNodes(instance.get_selected(true))
             );
@@ -208,12 +214,17 @@ HTMLWidgets.widget({
         $el.on("create_node.jstree", function(e, data) {
           if(inShiny) {
             var instance = data.instance;
+            Shiny.setInputValue(
+              "jsTreeCreated:jsTreeR.path", {
+                instance: instance.element.attr("id"),
+                path: instance.get_path(data.node),
+                node: extractKeys(instance.get_json(data.node))
+              }
+            );
 /*            Shiny.setInputValue(
               id_create, instance.get_path(data.node)
             );*/
-            Shiny.setInputValue(
-              id, getNodesWithChildren(instance.get_json())
-            );
+            setShinyValue(instance);
           }
         });
 
@@ -256,10 +267,16 @@ HTMLWidgets.widget({
         });
 
         $el.on("delete_node.jstree", function(e, data) {
-          if(inShiny)
+          if(inShiny) {
+            var instance = data.instance;
             Shiny.setInputValue(
-              id, getNodesWithChildren(data.instance.get_json())
+              "jsTreeDeleted:jsTreeR.path", {
+                instance: instance.element.attr("id"),
+                path: instance.get_path(data.node)
+              }
             );
+            setShinyValue(instance);
+          }
         });
 
         $el.on("show_contextmenu.jstree", function(e, data) {

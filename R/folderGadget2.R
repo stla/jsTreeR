@@ -25,6 +25,7 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
   }
 
   icons <- list(
+    gitignore = "supertinyicon-git",
     jl = "supertinyicon-julia",
     js = "supertinyicon-javascript",
     jsx = "supertinyicon-react",
@@ -150,7 +151,7 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
   checkCallback <- JS(
     "function(operation, node, parent, position, more) {",
     "  if(operation === 'move_node') {",
-    "    if(parent.type === 'file') {",
+    "    if(parent.id === '#' || parent.type === 'file') {",
     "      return false;",
     "    }",
     "  }",
@@ -159,6 +160,7 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
   )
 
   themeInfo <- getThemeInfo()
+
 
   ui <- miniPage(
 
@@ -261,7 +263,6 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
           "      separator_after: true,",
           "      label: \"Remove\",",
           "      action: function (obj) {",
-          "        Shiny.setInputValue('deleteNode', tree.get_path(node, sep));",
           "        tree.delete_node(node);",
           "      }",
           "    }",
@@ -319,8 +320,12 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
           "                    }",
           "                  }",
           "                  Shiny.setInputValue(",
-          "                    'createNode',",
-          "                    {type: 'file', path: tree.get_path(node, sep)}",
+          "                    'createdNode',",
+          "                    {",
+          "                      instance: tree.element.attr('id'),",
+          "                      type: 'file',",
+          "                      path: tree.get_path(node, sep)",
+          "                    }",
           "                  );",
           "                }",
           "              }",
@@ -342,8 +347,12 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
           "                  tree.delete_node(node);",
           "                } else {",
           "                  Shiny.setInputValue(",
-          "                    'createNode',",
-          "                    {type: 'folder', path: tree.get_path(node, sep)}",
+          "                    'createdNode',",
+          "                    {",
+          "                      instance: tree.element.attr('id'),",
+          "                      type: 'folder',",
+          "                      path: tree.get_path(node, sep)",
+          "                    }",
           "                  );",
           "                }",
           "              }",
@@ -391,6 +400,7 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
     }
 
   )
+
 
   server <- function(input, output){
 
@@ -475,27 +485,37 @@ folderGadget2 <- function(dirs, tabs = FALSE) {
       }
     })
 
-    observeEvent(input[["deleteNode"]], {
-      unlink(input[["deleteNode"]], recursive = TRUE)
+    observeEvent(input[["jsTreeDeleted"]], {
+      path <- file.path(
+        paths[input[["jsTreeDeleted"]][["instance"]]],
+        paste0(input[["jsTreeDeleted"]][["path"]], collapse = .Platform$file.sep)
+      )
+      if(file.exists(path)){
+        unlink(path, recursive = TRUE)
+      }
     })
 
-    observeEvent(input[["createNode"]], {
-      nodePath <- file.path(paths[input[["jsTreeInstance"]]], input[["createNode"]][["path"]])
-      if(input[["createNode"]][["type"]] == "file"){
+    observeEvent(input[["createdNode"]], {
+      print(input[["createdNode"]])
+      nodePath <- file.path(
+        paths[input[["createdNode"]][["instance"]]],
+        input[["createdNode"]][["path"]]
+      )
+      if(input[["createdNode"]][["type"]] == "file"){
         file.create(nodePath)
       }else{
         dir.create(nodePath)
       }
     })
 
-    observeEvent(input[["jstree_rename"]], {
+    observeEvent(input[["jsTreeRenamed"]], {
       from = file.path(
-        paths[input[["jsTreeInstance"]]],
-        paste0(input[["jstree_rename"]][["from"]], collapse = .Platform$file.sep)
+        paths[input[["jsTreeRenamed"]][["instance"]]],
+        paste0(input[["jsTreeRenamed"]][["from"]], collapse = .Platform$file.sep)
       )
       to = file.path(
-        paths[input[["jsTreeInstance"]]],
-        paste0(input[["jstree_rename"]][["to"]], collapse = .Platform$file.sep)
+        paths[input[["jsTreeRenamed"]][["instance"]]],
+        paste0(input[["jsTreeRenamed"]][["to"]], collapse = .Platform$file.sep)
       )
       if(file.exists(from) && from != to){
         file.rename(from, to)

@@ -12,6 +12,10 @@
     data[["to"]][["path"]] <- unlist(data[["to"]][["path"]])
     data
   }, force = TRUE)
+  shiny::registerInputHandler("jsTreeR.path", function(data, ...){
+    data[["path"]] <- unlist(data[["path"]])
+    data
+  }, force = TRUE)
   shiny::addResourcePath(
     "SuperTinyIcons",
     system.file("htmlwidgets", "SuperTinyIcons", package = "jsTreeR")
