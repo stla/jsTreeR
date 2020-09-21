@@ -16,7 +16,7 @@ folderGadget3 <- function(dirs, tabs = FALSE) {
   #TODO: handle 'Cut' DONE
   # options for tabs DONE
   # aceEditor for jstree2:
-  # prevent moving at root
+  # prevent moving at root DONE
 
   stopifnot(is.character(dirs))
   lapply(dirs, function(dir){
@@ -645,6 +645,6 @@ folderGadget3 <- function(dirs, tabs = FALSE) {
 
   }
 
-  runGadget(shinyApp(ui, server))
+  runGadget(shinyApp(ui, server), stopOnCancel = FALSE)
 
 }
