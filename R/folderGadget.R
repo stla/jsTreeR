@@ -179,6 +179,13 @@ folderGadget <- function(
 
   parents <- renameDuplicates(parents)
 
+  toPattern <- function(x){
+    gsub(
+      "(\\.|\\||\\(|\\)|\\[|\\]|\\{|\\}|\\^|\\$|\\*|\\+|\\?)",
+      "\\\\\\1",
+      x
+    )
+  }
   if(ndirs > 1L){
     if(anyDuplicated(folders)){
       warning(
@@ -190,8 +197,8 @@ folderGadget <- function(
       combs <- combn(folders, m = 2L)
       inclusion <- any(
         apply(combs, 2L, function(pair){
-          grepl(paste0("^", pair[1L]), pair[2L]) ||
-            grepl(paste0("^", pair[2L]), pair[1L])
+          grepl(paste0("^", toPattern(pair[1L])), pair[2L]) ||
+            grepl(paste0("^", toPattern(pair[2L])), pair[1L])
         })
       )
       if(inclusion){
