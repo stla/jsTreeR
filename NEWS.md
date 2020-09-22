@@ -1,6 +1,6 @@
-# jsTreeR 0.1.9000 ()
+# jsTreeR 1.0.0 (2020-09-22)
 
-* Better Shiny example SuperTinyIcons.
+* Better Shiny example 'SuperTinyIcons'.
 * Removed `jsonlite` dependency.
 * Allow to pass a list of options to the `contextMenu` argument.
 * The Shiny value of the tree is now updated when the user 

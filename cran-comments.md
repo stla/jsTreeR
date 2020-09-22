@@ -1,8 +1,8 @@
 ## Release summary
 
-This is a resubmission. As requested by the CRAN team, I surrounded the
-package names with single quotes in the 'Description' field and I added more 
-details in the 'Description' field. I did not change anything else.
+There is a substantial new function in this release: `folderGadget`. It is 
+possible to run it as a RStudio addin. Other changes are bugs fixes and new 
+input values in Shiny apps. The CRAN checks of the previous version are clean.
 
 ## Test environments
 
