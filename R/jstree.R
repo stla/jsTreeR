@@ -95,8 +95,10 @@ NULL
 #'   to create/rename/delete/cut/copy/paste nodes, or a list of options; see
 #'   the \href{https://www.jstree.com/api/}{jsTree API documentation} for the
 #'   possible options
-#' @param checkCallback a JavaScript function; see the example where it is used
-#'   to define restrictions on the drag-and-drop behavior
+#' @param checkCallback either \code{TRUE} to allow to perform some actions
+#'   such as creating a new node, or a JavaScript function; see the example
+#'   where this option is used to define restrictions on the drag-and-drop
+#'   behavior
 #' @param grid list of settings for the grid; see the second example, the
 #'   \link[jsTreeR:jstreeOutput]{Shiny example}, and
 #'   \href{https://github.com/deitch/jstree-grid/#options}{github.com/deitch/jstree-grid}
