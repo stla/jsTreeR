@@ -13,7 +13,7 @@ manipulate one or more folders.
 
 #### The 'folder gadget':
 
-![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_folderGadget.png)
+![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_folderGadget.gif)
 
 
 ___
