@@ -199,41 +199,44 @@ folderGadget <- function(
     trashNodes <- lapply(seq_len(ndirs), function(i){
       list(
         text = parents[i],
-        id = jstrees[i],
-        type = "folder"
+        id = paste0("trash-", jstrees[i]),
+        type = "folder",
+        state = list(opened = TRUE)
       )
     })
     grid <- list(
       columns = list(
         list(
-          width = 150,
+          maxWidth = 200,
           header = "Element",
           headerClass = "bolditalic yellow centered",
           wideValueClass = "cssclass"
         ),
         list(
-          width = 150,
+          maxWidth = 200,
           value = "location",
+          title = "location",
           header = "Location",
           wideValueClass = "cssclass",
           headerClass = "bolditalic yellow centered",
-          wideCellClass = "centered"
+          wideCellClass = "centered ellipsis"
         ),
         list(
-          width = 150,
+          width = 100,
           value = "button",
           header = "Restore?",
           wideValueClass = "cssclass",
           headerClass = "bolditalic yellow centered",
           wideCellClass = "centered"
         )
-      ),
-      width = 500
+      )
+#      width = 500
     )
     gridStyle <- HTML(
       ".bolditalic {font-weight: bold; font-style: italic; font-size: large;}",
       ".yellow {background-color: yellow !important;}",
-      ".centered {text-align: center; font-family: cursive;}"
+      ".centered {text-align: center; font-family: cursive;}",
+      ".ellipsis {text-overflow: ellipsis;}"
     )
     restoreButtonStyle <- HTML(
       ".btn-restore {padding: 0 10px;}"
@@ -284,9 +287,11 @@ folderGadget <- function(
       "  var node = {",
       "    text: nodeAsJSON.text,",
       "    type: nodeAsJSON.type,",
-      "    data: {location: path.join(sep), button: btn}",
+      "    data: {location: path.join(sep), button: btn},",
+      "    a_attr: {title: nodeAsJSON.text},",
+      "    li_attr: {style: 'text-overflow: ellipsis;'}", # no effect
       "  };",
-      "  trashTree.create_node(treeId, node);",
+      "  trashTree.create_node('trash-' + treeId, node);",
       "}"
     )
   }
@@ -928,7 +933,7 @@ folderGadget <- function(
               dragAndDrop = FALSE,
               checkboxes = FALSE,
               multiple = FALSE,
-              theme = "proton",
+              theme = "default",
               contextMenu = FALSE,
               checkCallback = TRUE,
               sort = FALSE,
@@ -936,6 +941,7 @@ folderGadget <- function(
               grid = grid
             )
           })
+          outputOptions(output, "trash", suspendWhenHidden = FALSE)
         }
       })
     }
