@@ -1,3 +1,8 @@
+# jsTreeR 1.1.0 (2020-)
+
+* Removed an unwanted `print` statement in `folderGadget`.
+
+
 # jsTreeR 1.0.0 (2020-09-22)
 
 * Better Shiny example 'SuperTinyIcons'.

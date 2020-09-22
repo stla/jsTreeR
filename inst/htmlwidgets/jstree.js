@@ -1,3 +1,17 @@
+function extractKeysWithChildren2(list) {
+  return {
+    text: list.text,
+    id: list.id,
+    children: list.children.map(extractKeysWithChildren2)
+  };
+}
+
+function getNodesWithChildren2(json) {
+  return json.map(extractKeysWithChildren2);
+}
+
+////////////////////////////////////////////////////////////
+
 function extractKeysWithChildren(list) {
   return {
     text: list.text,

@@ -7,6 +7,8 @@
 #' @param recursive,all.files options passed to \code{\link{list.files}};
 #'   even if \code{all.files = TRUE}, \code{'.git'} and \code{'.Rproj.user'}
 #'   folders are always discarded
+#' @param trash logical, whether to add a trash to the gadget, allowing to
+#'   restore the files or folders you delete
 #'
 #' @note You can run the gadget for the current directory from the Addins menu
 #'   within RStudio ('Explore current folder').
@@ -20,7 +22,7 @@
 #' @importFrom utils combn head tail
 #' @export
 folderGadget <- function(
-  dirs = ".", tabs = FALSE, recursive = TRUE, all.files = FALSE
+  dirs = ".", tabs = FALSE, recursive = TRUE, all.files = FALSE, trash = FALSE
 ) {
 
   stopifnot(is.character(dirs))
@@ -191,6 +193,56 @@ folderGadget <- function(
 
   parents <- renameDuplicates(parents)
 
+  if(trash){
+    trashNodes <- lapply(seq_len(ndirs), function(i){
+      list(
+        text = parents[i],
+        id = jstrees[i],
+        type = "folder"
+      )
+    })
+    restoreButtonStyle <- HTML(
+      ".btn-restore {padding: 0 10px;}"
+    )
+    restoreButtonOnClick <- HTML(
+      "function getChildByText(parent, text) {",
+      "  var texts = parent.children.map(function(child) {",
+      "    return child.text;",
+      "  });",
+      "  var index = texts.indexOf(text);",
+      "  if(index > -1) {",
+      "    return parent.children[index];",
+      "  } else {",
+      "    return null;",
+      "  }",
+      "}",
+      "function restoreNode(tree, path, nodeAsJSON) {",
+      "  path = path.slice();",
+      "  path.shift();", #  path.pop();
+      "  var parent = getNodesWithChildren2(tree.get_json())[0];",
+      "  var head = path.shift();",
+      "  var child = getChildByText(parent, head);",
+      "  while(child !== null && path.length > 0) {",
+      "    parent = child;",
+      "    head = path.shift();",
+      "    child = getChildByText(parent, head);",
+      "  }",
+      "  path = [head].concat(path);",
+      "  var id = parent.id;",
+      "  for(var i = 0; i < path.length - 1; i++) {",
+      "    id = tree.create_node(id, {text: path[i], type: 'folder'});",
+      "  }",
+      "  tree.create_node(id, nodeAsJSON);",
+      "}",
+      "function restore(tree, path, type, nodeAsJSON) {", # type is file or folder
+      "  restoreNode(tree, path, nodeAsJSON);",
+      "  Shiny.setInputValue('restore', {",
+      "    instance: tree.element.attr('id'), path: path.join(sep), type: type",
+      "  });",
+      "}"
+    )
+  }
+
   toPattern <- function(x){
     gsub(
       "(\\.|\\||\\(|\\)|\\[|\\]|\\{|\\}|\\^|\\$|\\*|\\+|\\?)",
@@ -297,6 +349,12 @@ folderGadget <- function(
           )
         )
       ),
+      if(trash){
+        tagList(
+          tags$style(restoreButtonStyle),
+          tags$script(restoreButtonOnClick)
+        )
+      },
       tags$script(
         HTML(
           "var copiedNode = null;",
@@ -695,7 +753,6 @@ folderGadget <- function(
     })
 
     observeEvent(input[["createdNode"]], {
-      print(input[["createdNode"]])
       nodePath <- file.path(
         paths[input[["createdNode"]][["instance"]]],
         input[["createdNode"]][["path"]]
