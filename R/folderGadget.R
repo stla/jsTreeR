@@ -203,6 +203,38 @@ folderGadget <- function(
         type = "folder"
       )
     })
+    grid <- list(
+      columns = list(
+        list(
+          width = 150,
+          header = "Element",
+          headerClass = "bolditalic yellow centered",
+          wideValueClass = "cssclass"
+        ),
+        list(
+          width = 150,
+          value = "location",
+          header = "Location",
+          wideValueClass = "cssclass",
+          headerClass = "bolditalic yellow centered",
+          wideCellClass = "centered"
+        ),
+        list(
+          width = 150,
+          value = "button",
+          header = "Restore?",
+          wideValueClass = "cssclass",
+          headerClass = "bolditalic yellow centered",
+          wideCellClass = "centered"
+        )
+      ),
+      width = 500
+    )
+    gridStyle <- HTML(
+      ".bolditalic {font-weight: bold; font-style: italic; font-size: large;}",
+      ".yellow {background-color: yellow !important;}",
+      ".centered {text-align: center; font-family: cursive;}"
+    )
     restoreButtonStyle <- HTML(
       ".btn-restore {padding: 0 10px;}"
     )
@@ -362,6 +394,7 @@ folderGadget <- function(
       if(trash){
         tagList(
           tags$script(HTML("var Trash = true;")),
+          tags$style(gridStyle),
           tags$style(restoreButtonStyle),
           tags$script(restoreButtonOnClick),
           tags$script(addRestoreButton)
@@ -891,7 +924,8 @@ folderGadget <- function(
               contextMenu = FALSE,
               checkCallback = FALSE,
               sort = FALSE,
-              search = TRUE
+              search = FALSE,
+              grid = grid
             )
           })
         }
