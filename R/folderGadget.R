@@ -207,20 +207,20 @@ folderGadget <- function(
     grid <- list(
       columns = list(
         list(
-          maxWidth = 200,
+          minWidth = 200,
           header = "Element",
           headerClass = "bolditalic yellow centered",
           wideValueClass = "cssclass"
         ),
-        list(
-          maxWidth = 200,
-          value = "location",
-          title = "location",
-          header = "Location",
-          wideValueClass = "cssclass",
-          headerClass = "bolditalic yellow centered",
-          wideCellClass = "centered ellipsis"
-        ),
+        # list(
+        #   maxWidth = 200,
+        #   value = "location",
+        #   title = "location",
+        #   header = "Location",
+        #   wideValueClass = "cssclass",
+        #   headerClass = "bolditalic yellow centered",
+        #   wideCellClass = "centered ellipsis"
+        # ),
         list(
           width = 100,
           value = "button",
@@ -287,9 +287,11 @@ folderGadget <- function(
       "  var node = {",
       "    text: nodeAsJSON.text,",
       "    type: nodeAsJSON.type,",
-      "    data: {location: path.join(sep), button: btn},",
-      "    a_attr: {title: nodeAsJSON.text},",
-      "    li_attr: {style: 'text-overflow: ellipsis;'}", # no effect
+      # "    data: {location: path.join(sep), button: btn},",
+      # "    a_attr: {title: nodeAsJSON.text},",
+      # "    li_attr: {style: 'text-overflow: ellipsis;'}", # no effect
+      "    data: {button: btn},",
+      "    li_attr: {title: path.join(sep)}",
       "  };",
       "  trashTree.create_node('trash-' + treeId, node);",
       "}"
