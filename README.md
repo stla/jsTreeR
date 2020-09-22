@@ -11,6 +11,11 @@ manipulate one or more folders.
 
 ![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_grid.png)
 
+#### The 'folder gadget':
+
+![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_folderGadget.png)
+
+
 ___
 
 # Copies of license agreements

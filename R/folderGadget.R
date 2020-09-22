@@ -732,7 +732,7 @@ folderGadget <- function(
         paste0(copied[["to"]][["path"]], collapse = .Platform$file.sep)
       )
       if(from != to){
-        if(input[["operation"]] == "copy"){
+        if(!is.null(input[["operation"]]) && input[["operation"]] == "copy"){
           file.copy(from, to)
         }else{
           file.rename(from, to)
