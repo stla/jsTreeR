@@ -8,6 +8,9 @@
 #'   even if \code{all.files = TRUE}, \code{'.git'} and \code{'.Rproj.user'}
 #'   folders are always discarded
 #'
+#' @note You can run the gadget for the current directory from the Addins menu
+#'   within RStudio ('Explore current folder').
+#'
 #' @import shiny miniUI
 #' @importFrom rstudioapi getThemeInfo navigateToFile
 #' @importFrom tools file_ext

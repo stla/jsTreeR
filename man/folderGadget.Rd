@@ -19,3 +19,7 @@ folders are always discarded}
 \description{
 Shiny gadget allowing to manipulate one or more folders.
 }
+\note{
+You can run the gadget for the current directory from the Addins menu
+  within RStudio ('Explore current folder').
+}
