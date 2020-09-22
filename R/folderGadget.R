@@ -277,10 +277,16 @@ folderGadget <- function(
       "}"
     )
     addRestoreButton <- HTML(
-      "function addRestoreButton(treeId, path, nodeAsJson) {",
-      "  var attrs = `data-instance='${treeId}' data-path='${JSON.stringify(path)}' data-node='${JSON.stringify(nodeAsJson)}'`;",
+      "function addRestoreButton(treeId, path, nodeAsJSON) {",
+      "  var attrs = `data-instance='${treeId}' data-path='${JSON.stringify(path)}' data-node='${JSON.stringify(nodeAsJSON)}'`;",
       "  var btn = `<button class='btn btn-sm btn-restore' ${attrs}>restore</button>`;",
-      "  $('body').prepend($(btn));",
+      "  var trashTree = $('#trash').jstree(true);",
+      "  var node = {",
+      "    text: nodeAsJSON.text,",
+      "    type: nodeAsJSON.type,",
+      "    data: {location: path.join(sep), button: btn}",
+      "  };",
+      "  trashTree.create_node(treeId, node);",
       "}"
     )
   }
@@ -516,7 +522,9 @@ folderGadget <- function(
           "          addRestoreButton(",
           "            tree.element.attr('id'),",
           "            tree.get_path(node),",
-          "            extractKeysWithChildren2(tree.get_json(node), ['text','type'])",
+          "            extractKeysWithChildren2(",
+          "              tree.get_json(node), ['text','type']",
+          "            )",
           "          );",
           "        }",
           "        tree.delete_node(node);",
@@ -922,7 +930,7 @@ folderGadget <- function(
               multiple = FALSE,
               theme = "proton",
               contextMenu = FALSE,
-              checkCallback = FALSE,
+              checkCallback = TRUE,
               sort = FALSE,
               search = FALSE,
               grid = grid
