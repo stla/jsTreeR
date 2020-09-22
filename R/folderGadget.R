@@ -230,7 +230,7 @@ folderGadget <- function(
           wideCellClass = "centered"
         )
       )
-#      width = 500
+      #      width = 500
     )
     gridStyle <- HTML(
       ".bolditalic {font-weight: bold; font-style: italic; font-size: large;}",
@@ -271,7 +271,8 @@ folderGadget <- function(
       "  }",
       "  tree.create_node(id, nodeAsJSON);",
       "}",
-      "function restore(tree, path, nodeAsJSON) {", # type is file or folder
+      "function restore(treeId, path, nodeAsJSON) {",
+      "  var tree = $('#' + treeId).jstree(true);",
       "  restoreNode(tree, path, nodeAsJSON);",
       "  var type = nodeAsJSON.type === 'folder' ? 'folder' : 'file';",
       "  Shiny.setInputValue('restore', {",
@@ -282,9 +283,11 @@ folderGadget <- function(
     addRestoreButton <- HTML(
       "function addRestoreButton(treeId, path, nodeAsJSON) {",
       "  var attrs = `data-instance='${treeId}' data-path='${JSON.stringify(path)}' data-node='${JSON.stringify(nodeAsJSON)}'`;",
+      "  var onclick = 'xxx';",
       "  var btn = `<button class='btn btn-sm btn-restore' ${attrs}>restore</button>`;",
       "  var trashTree = $('#trash').jstree(true);",
       "  var node = {",
+      "    id: 'xxx',",
       "    text: nodeAsJSON.text,",
       "    type: nodeAsJSON.type,",
       # "    data: {location: path.join(sep), button: btn},",
@@ -293,7 +296,11 @@ folderGadget <- function(
       "    data: {button: btn},",
       "    li_attr: {title: path.join(sep)}",
       "  };",
-      "  trashTree.create_node('trash-' + treeId, node);",
+      "  var id = trashTree.create_node('trash-' + treeId, node);",
+      # "  $(btn).on('click', function() {",
+      # "    restore(treeId, path, nodeAsJson);",
+      # "    trashTree.delete_node(id);",
+      # "  });",
       "}"
     )
   }
@@ -836,12 +843,15 @@ folderGadget <- function(
     })
 
     observeEvent(input[["jsTreeDeleted"]], {
-      path <- file.path(
-        paths[input[["jsTreeDeleted"]][["instance"]]],
-        paste0(input[["jsTreeDeleted"]][["path"]], collapse = .Platform$file.sep)
-      )
-      if(file.exists(path)){
-        unlink(path, recursive = TRUE)
+      instance <- input[["jsTreeDeleted"]][["instance"]]
+      if(instance != "trash"){
+        path <- file.path(
+          paths[instance],
+          paste0(input[["jsTreeDeleted"]][["path"]], collapse = .Platform$file.sep)
+        )
+        if(file.exists(path)){
+          unlink(path, recursive = TRUE)
+        }
       }
     })
 
