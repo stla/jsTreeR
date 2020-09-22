@@ -29,6 +29,13 @@ function setShinyValue(instance) {
   );
 }
 
+function setShinyValueSelectedNodes(instance) {
+  Shiny.setInputValue(
+    instance.element.attr("id") + "_selected:jsTreeR.list",
+    getNodes(instance.get_selected(true))
+  );
+}
+
 var inShiny = HTMLWidgets.shinyMode;
 
 
@@ -42,12 +49,6 @@ HTMLWidgets.widget({
 
     var $el = $(el);
     var options = {};
-    var id = el.id + ":jsTreeR.list",
-      id_selected = el.id + "_selected:jsTreeR.list";
-//      id_move = el.id + "_move:jsTreeR.move",
-//      id_rename = el.id + "_rename:jsTreeR.move";
-//      id_paste = el.id + "_paste:jsTreeR.move";
-//      id_copied = el.id + "_copied:jsTreeR.copied";
 
     return {
 
@@ -114,7 +115,7 @@ HTMLWidgets.widget({
 
         if(typeof x.contextMenu !== "boolean") {
           options.contextmenu = x.contextMenu;
-        } else {
+        } else if(x.contextMenu) {
           options.contextmenu = {
             select_node: false
           };
@@ -126,8 +127,8 @@ HTMLWidgets.widget({
 
         $el.on("ready.jstree", function(e, data) {
           if(x.search) {
-            var $input =
-              $("<input type='search' id='" + el.id + "-search' placeholder='Search' />");
+            var $input = $("<input type='search' id='" + el.id
+              + "-search' placeholder='Search' />");
             $input.insertBefore($el);
             $input.on("keyup", function() {
               $el.jstree(true).search($(this).val());
@@ -135,9 +136,7 @@ HTMLWidgets.widget({
           }
           if(inShiny) {
             setShinyValue(data.instance);
-            Shiny.setInputValue(
-              id_selected, getNodes(data.instance.get_selected(true))
-            );
+            setShinyValueSelectedNodes(data.instance);
           }
         });
 
@@ -150,7 +149,8 @@ HTMLWidgets.widget({
             var node = data.node;
             var nodeText = node.text;
             var newPath = newInstance.get_path(node);
-            var oldPath = oldInstance.get_path(data.old_parent).concat(nodeText);
+            var oldPath =
+              oldInstance.get_path(data.old_parent).concat(nodeText);
             Shiny.setInputValue(
               "jsTreeMoved:jsTreeR.copied", {
                 from: {instance: oldInstanceId, path: oldPath},
@@ -163,15 +163,6 @@ HTMLWidgets.widget({
             } else {
               setShinyValue(data.instance);
             }
-            /*
-            var instance = data.instance;
-            var node = data.node;
-            var nodeText = node.text;
-            var oldPath = instance.get_path(data.old_parent).concat([nodeText]);
-            var newPath = instance.get_path(node);
-            Shiny.setInputValue( // for folderGadget; maybe temporary
-              id_move, {from: oldPath, to: newPath}
-            ); */
           }
         });
 
@@ -180,14 +171,12 @@ HTMLWidgets.widget({
 //            Shiny.setInputValue(
 //              id, getNodesWithChildren(data.instance.get_json())
 //            );
-            Shiny.setInputValue(
-              id_selected, getNodes(data.instance.get_selected(true))
-            );
+            setShinyValueSelectedNodes(data.instance);
           }
         });
 
         $el.on("rename_node.jstree", function(e, data) {
-          if(inShiny)
+          if(inShiny) {
             var instance = data.instance;
             var parentPath = instance.get_path(data.node.parent);
             var oldPath = parentPath.concat(data.old);
@@ -199,13 +188,9 @@ HTMLWidgets.widget({
                 to: newPath
               }
             );
-/*            Shiny.setInputValue(
-              id_rename, {from: oldPath, to: newPath}
-            );*/
             setShinyValue(instance);
-            Shiny.setInputValue(
-              id_selected, getNodes(instance.get_selected(true))
-            );
+            setShinyValueSelectedNodes(instance);
+          }
         });
 
         $el.on("create_node.jstree", function(e, data) {
@@ -218,31 +203,9 @@ HTMLWidgets.widget({
                 node: extractKeys(instance.get_json(data.node))
               }
             );
-/*            Shiny.setInputValue(
-              id_create, instance.get_path(data.node)
-            );*/
             setShinyValue(instance);
           }
         });
-
-/*        $el.on("paste.jstree", function(e, data) {
-          if(inShiny) {
-            var instance = data.instance;
-            Shiny.setInputValue(
-              id, getNodesWithChildren(instance.get_json())
-            );
-            if(data.mode === "copy_node") {
-              var node = data.node[0];
-              console.log("node",node);
-              var nodeText = instance.get_text(node);
-              var newPath = instance.get_path(data.parent).concat(nodeText);
-              var oldPath = instance.get_path(node);
-              Shiny.setInputValue(
-                id_paste, {from: oldPath, to: newPath}
-              );
-            }
-          }
-        });*/
 
         $el.on("copy_node.jstree", function(e, data) {
           if(inShiny) {
@@ -275,14 +238,8 @@ HTMLWidgets.widget({
           }
         });
 
-/*        $el.on("show_contextmenu.jstree", function(e, data) {
-          if(inShiny)
-            Shiny.setInputValue(
-              "jsTreeInstance", el.id
-            );
-        });*/
-
       },
+
 
       resize: function(width, height) {
 
