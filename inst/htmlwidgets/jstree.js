@@ -1,13 +1,16 @@
-function extractKeysWithChildren2(list) {
-  return {
-    text: list.text,
-    id: list.id,
-    children: list.children.map(extractKeysWithChildren2)
-  };
+function extractKeysWithChildren2(list, keys) {
+  var out = {};
+  keys.forEach(function(k) {out[k] = list[k]});
+  out.children = list.children.map(function(child) {
+    return extractKeysWithChildren2(child, keys);
+  });
+  return out;
 }
 
-function getNodesWithChildren2(json) {
-  return json.map(extractKeysWithChildren2);
+function getNodesWithChildren2(json, keys) {
+  return json.map(function(list) {
+    return extractKeysWithChildren2(list, keys);
+  });
 }
 
 ////////////////////////////////////////////////////////////

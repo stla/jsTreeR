@@ -194,6 +194,8 @@ folderGadget <- function(
   parents <- renameDuplicates(parents)
 
   if(trash){
+    parents <- c(parents, "_trash_")
+    jstrees <- c(jstrees, "trash")
     trashNodes <- lapply(seq_len(ndirs), function(i){
       list(
         text = parents[i],
@@ -219,7 +221,7 @@ folderGadget <- function(
       "function restoreNode(tree, path, nodeAsJSON) {",
       "  path = path.slice();",
       "  path.shift();", #  path.pop();
-      "  var parent = getNodesWithChildren2(tree.get_json())[0];",
+      "  var parent = getNodesWithChildren2(tree.get_json(), ['text','id'])[0];",
       "  var head = path.shift();",
       "  var child = getChildByText(parent, head);",
       "  while(child !== null && path.length > 0) {",
@@ -234,11 +236,19 @@ folderGadget <- function(
       "  }",
       "  tree.create_node(id, nodeAsJSON);",
       "}",
-      "function restore(tree, path, type, nodeAsJSON) {", # type is file or folder
+      "function restore(tree, path, nodeAsJSON) {", # type is file or folder
       "  restoreNode(tree, path, nodeAsJSON);",
+      "  var type = nodeAsJSON.type === 'folder' ? 'folder' : 'file';",
       "  Shiny.setInputValue('restore', {",
       "    instance: tree.element.attr('id'), path: path.join(sep), type: type",
       "  });",
+      "}"
+    )
+    addRestoreButton <- HTML(
+      "function addRestoreButton(treeId, path, nodeAsJson) {",
+      "  var attrs = `data-instance='${treeId}' data-path='${JSON.stringify(path)}' data-node='${JSON.stringify(nodeAsJson)}'`;",
+      "  var btn = `<button class='btn btn-sm btn-restore' ${attrs}>restore</button>`;",
+      "  $('body').prepend($(btn));",
       "}"
     )
   }
@@ -351,9 +361,13 @@ folderGadget <- function(
       ),
       if(trash){
         tagList(
+          tags$script(HTML("var Trash = true;")),
           tags$style(restoreButtonStyle),
-          tags$script(restoreButtonOnClick)
+          tags$script(restoreButtonOnClick),
+          tags$script(addRestoreButton)
         )
+      }else{
+        tags$script(HTML("var Trash = false;"))
       },
       tags$script(
         HTML(
@@ -465,6 +479,13 @@ folderGadget <- function(
           "      separator_after: true,",
           "      label: \"Remove\",",
           "      action: function(obj) {",
+          "        if(Trash) {",
+          "          addRestoreButton(",
+          "            tree.element.attr('id'),",
+          "            tree.get_path(node),",
+          "            extractKeysWithChildren2(tree.get_json(node), ['text','type'])",
+          "          );",
+          "        }",
           "        tree.delete_node(node);",
           "      }",
           "    }",
@@ -582,7 +603,7 @@ folderGadget <- function(
       )
     ),
 
-    if(tabs){
+    if(tabs || trash){
       do.call(function(...){
         miniTabstripPanel(
           ...,
@@ -591,14 +612,26 @@ folderGadget <- function(
             border = NULL
           )
         )
-      }, lapply(seq_len(ndirs), function(i){
-        miniTabPanel(
-          parents[i],
-          miniContentPanel(
-            jstreeOutput(jstrees[i])
+      }, if(tabs || ndirs != 2L){
+        lapply(seq_len(ndirs + trash), function(i){
+          miniTabPanel(
+            parents[i],
+            miniContentPanel(
+              jstreeOutput(jstrees[i])
+            )
           )
+        })
+      } else {
+        list(
+          do.call(
+            fillRow,
+            lapply(jstrees[c(1L,2L)], function(id){
+              jstreeOutput(id)
+            })
+          ),
+          jstreeOutput("trash")
         )
-      }))
+      })
     }else{
       miniContentPanel(
         miniButtonBlock(
@@ -815,24 +848,41 @@ folderGadget <- function(
     for(treeId in jstrees){
       local({
         id <- treeId
-        output[[id]] <- renderJstree({
-          jstree(
-            nodes[[id]],
-            types = types,
-            dragAndDrop = TRUE,
-            checkboxes = FALSE,
-            multiple = FALSE,
-            theme = "proton",
-            contextMenu = list(select_node = FALSE, items = js(id)),
-            checkCallback = checkCallback,
-            sort = TRUE,
-            search = list(
-              show_only_matches = TRUE,
-              case_sensitive = FALSE,
-              search_leaves_only = FALSE
+        if(id != "trash"){
+          output[[id]] <- renderJstree({
+            jstree(
+              nodes[[id]],
+              types = types,
+              dragAndDrop = TRUE,
+              checkboxes = FALSE,
+              multiple = FALSE,
+              theme = "proton",
+              contextMenu = list(select_node = FALSE, items = js(id)),
+              checkCallback = checkCallback,
+              sort = TRUE,
+              search = list(
+                show_only_matches = TRUE,
+                case_sensitive = FALSE,
+                search_leaves_only = FALSE
+              )
             )
-          )
-        })
+          })
+        }else{
+          output[["trash"]] <- renderJstree({
+            jstree(
+              trashNodes,
+              types = types,
+              dragAndDrop = FALSE,
+              checkboxes = FALSE,
+              multiple = FALSE,
+              theme = "proton",
+              contextMenu = FALSE,
+              checkCallback = FALSE,
+              sort = FALSE,
+              search = TRUE
+            )
+          })
+        }
       })
     }
 
