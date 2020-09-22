@@ -14,7 +14,7 @@
 #' @importFrom shinyAce aceEditor
 #' @importFrom stats setNames
 #' @importFrom base64enc dataURI
-#' @importFrom utils combn
+#' @importFrom utils combn head tail
 #' @export
 folderGadget <- function(
   dirs = ".", tabs = FALSE, recursive = TRUE, all.files = FALSE
