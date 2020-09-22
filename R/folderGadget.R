@@ -623,13 +623,25 @@ folderGadget <- function(
         })
       } else {
         list(
-          do.call(
-            fillRow,
-            lapply(jstrees[c(1L,2L)], function(id){
-              jstreeOutput(id)
-            })
+          miniTabPanel(
+            "folders",
+            miniContentPanel(
+              do.call(
+                fillRow,
+                lapply(jstrees[c(1L,2L)], function(id){
+                  jstreeOutput(id)
+                })
+              )
+            )
           ),
-          jstreeOutput("trash")
+          if(trash){
+            miniTabPanel(
+              "_trash_",
+              miniContentPanel(
+                jstreeOutput("trash")
+              )
+            )
+          }
         )
       })
     }else{
