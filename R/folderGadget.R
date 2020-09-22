@@ -94,8 +94,8 @@ folderGadget <- function(
         stringsAsFactors = FALSE
       )
     })
-    dat <- dfs[[1]]
-    for(i in 2:length(dfs)){
+    dat <- dfs[[1L]]
+    for(i in 2L:length(dfs)){
       dat <- merge(dat, dfs[[i]], all = TRUE)
     }
     f <- function(parent){
@@ -131,19 +131,22 @@ folderGadget <- function(
     emptyFolders <- folders[vapply(folders_fullNames, function(folder){
       length(list.files(folder, include.dirs = TRUE, recursive = FALSE)) == 0L
     }, logical(1L))]
-    lf <-
-      list.files(folder, recursive = recursive, all.files = all.files, no.. = TRUE)
+    lf <- list.files(
+      folder, recursive = recursive,
+      all.files = all.files, no.. = TRUE
+    )
     if(all.files){
       re <- sprintf(
-        "(^\\.git$|%s+\\.git$|%s?\\.git%s+|^\\.Rproj\\.user$|%s+\\.Rproj\\.user$|%s?\\.Rproj\\.user%s+)",
+        paste0(
+          "(^\\.git$|%s+\\.git$|%s?\\.git%s+|^\\.Rproj\\.user$|",
+          "%s+\\.Rproj\\.user$|%s?\\.Rproj\\.user%s+)"
+        ),
         .Platform$file.sep, .Platform$file.sep, .Platform$file.sep,
         .Platform$file.sep, .Platform$file.sep, .Platform$file.sep
       )
       lf <- lf[!grepl(re, lf)]
     }
-    folderContents <- c(
-      emptyFolders, lf
-    )
+    folderContents <- c(emptyFolders, lf)
     list(
       parent = parent,
       folderContents = folderContents,
@@ -463,8 +466,9 @@ folderGadget <- function(
           "                  tree.delete_node(node);",
           "                } else {",
           "                  if(/\\./.test(nodeText)) {",
-          "                    var splittedText = nodeText.split('.');",
-          "                    var ext = splittedText[splittedText.length - 1].toLowerCase();",
+          "                    var splitted = nodeText.split('.');",
+          "                    var ext = splitted[splitted.length - 1]",
+          "                                .toLowerCase();",
           "                    if(exts.indexOf(ext) > -1) {",
           "                      tree.set_type(node, ext);",
           "                    }",
@@ -716,10 +720,6 @@ folderGadget <- function(
 
     observeEvent(input[["jsTreeCopied"]], {
       copied <- input[["jsTreeCopied"]]
-      print("copied:")
-      print(copied)
-      print("operation:")
-      print(input[["operation"]])
       from = file.path(
         paths[copied[["from"]][["instance"]]],
         paste0(copied[["from"]][["path"]], collapse = .Platform$file.sep)
@@ -739,8 +739,6 @@ folderGadget <- function(
 
     observeEvent(input[["jsTreeMoved"]], { # triggered when moving inside same tree
       moved <- input[["jsTreeMoved"]]
-      print("moved:")
-      print(moved)
       from = file.path(
         paths[moved[["from"]][["instance"]]],
         paste0(moved[["from"]][["path"]], collapse = .Platform$file.sep)
