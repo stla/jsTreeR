@@ -14,7 +14,7 @@
 #'   within RStudio ('Explore current folder').
 #'
 #' @import shiny miniUI
-#' @importFrom rstudioapi getThemeInfo navigateToFile
+#' @importFrom rstudioapi getThemeInfo navigateToFile sendToConsole
 #' @importFrom tools file_ext
 #' @importFrom shinyAce aceEditor
 #' @importFrom stats setNames
@@ -81,7 +81,10 @@ folderGadget <- function(
       "      items = $.extend(items, item_image(tree, node, ext));",
       "    }",
       "  } else {",
-      "    items = $.extend(item_create(tree, node), Items(tree, node, true));",
+      "    items = $.extend(",
+      "      $.extend(item_create(tree, node), Items(tree, node, true)),",
+      "      item_rerun(tree, node)",
+      "    );",
       "  }",
       "  return items;",
       "}"
@@ -448,6 +451,24 @@ folderGadget <- function(
           "function isImage(ext) {",
           "  return imageExts.indexOf(ext) > -1;",
           "}",
+          "function item_rerun(tree, node) {",
+          "  return {",
+          "    Rerun: {",
+          "      separator_before: true,",
+          "      separator_after: true,",
+          "      label: \"Explore here\",",
+          "      action: function(obj) {",
+          "        Shiny.setInputValue(",
+          "          'rerun',",
+          "          {",
+          "            instance: tree.element.attr('id'),",
+          "            path: tree.get_path(node, sep)",
+          "          }",
+          "        );",
+          "      }",
+          "    }",
+          "  };",
+          "}",
           "function item_image(tree, node, ext) {",
           "  return {",
           "    Image: {",
@@ -728,9 +749,21 @@ folderGadget <- function(
 
   TMPDIR <- tempdir()
 
-  server <- function(input, output){
+  server <- function(input, output, session){
 
     observeEvent(input[["done"]], {
+      stopApp()
+    })
+
+    observeEvent(input[["rerun"]], {
+      path <- file.path(
+        paths[input[["rerun"]][["instance"]]],
+        input[["rerun"]][["path"]]
+      )
+      code <- sprintf("jsTreeR::folderGadget('%s', trash = %s)", path, trash)
+      session$onSessionEnded(function(){
+        sendToConsole(code)
+      })
       stopApp()
     })
 
