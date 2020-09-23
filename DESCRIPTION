@@ -26,6 +26,7 @@ Imports:
   tools,
   stats,
   base64enc,
-  utils
+  utils,
+  R.utils
 Suggests: jsonlite
 RoxygenNote: 7.1.1

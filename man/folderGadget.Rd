@@ -4,7 +4,13 @@
 \alias{folderGadget}
 \title{Folder gadget}
 \usage{
-folderGadget(dirs = ".", tabs = FALSE, recursive = TRUE, all.files = FALSE)
+folderGadget(
+  dirs = ".",
+  tabs = FALSE,
+  recursive = TRUE,
+  all.files = FALSE,
+  trash = FALSE
+)
 }
 \arguments{
 \item{dirs}{character vector of paths to some folders}
@@ -15,6 +21,9 @@ effective only when there are two folders in the \code{dirs} argument}
 \item{recursive, all.files}{options passed to \code{\link{list.files}};
 even if \code{all.files = TRUE}, \code{'.git'} and \code{'.Rproj.user'}
 folders are always discarded}
+
+\item{trash}{logical, whether to add a trash to the gadget, allowing to
+restore the files or folders you delete}
 }
 \description{
 Shiny gadget allowing to manipulate one or more folders.

@@ -20,6 +20,7 @@
 #' @importFrom stats setNames
 #' @importFrom base64enc dataURI
 #' @importFrom utils combn head tail
+#' @importFrom R.utils copyDirectory
 #' @export
 folderGadget <- function(
   dirs = ".", tabs = FALSE, recursive = TRUE, all.files = FALSE, trash = FALSE
@@ -278,7 +279,7 @@ folderGadget <- function(
       "  trashTree.delete_node(id);",
       "  var type = nodeAsJSON.type === 'folder' ? 'folder' : 'file';",
       "  Shiny.setInputValue('restore', {",
-      "    instance: tree.element.attr('id'), path: path.join(sep), type: type",
+      "    instance: treeId, path: path.join(sep), type: type",
       "  });",
       "}"
     )
@@ -728,6 +729,7 @@ folderGadget <- function(
 
   )
 
+  TMPDIR <- tempdir()
 
   server <- function(input, output){
 
@@ -852,15 +854,43 @@ folderGadget <- function(
 
     observeEvent(input[["jsTreeDeleted"]], {
       instance <- input[["jsTreeDeleted"]][["instance"]]
+      pathTail <- paste0(input[["jsTreeDeleted"]][["path"]], collapse = .Platform$file.sep)
       if(instance != "trash"){
-        path <- file.path(
-          paths[instance],
-          paste0(input[["jsTreeDeleted"]][["path"]], collapse = .Platform$file.sep)
-        )
+        path <- file.path(paths[instance], pathTail)
         if(file.exists(path)){
+          if(trash){
+            tmpPath <- file.path(TMPDIR, instance, pathTail)
+            if(!dir.exists(d <- dirname(tmpPath))){
+              dir.create(d, recursive = TRUE)
+            }
+            if(dir.exists(path)){
+              copyDirectory(path, tmpPath)
+            }else{
+              file.copy(path, tmpPath)
+            }
+          }
           unlink(path, recursive = TRUE)
         }
       }
+    })
+
+    observeEvent(input[["restore"]], {
+      path <- file.path(
+        paths[input[["restore"]][["instance"]]],
+        input[["restore"]][["path"]]
+      )
+      tmpPath <- file.path(
+        TMPDIR,
+        input[["restore"]][["instance"]],
+        input[["restore"]][["path"]]
+      )
+      if(!dir.exists(d <- dirname(path))) dir.create(d, recursive = TRUE)
+      if(dir.exists(tmpPath)){
+        copyDirectory(tmpPath, path)
+      }else{
+        file.copy(tmpPath, path)
+      }
+      unlink(tmpPath, recursive = TRUE)
     })
 
     observeEvent(input[["createdNode"]], {
