@@ -31,3 +31,9 @@ input[id$="-search"] {
   border-radius: 10px;
   background-color: tomato;
 }
+.folder {
+  color: #f9e302;
+}
+.brown {
+  color: brown;
+}

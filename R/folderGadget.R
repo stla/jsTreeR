@@ -308,9 +308,11 @@ folderGadget <- function(
 
   types <- append(list(
     file = list(
-      icon = "glyphicon glyphicon-file"
+      icon = "glyphicon glyphicon-file brown"
     ),
-    folder = list()
+    folder = list(
+      icon = "fa fa-folder folder"
+    )
   ), setNames(lapply(names(icons), function(ext){
     list(icon = icons[[ext]])
   }), names(icons)))
