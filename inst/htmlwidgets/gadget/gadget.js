@@ -284,7 +284,7 @@ function item_pdf(tree, node) {
         Shiny.setInputValue("viewPDF", {
           instance: tree.element.attr("id"),
           path: tree.get_path(node, sep)
-        });
+        }, { priority: "event" });
       }
     }
   };
@@ -317,7 +317,7 @@ function item_image(tree, node, ext) {
           instance: tree.element.attr("id"),
           path: tree.get_path(node, sep),
           ext: ext
-        });
+        }, { priority: "event" });
       }
     }
   };
