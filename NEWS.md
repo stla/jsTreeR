@@ -3,6 +3,8 @@
 * Removed an unwanted `print` statement in `folderGadget`.
 * Added `trash` option to `folderGadget`; it adds a trash to the gadget, 
 allowing to restore deleted elements.
+* Added new context menu item 'Explore here' in `folderGadget`; it closes the 
+gadget and relaunches it at the selected folder.
 
 
 # jsTreeR 1.0.0 (2020-09-22)

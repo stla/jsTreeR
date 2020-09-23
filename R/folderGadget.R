@@ -126,7 +126,9 @@ folderGadget <- function(
         )
       }
     }
-    lapply(dat$item[dat$parent == "root"], f)
+    nodes <- lapply(dat$item[dat$parent == "root"], f)
+    nodes[[1L]][["state"]] <- list(opened = TRUE)
+    nodes
   }
 
   readFolder <- function(dir, recursive, all.files){
