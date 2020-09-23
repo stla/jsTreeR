@@ -32,3 +32,31 @@ Shiny gadget allowing to manipulate one or more folders.
 You can run the gadget for the current directory from the Addins menu
   within RStudio ('Explore current folder').
 }
+\examples{
+library(jsTreeR)
+
+# copy a folder to a temporary location for the illustration:
+tmpDir <- tempdir()
+folder <- file.path(tmpDir, "htmlwidgets")
+htmlwidgets <- system.file("htmlwidgets", package = "jsTreeR")
+R.utils::copyDirectory(htmlwidgets, folder)
+# we use a copy because the actions performed in the gadget are
+# actually executed on the files system!
+
+# explore and manipulate the folder (drag-and-drop, right-click):
+if(interactive()){
+  folderGadget(folder)
+}
+
+# the 'trash' option allows to restore the elements you delete:
+if(interactive()){
+  folderGadget(folder, trash = TRUE)
+}
+
+# you can open several folders:
+folder1 <- file.path(folder, "lib")
+folder2 <- file.path(folder, "gadget")
+if(interactive()){
+  folderGadget(c(folder1, folder2))
+}
+}
