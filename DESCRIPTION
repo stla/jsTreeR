@@ -8,6 +8,7 @@ Authors@R: c(
     person("Ivan", "Bozhanov", role = c("ctb", "cph"), comment = "jsTree"),
     person("Vedran", "Opacic", role = c("ctb", "cph"), comment = "jsTree bootstrap theme"),
     person("Avi", "Deitcher", role = c("ctb", "cph"), comment = "jsTreeGrid"),
+    person("Philip", "Hutchison", role = c("ctb", "cph"), comment = "PDFObject"),
     person("Terence", "Eden", role = c("ctb", "cph"), comment = "SuperTinyIcons")
   )
 Description: Creates interactive trees that can be included in 'Shiny' apps and R markdown documents. A tree allows to represent hierarchical data (e.g. the contents of a directory). Similar to the 'shinyTree' package but offers more features and options, such as the grid extension, restricting the drag-and-drop behavior, and settings for the search functionality. It is possible to attach some data to the nodes of a tree and then to get these data in 'Shiny' when a node is selected. Also provides a 'Shiny' gadget allowing to manipulate one or more folders.

@@ -30,6 +30,7 @@ these components:
 - **jsTree**, https://github.com/vakata/jstree
 - **jstree-bootstrap-theme**, https://github.com/orangehill/jstree-bootstrap-theme
 - **jsTreeGrid**, https://github.com/deitch/jstree-grid
+- **PDFObject**, https://github.com/pipwerks/PDFObject
 - **SuperTinyIcons**, https://github.com/edent/SuperTinyIcons
 
 Full copies of the license agreements used by these components are included in
