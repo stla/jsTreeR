@@ -14,7 +14,7 @@
 #'   within RStudio ('Explore current folder').
 #'
 #' @import shiny miniUI
-#' @importFrom rstudioapi getThemeInfo navigateToFile sendToConsole
+#' @importFrom rstudioapi getThemeInfo navigateToFile sendToConsole isAvailable
 #' @importFrom tools file_ext
 #' @importFrom shinyAce aceEditor
 #' @importFrom stats setNames
@@ -62,6 +62,8 @@ folderGadget <- function(
   if(!is.element("jsTreeR", .packages())){
     attachNamespace("jsTreeR")
   }
+
+  rstudio <- isAvailable()
 
   icons <- list(
     dockerfile = "supertinyicon-docker",
@@ -324,7 +326,7 @@ folderGadget <- function(
     "}"
   )
 
-  themeInfo <- getThemeInfo()
+  theme <- ifelse(rstudio, getThemeInfo()[["editor"]], "cobalt")
 
   if(ndirs != 2L){
     tabs <- ndirs >= 3L
@@ -353,6 +355,11 @@ folderGadget <- function(
     tags$head(
       includeScript(www("pdfobject.min.js")),
       includeCSS(www("gadget.css")),
+      if(rstudio){
+        tags$script(HTML("var rstudio = true;"))
+      }else{
+        tags$script(HTML("var rstudio = false;"))
+      },
       if(trash){
         tagList(
           tags$script(HTML("var Trash = true;")),
@@ -451,9 +458,13 @@ folderGadget <- function(
         paths[input[["rerun"]][["instance"]]],
         input[["rerun"]][["path"]]
       )
-      code <- sprintf("jsTreeR::folderGadget('%s', trash = %s)", path, trash)
       session$onSessionEnded(function(){
-        sendToConsole(code)
+        if(rstudio){
+          code <- sprintf("jsTreeR::folderGadget('%s', trash = %s)", path, trash)
+          sendToConsole(code)
+        }else{
+          jsTreeR::folderGadget(path, trash = trash)
+        }
       })
       stopApp()
     })
@@ -470,7 +481,7 @@ folderGadget <- function(
       )
       showModal(modalDialog(
         tagList(
-          tags$div(id = "pdf", style = "height: 80vh"),
+          tags$div(id = "pdf", style = "height: 70vh;"),
           tags$script(script)
         ),
         easyClose = TRUE,
@@ -563,7 +574,7 @@ folderGadget <- function(
           "aceEditor",
           value = paste0(suppressWarnings(readLines(filePath)), collapse = "\n"),
           mode = ifelse(is.null(mode), "plain_text", mode),
-          theme = gsub(" ", "_", tolower(themeInfo[["editor"]])),
+          theme = gsub(" ", "_", tolower(theme)),
           tabSize = 2,
           height = "60vh"
         ),
@@ -595,7 +606,8 @@ folderGadget <- function(
 
     observeEvent(input[["jsTreeDeleted"]], {
       instance <- input[["jsTreeDeleted"]][["instance"]]
-      pathTail <- paste0(input[["jsTreeDeleted"]][["path"]], collapse = .Platform$file.sep)
+      pathTail <-
+        paste0(input[["jsTreeDeleted"]][["path"]], collapse = .Platform$file.sep)
       if(instance != "trash"){
         path <- file.path(paths[instance], pathTail)
         if(file.exists(path)){
@@ -739,7 +751,11 @@ folderGadget <- function(
 
   }
 
-  runGadget(shinyApp(ui, server), stopOnCancel = FALSE)
+  runGadget(
+    shinyApp(ui, server),
+    stopOnCancel = FALSE,
+    viewer = if(rstudio) paneViewer() else browserViewer()
+  )
 
 }
 

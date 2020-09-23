@@ -414,6 +414,7 @@ function items_file(tree, node) {
       separator_before: true,
       separator_after: false,
       label: "Open in RStudio",
+      _disabled: !rstudio,
       action: function(obj) {
         Shiny.setInputValue("openFile", {
           instance: tree.element.attr("id"),
