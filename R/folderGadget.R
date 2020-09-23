@@ -240,7 +240,7 @@ folderGadget <- function(
       ".ellipsis {text-overflow: ellipsis;}"
     )
     restoreButtonStyle <- HTML(
-      ".btn-restore {padding: 0 10px;}"
+      ".btn-restore {padding: 0 10px; margin-bottom: 3px;}"
     )
     restoreButtonOnClick <- HTML(
       "function getChildByText(parent, text) {",
@@ -257,7 +257,7 @@ folderGadget <- function(
       "function restoreNode(tree, path, nodeAsJSON) {",
       "  path = path.slice();",
       "  path.shift();", #  path.pop();
-      "  var parent = getNodesWithChildren2(tree.get_json(), ['text','id'])[0];",
+      "  var parent = getNodesWithChildren(tree.get_json(), ['text','id'])[0];",
       "  var head = path.shift();",
       "  var child = getChildByText(parent, head);",
       "  while(child !== null && path.length > 0) {",
@@ -288,12 +288,13 @@ folderGadget <- function(
       "  var id = 'node' + Math.random().toFixed(15).replace('.', '_');",
       "  var onclick = 'var d = $(this).data(); ' +",
       "    'restore(d.instance, d.path, d.node, d.id)';",
-      "  var attrs = `data-instance='${treeId}' ` +",
+      "  var attrs = \"class='btn btn-success btn-sm btn-restore' \" +",
+      "    `data-instance='${treeId}' ` +",
       "    `data-path='${JSON.stringify(path)}' ` +",
       "    `data-node='${JSON.stringify(nodeAsJSON)}' ` +",
       "    `data-id='${id}' ` +",
       "    `onclick='${onclick}'`;",
-      "  var btn = `<button class='btn btn-sm btn-restore' ${attrs}>restore</button>`;",
+      "  var btn = `<button ${attrs}>restore</button>`;",
       "  var trashTree = $('#trash').jstree(true);",
       "  var node = {",
       "    id: id,",
@@ -306,10 +307,6 @@ folderGadget <- function(
       "    li_attr: {title: path.join(sep)}",
       "  };",
       "  trashTree.create_node('trash-' + treeId, node);",
-      # "  $(btn).on('click', function() {",
-      # "    restore(treeId, path, nodeAsJson);",
-      # "    trashTree.delete_node(id);",
-      # "  });",
       "}"
     )
   }
@@ -545,7 +542,7 @@ folderGadget <- function(
           "          addTrashItem(",
           "            tree.element.attr('id'),",
           "            tree.get_path(node),",
-          "            extractKeysWithChildren2(",
+          "            extractKeysWithChildren(",
           "              tree.get_json(node), ['text','type']",
           "            )",
           "          );",
