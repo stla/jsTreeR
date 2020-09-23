@@ -320,7 +320,7 @@ folderGadget <- function(
   checkCallback <- JS(
     "function(operation, node, parent, position, more) {",
     "  if(operation === 'move_node') {",
-    "    if(parent.id === '#' || parent.type === 'file') {",
+    "    if(parent.id === '#' || parent.type !== 'folder') {",
     "      return false;",
     "    }",
     "  }",
