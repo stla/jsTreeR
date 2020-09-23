@@ -271,23 +271,31 @@ folderGadget <- function(
       "  }",
       "  tree.create_node(id, nodeAsJSON);",
       "}",
-      "function restore(treeId, path, nodeAsJSON) {",
+      "function restore(treeId, path, nodeAsJSON, id) {",
       "  var tree = $('#' + treeId).jstree(true);",
       "  restoreNode(tree, path, nodeAsJSON);",
+      "  var trashTree = $('#trash').jstree(true);",
+      "  trashTree.delete_node(id);",
       "  var type = nodeAsJSON.type === 'folder' ? 'folder' : 'file';",
       "  Shiny.setInputValue('restore', {",
       "    instance: tree.element.attr('id'), path: path.join(sep), type: type",
       "  });",
       "}"
     )
-    addRestoreButton <- HTML(
-      "function addRestoreButton(treeId, path, nodeAsJSON) {",
-      "  var attrs = `data-instance='${treeId}' data-path='${JSON.stringify(path)}' data-node='${JSON.stringify(nodeAsJSON)}'`;",
-      "  var onclick = 'xxx';",
+    addTrashItem <- HTML(
+      "function addTrashItem(treeId, path, nodeAsJSON) {",
+      "  var id = 'node' + Math.random().toFixed(15).replace('.', '_');",
+      "  var onclick = 'var d = $(this).data(); ' +",
+      "    'restore(d.instance, d.path, d.node, d.id)';",
+      "  var attrs = `data-instance='${treeId}' ` +",
+      "    `data-path='${JSON.stringify(path)}' ` +",
+      "    `data-node='${JSON.stringify(nodeAsJSON)}' ` +",
+      "    `data-id='${id}' ` +",
+      "    `onclick='${onclick}'`;",
       "  var btn = `<button class='btn btn-sm btn-restore' ${attrs}>restore</button>`;",
       "  var trashTree = $('#trash').jstree(true);",
       "  var node = {",
-      "    id: 'xxx',",
+      "    id: id,",
       "    text: nodeAsJSON.text,",
       "    type: nodeAsJSON.type,",
       # "    data: {location: path.join(sep), button: btn},",
@@ -296,7 +304,7 @@ folderGadget <- function(
       "    data: {button: btn},",
       "    li_attr: {title: path.join(sep)}",
       "  };",
-      "  var id = trashTree.create_node('trash-' + treeId, node);",
+      "  trashTree.create_node('trash-' + treeId, node);",
       # "  $(btn).on('click', function() {",
       # "    restore(treeId, path, nodeAsJson);",
       # "    trashTree.delete_node(id);",
@@ -417,7 +425,7 @@ folderGadget <- function(
           tags$style(gridStyle),
           tags$style(restoreButtonStyle),
           tags$script(restoreButtonOnClick),
-          tags$script(addRestoreButton)
+          tags$script(addTrashItem)
         )
       }else{
         tags$script(HTML("var Trash = false;"))
@@ -533,7 +541,7 @@ folderGadget <- function(
           "      label: \"Remove\",",
           "      action: function(obj) {",
           "        if(Trash) {",
-          "          addRestoreButton(",
+          "          addTrashItem(",
           "            tree.element.attr('id'),",
           "            tree.get_path(node),",
           "            extractKeysWithChildren2(",
