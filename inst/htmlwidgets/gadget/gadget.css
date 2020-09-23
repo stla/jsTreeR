@@ -1,0 +1,33 @@
+.jstree-proton {
+  font-weight: bold;
+}
+.jstree-anchor {
+  font-size: medium;
+}
+input[id$="-search"] {
+  background-color: seashell;
+}
+#shiny-modal .modal-dialog div[class^="modal-"] {
+  background-color: maroon;
+}
+.gadget-block-button {
+  background-color: transparent;
+}
+.gadget-tabs-container ul.gadget-tabs > li.active > a {
+  font-weight: bold;
+  background-color: paleturquoise;
+}
+.gadget-tabs-container ul.gadget-tabs > li:not(.active) > a {
+  background-color: rgba(175, 238, 238, 0.5);
+}
+.ace_scrollbar::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: crimson;
+}
+.ace_scrollbar::-webkit-scrollbar {
+  background-color: transparent;
+}
+.ace_scrollbar::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: tomato;
+}

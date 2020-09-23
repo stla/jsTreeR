@@ -1,0 +1,19 @@
+.bolditalic {
+  font-weight: bold;
+  font-style: italic;
+  font-size: large;
+}
+.yellow {
+  background-color: yellow !important;
+}
+.centered {
+  text-align: center;
+  font-family: cursive;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+}
+.btn-restore {
+  padding: 0 10px;
+  margin-bottom: 3px;
+}

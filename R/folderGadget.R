@@ -50,6 +50,7 @@ folderGadget <- function(
     md = "supertinyicon-markdown",
     markdown = "supertinyicon-markdown",
     rmd = "supertinyicon-markdown",
+    pdf = "supertinyicon-pdf",
     rs = "supertinyicon-rust",
     ru = "supertinyicon-ruby",
     svg = "supertinyicon-svg",
@@ -79,6 +80,8 @@ folderGadget <- function(
       "    var ext = fileExtension(node.text);",
       "    if(isImage(ext)) {",
       "      items = $.extend(items, item_image(tree, node, ext));",
+      "    } else if(ext === 'pdf') {",
+      "      items = $.extend(items, item_pdf(tree, node));",
       "    }",
       "  } else {",
       "    items = $.extend(",
@@ -200,7 +203,7 @@ folderGadget <- function(
   parents <- renameDuplicates(parents)
 
   if(trash){
-    parents <- c(parents, "_trash_")
+    parents <- c(parents, "_TRASH_")
     jstrees <- c(jstrees, "trash")
     trashNodes <- lapply(seq_len(ndirs), function(i){
       list(
@@ -237,82 +240,6 @@ folderGadget <- function(
         )
       )
       #      width = 500
-    )
-    gridStyle <- HTML(
-      ".bolditalic {font-weight: bold; font-style: italic; font-size: large;}",
-      ".yellow {background-color: yellow !important;}",
-      ".centered {text-align: center; font-family: cursive;}",
-      ".ellipsis {text-overflow: ellipsis;}"
-    )
-    restoreButtonStyle <- HTML(
-      ".btn-restore {padding: 0 10px; margin-bottom: 3px;}"
-    )
-    restoreButtonOnClick <- HTML(
-      "function getChildByText(parent, text) {",
-      "  var texts = parent.children.map(function(child) {",
-      "    return child.text;",
-      "  });",
-      "  var index = texts.indexOf(text);",
-      "  if(index > -1) {",
-      "    return parent.children[index];",
-      "  } else {",
-      "    return null;",
-      "  }",
-      "}",
-      "function restoreNode(tree, path, nodeAsJSON) {",
-      "  path = path.slice();",
-      "  path.shift();", #  path.pop();
-      "  var parent = getNodesWithChildren(tree.get_json(), ['text','id'])[0];",
-      "  var head = path.shift();",
-      "  var child = getChildByText(parent, head);",
-      "  while(child !== null && path.length > 0) {",
-      "    parent = child;",
-      "    head = path.shift();",
-      "    child = getChildByText(parent, head);",
-      "  }",
-      "  path = [head].concat(path);",
-      "  var id = parent.id;",
-      "  for(var i = 0; i < path.length - 1; i++) {",
-      "    id = tree.create_node(id, {text: path[i], type: 'folder'});",
-      "  }",
-      "  tree.create_node(id, nodeAsJSON);",
-      "}",
-      "function restore(treeId, path, nodeAsJSON, id) {",
-      "  var tree = $('#' + treeId).jstree(true);",
-      "  restoreNode(tree, path, nodeAsJSON);",
-      "  var trashTree = $('#trash').jstree(true);",
-      "  trashTree.delete_node(id);",
-      "  var type = nodeAsJSON.type === 'folder' ? 'folder' : 'file';",
-      "  Shiny.setInputValue('restore', {",
-      "    instance: treeId, path: path.join(sep), type: type",
-      "  });",
-      "}"
-    )
-    addTrashItem <- HTML(
-      "function addTrashItem(treeId, path, nodeAsJSON) {",
-      "  var id = 'node' + Math.random().toFixed(15).replace('.', '_');",
-      "  var onclick = 'var d = $(this).data(); ' +",
-      "    'restore(d.instance, d.path, d.node, d.id)';",
-      "  var attrs = \"class='btn btn-success btn-sm btn-restore' \" +",
-      "    `data-instance='${treeId}' ` +",
-      "    `data-path='${JSON.stringify(path)}' ` +",
-      "    `data-node='${JSON.stringify(nodeAsJSON)}' ` +",
-      "    `data-id='${id}' ` +",
-      "    `onclick='${onclick}'`;",
-      "  var btn = `<button ${attrs}>restore</button>`;",
-      "  var trashTree = $('#trash').jstree(true);",
-      "  var node = {",
-      "    id: id,",
-      "    text: nodeAsJSON.text,",
-      "    type: nodeAsJSON.type,",
-      # "    data: {location: path.join(sep), button: btn},",
-      # "    a_attr: {title: nodeAsJSON.text},",
-      # "    li_attr: {style: 'text-overflow: ellipsis;'}", # no effect
-      "    data: {button: btn},",
-      "    li_attr: {title: path.join(sep)}",
-      "  };",
-      "  trashTree.create_node('trash-' + treeId, node);",
-      "}"
     )
   }
 
@@ -388,303 +315,35 @@ folderGadget <- function(
       webp = "image/webp"
     )
 
+  www <- function(file){
+    system.file("htmlwidgets", "gadget", file, package = "jsTreeR")
+  }
+
   ui <- miniPage(
 
     tags$head(
-      tags$style(
-        HTML(
-          c(
-            ".jstree-proton {font-weight: bold;}",
-            ".jstree-anchor {font-size: medium;}",
-            "input[id$='-search'] {background-color: seashell;}",
-            "#shiny-modal .modal-dialog div[class^='modal-'] {",
-            "  background-color: maroon;",
-            "}",
-            ".gadget-block-button {background-color: transparent;}",
-            ".gadget-tabs-container ul.gadget-tabs>li.active>a {",
-            "  font-weight: bold;",
-            "  background-color: paleturquoise;",
-            "}",
-            ".gadget-tabs-container ul.gadget-tabs>li:not(.active)>a {",
-            "  background-color: rgba(175,238,238,0.5);",
-            "}",
-            ".ace_scrollbar::-webkit-scrollbar-track {",
-            "  border-radius: 10px;",
-            "  background-color: crimson;",
-            "}",
-            ".ace_scrollbar::-webkit-scrollbar {",
-            "  background-color: transparent;",
-            "}",
-            ".ace_scrollbar::-webkit-scrollbar-thumb {",
-            "  border-radius: 10px;",
-            "  background-color: tomato;",
-            "}"
-          )
-        )
-      ),
+      includeScript(www("pdfobject.min.js")),
+      includeCSS(www("gadget.css")),
       if(trash){
         tagList(
           tags$script(HTML("var Trash = true;")),
-          tags$style(gridStyle),
-          tags$style(restoreButtonStyle),
-          tags$script(restoreButtonOnClick),
-          tags$script(addTrashItem)
+          includeCSS(www("trash.css")),
+          includeScript(www("trash.js"))
         )
       }else{
         tags$script(HTML("var Trash = false;"))
       },
       tags$script(
         HTML(
-          "var copiedNode = null;",
           sprintf("var exts = [%s];", toString(paste0("'", names(icons), "'"))),
           sprintf("var sep = \"%s\";", .Platform$file.sep),
           sprintf(
             "var imageExts = [%s];",
             toString(paste0("'", names(imageMIME), "'"))
-          ),
-          "function fileExtension(fileName) {",
-          "  if(/\\./.test(fileName)) {",
-          "    var splitted = fileName.split('.');",
-          "    return splitted[splitted.length - 1].toLowerCase();",
-          "  } else {",
-          "    return null;",
-          "  }",
-          "}",
-          "function isImage(ext) {",
-          "  return imageExts.indexOf(ext) > -1;",
-          "}",
-          "function item_rerun(tree, node) {",
-          "  return {",
-          "    Rerun: {",
-          "      separator_before: true,",
-          "      separator_after: true,",
-          "      label: \"Explore here\",",
-          "      action: function(obj) {",
-          "        Shiny.setInputValue(",
-          "          'rerun',",
-          "          {",
-          "            instance: tree.element.attr('id'),",
-          "            path: tree.get_path(node, sep)",
-          "          }",
-          "        );",
-          "      }",
-          "    }",
-          "  };",
-          "}",
-          "function item_image(tree, node, ext) {",
-          "  return {",
-          "    Image: {",
-          "      separator_before: true,",
-          "      separator_after: true,",
-          "      label: \"View image\",",
-          "      action: function(obj) {",
-          "        Shiny.setInputValue(",
-          "          'viewImage',",
-          "          {",
-          "            instance: tree.element.attr('id'),",
-          "            path: tree.get_path(node, sep),",
-          "            ext: ext",
-          "          }",
-          "        );",
-          "      }",
-          "    }",
-          "  };",
-          "}",
-          "function Items(tree, node, paste) {",
-          "  return {",
-          "    Copy: {",
-          "      separator_before: true,",
-          "      separator_after: false,",
-          "      label: \"Copy\",",
-          "      action: function(obj) {",
-          "        tree.copy(node);",
-          "        copiedNode = {node: node, operation: 'copy'};", # use get_buffer and clear_buffer instead ?
-          "      }",
-          "    },",
-          "    Cut: {",
-          "      separator_before: false,",
-          "      separator_after: !paste,",
-          "      label: \"Cut\",",
-          "      action: function(obj) {",
-          "        tree.cut(node);",
-          "        copiedNode = {instance: tree, node: node, operation: 'cut'};",
-          "      }",
-          "    },",
-          "    Paste: paste ? {",
-          "      separator_before: false,",
-          "      separator_after: true,",
-          "      label: \"Paste\",",
-          "      _disabled: copiedNode === null,",
-          "      action: function(obj) {",
-          "        var children = tree.get_node(node).children.map(",
-          "          function(child) {return tree.get_text(child);}",
-          "        );",
-          "        if(children.indexOf(copiedNode.node.text) === -1) {",
-          #"          tree.paste(node);",
-          "          var operation = copiedNode.operation;",
-          "          tree.copy_node(copiedNode.node, node, 0, function() {",
-          "            Shiny.setInputValue('operation', operation);",
-          "            setTimeout(function() {",
-          "              Shiny.setInputValue('operation', 'rename');",
-          "            }, 0);",
-          "          });",
-          "          if(operation === 'cut') {",
-          "            copiedNode.instance.delete_node(copiedNode.node);",
-          "          }",
-          "          copiedNode = null;",
-          "        }",
-          "      }",
-          "    } : null,",
-          "    Rename: {",
-          "      separator_before: true,",
-          "      separator_after: false,",
-          "      label: \"Rename\",",
-          "      action: function(obj) {",
-          "        tree.edit(node, null, function() {",
-          "          var nodeType = tree.get_type(node);",
-          "          if(nodeType === 'file' || exts.indexOf(nodeType) > -1) {",
-          "            var nodeText = tree.get_text(node);",
-          "            var ext = fileExtension(nodeText);",
-          "            if(ext !== null) {",
-          "              if(exts.indexOf(ext) > -1) {",
-          "                tree.set_type(node, ext);",
-          "              } else {",
-          "                tree.set_type(node, 'file');",
-          "              }",
-          "            }",
-          "          }",
-          "        });",
-          "      }",
-          "    },",
-          "    Remove: {",
-          "      separator_before: false,",
-          "      separator_after: true,",
-          "      label: \"Remove\",",
-          "      action: function(obj) {",
-          "        if(Trash) {",
-          "          addTrashItem(",
-          "            tree.element.attr('id'),",
-          "            tree.get_path(node),",
-          "            extractKeysWithChildren(",
-          "              tree.get_json(node), ['text','type']",
-          "            )",
-          "          );",
-          "        }",
-          "        tree.delete_node(node);",
-          "      }",
-          "    }",
-          "  };",
-          "}",
-          "function items_file(tree, node) {",
-          "  return {",
-          "    Open: {",
-          "      separator_before: true,",
-          "      separator_after: false,",
-          "      label: \"Open in RStudio\",",
-          "      action: function(obj) {",
-          "        Shiny.setInputValue(",
-          "          'openFile',",
-          "          {",
-          "            instance: tree.element.attr('id'),",
-          "            path: tree.get_path(node, sep)",
-          "          }",
-          "        );",
-          "      }",
-          "    },",
-          "    Edit: {",
-          "      separator_before: false,",
-          "      separator_after: true,",
-          "      label: \"Edit\",",
-          "      action: function(obj) {",
-          "        Shiny.setInputValue(",
-          "          'editFile',",
-          "          {",
-          "            instance: tree.element.attr('id'),",
-          "            path: tree.get_path(node, sep)",
-          "          },",
-          "          {priority: 'event'}",
-          "        );",
-          "      }",
-          "    }",
-          "  };",
-          "}",
-          "function item_create(tree, node) {",
-          "  return {",
-          "    Create: {",
-          "      separator_before: true,",
-          "      separator_after: true,",
-          "      label: \"Create\",",
-          "      action: false,",
-          "      submenu: {",
-          "        File: {",
-          "          separator_before: true,",
-          "          separator_after: false,",
-          "          label: \"File\",",
-          "          action: function(obj) {",
-          "            var children = tree.get_node(node).children.map(",
-          "              function(child) {return tree.get_text(child);}",
-          "            );",
-          "            node = tree.create_node(node, {type: \"file\"});",
-          "            tree.edit(",
-          "              node, null, function() {",
-          "                var nodeText = tree.get_text(node);",
-          "                if(children.indexOf(nodeText) > -1) {",
-          "                  tree.delete_node(node);",
-          "                } else {",
-          "                  if(/\\./.test(nodeText)) {",
-          "                    var splitted = nodeText.split('.');",
-          "                    var ext = splitted[splitted.length - 1]",
-          "                                .toLowerCase();",
-          "                    if(exts.indexOf(ext) > -1) {",
-          "                      tree.set_type(node, ext);",
-          "                    }",
-          "                  }",
-          "                  Shiny.setInputValue(",
-          "                    'createdNode',",
-          "                    {",
-          "                      instance: tree.element.attr('id'),",
-          "                      type: 'file',",
-          "                      path: tree.get_path(node, sep)",
-          "                    }",
-          "                  );",
-          "                }",
-          "              }",
-          "            );",
-          "          }",
-          "        },",
-          "        Folder: {",
-          "          separator_before: false,",
-          "          separator_after: true,",
-          "          label: \"Folder\",",
-          "          action: function(obj) {",
-          "            var children = tree.get_node(node).children.map(",
-          "              function(child) {return tree.get_text(child);}",
-          "            );",
-          "            node = tree.create_node(node, {type: \"folder\"});",
-          "            tree.edit(",
-          "              node, null, function() {",
-          "                if(children.indexOf(tree.get_text(node)) > -1) {",
-          "                  tree.delete_node(node);",
-          "                } else {",
-          "                  Shiny.setInputValue(",
-          "                    'createdNode',",
-          "                    {",
-          "                      instance: tree.element.attr('id'),",
-          "                      type: 'folder',",
-          "                      path: tree.get_path(node, sep)",
-          "                    }",
-          "                  );",
-          "                }",
-          "              }",
-          "            );",
-          "          }",
-          "        }",
-          "      }",
-          "    }",
-          "  };",
-          "}"
+          )
         )
-      )
+      ),
+      includeScript(www("gadget.js"))
     ),
 
     if(tabs || trash){
@@ -720,7 +379,7 @@ folderGadget <- function(
           ),
           if(trash){
             miniTabPanel(
-              "_trash_",
+              "_TRASH_",
               miniContentPanel(
                 jstreeOutput("trash")
               )
@@ -749,6 +408,7 @@ folderGadget <- function(
 
   )
 
+
   TMPDIR <- tempdir()
 
   server <- function(input, output, session){
@@ -767,6 +427,26 @@ folderGadget <- function(
         sendToConsole(code)
       })
       stopApp()
+    })
+
+    observeEvent(input[["viewPDF"]], {
+      filePath <- file.path(
+        paths[input[["viewPDF"]][["instance"]]],
+        input[["viewPDF"]][["path"]]
+      )
+      b64 <- dataURI(file = filePath, mime = "application/pdf")
+      script <- HTML(
+        sprintf("var b64 = '%s';", b64),
+        "PDFObject.embed(b64, '#pdf');"
+      )
+      showModal(modalDialog(
+        tagList(
+          tags$div(id = "pdf", style = "height: 80vh"),
+          tags$script(script)
+        ),
+        easyClose = TRUE,
+        size = "l"
+      ))
     })
 
     observeEvent(input[["viewImage"]], {
