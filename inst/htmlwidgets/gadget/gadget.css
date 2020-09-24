@@ -20,6 +20,9 @@ input[id$="-search"] {
 .gadget-tabs-container ul.gadget-tabs > li:not(.active) > a {
   background-color: rgba(175, 238, 238, 0.5);
 }
+.gadget-tabs-container ul.gadget-tabs > li:not(.active) > a:hover {
+  background-color: rgba(175, 238, 238, 0.7);
+}
 .ace_scrollbar::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: crimson;
