@@ -396,7 +396,8 @@ folderGadget <- function(
       }, if(tabs || ndirs != 2L){
         lapply(seq_len(ndirs + trash), function(i){
           miniTabPanel(
-            parents[i],
+            if(ndirs > 1L) parents[i],
+            icon = if(ndirs == 1L) icon(ifelse(i == 1L, "folder-open", "trash")),
             miniContentPanel(
               jstreeOutput(jstrees[i])
             )
@@ -405,7 +406,8 @@ folderGadget <- function(
       } else {
         list(
           miniTabPanel(
-            "folders",
+            NULL,
+            icon = icon("folder-open"),
             miniContentPanel(
               do.call(
                 fillRow,
@@ -415,14 +417,15 @@ folderGadget <- function(
               )
             )
           ),
-          if(trash){
+          # if(trash){
             miniTabPanel(
-              "_TRASH_",
+              NULL,
+              icon = icon("trash"),
               miniContentPanel(
                 jstreeOutput("trash")
               )
             )
-          }
+          # }
         )
       })
     }else{
