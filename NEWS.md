@@ -1,4 +1,4 @@
-# jsTreeR 1.1.0 (2020-)
+# jsTreeR 1.1.0 (2020-10-02)
 
 * Removed an unwanted `print` statement in `folderGadget`.
 * Added `trash` option to `folderGadget`; it adds a trash to the gadget, 
