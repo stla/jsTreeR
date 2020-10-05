@@ -532,6 +532,7 @@ folderGadget <- function(
                      cpp = "c_cpp",
                      "c++" = "c_cpp",
                      dockerfile = "dockerfile",
+                     frag = "glsl",
                      h = "c_cpp",
                      hpp = "c_cpp",
                      css = "css",
