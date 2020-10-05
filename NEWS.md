@@ -1,3 +1,8 @@
+# jsTreeR 1.1.0.9000 (2020-)
+
+* Always exclude `.git` and `.Rproj.user` folders in the gadget.
+
+
 # jsTreeR 1.1.0 (2020-10-02)
 
 * Removed an unwanted `print` statement in `folderGadget`.
