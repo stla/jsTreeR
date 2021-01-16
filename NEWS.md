@@ -1,6 +1,7 @@
-# jsTreeR 1.1.0.9000 (2020-)
+# jsTreeR 1.2.0 (2021-01-16)
 
 * Always exclude `.git` and `.Rproj.user` folders in the gadget.
+* New Shiny example: filtering countries.
 
 
 # jsTreeR 1.1.0 (2020-10-02)
