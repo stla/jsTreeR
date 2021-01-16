@@ -30,6 +30,10 @@ function setShinyValue(instance) {
     instance.element.attr("id") + ":jsTreeR.list",
     getNodesWithChildren(instance.get_json(), ["text","data"])
   );
+  Shiny.setInputValue(
+    instance.element.attr("id") + "_full:jsTreeR.list",
+    instance.get_json()
+  );
 }
 
 function setShinyValueSelectedNodes(instance) {

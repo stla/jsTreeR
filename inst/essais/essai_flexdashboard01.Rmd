@@ -1,0 +1,80 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(shiny)
+library(jsTreeR)
+```
+
+```{r}
+nodes <- list(
+  list(
+    text = "RootA",
+    data = list(value = 999),
+    icon = "far fa-moon red",
+    children = list(
+      list(
+        text = "ChildA1",
+        icon = "fa fa-leaf green"
+      ),
+      list(
+        text = "ChildA2",
+        icon = "fa fa-leaf green"
+      )
+    )
+  ),
+  list(
+    text = "RootB",
+    icon = "far fa-moon red",
+    children = list(
+      list(
+        text = "ChildB1",
+        icon = "fa fa-leaf green"
+      ),
+      list(
+        text = "ChildB2",
+        icon = "fa fa-leaf green"
+      )
+    )
+  )
+)
+output[["jstree"]] <- renderJstree({
+  jstree(nodes, dragAndDrop = TRUE, checkboxes = TRUE, theme = "proton")
+})
+output[["treeSelected"]] <- renderPrint({
+  input[["jstree_selected"]]
+})
+```
+
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### Checkbox tree
+
+```{r}
+jstreeOutput("jstree")
+```
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### Selected nodes
+
+```{r}
+verbatimTextOutput("treeSelected")
+```
+
+### Chart C
+
+```{r}
+
+```
+

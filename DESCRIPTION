@@ -29,5 +29,7 @@ Imports:
   base64enc,
   utils,
   R.utils
-Suggests: jsonlite
+Suggests: jsonlite, magrittr
 RoxygenNote: 7.1.1
+Depends: 
+    R (>= 2.10)
