@@ -30,25 +30,29 @@ grid <- list(
   columns = list(
     list(
       width = 430,
-      header = "Country"
+      header = "Country",
+      headerClass = "yellow"
     ),
     list(
       width = 150,
       value = "capital",
       header = "Capital",
-      wideCellClass = "lightorange"
+      wideCellClass = "lightorange",
+      headerClass = "yellow"
     ),
     list(
       width = 110,
       value = "countrycode",
       header = "Country code",
-      wideCellClass = "centered lightgreen"
+      wideCellClass = "centered lightgreen",
+      headerClass = "yellow"
     ),
     list(
       width = 150,
       value = "population",
       header = "Population",
-      wideCellClass = "lightorange"
+      wideCellClass = "lightorange",
+      headerClass = "yellow"
     )
   ),
   width = 850
@@ -80,10 +84,14 @@ ui <- fluidPage(
         ".lightorange {background-color: #fed8b1;}",
         ".lightgreen {background-color: #98ff98;}",
         "#tree {background-color: #98ff98;}",
-        ".jstree-anchor {font-weight: bold; font-style: italic; font-size: large;}",
+        ".jstree-container-ul>li>a {",
+        "  font-weight: bold; font-style: italic; font-size: large;",
+        "}",
         ".yellow {background-color: yellow !important;}",
         ".centered {text-align: center;}",
-        ".helvetica {font-weight: 700; font-family: Helvetica; font-size: larger;}"
+        ".jstree-children>li>a {",
+        "  font-weight: 700; font-family: Helvetica; font-size: larger;",
+        "}"
       ))
     )
   ),
