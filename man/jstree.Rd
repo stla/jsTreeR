@@ -197,12 +197,12 @@ dnd <- list(
   )
 )
 
-jstree(
+\donttest{jstree(
   nodes,
   dragAndDrop = TRUE, dnd = dnd,
   types = types,
   checkCallback = checkCallback
-)
+)}
 
 
 # example illustrating the 'grid' option ####

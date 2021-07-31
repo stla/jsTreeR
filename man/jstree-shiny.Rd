@@ -25,6 +25,12 @@ string and have \code{'px'} appended}
 (with \code{quote()}); this is useful if you want to save an expression
 in a variable}
 }
+\value{
+\code{jstreeOutput} returns an output element that can be included
+  in a Shiny UI definition, and \code{renderJstree} returns a
+  \code{shiny.render.function} object that can be included in a Shiny server
+  definition.
+}
 \description{
 Output and render functions for using \code{jstree} within
   Shiny applications and interactive Rmd documents. See examples with

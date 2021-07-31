@@ -178,12 +178,12 @@ NULL
 #'   )
 #' )
 #'
-#' jstree(
+#' \donttest{jstree(
 #'   nodes,
 #'   dragAndDrop = TRUE, dnd = dnd,
 #'   types = types,
 #'   checkCallback = checkCallback
-#' )
+#' )}
 #'
 #'
 #' # example illustrating the 'grid' option ####
@@ -368,7 +368,7 @@ jstree <- function(
       bootstrapLib(theme = NULL),
       htmlDependency(
         name = "jstree",
-        version = "3.3.10",
+        version = "3.3.11",
         src = "htmlwidgets/lib/jstree/dist",
         script = "jstree.min.js",
         stylesheet = c(

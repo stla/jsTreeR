@@ -14,6 +14,11 @@
 #'   (with \code{quote()}); this is useful if you want to save an expression
 #'   in a variable
 #'
+#' @return \code{jstreeOutput} returns an output element that can be included
+#'   in a Shiny UI definition, and \code{renderJstree} returns a
+#'   \code{shiny.render.function} object that can be included in a Shiny server
+#'   definition.
+#'
 #' @name jstree-shiny
 #'
 #' @importFrom htmlwidgets shinyWidgetOutput shinyRenderWidget
