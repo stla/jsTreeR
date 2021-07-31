@@ -58,7 +58,7 @@ var inShiny = HTMLWidgets.shinyMode;
 
 HTMLWidgets.widget({
 
-  name: 'jstree',
+  name: 'jstreer',
 
   type: 'output',
 

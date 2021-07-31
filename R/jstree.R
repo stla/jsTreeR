@@ -112,6 +112,7 @@ NULL
 #' @importFrom htmltools htmlDependency
 #' @importFrom fontawesome fa_html_dependency
 #' @importFrom shiny bootstrapLib
+#' @importFrom jquerylib jquery_core
 #' @export
 #'
 #' @examples # example illustrating the 'dnd' and 'checkCallback' options ####
@@ -356,14 +357,32 @@ jstree <- function(
 
   # create widget
   htmlwidgets::createWidget(
-    name = 'jstree',
+    name = 'jstreer',
     x,
     width = NULL,
     height = NULL,
     package = 'jsTreeR',
     elementId = elementId,
     dependencies = list(
+      jquery_core(major_version = 3, minified = TRUE),
       bootstrapLib(theme = NULL),
+      htmltools::htmlDependency(
+        name = "jstree",
+        version = "3.3.10",
+        src = "htmlwidgets/lib/jstree/dist",
+        script = "jstree.min.js",
+        stylesheet = c(
+          "themes/default/style.min.css", "themes/default-dark/style.min.css"
+        ),
+        package = "jsTreeR"
+      ),
+      htmltools::htmlDependency(
+        name = "jstreegrid",
+        version = "3.10.1",
+        src = "htmlwidgets/lib/jstreegrid",
+        script = "jstreegrid.min.js",
+        package = "jsTreeR"
+      ),
       # htmltools::htmlDependency(
       #   name = "bootstrap",
       #   version = "3.4.1",
@@ -1049,7 +1068,7 @@ jstree <- function(
 #' }
 jstreeOutput <- function(outputId, width = "100%", height = "auto"){
   htmlwidgets::shinyWidgetOutput(
-    outputId, 'jstree', width, height, package = 'jsTreeR'
+    outputId, 'jstreer', width, height, package = 'jsTreeR'
   )
 }
 

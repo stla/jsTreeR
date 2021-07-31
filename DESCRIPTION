@@ -29,7 +29,8 @@ Imports:
   base64enc,
   utils,
   R.utils,
-  fontawesome
+  fontawesome,
+  jquerylib
 Suggests: jsonlite, magrittr
 RoxygenNote: 7.1.1
 Depends: 
