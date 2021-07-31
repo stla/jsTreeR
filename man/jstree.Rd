@@ -7,6 +7,7 @@
 jstree(
   nodes,
   elementId = NULL,
+  selectLeavesOnly = TRUE,
   checkboxes = FALSE,
   search = FALSE,
   searchtime = 250,
@@ -77,6 +78,9 @@ fields
 }}
 
 \item{elementId}{a HTML id for the widget (useless for common usage)}
+
+\item{selectLeavesOnly}{logical, for usage in Shiny, whether to get only
+selected leaves}
 
 \item{checkboxes}{logical, whether to enable checkboxes next to each node;
 this makes easier the selection of multiple nodes}

@@ -15,9 +15,10 @@ function getNodesWithChildren(json, keys) {
 
 function extractKeys(list) {
   return {
-    text: list.text,
-    data: list.data,
-    type: list.type
+    text:     list.text,
+    data:     list.data,
+    type:     list.type,
+    children: list.children
   };
 }
 
@@ -36,10 +37,19 @@ function setShinyValue(instance) {
   );
 }
 
-function setShinyValueSelectedNodes(instance) {
+function setShinyValueSelectedNodes(instance, leavesOnly) {
+  var nodes = getNodes(instance.get_selected(true));
+  var leaves = [];
+  for(var i=0; i < nodes.length; i++){
+    var nchildren = nodes[i].children.length;
+    delete nodes[i].children;
+    if(leavesOnly && nchildren === 0){
+      leaves.push(nodes[i]);
+    }
+  }
   Shiny.setInputValue(
     instance.element.attr("id") + "_selected:jsTreeR.list",
-    getNodes(instance.get_selected(true))
+    leavesOnly ? leaves : nodes
   );
 }
 
@@ -128,6 +138,8 @@ HTMLWidgets.widget({
           };
         }
 
+        var leavesOnly = x.selectLeavesOnly;
+
         $el.jstree(options);
 
 
@@ -143,7 +155,7 @@ HTMLWidgets.widget({
           }
           if(inShiny) {
             setShinyValue(data.instance);
-            setShinyValueSelectedNodes(data.instance);
+            setShinyValueSelectedNodes(data.instance, leavesOnly);
           }
         });
 
@@ -178,7 +190,7 @@ HTMLWidgets.widget({
 //            Shiny.setInputValue(
 //              id, getNodesWithChildren(data.instance.get_json())
 //            );
-            setShinyValueSelectedNodes(data.instance);
+            setShinyValueSelectedNodes(data.instance, leavesOnly);
           }
         });
 
@@ -196,7 +208,7 @@ HTMLWidgets.widget({
               }
             );
             setShinyValue(instance);
-            setShinyValueSelectedNodes(instance);
+            setShinyValueSelectedNodes(instance, leavesOnly);
           }
         });
 

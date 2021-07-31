@@ -71,6 +71,8 @@ NULL
 #'     }
 #'   }
 #' @param elementId a HTML id for the widget (useless for common usage)
+#' @param selectLeavesOnly logical, for usage in Shiny, whether to get only
+#'   selected leaves
 #' @param checkboxes logical, whether to enable checkboxes next to each node;
 #'   this makes easier the selection of multiple nodes
 #' @param search either a logical value, whether to enable the search
@@ -108,6 +110,8 @@ NULL
 #'
 #' @import htmlwidgets
 #' @importFrom htmltools htmlDependency
+#' @importFrom fontawesome fa_html_dependency
+#' @importFrom shiny bootstrapLib
 #' @export
 #'
 #' @examples # example illustrating the 'dnd' and 'checkCallback' options ####
@@ -316,6 +320,7 @@ NULL
 #' jstree(nodes, grid = grid)
 jstree <- function(
   nodes, elementId = NULL,
+  selectLeavesOnly = TRUE,
   checkboxes = FALSE,
   search = FALSE, searchtime = 250,
   dragAndDrop = FALSE, dnd = NULL,
@@ -332,6 +337,7 @@ jstree <- function(
   # forward options using x
   x = list(
     data = nodes,
+    selectLeavesOnly = selectLeavesOnly,
     checkbox = checkboxes,
     search = search,
     searchtime = searchtime,
@@ -357,20 +363,15 @@ jstree <- function(
     package = 'jsTreeR',
     elementId = elementId,
     dependencies = list(
-      htmltools::htmlDependency(
-        name = "bootstrap",
-        version = "3.4.1",
-        src = "www/shared/bootstrap",
-        stylesheet = "css/bootstrap.min.css",
-        package = "shiny"
-      ),
-      htmltools::htmlDependency(
-        name = "fontawesome",
-        version = "5.13.0",
-        src = "www/shared/fontawesome",
-        stylesheet = "css/all.min.css",
-        package = "shiny"
-      )
+      bootstrapLib(theme = NULL),
+      # htmltools::htmlDependency(
+      #   name = "bootstrap",
+      #   version = "3.4.1",
+      #   src = "www/shared/bootstrap",
+      #   stylesheet = "css/bootstrap.min.css",
+      #   package = "shiny"
+      # ),
+      fa_html_dependency()
     )
   )
 }
