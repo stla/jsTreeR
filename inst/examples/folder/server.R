@@ -3,7 +3,10 @@ shinyServer(
 
     output[["jstree"]] <-
       renderJstree(
-        jstree(nodes, search = TRUE, checkboxes = TRUE)
+        jstree(
+          nodes, search = TRUE, checkboxes = TRUE,
+          selectLeavesOnly = input[["leavesOnly"]]
+        )
       )
 
     output[["treeSelected_json"]] <- renderPrint({

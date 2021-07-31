@@ -8,6 +8,12 @@ shinyUI(
         )
       )
     ),
+    br(),
+    helpText(
+      "This example illustrates some 'search' options."
+    ),
+    tags$hr(),
+
     titlePanel("Super tiny icons"),
     fluidRow(
       column(

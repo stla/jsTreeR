@@ -2,7 +2,10 @@ shinyServer(
   function(input, output){
 
     output[["jstree"]] <- renderJstree({
-      jstree(nodes, dragAndDrop = TRUE, checkboxes = TRUE, theme = "proton")
+      jstree(
+        nodes, dragAndDrop = TRUE, checkboxes = TRUE, theme = "proton",
+        selectLeavesOnly = TRUE
+      )
     })
 
     output[["treeState"]] <- renderPrint({

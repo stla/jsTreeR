@@ -12,6 +12,15 @@ shinyUI(
       )
     ),
 
+    br(),
+
+    helpText(
+      "This example illustrates the drag-and-drop functionality,",
+      "the checkboxes, the proton theme, and the fontawesome icons."
+    ),
+
+    tags$hr(),
+
     titlePanel("Drag and drop the nodes"),
 
     fluidRow(
@@ -29,7 +38,7 @@ shinyUI(
       column(
         width = 4,
         tags$fieldset(
-          tags$legend("Selected nodes"),
+          tags$legend("Selected nodes (leaves only)"),
           verbatimTextOutput("treeSelected")
         )
       )

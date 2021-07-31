@@ -4,6 +4,10 @@ shinyUI(
     fluidRow(
       column(
         width = 4,
+        div(
+          style = "background-color: lemonchiffon;",
+          checkboxInput("leavesOnly", "Leaves only", TRUE)
+        ),
         jstreeOutput("jstree")
       ),
       column(

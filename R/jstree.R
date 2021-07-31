@@ -366,7 +366,7 @@ jstree <- function(
     dependencies = list(
       jquery_core(major_version = 3, minified = TRUE),
       bootstrapLib(theme = NULL),
-      htmltools::htmlDependency(
+      htmlDependency(
         name = "jstree",
         version = "3.3.10",
         src = "htmlwidgets/lib/jstree/dist",
@@ -376,7 +376,7 @@ jstree <- function(
         ),
         package = "jsTreeR"
       ),
-      htmltools::htmlDependency(
+      htmlDependency(
         name = "jstreegrid",
         version = "3.10.1",
         src = "htmlwidgets/lib/jstreegrid",
@@ -394,4 +394,3 @@ jstree <- function(
     )
   )
 }
-
