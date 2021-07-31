@@ -321,7 +321,7 @@ NULL
 #' jstree(nodes, grid = grid)
 jstree <- function(
   nodes, elementId = NULL,
-  selectLeavesOnly = TRUE,
+  selectLeavesOnly = FALSE,
   checkboxes = FALSE,
   search = FALSE, searchtime = 250,
   dragAndDrop = FALSE, dnd = NULL,

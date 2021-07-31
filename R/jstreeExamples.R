@@ -33,7 +33,13 @@ jstreeExamples <- function(){
 #'
 #' @examples
 #' if(interactive()){
+#'   jstreeExample("folder")
+#' }
+#' if(interactive()){
 #'   jstreeExample("fontawesome")
+#' }
+#' if(interactive()){
+#'   jstreeExample("SuperTinyIcons")
 #' }
 #' if(interactive()){
 #'   jstreeExample("filtering")

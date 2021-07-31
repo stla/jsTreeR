@@ -7,7 +7,7 @@
 jstree(
   nodes,
   elementId = NULL,
-  selectLeavesOnly = TRUE,
+  selectLeavesOnly = FALSE,
   checkboxes = FALSE,
   search = FALSE,
   searchtime = 250,
