@@ -336,7 +336,9 @@ jstree <- function(
   stopifnot(isBoolean(unique))
   stopifnot(isBoolean(wholerow))
   stopifnot(is.logical(contextMenu) || isNamedList(contextMenu))
-  stopifnot(isTRUE(checkCallback) || isJS(checkCallback))
+  stopifnot(
+    is.null(checkCallback) || isTRUE(checkCallback) || isJS(checkCallback)
+  )
   stopifnot(is.null(grid) || isNamedList(grid))
   stopifnot(isString(theme))
   # forward options using x
