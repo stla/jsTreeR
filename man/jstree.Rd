@@ -34,14 +34,14 @@ fields
   }
   \item{\code{data}}{
     a named list of data to attach to the node; see the
-    \link[jsTreeR:jstreeOutput]{Shiny examples}
+    \link[jsTreeR:jstreeExamples]{Shiny examples}
   }
   \item{\code{icon}}{
     space-separated HTML class names defining an icon, e.g.
     \code{"glyphicon glyphicon-flash"}; in a Shiny app you can also use
     a super tiny icon, e.g. \code{"supertinyicon-julia"}; see the
-    \link[jsTreeR:jstreeOutput]{Shiny example} showing all available such
-    icons
+    \emph{SuperTinyIcons} \link[jsTreeR:jstreeExample]{Shiny example}
+    showing all available such icons
   }
   \item{\code{type}}{
     a character string for usage with the \code{types} option; see first

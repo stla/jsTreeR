@@ -1,22 +1,4 @@
-#' Objects imported from other packages
-#' @description These objects are imported from other packages.
-#'   Follow the links to their documentation:
-#'   \code{\link[htmlwidgets:JS]{JS}},
-#'   \code{\link[htmlwidgets:saveWidget]{saveWidget}}.
-#' @importFrom htmlwidgets JS saveWidget
-#' @export JS saveWidget
-#' @name jsTreeR-imports
-#' @aliases JS saveWidget
-#' @docType import
-NULL
-
-
-`%||%` <- function(x, y){
-  if(is.null(x)) y else x
-}
-
-
-#' HTML widget displaying an interactive tree
+#' @title HTML widget displaying an interactive tree
 #' @description Create a HTML widget displaying an interactive tree.
 #'
 #' @param nodes data, a list of nodes; each node is a list with a required
@@ -28,14 +10,14 @@ NULL
 #'     }
 #'     \item{\code{data}}{
 #'       a named list of data to attach to the node; see the
-#'       \link[jsTreeR:jstreeOutput]{Shiny examples}
+#'       \link[jsTreeR:jstreeExamples]{Shiny examples}
 #'     }
 #'     \item{\code{icon}}{
 #'       space-separated HTML class names defining an icon, e.g.
 #'       \code{"glyphicon glyphicon-flash"}; in a Shiny app you can also use
 #'       a super tiny icon, e.g. \code{"supertinyicon-julia"}; see the
-#'       \link[jsTreeR:jstreeOutput]{Shiny example} showing all available such
-#'       icons
+#'       \emph{SuperTinyIcons} \link[jsTreeR:jstreeExample]{Shiny example}
+#'       showing all available such icons
 #'     }
 #'     \item{\code{type}}{
 #'       a character string for usage with the \code{types} option; see first
@@ -338,6 +320,25 @@ jstree <- function(
   grid = NULL,
   theme = "default"
 ){
+  if(!isNodesList(nodes)){
+    stop(
+      "Invalid `nodes` list.", call. = TRUE
+    )
+  }
+  stopifnot(is.null(elementId) || isString(elementId))
+  stopifnot(isBoolean(selectLeavesOnly))
+  stopifnot(isBoolean(checkboxes))
+  stopifnot(isBoolean(search) || isNamedList(search))
+  stopifnot(isBoolean(dragAndDrop))
+  stopifnot(is.null(dnd) || isNamedList(dnd))
+  stopifnot(is.logical(multiple))
+  stopifnot(is.null(types) || isNamedList(types))
+  stopifnot(isBoolean(unique))
+  stopifnot(isBoolean(wholerow))
+  stopifnot(is.logical(contextMenu) || isNamedList(contextMenu))
+  stopifnot(isTRUE(checkCallback) || isJS(checkCallback))
+  stopifnot(is.null(grid) || isNamedList(grid))
+  stopifnot(isString(theme))
   # forward options using x
   x = list(
     data = nodes,
