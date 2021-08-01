@@ -87,7 +87,8 @@ this makes easier the selection of multiple nodes}
 
 \item{search}{either a logical value, whether to enable the search
 functionality with default options, or a named list of options for the
-search functionality; see the \link[jsTreeR:jstreeOutput]{Shiny example}
+search functionality; see the \emph{SuperTinyIcons}
+\link[jsTreeR:jstreeExample]{Shiny example}
 and the \href{https://www.jstree.com/api/}{jsTree API documentation} for
 the list of possible options}
 
@@ -123,12 +124,15 @@ where this option is used to define restrictions on the drag-and-drop
 behavior}
 
 \item{grid}{list of settings for the grid; see the second example, the
-\link[jsTreeR:jstreeOutput]{Shiny example}, and
+\emph{grid} \link[jsTreeR:jstreeExample]{Shiny example}, and
 \href{https://github.com/deitch/jstree-grid/#options}{github.com/deitch/jstree-grid}
 for the list of all available options}
 
 \item{theme}{jsTree theme, one of \code{"default"},
 \code{"default-dark"}, or \code{"proton"}}
+}
+\value{
+A \code{htmlwidget} object.
 }
 \description{
 Create a HTML widget displaying an interactive tree.

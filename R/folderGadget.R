@@ -1,4 +1,4 @@
-#' Folder gadget
+#' @title Folder gadget
 #' @description Shiny gadget allowing to manipulate one or more folders.
 #'
 #' @param dirs character vector of paths to some folders
@@ -9,6 +9,8 @@
 #'   folders are always discarded
 #' @param trash logical, whether to add a trash to the gadget, allowing to
 #'   restore the files or folders you delete
+#'
+#' @return No return value, just launches a Shiny gadget.
 #'
 #' @note You can run the gadget for the current directory from the Addins menu
 #'   within RStudio ('Explore current folder').

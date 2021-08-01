@@ -25,6 +25,9 @@ folders are always discarded}
 \item{trash}{logical, whether to add a trash to the gadget, allowing to
 restore the files or folders you delete}
 }
+\value{
+No return value, just launches a Shiny gadget.
+}
 \description{
 Shiny gadget allowing to manipulate one or more folders.
 }
