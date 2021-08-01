@@ -1,4 +1,4 @@
-# jsTreeR 1.2.0.9001 (2021-07-31)
+# jsTreeR 1.3.0 (2021-08-01)
 
 * The `jstree` function has a new argument `selectLeavesOnly` for usage in 
 Shiny; if `TRUE`, only the selected leaves are retained in the selection.
