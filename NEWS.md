@@ -1,3 +1,8 @@
+# jsTreeR 1.3.0.9000
+
+Added an example of custom context menu.
+
+
 # jsTreeR 1.3.0 (2021-08-01)
 
 * The `jstree` function has a new argument `selectLeavesOnly` for usage in 
