@@ -1,4 +1,4 @@
-# jsTreeR 1.3.0.9000
+# jsTreeR 1.3.1 (2021-08-14)
 
 Added an example of custom context menu.
 
