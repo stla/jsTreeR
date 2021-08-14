@@ -354,7 +354,18 @@ customMenu <- JS("function customMenu(node)
   var items = {
     'rename' : {
       'label' : 'Rename',
-      'action' : function (obj) { tree.edit(node); }
+      'action' : function (obj) { tree.edit(node); },
+      'icon': 'glyphicon glyphicon-edit'
+    },
+    'delete' : {
+      'label' : 'Delete',
+      'action' : function (obj) { tree.delete_node(node); },
+      'icon' : 'glyphicon glyphicon-trash'
+    },
+    'create' : {
+      'label' : 'Create',
+      'action' : function (obj) { tree.create_node(node); },
+      'icon': 'glyphicon glyphicon-plus'
     }
   }
   return items;
@@ -385,8 +396,8 @@ nodes <- list(
   )
 )
 
-jstree(
+\donttest{jstree(
   nodes, checkCallback = TRUE, elementId = "mytree",
   contextMenu = list(items = customMenu)
-)
+)}
 }
