@@ -8,11 +8,13 @@ rownames(Countries) <- Countries[["countryName"]]
 dat <- split(Countries, Countries[["continentName"]])
 nodes <- lapply(names(dat), function(continent){
   list(
-    text = continent,
-    children = lapply(dat[[continent]][["countryName"]], function(cntry){
+    "text"     = continent,
+    "children" = lapply(dat[[continent]][["countryName"]], function(cntry){
+      pop <- Countries[cntry, "population"]
       list(
-        text = cntry,
-        data = list(population = Countries[cntry, "population"])
+        "text"   = cntry,
+        "data"   = list(population = pop),
+        "a_attr" = list(title = as.character(pop))
       )
     })
   )
