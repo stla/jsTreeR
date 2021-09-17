@@ -382,8 +382,8 @@ jstree <- function(
   grid = NULL,
   theme = "default"
 ){
-  if(!isNodesList(nodes) || !isCallbackNodes(nodes)
-     || !isAJAXnodes(nodes) || !isLAZYnodes(nodes)){
+  if(!isNodesList(nodes) && !isCallbackNodes(nodes)
+     && !isAJAXnodes(nodes) && !isLAZYnodes(nodes)){
     stop(
       "Invalid `nodes` argument.", call. = TRUE
     )
