@@ -52,6 +52,10 @@
 #'       \code{list(title = "I'm a tooltip", style = "background-color: pink;")}
 #'     }
 #'   }
+#'   There are some alternatives for the \code{nodes} argument;
+#'   see \href{https://github.com/vakata/jstree/wiki#populating-the-tree-using-ajax}{Populating the tree using AJAX},
+#'   \href{https://github.com/vakata/jstree/wiki#populating-the-tree-using-ajax-and-lazy-loading-nodes}{Populating the tree using AJAX and lazy loading nodes}
+#'   and \href{https://github.com/vakata/jstree/wiki#populating-the-tree-using-a-callback-function}{Populating the tree using a callback function}.
 #' @param elementId a HTML id for the widget (useless for common usage)
 #' @param selectLeavesOnly logical, for usage in Shiny, whether to get only
 #'   selected leaves
@@ -378,10 +382,20 @@ jstree <- function(
   grid = NULL,
   theme = "default"
 ){
-  if(!isNodesList(nodes)){
+  if(!isNodesList(nodes) || !isCallbackNodes(nodes)
+     || !isAJAXnodes(nodes) || !isLAZYnodes(nodes)){
     stop(
-      "Invalid `nodes` list.", call. = TRUE
+      "Invalid `nodes` argument.", call. = TRUE
     )
+  }
+  if(isNodesList(nodes)){
+    message("Populating tree using a list.")
+  }else if(isCallbackNodes(nodes)){
+    message("Populating tree using a callback function.")
+  }else if(isLAZYnodes(nodes)){
+    message("Populating tree using AJAX and lazy loading.")
+  }else if(isAJAXnodes(nodes)){
+    message("Populating tree using AJAX.")
   }
   stopifnot(is.null(elementId) || isString(elementId))
   stopifnot(isBoolean(selectLeavesOnly))

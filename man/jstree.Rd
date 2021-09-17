@@ -75,7 +75,11 @@ fields
     such as
     \code{list(title = "I'm a tooltip", style = "background-color: pink;")}
   }
-}}
+}
+There are some alternatives for the \code{nodes} argument;
+see \href{https://github.com/vakata/jstree/wiki#populating-the-tree-using-ajax}{Populating the tree using AJAX},
+\href{https://github.com/vakata/jstree/wiki#populating-the-tree-using-ajax-and-lazy-loading-nodes}{Populating the tree using AJAX and lazy loading nodes}
+and \href{https://github.com/vakata/jstree/wiki#populating-the-tree-using-a-callback-function}{Populating the tree using a callback function}.}
 
 \item{elementId}{a HTML id for the widget (useless for common usage)}
 

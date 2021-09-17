@@ -41,3 +41,16 @@ isNodesList <- function(nodes){
 isJS <- function(x){
   inherits(x, "JS_EVAL")
 }
+
+isCallbackNodes <- function(nodes){
+  isJS(nodes)
+}
+
+isAJAXnodes <- function(nodes){
+  isNamedList(nodes) && "url" %in% names(nodes)
+}
+
+isLAZYnodes <- function(nodes){
+  isNamedList(nodes) && all(c("url", "data") %in% names(nodes)) &&
+    grepl("lazy", nodes[["url"]])
+}
