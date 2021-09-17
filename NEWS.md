@@ -1,3 +1,10 @@
+# jsTreeR 1.4.0 (2021-09-17)
+
+* Allow alternative ways to populate the tree: using a callback function, 
+or using AJAX, possibly with lazy loading.
+* Upgraded 'jstree' library to version 3.3.12.
+
+
 # jsTreeR 1.3.1 (2021-08-14)
 
 Added an example of custom context menu.
