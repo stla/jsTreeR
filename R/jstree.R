@@ -446,7 +446,7 @@ jstree <- function(
       bootstrapLib(theme = NULL),
       htmlDependency(
         name = "jstree",
-        version = "3.3.11",
+        version = "3.3.12",
         src = "htmlwidgets/lib/jstree/dist",
         script = "jstree.min.js",
         stylesheet = c(

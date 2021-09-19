@@ -1,4 +1,4 @@
-# jsTreeR 1.4.0 (2021-09-17)
+# jsTreeR 1.4.0 (2021-09-19)
 
 * Allow alternative ways to populate the tree: using a callback function, 
 or using AJAX, possibly with lazy loading.
