@@ -1,7 +1,7 @@
 Package: jsTreeR
 Type: Package
 Title: A Wrapper of the JavaScript Library 'jsTree'
-Version: 1.4.0
+Version: 1.4.0.9000
 Authors@R: c(
     person("Stéphane", "Laurent", email = "laurent_step@outlook.fr", role = c("aut", "cre")),
     person("jQuery contributors", role = c("ctb", "cph"), comment = "jQuery"),
@@ -32,6 +32,6 @@ Imports:
   fontawesome,
   jquerylib
 Suggests: jsonlite, magrittr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Depends: 
     R (>= 2.10)

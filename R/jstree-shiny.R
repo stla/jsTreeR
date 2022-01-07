@@ -35,3 +35,16 @@ renderJstree <- function(expr, env = parent.frame(), quoted = FALSE) {
   if(!quoted) expr <- substitute(expr) # force quoted
   shinyRenderWidget(expr, jstreeOutput, env, quoted = TRUE)
 }
+
+
+#' @title Destroy jstree
+#' @description Destroy a `jstree` instance.
+#'
+#' @param session the Shiny \code{session} object
+#' @param id the id of the tree to be destroyed
+#'
+#' @return No value, just called to destroy a tree.
+#' @export
+jstreeDestroy <- function(session, id){
+  session$sendCustomMessage(paste0(id, "_destroy"), TRUE)
+}
