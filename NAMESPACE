@@ -3,6 +3,7 @@
 export(JS)
 export(folderGadget)
 export(jstree)
+export(jstreeDestroy)
 export(jstreeExample)
 export(jstreeExamples)
 export(jstreeOutput)
