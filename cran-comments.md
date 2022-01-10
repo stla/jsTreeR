@@ -1,6 +1,6 @@
 ## Test environments
 
-* Windows 10, R 4.1.0
+* Windows 10, R 4.1.2
 * win-builder (devel)
 
 
