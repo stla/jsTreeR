@@ -14,6 +14,7 @@ nodes <- list(
       ),
       list(
         text = "ChildA2",
+        data = list(value = 11111),
         icon = "fa fa-leaf green"
       )
     )
