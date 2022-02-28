@@ -1,5 +1,9 @@
 # __jsTreeR__
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/stla/jsTreeR/workflows/R-CMD-check/badge.svg)](https://github.com/stla/jsTreeR/actions)
+<!-- badges: end -->
+
 A wrapper of the JavaScript library [jsTree](https://www.jstree.com/). 
 This package is similar to [shinyTree](https://github.com/shinyTree/shinyTree) 
 but it allows more options. It also provides a Shiny gadget allowing to 
