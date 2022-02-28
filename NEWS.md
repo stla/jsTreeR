@@ -1,4 +1,12 @@
-# jstreeR 1.5.0 (2022-01-10)
+# jsTreeR 1.5.0.9000 (2022-02-28)
+
+New Shiny input value accessible in `input$ID_selected_paths`. This is like 
+`input$ID_selected` but it gives the paths to the selected nodes instead of 
+only the text field. This is useful when some nodes have the same string in 
+the text field. 
+
+
+# jsTreeR 1.5.0 (2022-01-10)
 
 Added the new function `jstreeDestroy` which destroys a tree. It is necessary 
 to call this function if you want to change the nodes of a tree.
