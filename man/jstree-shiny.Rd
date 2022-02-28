@@ -36,3 +36,13 @@ Output and render functions for using \code{jstree} within
   Shiny applications and interactive Rmd documents. See examples with
   \code{\link{jstreeExample}}.
 }
+\section{Shiny values}{
+
+  If the \code{outputId} is called \code{"ID"} for example, you have three
+  available Shiny \code{input} values in the server: \code{input[["ID"]]}
+  contains th full tree, \code{input[["ID_selected"]]} contains the selected
+  nodes, and \code{input[["ID_selected_paths"]]} is like
+  \code{input[["ID_selected"]]} except that it provides the paths to the
+  selected nodes instead of only the values of their text field.
+}
+
