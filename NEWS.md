@@ -1,4 +1,4 @@
-# jsTreeR 1.5.0.9000 (2022-02-28)
+# jsTreeR 1.6.0 (2022-02-28)
 
 New Shiny input value accessible in `input$ID_selected_paths`. This is like 
 `input$ID_selected` but it gives the paths to the selected nodes instead of 
