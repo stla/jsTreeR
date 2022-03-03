@@ -38,11 +38,17 @@ Output and render functions for using \code{jstree} within
 }
 \section{Shiny values}{
 
-  If the \code{outputId} is called \code{"ID"} for example, you have three
-  available Shiny \code{input} values in the server: \code{input[["ID"]]}
-  contains th full tree, \code{input[["ID_selected"]]} contains the selected
-  nodes, and \code{input[["ID_selected_paths"]]} is like
-  \code{input[["ID_selected"]]} except that it provides the paths to the
-  selected nodes instead of only the values of their text field.
+  If the \code{outputId} is called \code{"ID"} for example, you have four
+  or five available Shiny \code{input} values in the server:
+  \code{input[["ID"]]} contains the tree with the node fields \code{text}
+  and \code{data} only, \code{input[["ID_full"]]} contains the full tree,
+  \code{input[["ID_selected"]]} contains the selected nodes,
+  \code{input[["ID_selected_paths"]]} is like \code{input[["ID_selected"]]}
+  except that it provides the paths to the selected nodes instead of only
+  the values of their text field, and you have a fifth Shiny \code{input}
+  value if you have set \code{checkboxes=TRUE} in the \code{\link{jstree}}
+  command: \code{input[["ID_selected_tree"]]}, which is like
+  \code{input[["ID_selected"]]} except that it preserves the hierarchy, in
+  other words it provides the selected nodes with their parent(s).
 }
 
