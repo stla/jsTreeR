@@ -9,7 +9,7 @@ This package is similar to [shinyTree](https://github.com/shinyTree/shinyTree)
 but it allows more options. It also provides a Shiny gadget allowing to 
 manipulate one or more folders.
 
-![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_dragAndDrop.gif)
+![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_dragAndDrop-update.gif)
 
 ![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_search.gif)
 
