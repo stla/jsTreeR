@@ -1,21 +1,30 @@
 shinyServer(function(input, output, session){
 
-  output$navigator <- renderJstree({
+  shinyDirChoose(
+    input, "rootfolder", roots = roots,
+    allowDirCreate = FALSE, defaultRoot = "wd"
+  )
+
+  RootFolder <- eventReactive(input[["rootfolder"]], {
+    parseDirPath(roots, input[["rootfolder"]])
+  })
+
+  output[["choice"]] <- reactive({
+    isTruthy(RootFolder())
+  })
+  outputOptions(output, "choice", suspendWhenHidden = FALSE)
+
+  output[["navigator"]] <- renderJstree({
+    req(isTruthy(RootFolder()))
     jstree(
       nodes = list(
         list(
-          text = "C:/SL/MyPackages",
+          text = RootFolder(),
           type = "folder",
           children = FALSE,
           li_attr = list(
             class = "jstree-x"
           )
-          # children = list(
-          #   list(
-          #     text = "xxx",
-          #     type = "file"
-          #   )
-          # )
         )
       ),
       types = list(
@@ -29,23 +38,37 @@ shinyServer(function(input, output, session){
       checkCallback = TRUE,
       theme = "default",
       checkboxes = TRUE,
-      search = TRUE
-    ) %>% onRender('function(el, x){if(tree === null) tree = $(el).jstree(true);}')
+      search = TRUE,
+      selectLeavesOnly = TRUE
+    ) %>% onRender("function(el, x){tree = $(el).jstree(true);}")
   })
 
-  observeEvent(input$path, {
-    cat("path: ")
-    print(input$path)
-    lf <- list.files(input$path, full.names = TRUE)
-    if(input$path == "C:/SL/MyPackages"){
-      lf <- lf[sort(sample.int(15))]
-    }
+  observeEvent(input[["path"]], {
+    lf <- list.files(input[["path"]], full.names = TRUE)
     fi <- file.info(lf, extra_cols = FALSE)
     x <- list(
       elem = as.list(basename(lf)),
-      folder = as.list(fi$isdir)
+      folder = as.list(fi[["isdir"]])
     )
     session$sendCustomMessage("getChildren", x)
   })
+
+  Paths <- reactive({
+    vapply(
+      input[["navigator_selected_paths"]], `[[`,
+      character(1L), "path"
+    )
+  })
+
+  output[["selections"]] <- renderPrint({
+    cat(Paths(), sep = "\n")
+  })
+
+  output[["dwnld"]] <- downloadHandler(
+    filename = "myfiles.zip",
+    content = function(file){
+      zip(file, files = Paths())
+    }
+  )
 
 })
