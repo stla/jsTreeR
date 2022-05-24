@@ -1,0 +1,17 @@
+.jstree-default .jstree-x.jstree-closed > .jstree-icon.jstree-ocl,
+.jstree-default .jstree-x.jstree-leaf > .jstree-icon.jstree-ocl {
+  background-position: -100px -4px;
+}
+
+.red {
+  color: red;
+}
+.gold {
+  color: gold;
+}
+.jstree-proton {
+  font-weight: bold;
+}
+.jstree-anchor {
+  font-size: medium;
+}
