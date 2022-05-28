@@ -1,0 +1,24 @@
+.jstree-proton {
+  font-weight: bold;
+}
+
+.jstree-anchor {
+  font-size: medium;
+}
+
+.jstree-proton .jstree-x.jstree-closed > .jstree-icon.jstree-ocl,
+.jstree-proton .jstree-x.jstree-leaf > .jstree-icon.jstree-ocl {
+  background-position: -101px -5px;
+}
+
+.jstree-proton .jstree-checkbox.jstree-checkbox-disabled {
+  background-position: -37px -69px;
+}
+
+.red {
+  color: red;
+}
+
+.gold {
+  color: gold;
+}
