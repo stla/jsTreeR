@@ -28,40 +28,122 @@ treeNavigatorDep <- function(){
 
 #' @title Tree navigator (Shiny module)
 #'
-#' @description xxx
+#' @description A Shiny module allowing to render a files and folders
+#'   navigator in the server side file system.
 #'
-#' @param id xxx
-#' @param width xxx
-#' @param height xxx
-#' @param rootFolder xx
-#' @param search xx
-#' @param pattern xx
-#' @param all.files xx
+#' @param id an ID string; the one passed to \code{treeNavigatorUI} and
+#'   the one passed to \code{treeNavigatorServer} must be identical,
+#'   must not contain the \code{"-"} character, and must be a valid HTML
+#'   id attribute
+#' @param width,height arguments passed to \code{\link{jstreeOutput}}
+#' @param rootFolder path to the root folder in which you want to
+#'   navigate
+#' @param search argument passed to \code{\link{jstree}}
+#' @param pattern,all.files arguments passed to \code{\link[base]{list.files}}
+#' @param ... values passed to \code{\link[shiny]{req}}
 #'
-#' @return xxx
+#' @return The \code{treeNavigatorUI} function returns a \code{shiny.tag.list}
+#'   object to be included in a Shiny UI definition, and the function
+#'   \code{treeNavigatorServer} return a reactive value containing the
+#'   selected file paths of the tree navigator.
 #'
-#' @name treeNavigator
+#' @name treeNavigator-module
 #'
-#' @importFrom shiny NS moduleServer reactiveVal observeEvent
+#' @importFrom shiny NS moduleServer reactiveVal observeEvent req
 #' @importFrom htmltools tagList
 #' @export
 #'
 #' @examples
-#' ###
+#' library(shiny)
+#' library(jsTreeR)
+#'
+#' css <- HTML("
+#'   .flexcol {
+#'     display: flex;
+#'     flex-direction: column;
+#'     width: 100%;
+#'     margin: 0;
+#'   }
+#'   .stretch {
+#'     flex-grow: 1;
+#'     height: 1px;
+#'   }
+#'   .bottomright {
+#'     position: fixed;
+#'     bottom: 0;
+#'     right: 15px;
+#'     min-width: calc(50% - 15px);
+#'   }
+#' ")
+#'
+#' ui <- fixedPage(
+#'   tags$head(
+#'     tags$style(css)
+#'   ),
+#'   class = "flexcol",
+#'
+#'   br(),
+#'
+#'   fixedRow(
+#'     column(
+#'       width = 6,
+#'       treeNavigatorUI("explorer")
+#'     ),
+#'     column(
+#'       width = 6,
+#'       tags$div(class = "stretch"),
+#'       tags$fieldset(
+#'         class = "bottomright",
+#'         tags$legend(
+#'           tags$h1("Selections:", style = "float: left;"),
+#'           downloadButton(
+#'             "dwnld",
+#'             class = "btn-primary btn-lg",
+#'             style = "float: right;",
+#'             icon  = icon("save")
+#'           )
+#'         ),
+#'         verbatimTextOutput("selections")
+#'       )
+#'     )
+#'   )
+#' )
+#' server <- function(input, output, session){
+#'
+#'   Paths <- treeNavigatorServer(
+#'     "explorer", rootFolder = getwd(),
+#'     search = list( # (search in the visited folders only)
+#'       show_only_matches  = TRUE,
+#'       case_sensitive     = TRUE,
+#'       search_leaves_only = TRUE
+#'     )
+#'   )
+#'
+#'   output[["selections"]] <- renderPrint({
+#'     cat(Paths(), sep = "\n")
+#'   })
+#'
+#' }
+#'
+#' if(interactive()) shinyApp(ui, server)
 treeNavigatorUI <- function(id, width = "100%", height = "auto"){
+  if(grepl("-", id)){
+    stop("The `id` must not contain a minus sign.")
+  }
   outputId <- NS(id, "treeNavigator___")
   tree <- jstreeOutput(outputId, width = width, height = height)
   tagList(tree, treeNavigatorDep())
 }
 
-#' @rdname treeNavigator
+#' @rdname treeNavigator-module
 #' @export
 treeNavigatorServer <- function(
   id, rootFolder, search = TRUE,
-  pattern = NULL, all.files = TRUE
+  pattern = NULL, all.files = TRUE, ...
 ){
   moduleServer(id, function(input, output, session){
     output[["treeNavigator___"]] <- renderJstree({
+      req(...)
       jstree(
         nodes = list(
           list(

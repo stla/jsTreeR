@@ -1,6 +1,6 @@
 $(document).ready(function () {
   var Trees = {};
-  var Ids = {};
+  var Ids   = {};
 
   var Children = null;
 
@@ -11,15 +11,13 @@ $(document).ready(function () {
   $navigator = $("div[id$='treeNavigator___']");
 
   $navigator.on("ready.jstree", function (e, data) {
-    console.log("READY: ", e);
     var id = e.target.id;
     Ids[id] = id.split("-")[0];
     Trees[id] = data.instance;
     var tree = Trees[id];
     var li_id = $("#" + id + ">ul>li").attr("id");
-    console.log("li_id: ", li_id);
-    tree.disable_checkbox("j1_1"); // pb si plusieurs navigateurs
-    tree.disable_node("j1_1");
+    tree.disable_checkbox(li_id);
+    tree.disable_node(li_id);
   });
 
   $navigator.on("after_open.jstree", function (e, data) {
