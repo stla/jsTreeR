@@ -171,7 +171,10 @@ HTMLWidgets.widget({
 
         if (x.checkbox)
           options.checkbox = {
-            keep_selected_style: false
+            keep_selected_style: false,
+            cascade_to_disabled: false
+            //three_state: false,
+            //cascade: "up+undetermined"
           };
 
         if (typeof x.search !== "boolean") options.search = x.search;
