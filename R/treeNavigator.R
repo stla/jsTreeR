@@ -1,6 +1,7 @@
 list.files_and_dirs <- function(path, pattern, all.files){
   lfs <- list.files(
-    path, pattern = pattern, all.files = all.files, full.names = TRUE
+    path, pattern = pattern, all.files = all.files,
+    full.names = TRUE, no.. = TRUE
   )
   if(is.null(pattern)){
     lfs

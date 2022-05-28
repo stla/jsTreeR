@@ -1,5 +1,6 @@
 $(document).ready(function () {
-  var tree;
+  var Trees = {};
+  var Ids = {};
 
   var Children = null;
 
@@ -7,20 +8,28 @@ $(document).ready(function () {
     Children = x;
   });
 
-  $navigator = $("#navigator");
+  $navigator = $("div[id$='treeNavigator___']");
 
-  $navigator.one("ready.jstree", function (e, data) {
-    tree = data.instance;
+  $navigator.on("ready.jstree", function (e, data) {
+    console.log("READY: ", e);
+    var id = e.target.id;
+    Ids[id] = id.split("-")[0];
+    Trees[id] = data.instance;
+    var tree = Trees[id];
+    var li_id = $("#" + id + ">ul>li").attr("id");
+    console.log("li_id: ", li_id);
     tree.disable_checkbox("j1_1"); // pb si plusieurs navigateurs
     tree.disable_node("j1_1");
   });
 
   $navigator.on("after_open.jstree", function (e, data) {
+    var tree = Trees[e.target.id];
     tree.enable_checkbox(data.node);
     tree.enable_node(data.node);
   });
 
   $navigator.on("after_close.jstree", function (e, data) {
+    var tree = Trees[e.target.id];
     tree.disable_checkbox(data.node);
     tree.disable_node(data.node);
   });
@@ -31,11 +40,14 @@ $(document).ready(function () {
       alert("that should not happen...");
       return;
     }
+    var div_id = $li.closest("div").attr("id");
+    var tree = Trees[div_id];
+    var ns = Ids[div_id];
     var id = $li.attr("id");
     var node = tree.get_node(id);
     if (tree.is_leaf(node) && node.original.type === "folder") {
       var path = tree.get_path(node, "/");
-      Shiny.setInputValue("path_from_js", path);
+      Shiny.setInputValue(ns + "-path_from_js", path);
       var interval = setInterval(function () {
         if (Children !== null) {
           clearInterval(interval);
