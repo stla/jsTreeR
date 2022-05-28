@@ -56,7 +56,7 @@ ui <- fixedPage(
 server <- function(input, output, session){
 
   Paths <- treeNavigatorServer(
-    "explorer", rootFolder = getwd(),
+    "explorer", rootFolder = "C:/SL/MyPackages/prettifyAddins",
     search = list( # (search in the visited folders only)
       show_only_matches  = TRUE,
       case_sensitive     = TRUE,
@@ -67,6 +67,13 @@ server <- function(input, output, session){
   output[["selections"]] <- renderPrint({
     cat(Paths(), sep = "\n")
   })
+
+  output[["dwnld"]] <- downloadHandler(
+    filename = "myArchive.zip",
+    content = function(file){
+      zip(file, files = Paths())
+    }
+  )
 
 }
 

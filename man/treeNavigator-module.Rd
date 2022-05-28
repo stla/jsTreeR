@@ -114,6 +114,13 @@ server <- function(input, output, session){
     cat(Paths(), sep = "\n")
   })
 
+  output[["dwnld"]] <- downloadHandler(
+    filename = "myArchive.zip",
+    content = function(file){
+      zip(file, files = Paths())
+    }
+  )
+
 }
 
 if(interactive()) shinyApp(ui, server)

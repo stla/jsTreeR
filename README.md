@@ -19,6 +19,16 @@ manipulate one or more folders.
 
 ![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_folderGadget.gif)
 
+#### The 'tree navigator' Shiny module:
+
+![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_treeNavigator.gif)
+
+The 'tree navigator' has not all the features of the 'folder gadget', it only 
+allows to navigate in the server side file system and to select some files. 
+But the 'folder gadget' loads all the structure of the root folder(s), while 
+the 'tree navigator' loads the contents of a clicked folder only when this one 
+is clicked by the user. And as a Shiny module, it is possible to build around 
+it a more elaborated Shiny app.
 
 ___
 
