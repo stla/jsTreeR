@@ -6,6 +6,8 @@ render a files and folders navigator in the server side file system.
 - New Shiny input value accessible in `input$ID_selected_tree`. This is like 
 `input$ID_selected` but it also provides the ascendants of the selected nodes. 
 
+- Upgraded 'jsTree' to the development version.
+
 
 # jsTreeR 1.6.0 (2022-02-28)
 

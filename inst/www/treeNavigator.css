@@ -11,8 +11,17 @@
   background-position: -101px -5px;
 }
 
+.jstree-default .jstree-x.jstree-closed > .jstree-icon.jstree-ocl,
+.jstree-default .jstree-x.jstree-leaf > .jstree-icon.jstree-ocl {
+  background-position: -100px -4px;
+}
+
 .jstree-proton .jstree-checkbox.jstree-checkbox-disabled {
   background-position: -37px -69px;
+}
+
+.jstree-default .jstree-checkbox.jstree-checkbox-disabled {
+  background-position: -36px -68px;
 }
 
 .red {

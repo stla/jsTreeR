@@ -39,6 +39,7 @@ treeNavigatorDep <- function(){
 #' @param rootFolder path to the root folder in which you want to
 #'   navigate
 #' @param search argument passed to \code{\link{jstree}}
+#' @param theme the \strong{jsTree} theme, \code{"default"} or \code{"proton"}
 #' @param pattern,all.files arguments passed to \code{\link[base]{list.files}}
 #' @param ... values passed to \code{\link[shiny]{req}}
 #'
@@ -145,9 +146,10 @@ treeNavigatorUI <- function(id, width = "100%", height = "auto"){
 #' @rdname treeNavigator-module
 #' @export
 treeNavigatorServer <- function(
-  id, rootFolder, search = TRUE,
+  id, rootFolder, search = TRUE, theme = "proton",
   pattern = NULL, all.files = TRUE, ...
 ){
+  theme <- match.arg(theme, c("default", "proton"))
   moduleServer(id, function(input, output, session){
     output[["treeNavigator___"]] <- renderJstree({
       req(...)
@@ -171,7 +173,7 @@ treeNavigatorServer <- function(
           )
         ),
         checkCallback = TRUE,
-        theme = "proton",
+        theme = theme,
         checkboxes = TRUE,
         search = search,
         selectLeavesOnly = TRUE

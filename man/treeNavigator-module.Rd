@@ -12,6 +12,7 @@ treeNavigatorServer(
   id,
   rootFolder,
   search = TRUE,
+  theme = "proton",
   pattern = NULL,
   all.files = TRUE,
   ...
@@ -29,6 +30,8 @@ id attribute}
 navigate}
 
 \item{search}{argument passed to \code{\link{jstree}}}
+
+\item{theme}{the \strong{jsTree} theme, \code{"default"} or \code{"proton"}}
 
 \item{pattern, all.files}{arguments passed to \code{\link[base]{list.files}}}
 
