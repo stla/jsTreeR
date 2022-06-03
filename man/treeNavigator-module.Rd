@@ -12,6 +12,8 @@ treeNavigatorServer(
   id,
   rootFolder,
   search = TRUE,
+  wholerow = FALSE,
+  contextMenu = FALSE,
   theme = "proton",
   pattern = NULL,
   all.files = TRUE,
@@ -29,7 +31,7 @@ id attribute}
 \item{rootFolder}{path to the root folder in which you want to
 navigate}
 
-\item{search}{argument passed to \code{\link{jstree}}}
+\item{search, wholerow, contextMenu}{arguments passed to \code{\link{jstree}}}
 
 \item{theme}{the \strong{jsTree} theme, \code{"default"} or \code{"proton"}}
 
@@ -40,8 +42,9 @@ navigate}
 \value{
 The \code{treeNavigatorUI} function returns a \code{shiny.tag.list}
   object to be included in a Shiny UI definition, and the function
-  \code{treeNavigatorServer} return a reactive value containing the
-  selected file paths of the tree navigator.
+  \code{treeNavigatorServer}, to be included in a Shiny server definition,
+  returns a reactive value containing the selected file paths of the tree
+  navigator.
 }
 \description{
 A Shiny module allowing to render a files and folders

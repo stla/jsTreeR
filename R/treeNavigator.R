@@ -38,15 +38,16 @@ treeNavigatorDep <- function(){
 #' @param width,height arguments passed to \code{\link{jstreeOutput}}
 #' @param rootFolder path to the root folder in which you want to
 #'   navigate
-#' @param search argument passed to \code{\link{jstree}}
+#' @param search,wholerow,contextMenu arguments passed to \code{\link{jstree}}
 #' @param theme the \strong{jsTree} theme, \code{"default"} or \code{"proton"}
 #' @param pattern,all.files arguments passed to \code{\link[base]{list.files}}
 #' @param ... values passed to \code{\link[shiny]{req}}
 #'
 #' @return The \code{treeNavigatorUI} function returns a \code{shiny.tag.list}
 #'   object to be included in a Shiny UI definition, and the function
-#'   \code{treeNavigatorServer} return a reactive value containing the
-#'   selected file paths of the tree navigator.
+#'   \code{treeNavigatorServer}, to be included in a Shiny server definition,
+#'   returns a reactive value containing the selected file paths of the tree
+#'   navigator.
 #'
 #' @name treeNavigator-module
 #'
@@ -146,8 +147,8 @@ treeNavigatorUI <- function(id, width = "100%", height = "auto"){
 #' @rdname treeNavigator-module
 #' @export
 treeNavigatorServer <- function(
-  id, rootFolder, search = TRUE, theme = "proton",
-  pattern = NULL, all.files = TRUE, ...
+  id, rootFolder, search = TRUE, wholerow = FALSE, contextMenu = FALSE,
+  theme = "proton", pattern = NULL, all.files = TRUE, ...
 ){
   theme <- match.arg(theme, c("default", "proton"))
   moduleServer(id, function(input, output, session){
@@ -176,6 +177,8 @@ treeNavigatorServer <- function(
         theme = theme,
         checkboxes = TRUE,
         search = search,
+        wholerow = wholerow,
+        contextMenu = contextMenu,
         selectLeavesOnly = TRUE
       )
     })
