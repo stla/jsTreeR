@@ -40,4 +40,7 @@ if(interactive()){
 if(interactive()){
   jstreeExample("gridFiltering")
 }
+if(interactive()){
+  jstreeExample("treeNavigator")
+}
 }

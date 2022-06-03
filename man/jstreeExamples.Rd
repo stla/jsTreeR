@@ -7,7 +7,7 @@
 jstreeExamples()
 }
 \value{
-No return value, just prints a message listing the example names.
+No returned value, just prints a message listing the example names.
 }
 \description{
 List of Shiny examples.

@@ -1,7 +1,7 @@
 #' @title jsTreeR examples
 #' @description List of Shiny examples.
 #'
-#' @return No return value, just prints a message listing the example names.
+#' @return No returned value, just prints a message listing the example names.
 #'
 #' @export
 #'
@@ -49,6 +49,9 @@ jstreeExamples <- function(){
 #' }
 #' if(interactive()){
 #'   jstreeExample("gridFiltering")
+#' }
+#' if(interactive()){
+#'   jstreeExample("treeNavigator")
 #' }
 jstreeExample <- function(example, display.mode = "showcase", ...) {
   Folder <- system.file("examples", package = "jsTreeR")
