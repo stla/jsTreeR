@@ -1,7 +1,7 @@
 # __jsTreeR__
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/stla/jsTreeR/workflows/R-CMD-check/badge.svg)](https://github.com/stla/jsTreeR/actions)
+[![R-CMD-check](https://github.com/stla/jsTreeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stla/jsTreeR/actions/workflows/R-CMD-check.yaml)
 [![](https://www.r-pkg.org/badges/version/jsTreeR?color=orange)](https://cran.r-project.org/package=jsTreeR)
 [![](https://img.shields.io/badge/devel%20version-1.6.0.9001-blue.svg)](https://github.com/stla/jsTreeR)
 <!-- badges: end -->
