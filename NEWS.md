@@ -1,4 +1,4 @@
-# jsTreeR 1.6.0.9001 (2022-05-28)
+# jsTreeR 2.0.0 (2022-06-08)
 
 - The package now provides the 'tree navigator' Shiny module, which allows to 
 render a files and folders navigator in the server side file system.
@@ -6,7 +6,7 @@ render a files and folders navigator in the server side file system.
 - New Shiny input value accessible in `input$ID_selected_tree`. This is like 
 `input$ID_selected` but it also provides the ascendants of the selected nodes. 
 
-- Upgraded 'jsTree' to the development version.
+- Upgraded 'jsTree' library to the development version.
 
 
 # jsTreeR 1.6.0 (2022-02-28)
