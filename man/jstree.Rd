@@ -38,7 +38,7 @@ fields
   }
   \item{\code{icon}}{
     space-separated HTML class names defining an icon, e.g.
-    \code{"glyphicon glyphicon-flash"}; in a Shiny app you can also use
+    \code{"glyphicon glyphicon-flash"} or \code{"fa fa-folder"}; in a Shiny app you can also use
     a super tiny icon, e.g. \code{"supertinyicon-julia"}; see the
     \emph{SuperTinyIcons} \link[jsTreeR:jstreeExample]{Shiny example}
     showing all available such icons
