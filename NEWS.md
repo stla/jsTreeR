@@ -1,3 +1,8 @@
+# jsTreeR 2.0.0.9000 (2022-06-15)
+
+- New example showing how to use some images as icons (thanks @ismirsehregal)
+
+
 # jsTreeR 2.0.0 (2022-06-08)
 
 - The package now provides the 'tree navigator' Shiny module, which allows to 

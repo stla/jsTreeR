@@ -53,6 +53,9 @@ jstreeExamples <- function(){
 #' if(interactive()){
 #'   jstreeExample("treeNavigator")
 #' }
+#' if(interactive()){
+#'   jstreeExample("imageIcon")
+#' }
 jstreeExample <- function(example, display.mode = "showcase", ...) {
   Folder <- system.file("examples", package = "jsTreeR")
   Examples <- list.dirs(Folder, full.names = FALSE, recursive = FALSE)

@@ -43,4 +43,7 @@ if(interactive()){
 if(interactive()){
   jstreeExample("treeNavigator")
 }
+if(interactive()){
+  jstreeExample("imageIcon")
+}
 }

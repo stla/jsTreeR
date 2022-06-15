@@ -1,0 +1,15 @@
+library(MeshesOperations)
+
+library(rgl)
+mesh <- cyclideMesh(a = 97, c = 32, mu = 57, nu = 200, nv = 200)
+open3d(windowRect = c(50, 50, 562, 562))
+view3d(-50, 40, zoom = 0.65)
+shade3d(mesh, color = "chartreuse")
+# rgl.snapshot("cyclide.png")
+
+library(rgl)
+mesh <- HopfTorusMesh(nu = 500, nv = 500)
+open3d(windowRect = c(50, 50, 562, 562))
+view3d(0, 0, zoom = 0.65)
+shade3d(mesh, color = "darkred")
+# rgl.snapshot("hopftorus.png")
