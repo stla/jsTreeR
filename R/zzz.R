@@ -1,4 +1,4 @@
-#' @importFrom shiny registerInputHandler addResourcePath
+#' @importFrom shiny registerInputHandler
 #' @noRd
 .onAttach <- function(libname, pkgname){
   shiny::registerInputHandler("jsTreeR.list", function(data, ...){
@@ -16,19 +16,4 @@
     data[["path"]] <- unlist(data[["path"]])
     data
   }, force = TRUE)
-  shiny::addResourcePath(
-    "SuperTinyIcons",
-    system.file("htmlwidgets", "SuperTinyIcons", package = "jsTreeR")
-  )
-  shiny::addResourcePath(
-    "OtherIcons",
-    system.file("htmlwidgets", "OtherIcons", package = "jsTreeR")
-  )
-}
-
-#' @importFrom shiny removeResourcePath
-#' @noRd
-.onDetach <- function(libpath){
-  shiny::removeResourcePath("SuperTinyIcons")
-  shiny::removeResourcePath("OtherIcons")
 }

@@ -471,7 +471,23 @@ jstree <- function(
       #   stylesheet = "css/bootstrap.min.css",
       #   package = "shiny"
       # ),
-      fa_html_dependency()
+      fa_html_dependency(),
+      htmlDependency(
+        name = "ssssupertinyicons",
+        version = "0.3.12",
+        src = "www",
+        stylesheet = "SuperTinyIcons/SuperTinyIcons.css",
+        package = "jsTreeR",
+        all_files = TRUE
+      ),
+      htmlDependency(
+        name = "OtherIcons",
+        version = "0.0.1",
+        src = "www/OtherIcons",
+        stylesheet = "OtherIcons.css",
+        package = "jsTreeR",
+        all_files = TRUE
+      )
     )
   )
 }
