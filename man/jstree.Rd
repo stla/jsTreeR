@@ -41,8 +41,8 @@ fields
     \code{"glyphicon glyphicon-flash"} or \code{"fa fa-folder"};
     one can also get an icon from an image file in a Shiny app, see the
     \emph{imageIcon} \link[jsTreeR:jstreeExample]{Shiny example};
-    in a Shiny app you can also use a super tiny icon, e.g.
-    \code{"supertinyicon-julia"}; see the \emph{SuperTinyIcons}
+    you can also use a super tiny icon, e.g. \code{"supertinyicon-julia"};
+    see the \emph{SuperTinyIcons}
     \link[jsTreeR:jstreeExample]{Shiny example} showing all available
     such icons
   }

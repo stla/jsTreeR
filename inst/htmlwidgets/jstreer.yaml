@@ -3,11 +3,3 @@ dependencies:
   version: 1.0.1
   src: htmlwidgets/lib/bootstrap-theme
   style: style.min.css
-- name: SuperTinyIcons
-  version: 0.3.2
-  src: htmlwidgets/SuperTinyIcons
-  style: SuperTinyIcons.css
-- name: OtherIcons
-  version: 0.0.0
-  src: htmlwidgets/OtherIcons
-  style: OtherIcons.css

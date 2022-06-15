@@ -12,7 +12,7 @@ shinyServer(
       svg <- req(input[["jstree_selected"]][[1]][["data"]][["svg"]])
       if(input[["transparent"]])
         svg <- paste0("transparent-", svg)
-      tags$img(src = paste0("/SuperTinyIcons/", svg), width = "75%")
+      tags$img(src = svg, width = "75%")
     })
   }
 )
