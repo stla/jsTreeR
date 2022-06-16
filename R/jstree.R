@@ -474,9 +474,9 @@ jstree <- function(
       fa_html_dependency(),
       htmlDependency(
         name = "SuperTinyIcons",
-        version = "0.3.2",
-        src = "www",
-        stylesheet = "SuperTinyIcons/SuperTinyIcons.css",
+        version = "0.4.0",
+        src = "www/SuperTinyIcons",
+        stylesheet = "SuperTinyIcons.css",
         package = "jsTreeR",
         all_files = TRUE
       ),

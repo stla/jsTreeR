@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" aria-label="Heroku" role="img" viewBox="0 0 512 512" fill="#409">
   <rect width="512" height="512" rx="15%" fill="transparent"/>
   <path d="M367 99H145c-22 0-30 8-30 30v254c0 22 8 30 30 30h222c22 0 30-8 30-30V129c0-22-9-30-30-30" stroke="#fff" stroke-width="16"/>

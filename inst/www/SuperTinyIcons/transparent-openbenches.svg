@@ -1,6 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" aria-label="OpenBenches" role="img" viewBox="0 0 512 512" fill="none">
-  <rect width="512" height="512" rx="15%" fill="transparent"/>
-  <circle cx="256" cy="256" r="250" fill="#11b0a3"/>
+  <circle cx="256" cy="256" r="250" fill="transparent"/>
   <path d="M9 319 a258 258 0 0 0 495 0" fill="#8c5015"/>
   <g stroke-width="12" stroke="#000">
     <rect x="110" y="228" width="139" height="37" fill="#fb0" stroke="#fff" stroke-width="24"/>
