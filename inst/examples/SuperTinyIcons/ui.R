@@ -2,12 +2,10 @@ shinyUI(
   fluidPage(
     tags$head(
       tags$style(
-        HTML(
-          "#jstree {background-color: #fff5ee;}",
-          "img {background-color: #333; padding: 50px;}"
-        )
+        HTML(css)
       )
     ),
+    class = "flexcol",
     br(),
     helpText(
       "This example illustrates some 'search' options."
@@ -22,8 +20,14 @@ shinyUI(
       ),
       column(
         width = 6,
-        checkboxInput("transparent", "Transparent background"),
-        uiOutput("icon")
+        tags$div(class = "stretch"),
+        tags$div(
+          class = "bottomright",
+          tags$div(
+            uiOutput("icon"),
+            checkboxInput("transparent", "Transparent background")
+          )
+        )
       )
     )
   )
