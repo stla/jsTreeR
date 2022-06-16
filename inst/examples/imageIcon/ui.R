@@ -13,7 +13,9 @@ shinyUI(
       ),
       column(
         width = 8,
-        tags$h3("The images are in the www folder.")
+        tags$h3("The images are in the www folder."),
+        br(),
+        uiOutput("png")
       )
     )
   )

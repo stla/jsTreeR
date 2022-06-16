@@ -10,11 +10,17 @@ i.jstree-themeicon-custom {
 nodes <- list(
   list(
     text = "Dupin cyclide",
-    icon = "/cyclide.png"
+    icon = "/cyclide.png",
+    data = list(
+      png = "cyclide.png"
+    )
   ),
   list(
     text = "Hopf torus",
-    icon = "/hopftorus.png"
+    icon = "/hopftorus.png",
+    data = list(
+      png = "hopftorus.png"
+    )
   )
 )
 

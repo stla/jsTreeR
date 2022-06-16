@@ -1,8 +1,8 @@
 # jsTreeR 2.0.0.9000 (2022-06-15)
 
-- New example showing how to use some images as icons (thanks @ismirsehregal)
+- New example showing how to use some images as icons (thanks @ismirsehregal).
 
-- Upgrade of 'SuperTinyIcons'
+- Upgrade of 'SuperTinyIcons'.
 
 
 # jsTreeR 2.0.0 (2022-06-08)
