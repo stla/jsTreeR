@@ -1,6 +1,6 @@
 ## Test environments
 
-* Windows 10, R 4.2.0
+* Windows 10, R 4.2.1
 * win-builder (devel)
 * mac-builder
 * Ubuntu 20, via Github action

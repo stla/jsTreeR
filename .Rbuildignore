@@ -9,3 +9,4 @@
 ^LICENSE\.note\.md$
 ^CRAN-SUBMISSION$
 ^\.github$
+^inst/SuperTinyIcons$
