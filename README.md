@@ -3,7 +3,7 @@
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/stla/jsTreeR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stla/jsTreeR/actions/workflows/R-CMD-check.yaml)
 [![](https://www.r-pkg.org/badges/version/jsTreeR?color=orange)](https://cran.r-project.org/package=jsTreeR)
-[![](https://img.shields.io/badge/devel%20version-2.0.1-blue.svg)](https://github.com/stla/jsTreeR)
+[![](https://img.shields.io/badge/devel%20version-2.1.0-blue.svg)](https://github.com/stla/jsTreeR)
 <!-- badges: end -->
 
 A wrapper of the JavaScript library [jsTree](https://www.jstree.com/). 
