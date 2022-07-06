@@ -1,4 +1,4 @@
-# jsTreeR 2.1.0 (2022-06-05)
+# jsTreeR 2.1.0 (2022-06-07)
 
 - New example showing how to use some images as icons (thanks @ismirsehregal).
 
