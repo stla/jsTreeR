@@ -304,6 +304,7 @@ HTMLWidgets.widget({
           var handlerName = id + "_destroy";
           Shiny.addCustomMessageHandler(handlerName, function (nothing) {
             try {
+              $("#" + id + "-search").remove();
               $el.jstree(true).destroy();
             } catch (err) {
               console.warn(
