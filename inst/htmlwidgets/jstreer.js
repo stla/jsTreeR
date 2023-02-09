@@ -316,7 +316,7 @@ HTMLWidgets.widget({
 
           Shiny.addCustomMessageHandler(id + "_update", function(newnodes) {
             try {
-              $el.jstree(true).settings.core.data = JSON.parse(newnodes);
+              $el.jstree(true).settings.core.data = newnodes;
               $el.jstree(true).refresh(true, true);
             } catch(err) {
               console.warn(
