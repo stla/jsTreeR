@@ -15,5 +15,5 @@ jstreeDestroy(session, id)
 No value, just called to destroy a tree.
 }
 \description{
-Destroy a `jstree` instance.
+Destroy a `jstree` instance in a Shiny app.
 }

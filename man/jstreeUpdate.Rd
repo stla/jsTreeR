@@ -17,5 +17,5 @@ jstreeUpdate(session, id, nodes)
 No value, just called to update a tree.
 }
 \description{
-Update a `jstree` instance.
+Update a `jstree` instance in a Shiny app.
 }

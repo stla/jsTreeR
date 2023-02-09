@@ -52,7 +52,7 @@ renderJstree <- function(expr, env = parent.frame(), quoted = FALSE) {
 
 
 #' @title Destroy jstree
-#' @description Destroy a `jstree` instance.
+#' @description Destroy a `jstree` instance in a Shiny app.
 #'
 #' @param session the Shiny \code{session} object
 #' @param id the id of the tree to be destroyed
@@ -64,7 +64,7 @@ jstreeDestroy <- function(session, id){
 }
 
 #' @title Update jstree
-#' @description Update a `jstree` instance.
+#' @description Update a `jstree` instance in a Shiny app.
 #'
 #' @param session the Shiny \code{session} object
 #' @param id the id of the tree to be updated

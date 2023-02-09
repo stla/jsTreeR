@@ -1,3 +1,8 @@
+# jsTreeR 2.3.0 (2023-02-09)
+
+- New function `jstreeUpdate`, to update a tree in a Shiny app.
+
+
 # jsTreeR 2.2.0 (2022-10-21)
 
 - Fixed bug #11: the search bar was not destroyed by a call to `jstreeDestroy`.
