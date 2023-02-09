@@ -204,14 +204,21 @@ HTMLWidgets.widget({
               $el.jstree(true).search($(this).val());
             });
           }
-          if (inShiny) {
+          if(inShiny) {
             setShinyValue(data.instance);
             setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
           }
         });
 
-        $el.on("move_node.jstree", function (e, data) {
-          if (inShiny) {
+        $el.on("refresh.jstree", function(e, data) {
+          if(inShiny) {
+            setShinyValue(data.instance);
+            setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
+          }
+        });
+
+        $el.on("move_node.jstree", function(e, data) {
+          if(inShiny) {
             var newInstance = data.new_instance;
             var oldInstance = data.old_instance;
             var newInstanceId = newInstance.element.attr("id");
