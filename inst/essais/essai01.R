@@ -5,6 +5,10 @@ dat <- list(
     text = "RootA",
     data = list(value = 999),
     icon = "glyphicon glyphicon-folder-open",
+    state = list(
+      opened = TRUE,
+      freezed = TRUE
+    ),
     children = list(
       list(
         text = "ChildA1",
@@ -37,4 +41,13 @@ dat <- list(
   )
 )
 
-jstree(dat, dragAndDrop = TRUE)
+jstree(dat) %>%
+  htmlwidgets::onRender(c(
+    "function(el) {",
+    "  $(el).on('close_node.jstree', function (e, data) {",
+    "    if(data.node.state.freezed) {",
+    "      setTimeout(function(){data.instance.open_node(data.node);}, 0);",
+    "    }",
+    "  });",
+    "}"
+  ))
