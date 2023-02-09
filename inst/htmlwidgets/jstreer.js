@@ -299,23 +299,38 @@ HTMLWidgets.widget({
           }
         });
 
-        if (inShiny) {
+        if(inShiny) {
+
           var id = el.id;
-          var handlerName = id + "_destroy";
-          Shiny.addCustomMessageHandler(handlerName, function (nothing) {
+
+          Shiny.addCustomMessageHandler(id + "_destroy", function(nothing) {
             try {
               $("#" + id + "-search").remove();
               $el.jstree(true).destroy();
-            } catch (err) {
+            } catch(err) {
               console.warn(
                 "Element ' + id + ' is not an instance of `jstree`."
               );
             }
           });
+
+          Shiny.addCustomMessageHandler(id + "_update", function(newnodes) {
+            try {
+              $el.jstree(true).settings.core.data = JSON.parse(newnodes);
+              $el.jstree(true).refresh(true, true);
+            } catch(err) {
+              console.warn(
+                "An error occured."
+              );
+            }
+          });
+
         }
+
+
       },
 
-      resize: function (width, height) {
+      resize: function(width, height) {
         // TODO: code to re-render the widget with a new size
       }
     };

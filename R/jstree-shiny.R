@@ -62,3 +62,19 @@ renderJstree <- function(expr, env = parent.frame(), quoted = FALSE) {
 jstreeDestroy <- function(session, id){
   session$sendCustomMessage(paste0(id, "_destroy"), TRUE)
 }
+
+#' @title Update jstree
+#' @description Update a `jstree` instance.
+#'
+#' @param session the Shiny \code{session} object
+#' @param id the id of the tree to be updated
+#' @param nodes the new \code{nodes} list
+#'
+#' @return No value, just called to update a tree.
+#' @export
+jstreeUpdate <- function(session, id, nodes){
+  if(!isNodesList(nodes)) {
+    stop("Invalid `nodes` argument.")
+  }
+  session$sendCustomMessage(paste0(id, "_update"), nodes)
+}
