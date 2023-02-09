@@ -309,13 +309,17 @@ HTMLWidgets.widget({
               $el.jstree(true).destroy();
             } catch(err) {
               console.warn(
-                "Element ' + id + ' is not an instance of `jstree`."
+                "An error occured."
               );
             }
           });
 
           Shiny.addCustomMessageHandler(id + "_update", function(newnodes) {
             try {
+              var $search = $("#" + id + "-search");
+              if($search.length > 0) {
+                $search.val("");
+              }
               $el.jstree(true).settings.core.data = newnodes;
               $el.jstree(true).refresh(true, true);
             } catch(err) {
