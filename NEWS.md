@@ -1,3 +1,8 @@
+# jsTreeR 2.3.1 (2023-03-14)
+
+- New example showing how to disable the context menu for some nodes (thanks @ismirsehregal).
+
+
 # jsTreeR 2.3.0 (2023-02-09)
 
 - New function `jstreeUpdate`, to update a tree in a Shiny app.
