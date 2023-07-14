@@ -1,3 +1,8 @@
+# jsTreeR 2.3.2 (2023-07-15)
+
+- The `.onAttach` instance has been replaced with a `.onLoad` instance.
+
+
 # jsTreeR 2.3.1 (2023-03-14)
 
 - New example showing how to disable the context menu for some nodes (thanks @ismirsehregal).

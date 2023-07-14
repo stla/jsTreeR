@@ -1,6 +1,6 @@
 #' @importFrom shiny registerInputHandler
 #' @noRd
-.onAttach <- function(libname, pkgname){
+.onLoad <- function(libname, pkgname){
   shiny::registerInputHandler("jsTreeR.list", function(data, ...){
     data
   }, force = TRUE)
