@@ -233,7 +233,7 @@ HTMLWidgets.widget({
               from: { instance: oldInstanceId, path: oldPath },
               to: { instance: newInstanceId, path: newPath }
             });
-            if (data.is_multi) {
+            if(data.is_multi) {
               setShinyValue(oldInstance);
               setShinyValue(newInstance);
             } else {
@@ -248,7 +248,24 @@ HTMLWidgets.widget({
             //              id, getNodesWithChildren(data.instance.get_json())
             //            );
             setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
+            //setShinyValue(data.new_instance); // modif 9/10/2023
           }
+        });
+
+        $el.on("after_open.jstree", function(e, data) {
+          setShinyValue(data.instance); // modif 9/10/2023
+        });
+
+        $el.on("after_close.jstree", function(e, data) {
+          setShinyValue(data.instance); // modif 9/10/2023
+        });
+
+        $el.on("select_node.jstree", function(e, data) {
+          setShinyValue(data.instance); // modif 9/10/2023
+        });
+
+        $el.on("deselect_node.jstree", function(e, data) {
+          setShinyValue(data.instance); // modif 9/10/2023
         });
 
         $el.on("rename_node.jstree", function (e, data) {
