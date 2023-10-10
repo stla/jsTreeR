@@ -1,9 +1,8 @@
 ## Test environments
 
-* Linux Mint, R 4.2.2
+* Windows 10, R-4.3.1
 * win-builder (devel)
-* mac-builder
-* Ubuntu 20, via Github action
+* Ubuntu, via Github action
 
 
 ## R CMD check results

@@ -22,15 +22,20 @@ server <- function(input, output, session){
           list(text = "Leaf D", type = "child")
         )
       ),
-      list(text = "Branch 2", type = "parent", state = list(opened = TRUE))
+      list(text = "Branch 2", type = "parent")
     )
     jstree(nodes, contextMenu = TRUE)
   })
 
   output$opened <- renderText({
-    if(isTruthy(input[["mytree_full"]])){
-      paste("Is node 1 opened?:", input[["mytree_full"]][[1]]$state$opened)
-    }
+    req(input[["mytree_full"]])
+    paste0(
+      "Is node 1 opened?: ",
+      input[["mytree_full"]][[1]]$state$opened,
+      "\n",
+      "Is node 2 opened?: ",
+      input[["mytree_full"]][[2]]$state$opened
+    )
   })
 
   observe({

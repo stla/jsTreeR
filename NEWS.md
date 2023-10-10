@@ -1,3 +1,8 @@
+# jsTreeR 2.3.3 (2023-10-10)
+
+- Added new JavaScript events related to nodes: opened, closes, and selected.
+
+
 # jsTreeR 2.3.2 (2023-07-15)
 
 - The `.onAttach` instance has been replaced with a `.onLoad` instance.
