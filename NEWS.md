@@ -1,5 +1,7 @@
 # jsTreeR 2.3.3 (2023-10-10)
 
+- Upgraded jsTree to 3.3.16.
+
 - Added new JavaScript events related to nodes: opened, closes, and selected.
 
 
