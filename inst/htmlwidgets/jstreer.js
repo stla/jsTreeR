@@ -172,7 +172,9 @@ HTMLWidgets.widget({
         if (x.checkbox)
           options.checkbox = {
             keep_selected_style: false,
-            cascade_to_disabled: false
+            cascade_to_disabled: false,
+            tie_selection: x.tieSelection,
+            whole_node: x.tieSelection
             //three_state: false,
             //cascade: "up+undetermined"
           };

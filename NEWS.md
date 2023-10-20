@@ -1,3 +1,10 @@
+# jsTreeR 2.4.0 (2023-11-??)
+
+- New option `tieSelection`. It is a `TRUE`/`FALSE` option about the behavior 
+of the checkboxes: it controls whether the checkboxes must be selected when
+clicking on the text of a node.
+
+
 # jsTreeR 2.3.3 (2023-10-10)
 
 - Upgraded jsTree to 3.3.16.
