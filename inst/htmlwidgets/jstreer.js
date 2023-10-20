@@ -171,7 +171,7 @@ HTMLWidgets.widget({
 
         if (x.checkbox)
           options.checkbox = {
-            keep_selected_style: false,
+            keep_selected_style: !x.tieSelection,
             cascade_to_disabled: false,
             tie_selection: x.tieSelection,
             whole_node: x.tieSelection
@@ -255,20 +255,46 @@ HTMLWidgets.widget({
         });
 
         $el.on("after_open.jstree", function(e, data) {
-          setShinyValue(data.instance); // modif 9/10/2023
+          if(inShiny) {
+            setShinyValue(data.instance);
+          } // modif 9/10/2023
         });
 
         $el.on("after_close.jstree", function(e, data) {
-          setShinyValue(data.instance); // modif 9/10/2023
+          if(inShiny) {
+            setShinyValue(data.instance);
+          } // modif 9/10/2023
         });
 
         $el.on("select_node.jstree", function(e, data) {
-          setShinyValue(data.instance); // modif 9/10/2023
+          alert("xx");
+          if(inShiny) {
+            setShinyValue(data.instance);
+          } // modif 9/10/2023
         });
 
         $el.on("deselect_node.jstree", function(e, data) {
-          setShinyValue(data.instance); // modif 9/10/2023
+          if(inShiny) {
+            setShinyValue(data.instance);
+          } // modif 9/10/2023
         });
+
+        if(!x.tieSelection) {
+          $el.on("check_node.jstree", function(e, data) {
+            $el.jstree(true).select_node(data.node);
+            if(inShiny) {
+              setShinyValue(data.instance);
+              setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
+            }
+          });
+          $el.on("uncheck_node.jstree", function(e, data) {
+            $el.jstree(true).deselect_node(data.node);
+            if(inShiny) {
+              setShinyValue(data.instance);
+              setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
+            }
+          });
+        }
 
         $el.on("rename_node.jstree", function (e, data) {
           if (inShiny) {

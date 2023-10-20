@@ -425,7 +425,7 @@ jstree <- function(
     data = nodes,
     selectLeavesOnly = selectLeavesOnly,
     checkbox = checkboxes,
-    tieSelection = tieSelection,
+    tieSelection = ifelse(checkboxes, tieSelection, TRUE),
     search = search,
     searchtime = searchtime,
     dragAndDrop = dragAndDrop,
@@ -454,7 +454,7 @@ jstree <- function(
       bootstrapLib(theme = NULL),
       htmlDependency(
         name = "jstree",
-        version = "3.3.12.9000",
+        version = "3.3.16",
         src = "htmlwidgets/lib/jstree/dist",
         script = "jstree.min.js",
         stylesheet = c(
