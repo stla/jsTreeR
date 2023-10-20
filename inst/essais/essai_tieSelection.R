@@ -36,14 +36,14 @@ server <- function(input, output, session){
       jstree(
         nodes,
         checkboxes = TRUE,
-        tieSelection = FALSE,
+        checkWithText = FALSE,
         checkCallback = TRUE
       )
     )
   })
 
   observe({
-    print(input$myTree_selected_tree)
+    print(input$myTree_checked_tree)
     print("____________________")
   })
 }

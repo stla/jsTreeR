@@ -102,7 +102,7 @@ function setShinyValueSelectedNodes(instance, leavesOnly, checkboxes) {
   );
   if(checkboxes){
     Shiny.setInputValue(
-      instance.element.attr("id") + "_selected_tree:jsTreeR.list",
+      instance.element.attr("id") + "_checked_tree:jsTreeR.list",
       filterChecked(instance, ["text", "data", "type"])
     );
   }
@@ -171,10 +171,10 @@ HTMLWidgets.widget({
 
         if (x.checkbox)
           options.checkbox = {
-            keep_selected_style: !x.tieSelection,
+            keep_selected_style: !x.checkWithText,
             cascade_to_disabled: false,
-            tie_selection: x.tieSelection,
-            whole_node: x.tieSelection
+            tie_selection: x.checkWithText,
+            whole_node: x.checkWithText
             //three_state: false,
             //cascade: "up+undetermined"
           };
@@ -209,7 +209,7 @@ HTMLWidgets.widget({
 /*          $el.on("click", ".jstree-anchor", function(evt) {
             alert("CLICK");
             console.log(evt);
-            if(!x.tieSelection && !($(evt.target).hasClass("jstree-checkbox"))) {
+            if(!x.checkWithText && !($(evt.target).hasClass("jstree-checkbox"))) {
               evt.stopPropagation();
             }
           }); */
@@ -285,7 +285,7 @@ HTMLWidgets.widget({
           } // modif 9/10/2023
         });
 
-        if(!x.tieSelection) {
+        if(!x.checkWithText) {
           $el.on("check_node.jstree", function(e, data) {
             $el.jstree(true).select_node(data.node);
             if(inShiny) {

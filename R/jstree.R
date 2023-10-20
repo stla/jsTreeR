@@ -64,7 +64,7 @@
 #'   selected leaves
 #' @param checkboxes logical, whether to enable checkboxes next to each node;
 #'   this makes easier the selection of multiple nodes
-#' @param tieSelection logical, whether the checkboxes must be selected when
+#' @param checkWithText logical, whether the checkboxes must be selected when
 #'   clicking on the text of a node
 #' @param search either a logical value, whether to enable the search
 #'   functionality with default options, or a named list of options for the
@@ -375,7 +375,7 @@ jstree <- function(
   nodes, elementId = NULL,
   selectLeavesOnly = FALSE,
   checkboxes = FALSE,
-  tieSelection = TRUE,
+  checkWithText = TRUE,
   search = FALSE, searchtime = 250,
   dragAndDrop = FALSE, dnd = NULL,
   multiple = TRUE,
@@ -406,7 +406,7 @@ jstree <- function(
   stopifnot(is.null(elementId) || isString(elementId))
   stopifnot(isBoolean(selectLeavesOnly))
   stopifnot(isBoolean(checkboxes))
-  stopifnot(isBoolean(tieSelection))
+  stopifnot(isBoolean(checkWithText))
   stopifnot(isBoolean(search) || isNamedList(search))
   stopifnot(isBoolean(dragAndDrop))
   stopifnot(is.null(dnd) || isNamedList(dnd))
@@ -425,7 +425,7 @@ jstree <- function(
     data = nodes,
     selectLeavesOnly = selectLeavesOnly,
     checkbox = checkboxes,
-    tieSelection = ifelse(checkboxes, tieSelection, TRUE),
+    checkWithText = ifelse(checkboxes, checkWithText, TRUE),
     search = search,
     searchtime = searchtime,
     dragAndDrop = dragAndDrop,

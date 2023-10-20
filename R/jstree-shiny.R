@@ -29,9 +29,12 @@
 #'   except that it provides the paths to the selected nodes instead of only
 #'   the values of their text field, and you have a fifth Shiny \code{input}
 #'   value if you have set \code{checkboxes=TRUE} in the \code{\link{jstree}}
-#'   command: \code{input[["ID_selected_tree"]]}, which is like
+#'   command: \code{input[["ID_checked_tree"]]}, which is like
 #'   \code{input[["ID_selected"]]} except that it preserves the hierarchy, in
 #'   other words it provides the selected nodes with their parent(s).
+#'   If you have set \code{checkboxes=TRUE} and \code{checkWithText=FALSE} in
+#'   the \code{\link{jstree}} command, then \code{input[["ID_checked_tree"]]}
+#'   is the only way to get the selected nodes.
 #'
 #' @name jstree-shiny
 #'
