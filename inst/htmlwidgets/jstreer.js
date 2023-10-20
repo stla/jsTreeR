@@ -194,7 +194,7 @@ HTMLWidgets.widget({
 
         $el.jstree(options);
 
-        $el.on("ready.jstree", function (e, data) {
+        $el.on("ready.jstree", function(e, data) {
           if (x.search) {
             var $input = $(
               "<input type='search' id='" +
@@ -202,10 +202,17 @@ HTMLWidgets.widget({
                 "-search' placeholder='Search' />"
             );
             $input.insertBefore($el);
-            $input.on("keyup", function () {
+            $input.on("keyup", function() {
               $el.jstree(true).search($(this).val());
             });
           }
+/*          $el.on("click", ".jstree-anchor", function(evt) {
+            alert("CLICK");
+            console.log(evt);
+            if(!x.tieSelection && !($(evt.target).hasClass("jstree-checkbox"))) {
+              evt.stopPropagation();
+            }
+          }); */
           if(inShiny) {
             setShinyValue(data.instance);
             setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
@@ -244,7 +251,7 @@ HTMLWidgets.widget({
           }
         });
 
-        $el.on("changed.jstree", function (e, data) {
+        $el.on("changed.jstree", function(e, data) {
           if (inShiny) {
             //            Shiny.setInputValue(
             //              id, getNodesWithChildren(data.instance.get_json())
@@ -267,7 +274,6 @@ HTMLWidgets.widget({
         });
 
         $el.on("select_node.jstree", function(e, data) {
-          alert("xx");
           if(inShiny) {
             setShinyValue(data.instance);
           } // modif 9/10/2023

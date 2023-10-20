@@ -37,13 +37,13 @@ server <- function(input, output, session){
         nodes,
         checkboxes = TRUE,
         tieSelection = FALSE,
-        dragAndDrop = TRUE
+        checkCallback = TRUE
       )
     )
   })
 
   observe({
-    print(input$myTree_selected)
+    print(input$myTree_selected_tree)
     print("____________________")
   })
 }
