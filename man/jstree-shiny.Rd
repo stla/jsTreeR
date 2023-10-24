@@ -53,9 +53,8 @@ Output and render functions for using \code{jstree} within
   nodes. If you have set \code{checkboxes=TRUE} and
   \code{checkWithText=TRUE} (the default), then these two additional
   Shiny values are useless because 'checked' is the same as 'selected' in
-  this situation. In fact, the selected nodes strangely behave when
-  \code{checkWithText=FALSE}, they are not usable. Finally, the seventh
-  Shiny value that is provided when \code{checkboxes=TRUE} is
+  this situation. Try \code{jstreeExample("checkWithText")}. Finally, the
+  seventh Shiny value that is provided when \code{checkboxes=TRUE} is
   \code{input[["ID_checked_tree"]]}. It is like \code{input[["ID_checked"]]}
   except that it returns the hierarchy, in other words it provides the
   checked nodes with their parent(s).
