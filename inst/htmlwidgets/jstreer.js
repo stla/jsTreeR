@@ -108,6 +108,38 @@ function setShinyValueSelectedNodes(instance, leavesOnly, checkboxes) {
   }
 }
 
+function setShinyValueCheckedNodes(instance, leavesOnly) {
+  var checkedNodes = instance.get_checked(true);
+  var nodes = getNodes(checkedNodes);
+  var leaves = [];
+  var pathNodes = [];
+  var leavePathNodes = [];
+  for(var i = 0; i < nodes.length; i++) {
+    var node = nodes[i];
+    var path = instance.get_path(checkedNodes[i], "/");
+    var pathNode = {
+      path: path,
+      data: node.data
+    };
+    pathNodes.push(pathNode);
+    var nchildren = node.children.length;
+    delete nodes[i].children;
+    if (leavesOnly && nchildren === 0) {
+      leaves.push(nodes[i]);
+      leavePathNodes.push(pathNode);
+    }
+  }
+  Shiny.setInputValue(
+    instance.element.attr("id") + "_checked:jsTreeR.list",
+    leavesOnly ? leaves : nodes
+  );
+  Shiny.setInputValue(
+    instance.element.attr("id") + "_checked_paths:jsTreeR.list",
+    leavesOnly ? leavePathNodes : pathNodes
+  );
+}
+
+
 var inShiny = HTMLWidgets.shinyMode;
 
 HTMLWidgets.widget({
@@ -216,6 +248,9 @@ HTMLWidgets.widget({
           if(inShiny) {
             setShinyValue(data.instance);
             setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
+            if(checkboxes) {
+              setShinyValueCheckedNodes(data.instance, leavesOnly);
+            }
           }
         });
 
@@ -223,6 +258,9 @@ HTMLWidgets.widget({
           if(inShiny) {
             setShinyValue(data.instance);
             setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
+            if(checkboxes) {
+              setShinyValueCheckedNodes(data.instance, leavesOnly);
+            }
           }
         });
 
@@ -257,6 +295,9 @@ HTMLWidgets.widget({
             //              id, getNodesWithChildren(data.instance.get_json())
             //            );
             setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
+            if(checkboxes) {
+              setShinyValueCheckedNodes(data.instance, leavesOnly);
+            }
             //setShinyValue(data.new_instance); // modif 9/10/2023
           }
         });
@@ -291,6 +332,9 @@ HTMLWidgets.widget({
             if(inShiny) {
               setShinyValue(data.instance);
               setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
+              if(checkboxes) {
+                setShinyValueCheckedNodes(data.instance, leavesOnly);
+              }
             }
           });
           $el.on("uncheck_node.jstree", function(e, data) {
@@ -298,6 +342,9 @@ HTMLWidgets.widget({
             if(inShiny) {
               setShinyValue(data.instance);
               setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
+              if(checkboxes) {
+                setShinyValueCheckedNodes(data.instance, leavesOnly);
+              }
             }
           });
         }
@@ -315,6 +362,9 @@ HTMLWidgets.widget({
             });
             setShinyValue(instance);
             setShinyValueSelectedNodes(instance, leavesOnly, checkboxes);
+            if(checkboxes) {
+              setShinyValueCheckedNodes(data.instance, leavesOnly);
+            }
           }
         });
 
