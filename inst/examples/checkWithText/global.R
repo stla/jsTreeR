@@ -8,7 +8,7 @@ Text <- function(value) {
 
 # CSS for the second tree (the one with `checkWithText=FALSE`)
 css <- "
-#tree2 .jstree-clicked:not(.jstree-checked)  {
+#tree2 .jstree-clicked:not(.jstree-checked) {
   background-color: tomato !important;
 }"
 

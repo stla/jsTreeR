@@ -10,7 +10,7 @@ shinyUI(
     splitLayout(
       tagList(
         tags$h3("`checkWithText` is `TRUE` (default)"),
-        helpText("Here you can click on a node text to select this node.")
+        helpText("Here you can click on a node text to check this node.")
       ),
       tagList(
         tags$h3("`checkWithText` is `FALSE`"),
