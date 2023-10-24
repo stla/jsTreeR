@@ -19,7 +19,8 @@ No return value, just launches a Shiny app.
 }
 \description{
 A function to run examples of Shiny apps using the
-  \code{jsTreeR} package.
+  \code{jsTreeR} package. Type \code{jstreeExamples()} to get the list of
+  all examples.
 }
 \examples{
 if(interactive()){

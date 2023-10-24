@@ -19,7 +19,8 @@ jstreeExamples <- function(){
 
 #' @title Run a Shiny jsTreeR example
 #' @description A function to run examples of Shiny apps using the
-#'   \code{jsTreeR} package.
+#'   \code{jsTreeR} package. Type \code{jstreeExamples()} to get the list of
+#'   all examples.
 #'
 #' @param example example name
 #' @param display.mode the display mode to use when running the example; see
