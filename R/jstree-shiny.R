@@ -21,20 +21,26 @@
 #'
 #' @section Shiny values:
 #'   If the \code{outputId} is called \code{"ID"} for example, you have four
-#'   or five available Shiny \code{input} values in the server:
+#'   or seven available Shiny \code{input} values in the server:
 #'   \code{input[["ID"]]} contains the tree with the node fields \code{text}
 #'   and \code{data} only, \code{input[["ID_full"]]} contains the full tree,
 #'   \code{input[["ID_selected"]]} contains the selected nodes,
 #'   \code{input[["ID_selected_paths"]]} is like \code{input[["ID_selected"]]}
 #'   except that it provides the paths to the selected nodes instead of only
-#'   the values of their text field, and you have a fifth Shiny \code{input}
-#'   value if you have set \code{checkboxes=TRUE} in the \code{\link{jstree}}
-#'   command: \code{input[["ID_checked_tree"]]}, which is like
-#'   \code{input[["ID_selected"]]} except that it preserves the hierarchy, in
-#'   other words it provides the selected nodes with their parent(s).
-#'   If you have set \code{checkboxes=TRUE} and \code{checkWithText=FALSE} in
-#'   the \code{\link{jstree}} command, then \code{input[["ID_checked_tree"]]}
-#'   is the only way to get the selected nodes.
+#'   the values of their text field. This makes four Shiny values always
+#'   present. There are three additional Shiny values if you have set
+#'   \code{checkboxes=TRUE} in the \code{\link{jstree}} command:
+#'   \code{input[["ID_checked"]]} contains the checked nodes,
+#'   \code{input[["ID_checked_paths"]]} provides the paths to the checked
+#'   nodes. If you have set \code{checkboxes=TRUE} and
+#'   \code{checkWithText=TRUE} (the default), then these two additional
+#'   Shiny values are useless because 'checked' is the same as 'selected' in
+#'   this situation. In fact, the selected nodes strangely behave when
+#'   \code{checkWithText=FALSE}, they are not usable. Finally, the seventh
+#'   Shiny value that is provided when \code{checkboxes=TRUE} is
+#'   \code{input[["ID_checked_tree"]]}. It is like \code{input[["ID_checked"]]}
+#'   except that it returns the hierarchy, in other words it provides the
+#'   checked nodes with their parent(s).
 #'
 #' @name jstree-shiny
 #'

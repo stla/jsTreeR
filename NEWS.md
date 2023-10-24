@@ -5,8 +5,8 @@ of the checkboxes: it controls whether the checkboxes must be (un)checked when
 clicking on the text of a node.
 
 - The Shiny input value `ID_selected_tree` (see `?jstree-shiny`) has been 
-renamed to `ID_checked_tree`. If you set `checkWithText` to `FALSE`, then 
-you *must* use this input value to get the selected nodes.
+renamed to `ID_checked_tree`, and there are new Shiny values provided when 
+the checkboxes are enabled. Their description is given in `?jstree-shiny`.
 
 
 # jsTreeR 2.3.3 (2023-10-10)
