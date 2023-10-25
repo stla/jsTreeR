@@ -1,8 +1,8 @@
 # jsTreeR 2.4.0 (2023-11-??)
 
-- New option `checkWithText`. It is a `TRUE`/`FALSE` option about the behavior 
+- New option `checkWithText`; it is a `TRUE`/`FALSE` option about the behavior 
 of the checkboxes: it controls whether the checkboxes must be (un)checked when
-clicking on the text of a node.
+clicking on the text of a node (thanks @ismirsehregal for the feature request).
 
 - The Shiny input value `ID_selected_tree` (see `?jstree-shiny`) has been 
 renamed to `ID_checked_tree`, and there are new Shiny values provided when 
