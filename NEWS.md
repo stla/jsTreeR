@@ -8,6 +8,9 @@ clicking on the text of a node (thanks @ismirsehregal for the feature request).
 renamed to `ID_checked_tree`, and there are new Shiny values provided when 
 the checkboxes are enabled. Their description is given in `?jstree-shiny`.
 
+- New feature for grids: when `search=TRUE`, there is now one search box for 
+each column of the grid.
+
 
 # jsTreeR 2.3.3 (2023-10-10)
 
