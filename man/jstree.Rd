@@ -361,7 +361,7 @@ library(jsTreeR)
 
 customMenu <- JS("function customMenu(node)
 {
-  var tree = $('#'mytree').jstree(true);
+  var tree = $('#mytree').jstree(true);
   var items = {
     'rename' : {
       'label' : 'Rename',
