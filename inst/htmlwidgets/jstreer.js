@@ -139,6 +139,22 @@ function setShinyValueCheckedNodes(instance, leavesOnly) {
   );
 }
 
+function gridSearchBoxes(grid, id) {
+  var columns = grid.columns;
+  var ncolumns = columns.length;
+  var html =
+    `<div id="${id}-searchFields" style="display: inline-block;">`;
+  for(var i = 0; i < ncolumns; i++) {
+    var column = columns[i];
+    var w = column.width;
+    var input =
+      `<input type="text" name="${i}" value="" style="width: ${w}px; margin: 0 1px;">`;
+    html += input;
+  }
+  html += "</div>";
+  return html;
+}
+
 
 var inShiny = HTMLWidgets.shinyMode;
 
@@ -147,38 +163,38 @@ HTMLWidgets.widget({
 
   type: "output",
 
-  factory: function (el, width, height) {
+  factory: function(el, width, height) {
     var $el = $(el);
     var options = {};
 
     return {
-      renderValue: function (x) {
+      renderValue: function(x) {
         var plugins = ["themes"];
-        if (x.checkbox) {
+        if(x.checkbox) {
           plugins.push("checkbox");
         }
-        if (x.search) {
+        if(x.search) {
           plugins.push("search");
         }
-        if (x.dragAndDrop) {
+        if(x.dragAndDrop) {
           plugins.push("dnd");
         }
-        if (x.types) {
+        if(x.types) {
           plugins.push("types");
         }
-        if (x.unique) {
+        if(x.unique) {
           plugins.push("unique");
         }
-        if (x.sort) {
+        if(x.sort) {
           plugins.push("sort");
         }
-        if (x.wholerow) {
+        if(x.wholerow) {
           plugins.push("wholerow");
         }
-        if (x.contextMenu) {
+        if(x.contextMenu) {
           plugins.push("contextmenu");
         }
-        if (x.grid) {
+        if(x.grid) {
           plugins.push("grid");
         }
         options.plugins = plugins;
@@ -195,13 +211,13 @@ HTMLWidgets.widget({
           }
         };
 
-        if (x.types) options.types = x.types;
+        if(x.types) options.types = x.types;
 
-        if (x.dnd) options.dnd = x.dnd;
+        if(x.dnd) options.dnd = x.dnd;
 
-        if (x.grid) options.grid = x.grid;
+        if(x.grid) options.grid = x.grid;
 
-        if (x.checkbox)
+        if(x.checkbox)
           options.checkbox = {
             keep_selected_style: !x.checkWithText,
             cascade_to_disabled: false,
@@ -211,11 +227,11 @@ HTMLWidgets.widget({
             //cascade: "up+undetermined"
           };
 
-        if (typeof x.search !== "boolean") options.search = x.search;
+        if(typeof x.search !== "boolean") options.search = x.search;
 
-        if (typeof x.contextMenu !== "boolean") {
+        if(typeof x.contextMenu !== "boolean") {
           options.contextmenu = x.contextMenu;
-        } else if (x.contextMenu) {
+        } else if(x.contextMenu) {
           options.contextmenu = {
             select_node: false
           };
@@ -227,16 +243,36 @@ HTMLWidgets.widget({
         $el.jstree(options);
 
         $el.on("ready.jstree", function(e, data) {
-          if (x.search) {
-            var $input = $(
-              "<input type='search' id='" +
-                el.id +
-                "-search' placeholder='Search' />"
-            );
-            $input.insertBefore($el);
-            $input.on("keyup", function() {
-              $el.jstree(true).search($(this).val());
-            });
+          if(x.search) {
+            if(x.grid) {
+              var $div = $(gridSearchBoxes(x.grid, el.id));
+              var $midWrapper = $(".jstree-grid-midwrapper");
+              $div.insertBefore($midWrapper);
+              var divSelector = "#" + el.id + "-searchFields";
+              //add search functionality to the input fields
+              $(divSelector + " input").keyup(function(e) {
+            	//get all input fields
+                var inputFields = $(divSelector + " input");
+                var searchValues = {};
+                //create for each input a key value pair with the key in the name attribute of the input (also being the index of the column)
+                inputFields.each(function(){
+                  var field = $(this);
+                  searchValues[field.attr('name')] = field.val();
+                });
+                //use the new searchColumn method
+                $el.jstree(true).searchColumn(searchValues);
+              });
+            } else {
+              var $input = $(
+                "<input type='search' id='" +
+                  el.id +
+                  "-search' placeholder='Search' />"
+              );
+              $input.insertBefore($el);
+              $input.on("keyup", function() {
+                $el.jstree(true).search($(this).val());
+              });
+            }
           }
 /*          $el.on("click", ".jstree-anchor", function(evt) {
             alert("CLICK");
