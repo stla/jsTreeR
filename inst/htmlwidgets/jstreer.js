@@ -247,7 +247,7 @@ HTMLWidgets.widget({
           if(x.search) {
             if(x.grid) {
               var $div = $(gridSearchBoxes(x.grid, el.id));
-              var $midWrapper = $(".jstree-grid-midwrapper");
+              var $midWrapper = $el.closest(".jstree-grid-midwrapper");
               $div.insertBefore($midWrapper);
               var divSelector = "#" + el.id + "-searchFields";
               //add search functionality to the input fields
