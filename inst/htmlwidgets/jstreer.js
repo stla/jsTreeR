@@ -146,7 +146,7 @@ function gridSearchBoxes(grid, id) {
     `<div id="${id}-searchFields" style="display: inline-block;">`;
   for(var i = 0; i < ncolumns; i++) {
     var column = columns[i];
-    var w = column.width - 3;
+    var w = column.width - 2;
     var style = `width: ${w}px; margin: 0 1px;`;
     var input =
       `<input type="text" name="${i}" value="" style="${style}">`;
