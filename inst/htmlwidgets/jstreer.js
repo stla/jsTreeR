@@ -147,7 +147,11 @@ function gridSearchBoxes(grid, id) {
   for(var i = 0; i < ncolumns; i++) {
     var column = columns[i];
     var w = column.width;
-    var style = `width: calc(${w} - 2px); margin: 0 1px;`;
+    if(isNaN(w)){
+	    var style = `width: calc(${w} - 2px); margin: 0 1px;`;
+	  } else {
+	    var style = `width: calc(${w}px - 2px); margin: 0 1px;`;
+	  }
     var input =
       `<input type="text" name="${i}" value="" style="${style}">`;
     html += input;
