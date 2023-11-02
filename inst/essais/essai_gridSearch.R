@@ -134,13 +134,13 @@ nodes <- list(
 grid <- list(
   columns = list(
     list(
-      width = 200,
+      width = "20vw",
       header = "Product",
       headerClass = "bolditalic yellow centered",
       wideValueClass = "cssclass"
     ),
     list(
-      width = 150,
+      width = "15vw",
       value = "price",
       header = "Price",
       wideValueClass = "cssclass",
@@ -148,15 +148,15 @@ grid <- list(
       wideCellClass = "centered"
     ),
     list(
-      width = 150,
+      width = "15vw",
       value = "quantity",
       header = "Quantity",
       wideValueClass = "cssclass",
       headerClass = "bolditalic yellow centered",
       wideCellClass = "centered"
     )
-  ),
-  width = 600
+  )
+#  width = "100%"
 )
 
 types <- list(
