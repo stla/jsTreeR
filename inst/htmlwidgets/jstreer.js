@@ -139,21 +139,9 @@ function setShinyValueCheckedNodes(instance, leavesOnly) {
   );
 }
 
-function gridSearchBoxes(grid, id) {
-  var columns = grid.columns;
-  var ncolumns = columns.length;
-  var html =
-    `<div id="${id}-searchFields" style="display: inline-block;">`;
-  for(var i = 0; i < ncolumns; i++) {
-    var column = columns[i];
-    var w = column.width - 2;
-    var style = `width: ${w}px; margin: 0 1px;`;
-    var input =
-      `<input type="text" name="${i}" value="" style="${style}">`;
-    html += input;
-  }
-  html += "</div>";
-  return html;
+function gridSearchBox(columnnumber, id) {
+  var input = `<input type="text" placeholder='Search column...' name="${columnnumber}" value="" style="width: 100%" class="${id}-searchField">`;
+  return input;
 }
 
 
@@ -246,17 +234,22 @@ HTMLWidgets.widget({
         $el.on("ready.jstree", function(e, data) {
           if(x.search) {
             if(x.grid) {
-              var $div = $(gridSearchBoxes(x.grid, el.id));
-              var $midWrapper = $el.closest(".jstree-grid-midwrapper");
-              $div.insertBefore($midWrapper);
-              var divSelector = "#" + el.id + "-searchFields";
+              var columns = x.grid.columns;
+              var ncolumns = columns.length;
+              for(var i = 0; i < ncolumns; i++) {
+                var $header = $(".jstree-grid-column-"+i+".jstree-grid-column-root-myjstree").children(".jstree-grid-header")
+                var $columnInput = $(gridSearchBox(i, el.id));
+                $($header).after($columnInput)
+              }
+              
+              var columnInputSelector = "." + el.id + "-searchField";
               //add search functionality to the input fields
-              $(divSelector + " input").keyup(function(e) {
+              $(columnInputSelector).keyup(function(e) {
             	//get all input fields
-                var inputFields = $(divSelector + " input");
+                var columnInputFields = $(columnInputSelector);
                 var searchValues = {};
                 //create for each input a key value pair with the key in the name attribute of the input (also being the index of the column)
-                inputFields.each(function(){
+                columnInputFields.each(function(){
                   var field = $(this);
                   searchValues[field.attr('name')] = field.val();
                 });
@@ -267,7 +260,7 @@ HTMLWidgets.widget({
               var $input = $(
                 "<input type='search' id='" +
                   el.id +
-                  "-search' placeholder='Search' />"
+                  "-search' placeholder='Search...' />"
               );
               $input.insertBefore($el);
               $input.on("keyup", function() {
