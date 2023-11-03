@@ -139,8 +139,8 @@ function setShinyValueCheckedNodes(instance, leavesOnly) {
   );
 }
 
-function gridSearchBoxes(grid, id) {
-  var columns = grid.columns;
+function gridSearchBoxes(id) {
+/*  var columns = grid.columns;
   var ncolumns = columns.length;
   var html =
     `<div id="${id}-searchFields" style="display: inline-block;">`;
@@ -152,7 +152,14 @@ function gridSearchBoxes(grid, id) {
       style = `width: ${w}; margin: 0 1px;`;
     } else {
       style = `width: calc(${w} - 2px); margin: 0 1px;`;
-    }
+    } */
+  var html =
+    `<div id="${id}-searchFields" style="display: inline-block;">`;
+  var columns =
+    document.getElementsByClassName("jstree-grid-column-root-" + id);
+  for(var i = 0; i < columns.length; i++) {
+    var w = columns[i].offsetWidth - 2;
+    var style = `width: ${w}px; margin: 0 1px;`;
     var input =
       `<input type="text" name="${i}" value="" style="${style}">`;
     html += input;
@@ -251,7 +258,7 @@ HTMLWidgets.widget({
         $el.on("ready.jstree", function(e, data) {
           if(x.search) {
             if(x.grid) {
-              var $div = $(gridSearchBoxes(x.grid, el.id));
+              var $div = $(gridSearchBoxes(el.id));
               var $midWrapper = $el.closest(".jstree-grid-midwrapper");
               $div.insertBefore($midWrapper);
               var divSelector = "#" + el.id + "-searchFields";
