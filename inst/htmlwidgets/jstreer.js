@@ -143,7 +143,7 @@ function gridSearchBoxes(grid, id) {
   var columns = grid.columns;
   var ncolumns = columns.length;
   var html = `<div id="${id}-searchFields" style="display: inline-block;">`;
-  var columnelements = document.getElementsByClassName("jstree-grid-column");
+  var columnelements = document.getElementsByClassName("jstree-grid-column-root-"+id);
   for(var i = 0; i < ncolumns; i++) {
     // var column = columns[i];
     // var w = column.width;
