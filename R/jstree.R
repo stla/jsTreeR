@@ -94,19 +94,13 @@
 #'   where this option is used to define restrictions on the drag-and-drop
 #'   behavior
 #' @param grid list of settings for the grid; see the second example, the
-#'   \emph{grid} \link[jsTreeR:jstreeExample]{Shiny example}, the web page
+#'   \emph{grid} \link[jsTreeR:jstreeExample]{Shiny example}, and the web page
 #'   \href{https://github.com/deitch/jstree-grid/#options}{github.com/deitch/jstree-grid}
-#'   for the list of all available options, and see the note below
+#'   for the list of all available options
 #' @param theme jsTree theme, one of \code{"default"},
 #'   \code{"default-dark"}, or \code{"proton"}
 #'
 #' @return A \code{htmlwidget} object.
-#'
-#' @note
-#' If you use the grid and enable the search feature, you have to specify the
-#' column widths but not in percentage, otherwise the widths of the search
-#' boxes will not match the column widths. You can use an absolute CSS unit,
-#' such as \code{px}, and you can use the relative CSS unit \code{vw}.
 #'
 #' @import htmlwidgets
 #' @importFrom htmltools htmlDependency
