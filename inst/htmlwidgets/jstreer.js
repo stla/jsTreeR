@@ -139,11 +139,10 @@ function setShinyValueCheckedNodes(instance, leavesOnly) {
   );
 }
 
-function gridSearchBox(columnnumber, id) {
-  var input = `<input type="text" placeholder='Search column...' name="${columnnumber}" value="" style="width: 100%" class="${id}-searchField">`;
+function gridSearchBox(columnNumber, id) {
+  var input = `<input type="text" placeholder='Search column...' name="${columnNumber}" value="" style="width: 100%" class="${id}-searchField">`;
   return input;
 }
-
 
 var inShiny = HTMLWidgets.shinyMode;
 
