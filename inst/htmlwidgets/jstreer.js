@@ -142,16 +142,13 @@ function setShinyValueCheckedNodes(instance, leavesOnly) {
 function gridSearchBoxes(grid, id) {
   var columns = grid.columns;
   var ncolumns = columns.length;
-  var html =
-    `<div id="${id}-searchFields" style="display: inline-block;">`;
+  var html = `<div id="${id}-searchFields" style="display: inline-block;">`;
+  var columnelements = document.getElementsByClassName("jstree-grid-column");
   for(var i = 0; i < ncolumns; i++) {
-    var column = columns[i];
-    var w = column.width;
-    if(isNaN(w)){
-	  var style = `width: calc(${w} - 2px); margin: 0 1px;`;
-	} else {
-	  var style = `width: calc(${w}px - 2px); margin: 0 1px;`;
-	}
+    // var column = columns[i];
+    // var w = column.width;
+    var w = columnelements[i].offsetWidth
+	  var style = `width: calc(${w}px - 2px); min-width: calc(${w}px - 2px); max-width: calc(${w}px - 2px); margin: 0 1px;`;
     var input =
       `<input type="text" name="${i}" value="" style="${style}">`;
     html += input;
