@@ -236,7 +236,7 @@ HTMLWidgets.widget({
               var columns = x.grid.columns;
               var ncolumns = columns.length;
               for(var i = 0; i < ncolumns; i++) {
-                var $header = $(".jstree-grid-column-"+i+".jstree-grid-column-root-myjstree").children(".jstree-grid-header")
+                var $header = $(".jstree-grid-column-"+i+".jstree-grid-column-root-"+el.id).children(".jstree-grid-header")
                 var $columnInput = $(gridSearchBox(i, el.id));
                 $($header).after($columnInput)
               }
