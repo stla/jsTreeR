@@ -253,32 +253,13 @@ HTMLWidgets.widget({
                 var $searchFields = $searchBoxesSelector;
                 var searchValues = {};
                 //create for each input a key value pair with the key in the name attribute of the input (also being the index of the column)
-                $searchFields.each(function(){
+                $searchFields.each(function() {
                   var field = $(this);
                   searchValues[field.attr("name")] = field.val();
                 });
                 //use the new searchColumn method
                 $el.jstree(true).searchColumn(searchValues);
               });
-
-
-/*              var $div = $(gridSearchBoxes(el.id));
-              var $midWrapper = $el.closest(".jstree-grid-midwrapper");
-              $div.insertBefore($midWrapper);
-              var divSelector = "#" + el.id + "-searchFields";
-              //add search functionality to the input fields
-              $(divSelector + " input").keyup(function(e) {
-            	  //get all input fields
-                var inputFields = $(divSelector + " input");
-                var searchValues = {};
-                //create for each input a key value pair with the key in the name attribute of the input (also being the index of the column)
-                inputFields.each(function(){
-                  var field = $(this);
-                  searchValues[field.attr('name')] = field.val();
-                });
-                //use the new searchColumn method
-                $el.jstree(true).searchColumn(searchValues);
-              }); */
             } else {
               var $input = $(
                 "<input type='search' id='" +
