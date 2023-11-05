@@ -189,15 +189,15 @@ ui <-   fluidPage(
   ),
   titlePanel("jsTree grid"),
   splitLayout(
-    jstreeOutput("jstree"),
-    jstreeOutput("jstree2")
+    jstreeOutput("TREE1"),
+    jstreeOutput("TREE2")
   )
 )
 
 server <-   function(input, output){
-  output[["jstree"]] <-
+  output[["TREE1"]] <-
     renderJstree(jstree(nodes, search = TRUE, grid = grid, types = types))
-  output[["jstree2"]] <-
+  output[["TREE2"]] <-
     renderJstree(jstree(nodes, search = TRUE, grid = grid, types = types))
 }
 
