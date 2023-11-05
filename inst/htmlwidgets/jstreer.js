@@ -139,33 +139,11 @@ function setShinyValueCheckedNodes(instance, leavesOnly) {
   );
 }
 
-function gridSearchBoxes(id) {
-/*  var columns = grid.columns;
-  var ncolumns = columns.length;
-  var html =
-    `<div id="${id}-searchFields" style="display: inline-block;">`;
-  for(var i = 0; i < ncolumns; i++) {
-    var column = columns[i];
-    var w = column.width;
-    var style;
-    if(isNaN(parseInt(w))) {
-      style = `width: ${w}; margin: 0 1px;`;
-    } else {
-      style = `width: calc(${w} - 2px); margin: 0 1px;`;
-    } */
-  var html =
-    `<div id="${id}-searchFields" style="display: inline-block;">`;
-  var columns =
-    document.getElementsByClassName("jstree-grid-column-root-" + id);
-  for(var i = 0; i < columns.length; i++) {
-    var w = columns[i].offsetWidth - 2;
-    var style = `width: ${w}px; margin: 0 1px;`;
-    var input =
-      `<input type="text" name="${i}" value="" style="${style}">`;
-    html += input;
-  }
-  html += "</div>";
-  return html;
+function gridSearchBox(index, id) {
+  var input =
+    `<input type="text" placeholder="Search..." name="${index}" value=""` +
+    `style="width: 100%;" class="${id}-searchField">`;
+  return input;
 }
 
 
@@ -258,13 +236,39 @@ HTMLWidgets.widget({
         $el.on("ready.jstree", function(e, data) {
           if(x.search) {
             if(x.grid) {
-              var $div = $(gridSearchBoxes(el.id));
+
+              var ncolumns = x.grid.columns.length;
+              for(var i = 0; i < ncolumns; i++) {
+                var columnRoot = ".jstree-grid-column-" + i +
+                  ".jstree-grid-column-root-" + el.id;
+                var $header = $(columnRoot).children(".jstree-grid-header")
+                var $searchBox = $(gridSearchBox(i, el.id));
+                $header.after($searchBox)
+              }
+
+              var $searchBoxesSelector = $("." + el.id + "-searchField");
+              //add search functionality to the input fields
+              $searchBoxesSelector.keyup(function(e) {
+            	//get all input fields
+                var $searchFields = $searchBoxesSelector;
+                var searchValues = {};
+                //create for each input a key value pair with the key in the name attribute of the input (also being the index of the column)
+                $searchFields.each(function(){
+                  var field = $(this);
+                  searchValues[field.attr("name")] = field.val();
+                });
+                //use the new searchColumn method
+                $el.jstree(true).searchColumn(searchValues);
+              });
+
+
+/*              var $div = $(gridSearchBoxes(el.id));
               var $midWrapper = $el.closest(".jstree-grid-midwrapper");
               $div.insertBefore($midWrapper);
               var divSelector = "#" + el.id + "-searchFields";
               //add search functionality to the input fields
               $(divSelector + " input").keyup(function(e) {
-            	//get all input fields
+            	  //get all input fields
                 var inputFields = $(divSelector + " input");
                 var searchValues = {};
                 //create for each input a key value pair with the key in the name attribute of the input (also being the index of the column)
@@ -274,7 +278,7 @@ HTMLWidgets.widget({
                 });
                 //use the new searchColumn method
                 $el.jstree(true).searchColumn(searchValues);
-              });
+              }); */
             } else {
               var $input = $(
                 "<input type='search' id='" +
