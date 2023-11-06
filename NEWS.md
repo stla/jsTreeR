@@ -1,4 +1,4 @@
-# jsTreeR 2.4.0 (2023-11-??)
+# jsTreeR 2.4.0 (2023-11-07)
 
 - New option `checkWithText`; it is a `TRUE`/`FALSE` option about the behavior 
 of the checkboxes: it controls whether the checkboxes must be (un)checked when

@@ -252,7 +252,8 @@ HTMLWidgets.widget({
             	//get all input fields
                 var $searchFields = $searchBoxesSelector;
                 var searchValues = {};
-                //create for each input a key value pair with the key in the name attribute of the input (also being the index of the column)
+                //create for each input a key value pair with the key in the
+                //  name attribute of the input (also being the column index)
                 $searchFields.each(function() {
                   var field = $(this);
                   searchValues[field.attr("name")] = field.val();
