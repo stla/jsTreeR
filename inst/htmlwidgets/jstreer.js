@@ -142,7 +142,7 @@ function setShinyValueCheckedNodes(instance, leavesOnly) {
 function gridSearchBox(index, id) {
   var input =
     `<input type="text" placeholder="Search..." name="${index}" value=""` +
-    `style="width: calc(100% - 2px);" class="${id}-searchField">`;
+    `style="width: calc(100% - 2px);" class="${id}-searchField jstree-SearchField">`;
   return input;
 }
 
