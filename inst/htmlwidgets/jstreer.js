@@ -1,48 +1,48 @@
-function filterChecked0(instance, list, keys){
+function filterChecked0(instance, list, keys) {
   var out = {};
-  keys.forEach(function (k) {
+  keys.forEach(function(k) {
     out[k] = list[k];
   });
-  var children = list.children.map(function (child) {
+  var children = list.children.map(function(child) {
     var id = child.id;
     var checked = instance.get_checked_descendants(id);
-    if(checked.length > 0){
+    if(checked.length > 0) {
       return filterChecked0(instance, child, keys);
     }
-    if(instance.is_leaf(id) && instance.is_checked(id)){
+    if(instance.is_leaf(id) && instance.is_checked(id)) {
       return extractKeys(child);
     }
     return;
   });
-  out.children = children.filter(function(x){return x !== undefined});
+  out.children = children.filter(function(x) {return x !== undefined});
   return out;
 }
 
-function filterChecked(instance, keys){
-  if(instance.get_checked_descendants("#").length === 0){
+function filterChecked(instance, keys) {
+  if(instance.get_checked_descendants("#").length === 0) {
     return {};
   }
-  var lists = instance.get_json().filter(function(x){
+  var lists = instance.get_json().filter(function(x) {
     return instance.get_checked_descendants(x.id).length !== 0
   });
-  return lists.map(function(x){
+  return lists.map(function(x) {
     return filterChecked0(instance, x, keys);
   });
 }
 
 function extractKeysWithChildren(list, keys) {
   var out = {};
-  keys.forEach(function (k) {
+  keys.forEach(function(k) {
     out[k] = list[k];
   });
-  out.children = list.children.map(function (child) {
+  out.children = list.children.map(function(child) {
     return extractKeysWithChildren(child, keys);
   });
   return out;
 }
 
 function getNodesWithChildren(json, keys) {
-  return json.map(function (list) {
+  return json.map(function(list) {
     return extractKeysWithChildren(list, keys);
   });
 }
@@ -77,7 +77,7 @@ function setShinyValueSelectedNodes(instance, leavesOnly, checkboxes) {
   var leaves = [];
   var pathNodes = [];
   var leavePathNodes = [];
-  for (var i = 0; i < nodes.length; i++) {
+  for(var i = 0; i < nodes.length; i++) {
     var node = nodes[i];
     var path = instance.get_path(selectedNodes[i], "/");
     var pathNode = {
@@ -87,7 +87,7 @@ function setShinyValueSelectedNodes(instance, leavesOnly, checkboxes) {
     pathNodes.push(pathNode);
     var nchildren = node.children.length;
     delete nodes[i].children;
-    if (leavesOnly && nchildren === 0) {
+    if(leavesOnly && nchildren === 0) {
       leaves.push(nodes[i]);
       leavePathNodes.push(pathNode);
     }
@@ -124,7 +124,7 @@ function setShinyValueCheckedNodes(instance, leavesOnly) {
     pathNodes.push(pathNode);
     var nchildren = node.children.length;
     delete nodes[i].children;
-    if (leavesOnly && nchildren === 0) {
+    if(leavesOnly && nchildren === 0) {
       leaves.push(nodes[i]);
       leavePathNodes.push(pathNode);
     }
