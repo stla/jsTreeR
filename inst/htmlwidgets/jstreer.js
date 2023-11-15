@@ -60,14 +60,23 @@ function getNodes(json) {
   return json.map(extractKeys);
 }
 
-function setShinyValue(instance) {
+function fullTree0(instance, node) {
+  node.state.undetermined = instance.is_undetermined(node);
+  node.children.map(function(child) { fullTree0(instance, child); });
+}
+
+function setShinyValue(instance, checkboxes) {
   Shiny.setInputValue(
     instance.element.attr("id") + ":jsTreeR.list",
     getNodesWithChildren(instance.get_json(), ["text", "data"])
   );
+  var fulltree = instance.get_json();
+  if(checkboxes) {
+    fulltree.map(function(node) { fullTree0(instance, node); });
+  }
   Shiny.setInputValue(
     instance.element.attr("id") + "_full:jsTreeR.list",
-    instance.get_json()
+    fulltree
   );
 }
 
@@ -281,7 +290,7 @@ HTMLWidgets.widget({
             }
           }); */
           if(inShiny) {
-            setShinyValue(data.instance);
+            setShinyValue(data.instance, checkboxes);
             setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
             if(checkboxes) {
               setShinyValueCheckedNodes(data.instance, leavesOnly);
@@ -291,7 +300,7 @@ HTMLWidgets.widget({
 
         $el.on("refresh.jstree", function(e, data) {
           if(inShiny) {
-            setShinyValue(data.instance);
+            setShinyValue(data.instance, checkboxes);
             setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
             if(checkboxes) {
               setShinyValueCheckedNodes(data.instance, leavesOnly);
@@ -315,17 +324,17 @@ HTMLWidgets.widget({
               from: { instance: oldInstanceId, path: oldPath },
               to: { instance: newInstanceId, path: newPath }
             });
-            if(data.is_multi) {
-              setShinyValue(oldInstance);
-              setShinyValue(newInstance);
+            if(data.is_multi) { // ??
+              setShinyValue(oldInstance, checkboxes);
+              setShinyValue(newInstance, checkboxes);
             } else {
-              setShinyValue(data.instance);
+              setShinyValue(data.instance, checkboxes);
             }
           }
         });
 
         $el.on("changed.jstree", function(e, data) {
-          if (inShiny) {
+          if(inShiny) {
             //            Shiny.setInputValue(
             //              id, getNodesWithChildren(data.instance.get_json())
             //            );
@@ -339,25 +348,25 @@ HTMLWidgets.widget({
 
         $el.on("after_open.jstree", function(e, data) {
           if(inShiny) {
-            setShinyValue(data.instance);
+            setShinyValue(data.instance, checkboxes);
           } // modif 9/10/2023
         });
 
         $el.on("after_close.jstree", function(e, data) {
           if(inShiny) {
-            setShinyValue(data.instance);
+            setShinyValue(data.instance, checkboxes);
           } // modif 9/10/2023
         });
 
         $el.on("select_node.jstree", function(e, data) {
           if(inShiny) {
-            setShinyValue(data.instance);
+            setShinyValue(data.instance, checkboxes);
           } // modif 9/10/2023
         });
 
         $el.on("deselect_node.jstree", function(e, data) {
           if(inShiny) {
-            setShinyValue(data.instance);
+            setShinyValue(data.instance, checkboxes);
           } // modif 9/10/2023
         });
 
@@ -365,7 +374,7 @@ HTMLWidgets.widget({
           $el.on("check_node.jstree", function(e, data) {
             $el.jstree(true).select_node(data.node);
             if(inShiny) {
-              setShinyValue(data.instance);
+              setShinyValue(data.instance, checkboxes);
               setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
               if(checkboxes) {
                 setShinyValueCheckedNodes(data.instance, leavesOnly);
@@ -375,7 +384,7 @@ HTMLWidgets.widget({
           $el.on("uncheck_node.jstree", function(e, data) {
             $el.jstree(true).deselect_node(data.node);
             if(inShiny) {
-              setShinyValue(data.instance);
+              setShinyValue(data.instance, checkboxes);
               setShinyValueSelectedNodes(data.instance, leavesOnly, checkboxes);
               if(checkboxes) {
                 setShinyValueCheckedNodes(data.instance, leavesOnly);
@@ -384,8 +393,8 @@ HTMLWidgets.widget({
           });
         }
 
-        $el.on("rename_node.jstree", function (e, data) {
-          if (inShiny) {
+        $el.on("rename_node.jstree", function(e, data) {
+          if(inShiny) {
             var instance = data.instance;
             var parentPath = instance.get_path(data.node.parent);
             var oldPath = parentPath.concat(data.old);
@@ -395,7 +404,7 @@ HTMLWidgets.widget({
               from: oldPath,
               to: newPath
             });
-            setShinyValue(instance);
+            setShinyValue(instance, checkboxes);
             setShinyValueSelectedNodes(instance, leavesOnly, checkboxes);
             if(checkboxes) {
               setShinyValueCheckedNodes(data.instance, leavesOnly);
@@ -403,20 +412,20 @@ HTMLWidgets.widget({
           }
         });
 
-        $el.on("create_node.jstree", function (e, data) {
-          if (inShiny) {
+        $el.on("create_node.jstree", function(e, data) {
+          if(inShiny) {
             var instance = data.instance;
             Shiny.setInputValue("jsTreeCreated:jsTreeR.path", {
               instance: instance.element.attr("id"),
               path: instance.get_path(data.node),
               node: extractKeys(instance.get_json(data.node))
             });
-            setShinyValue(instance);
+            setShinyValue(instance, checkboxes);
           }
         });
 
-        $el.on("copy_node.jstree", function (e, data) {
-          if (inShiny) {
+        $el.on("copy_node.jstree", function(e, data) {
+          if(inShiny) {
             var newInstance = data.new_instance;
             var oldInstance = data.old_instance;
             var newInstanceId = newInstance.element.attr("id");
@@ -427,18 +436,18 @@ HTMLWidgets.widget({
               from: { instance: oldInstanceId, path: oldPath },
               to: { instance: newInstanceId, path: newPath }
             });
-            setShinyValue(newInstance);
+            setShinyValue(newInstance, checkboxes);
           }
         });
 
-        $el.on("delete_node.jstree", function (e, data) {
-          if (inShiny) {
+        $el.on("delete_node.jstree", function(e, data) {
+          if(inShiny) {
             var instance = data.instance;
             Shiny.setInputValue("jsTreeDeleted:jsTreeR.path", {
               instance: instance.element.attr("id"),
               path: instance.get_path(data.node)
             });
-            setShinyValue(instance);
+            setShinyValue(instance, checkboxes);
           }
         });
 
