@@ -1,3 +1,9 @@
+# jsTreeR 2.5.0 (2023-12-??)
+
+The Shiny input value `ID_full` now indicates the undetermined states regarding 
+the checkboxes.
+
+
 # jsTreeR 2.4.0 (2023-11-07)
 
 - New option `checkWithText`; it is a `TRUE`/`FALSE` option about the behavior 
