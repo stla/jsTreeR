@@ -94,8 +94,11 @@ function setShinyValueSelectedNodes(instance, leavesOnly, checkboxes) {
       data: node.data
     };
     pathNodes.push(pathNode);
-    var nchildren = node.children.length;
-    delete nodes[i].children;
+    var hasChildren = node.children;
+    var nchildren = hasChildren ? node.children.length : 0;
+    if(hasChildren) {
+      delete nodes[i].children;
+    }
     if(leavesOnly && nchildren === 0) {
       leaves.push(nodes[i]);
       leavePathNodes.push(pathNode);
@@ -131,8 +134,11 @@ function setShinyValueCheckedNodes(instance, leavesOnly) {
       data: node.data
     };
     pathNodes.push(pathNode);
-    var nchildren = node.children.length;
-    delete nodes[i].children;
+    var hasChildren = node.children;
+    var nchildren = hasChildren ? node.children.length : 0;
+    if(hasChildren) {
+      delete nodes[i].children;
+    }
     if(leavesOnly && nchildren === 0) {
       leaves.push(nodes[i]);
       leavePathNodes.push(pathNode);
