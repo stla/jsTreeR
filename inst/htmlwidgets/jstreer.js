@@ -402,7 +402,7 @@ HTMLWidgets.widget({
         $el.on("rename_node.jstree", function(e, data) {
           if(inShiny) {
             var instance = data.instance;
-            var parentPath = instance.get_path(data.node.parent);
+            var parentPath = instance.get_path(data.node.parent) || [];
             var oldPath = parentPath.concat(data.old);
             var newPath = parentPath.concat(data.text);
             Shiny.setInputValue("jsTreeRenamed:jsTreeR.move", {
