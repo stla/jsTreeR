@@ -1,4 +1,4 @@
-# jsTreeR 2.5.0 (2023-12-??)
+# jsTreeR 2.5.0 (2023-12-19)
 
 The Shiny input value `ID_full` now indicates the undetermined states regarding 
 the checkboxes.

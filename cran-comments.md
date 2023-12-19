@@ -1,6 +1,6 @@
 ## Test environments
 
-* Windows 10, R-4.3.1
+* Windows 10, R-4.3.2
 * win-builder (devel)
 * Ubuntu, via Github action
 
