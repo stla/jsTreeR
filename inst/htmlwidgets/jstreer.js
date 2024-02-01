@@ -217,6 +217,8 @@ HTMLWidgets.widget({
           }
         };
 
+        $.extend(options.core, x.coreOptions);
+
         if(x.types) options.types = x.types;
 
         if(x.dnd) options.dnd = x.dnd;

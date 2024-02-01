@@ -22,7 +22,8 @@ jstree(
   contextMenu = FALSE,
   checkCallback = NULL,
   grid = NULL,
-  theme = "default"
+  theme = "default",
+  coreOptions = NULL
 )
 }
 \arguments{
@@ -141,6 +142,8 @@ for the list of all available options}
 
 \item{theme}{jsTree theme, one of \code{"default"},
 \code{"default-dark"}, or \code{"proton"}}
+
+\item{coreOptions}{a named list of core options, for advanced usage}
 }
 \value{
 A \code{htmlwidget} object.

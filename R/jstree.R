@@ -99,6 +99,7 @@
 #'   for the list of all available options
 #' @param theme jsTree theme, one of \code{"default"},
 #'   \code{"default-dark"}, or \code{"proton"}
+#' @param coreOptions a named list of core options, for advanced usage
 #'
 #' @return A \code{htmlwidget} object.
 #'
@@ -386,7 +387,8 @@ jstree <- function(
   contextMenu = FALSE,
   checkCallback = NULL,
   grid = NULL,
-  theme = "default"
+  theme = "default",
+  coreOptions = NULL
 ){
   if(!isNodesList(nodes) && !isCallbackNodes(nodes)
      && !isAJAXnodes(nodes) && !isLAZYnodes(nodes)){
@@ -420,6 +422,7 @@ jstree <- function(
   )
   stopifnot(is.null(grid) || isNamedList(grid))
   stopifnot(isString(theme))
+  stopifnot(is.null(coreOptions) || isNamedList(coreOptions))
   # forward options using x
   x = list(
     data = nodes,
@@ -438,7 +441,8 @@ jstree <- function(
     contextMenu = contextMenu,
     checkCallback = checkCallback %||% (dragAndDrop || contextMenu),
     grid = validateGrid(grid),
-    theme = match.arg(theme, c("default", "default-dark", "proton"))
+    theme = match.arg(theme, c("default", "default-dark", "proton")),
+    coreOptions = coreOptions
   )
 
   # create widget
