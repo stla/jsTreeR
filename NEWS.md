@@ -1,3 +1,9 @@
+# jsTreeR 2.5.1 (2024-01-02)
+
+The `jstree` function has a new argument `coreOptions`, allowing to pass a 
+list of jsTree core options. For advanced usage.
+
+
 # jsTreeR 2.5.0 (2023-12-19)
 
 The Shiny input value `ID_full` now indicates the undetermined states regarding 
