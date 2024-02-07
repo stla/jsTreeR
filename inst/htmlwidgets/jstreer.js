@@ -443,7 +443,7 @@ HTMLWidgets.widget({
             Shiny.setInputValue("jsTreeCopied:jsTreeR.copied", {
               from: { instance: oldInstanceId, path: oldPath },
               to: { instance: newInstanceId, path: newPath }
-            });
+            }, {priority: "event"});
             setShinyValue(newInstance, checkboxes);
           }
         });
