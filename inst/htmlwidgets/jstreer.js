@@ -251,7 +251,6 @@ HTMLWidgets.widget({
         $el.jstree(options);
 
         $el.on("ready.jstree", function(e, data) {
-          $(".jstree-grid-wrapper").removeClass("shiny-bound-output");
           if(x.search) {
             if(x.grid) {
 
