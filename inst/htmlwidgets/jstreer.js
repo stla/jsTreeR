@@ -175,6 +175,12 @@ HTMLWidgets.widget({
 
     return {
       renderValue: function(x) {
+
+        if($el.hasClass("jstree")) {
+          $("#" + el.id + "-search").remove();
+          $el.jstree(true).destroy();
+        }
+
         var plugins = ["themes"];
         if(x.checkbox) {
           plugins.push("checkbox");

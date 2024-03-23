@@ -6,6 +6,9 @@ list of jsTree core options. For advanced usage.
 - There was a JavaScript error occurring in Shiny apps when the browser window
 was resized while using a jsTree grid in the app. It has been fixed.
 
+- When a `jstree` had some reactive dependencies in a Shiny app, it was not 
+re-rendered when these dependencies were updated.
+
 
 # jsTreeR 2.5.0 (2023-12-19)
 
