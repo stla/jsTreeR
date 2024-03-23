@@ -331,7 +331,7 @@ HTMLWidgets.widget({
             Shiny.setInputValue("jsTreeMoved:jsTreeR.copied", {
               from: { instance: oldInstanceId, path: oldPath },
               to: { instance: newInstanceId, path: newPath }
-            });
+            }, {priority: "event"});
             if(data.is_multi) { // ??
               setShinyValue(oldInstance, checkboxes);
               setShinyValue(newInstance, checkboxes);
@@ -454,7 +454,7 @@ HTMLWidgets.widget({
             Shiny.setInputValue("jsTreeDeleted:jsTreeR.path", {
               instance: instance.element.attr("id"),
               path: instance.get_path(data.node)
-            });
+            }, {priority: "event"});
             setShinyValue(instance, checkboxes);
           }
         });

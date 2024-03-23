@@ -1,9 +1,9 @@
-# jsTreeR 2.6.0 (2024-02-15)
+# jsTreeR 2.6.0 (2024-03-24)
 
 - The `jstree` function has a new argument `coreOptions`, allowing to pass a 
 list of jsTree core options. For advanced usage.
 
-- There was a JavaScript error occuring in Shiny apps when the browser window
+- There was a JavaScript error occurring in Shiny apps when the browser window
 was resized while using a jsTree grid in the app. It has been fixed.
 
 
