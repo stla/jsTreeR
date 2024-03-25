@@ -11,6 +11,27 @@ This package is similar to [shinyTree](https://github.com/shinyTree/shinyTree)
 but it allows more options. It also provides a Shiny gadget allowing to 
 manipulate one or more folders.
 
+
+## Installation
+
+Install from CRAN:
+
+```r
+install.packages("jsTreeR")
+```
+
+Or install the latest development version (on GitHub):
+
+```r
+remotes::install_github("stla/jsTreeR")
+```
+
+
+## Getting started
+
+Please check the [Shiny examples](https://github.com/stla/jsTreeR/tree/master/inst/examples) (see `?jstreeExamples`).
+
+
 ![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_dragAndDrop-update.gif)
 
 ![](https://raw.githubusercontent.com/stla/jsTreeR/master/inst/screenshots/jsTreeR_search.gif)

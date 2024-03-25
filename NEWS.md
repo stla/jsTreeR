@@ -1,4 +1,4 @@
-# jsTreeR 2.6.0 (2024-03-24)
+# jsTreeR 2.6.0 (2024-03-25)
 
 - The `jstree` function has a new argument `coreOptions`, allowing to pass a 
 list of jsTree core options. For advanced usage.
