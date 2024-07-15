@@ -356,7 +356,7 @@ HTMLWidgets.widget({
             if(checkboxes) {
               setShinyValueCheckedNodes(data.instance, leavesOnly);
             }
-            //setShinyValue(data.new_instance); // modif 9/10/2023
+            setShinyValue(data.instance);
           }
         });
 
@@ -372,17 +372,19 @@ HTMLWidgets.widget({
           } // modif 9/10/2023
         });
 
-        $el.on("select_node.jstree", function(e, data) {
-          if(inShiny) {
-            setShinyValue(data.instance, checkboxes);
-          } // modif 9/10/2023
-        });
+/*
+         $el.on("select_node.jstree", function(e, data) {
+           if(inShiny) {
+             setShinyValue(data.instance, checkboxes);
+           } // modif 9/10/2023
+         });
 
-        $el.on("deselect_node.jstree", function(e, data) {
-          if(inShiny) {
-            setShinyValue(data.instance, checkboxes);
-          } // modif 9/10/2023
-        });
+         $el.on("deselect_node.jstree", function(e, data) {
+           if(inShiny) {
+             setShinyValue(data.instance, checkboxes);
+           } // modif 9/10/2023
+         });
+*/
 
         if(!x.checkWithText) {
           $el.on("check_node.jstree", function(e, data) {
